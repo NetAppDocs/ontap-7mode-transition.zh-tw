@@ -1,0 +1,24 @@
+---
+permalink: copy-based/reference_cannot_select_a_secondary_volume_from_volume_selection_pane.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, select, secondary, volume, pan, selection 
+summary: 如果磁碟區不在線上、或SnapMirror關係中斷、您無法從「Volume Select（磁碟區選擇）」窗格中選取次要磁碟區、並將其轉換為Volume SnapMirror關係。 
+---
+= 無法從Volume選擇窗格中選取次要Volume
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果磁碟區不在線上、或SnapMirror關係中斷、您無法從「Volume Select（磁碟區選擇）」窗格中選取次要磁碟區、並將其轉換為Volume SnapMirror關係。
+
+
+
+== 因應措施
+
+使用ONTAP 指令行執行下列任一因應措施：
+
+* 如果次要Volume離線、請將其上線。
+* 如果SnapMirror關係中斷、請予以修正。
+

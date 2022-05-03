@@ -1,0 +1,60 @@
+---
+permalink: copy-based/concept_limitations_with_snapshot_copies_and_luns_managed_by_snap_products.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, limitations, snapshot, lun, snapdrive, snapmanager 
+summary: 當轉換至叢集Data ONTAP 式的版本時、SnapDrive 在SnapManager 轉換成7-Mode Snapshot複本時、無法驗證及還原功能。轉換至叢集Data ONTAP 式的版本時、SnapManager Microsoft Exchange Server（SMES\）備份驗證功能的功能不適用功能、SnapManager 而Hyper-V（SMHV\）的功能不適用功能無法在轉換後的7-Mode Snapshot複本上還原檔案。 
+---
+= 7模式Snapshot複本的限制、這些複本是由SnapDrive VMware及SnapManager VMware在轉換後所管理的LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+當轉換至叢集Data ONTAP 式的版本時、SnapDrive 在SnapManager 轉換成7-Mode Snapshot複本時、無法驗證及還原功能。轉換至叢集Data ONTAP 式的版本時、SnapManager 在SnapManager 轉換成7-Mode Snapshot複本時、Microsoft Exchange Server（SME）備份驗證和適用於Hyper-V（SMHVV）的文件還原作業失敗。
+
+根據連接至7-Mode系統的主機所使用的功能、以及叢集上執行的版本、7-Mode Transition Tool會在預先檢查期間顯示此限制的警告訊息。SnapDrive SnapManager Data ONTAP
+
+
+NOTE: 在SnapDrive 叢集式的任何新建立的Snapshot複本中、均支援所有的還原SnapManager 與還原驗證功能。Data ONTAP
+
+
+
+== 使用SnapDrive 叢SnapManager 集Data ONTAP 式的還原和還原功能、在叢集式的還原功能中執行備份與還原作業
+
+執行下列其中一項動作：
+
+* 保留7-Mode系統、直到7-Mode Snapshot複本過期為止。
++
+您可以使用7-Mode系統從7-Mode Snapshot複本的LUN還原檔案、Data ONTAP 然後視需要將檔案移轉至叢集式的VMware。
+
+* 使用單一檔案SnapRestore 以ONTAP 供參考、將LUN從7-Mode Snapshot複本還原至作用中檔案系統、然後掛載還原的LUN以進行單一檔案還原。
+
+
+
+
+== 解決ONTAP 方法：在支援的更新版本中、使用支援的SME和SMHV進行備份與還原作業
+
+執行下列其中一項動作：
+
+* 在SnapManager 執行儲存轉換至ONTAP VMware之前、請先確認以7-Mode建立的還原備份有效。
+* 從ONTAP 轉換後的7-Mode Snapshot複本建立一個實體磁碟區的複本、然後將LUN掛載到複製的磁碟區、以進行備份驗證和還原作業。
+
+
+最佳實務做法是在7-Mode Snapshot複本過期之前、保留7-Mode系統。
+
+http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=30034["NetApp文件：SnapManager Microsoft Exchange Server的參考資料"]
+
+http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=30055["NetApp文件：SnapManager 適用於Hyper-V的解決方案"]
+
+http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=30037["NetApp文件：SnapManager 適用於SAP的"]
+
+http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=30040["NetApp文件：SnapManager Oracle的支援"]
+
+http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=30050["NetApp文件：SnapDrive 適用於UNIX的解決方案"]
+
+http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=30049["NetApp文件：SnapDrive 適用於Windows（目前版本）"]
+
+http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=30041["NetApp文件：SnapManager Microsoft SQL Server的支援"]
+
+http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=30036["NetApp文件：SnapManager Microsoft SharePoint的參考資料"]

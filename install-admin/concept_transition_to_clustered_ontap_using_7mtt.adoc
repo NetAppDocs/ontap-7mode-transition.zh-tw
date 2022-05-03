@@ -1,0 +1,18 @@
+---
+permalink: install-admin/concept_transition_to_clustered_ontap_using_7mtt.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, install, transition, tool, clustered 
+summary: 7-Mode Transition Tool可讓您收集7-Mode控制器、主機、交換器和應用程式的庫存、並評估它們是否準備好移轉至叢集ONTAP 式的VMware。評估完成後、您可以ONTAP 使用複製型轉換方法或無複製轉換方法、將資料和組態從7-Mode移轉至叢集式的VMware。7-Mode Transition Tool可從NetApp支援網站下載、並安裝在Linux或Windows系統上。 
+---
+= 使用7-Mode Transition Tool移轉至叢集ONTAP 式的VMware
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+7-Mode Transition Tool可讓您收集7-Mode控制器、主機、交換器和應用程式的庫存、並評估它們是否準備好移轉至叢集ONTAP 式的VMware。評估完成後、您可以ONTAP 使用複製型轉換方法或無複製轉換方法、將資料和組態從7-Mode移轉至叢集式的VMware。7-Mode Transition Tool可從NetApp支援網站下載、並安裝在Linux或Windows系統上。
+
+請務必參閱目前的7-Mode Transition Tool _Release Notes_、以取得支援的目標版本和已知問題的最新資訊。
+
+http://docs.netapp.com/us-en/ontap-7mode-transition/releasenotes.html["7-Mode Transition Tool版本資訊"]

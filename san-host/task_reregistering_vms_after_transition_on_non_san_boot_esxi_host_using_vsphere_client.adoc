@@ -1,0 +1,36 @@
+---
+permalink: san-host/task_reregistering_vms_after_transition_on_non_san_boot_esxi_host_using_vsphere_client.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, vm, esxi, vsphere, client 
+summary: 在轉換非SAN開機的主機之後、您必須重新登錄虛擬機器（VMs）。 
+---
+= 在非SAN上進行移轉之後、使用vSphere Client重新登錄VM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在轉換非SAN開機的主機之後、您必須重新登錄虛擬機器（VM）。
+
+主機必須處於線上狀態、而且必須探索LUN。
+
+* 對於複製型轉換、請在7-Mode Transition Tool中啟動儲存設備切換作業之前、先執行下列步驟。
+* 如需無複製轉換、請在7MTT中啟動匯出及停止7-Mode系統作業之前、先執行下列步驟。
+
+
+.步驟
+. 開啟由庫存收集工具（ICT）產生的_庫存評估工作簿_。
+. 瀏覽至「主機VM」索引標籤、然後記錄VM的* VM組態檔*路徑和*位置/資料存放區名稱*。
+. 使用vSphere Client登入ESXi主機或管理ESXi主機的vCenter Server。
+. 在*主機與叢集*下、選取ESXi主機。
+. 瀏覽至*組態*>*硬體*>*儲存設備*。
+. 使用您先前記下的資料存放區名稱來選取資料存放區。
+. 按一下滑鼠右鍵、然後選取*瀏覽Datastoration*。
++
+此時會開啟資料存放區瀏覽器視窗。
+
+. 瀏覽至您先前記下的* VM組態檔*路徑。
+. 右鍵單擊".vmx "文件，然後選擇*添加到清單*。
+. 針對ICT所產生的_庫存評估工作簿_中*主機VMS*索引標籤中所列的每部VM重複這些步驟。
+

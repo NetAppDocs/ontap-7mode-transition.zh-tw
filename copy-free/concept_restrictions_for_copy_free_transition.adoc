@@ -1,0 +1,75 @@
+---
+permalink: copy-free/concept_restrictions_for_copy_free_transition.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, aggregates, volumes, restrictions 
+summary: 您必須瞭解在轉換7-Mode集合體和磁碟區時的某些限制。部分限制是ONTAP 由於功能不受支援、對於某些限制、您可以執行修正行動、讓您繼續進行轉換。 
+---
+= 限制轉換7-Mode集合體與磁碟區
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必須瞭解在轉換7-Mode集合體和磁碟區時的某些限制。部分限制是ONTAP 由於功能不受支援、對於某些限制、您可以執行修正行動、讓您繼續進行轉換。
+
+
+
+== Volume類型
+
+下列類型的磁碟區不支援轉換：
+
+* 傳統磁碟區
++
+您可以使用主機型轉換方法來轉換傳統磁碟區。
+
++
+http://www.netapp.com/us/media/tr-4052.pdf["NetApp技術報告4052：成功移轉至叢集Data ONTAP 式的更新版本（Data ONTAP NetApp技術報告4052）"]
+
+* 資料量SnapLock
++
+支援所有最新版本的更新版支援移轉SnapLock 功能。ONTAP
+
+* 資料量FlexCache
+
+
+
+
+== Aggregate與Volume狀態
+
+如果為轉換所選的任何7-Mode集合體和Volume處於下列其中一種狀態、就會封鎖轉換：
+
+* 離線
+* 受限
+* 不一致（「WAFL 不一致」）
+
+
+
+
+== FlexClone Volume
+
+在無複本轉換期間、會保留複本階層架構和儲存效率。不過、您必須確保父FlexVol 實體化磁碟區及其所有FlexClone磁碟區都屬於同一個vFiler單元。如果FlexClone磁碟區與父磁碟區位於不同的VFiler單元中、您必須選擇下列其中一項動作：
+
+* 將FlexClone磁碟區移至擁有父FlexVol 級不全磁碟區的vFiler單元。
+* 從父FlexClone磁碟區分割複本、然後將這些磁碟區轉換為FlexVol 參考磁碟區。
+
+
+
+
+== 具有屬於不同vFiler單元的qtree的Volume
+
+您無法使用qtree轉換磁碟區、其中qtree是由不同於Volume的vFiler單元所擁有。在轉換之前、您必須執行下列其中一項動作、以確保每個Volume及其所有qtree都屬於同一個VFiler單元：
+
+* 將qtree移至擁有該磁碟區的vFiler單元。
+* 刪除qtree。
+
+
+
+
+== inode至父路徑名稱轉譯設定
+
+每個磁碟區都必須啟用inode至父路徑名稱轉譯。您可以關閉no_I2P選項來啟用父路徑名稱轉譯：
+
+「* vol選項_vol_name_ no_I2P off*」
+
+您不需要等待I2P掃描完成、也可以繼續進行轉換準備。

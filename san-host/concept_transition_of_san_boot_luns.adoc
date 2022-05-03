@@ -1,0 +1,22 @@
+---
+permalink: san-host/concept_transition_of_san_boot_luns.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, san, boot, lun 
+summary: 您必須重新開機SAN開機LUN、才能Data ONTAP 使用7-Mode Transition Tool（7MTT）從以7-Mode運作的VMware移轉到叢集Data ONTAP 式的VMware。您必須執行特定步驟來準備轉換階段、而且在轉換之後、您必須探索LUN。 
+---
+= 轉換SAN開機LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必須重新開機SAN開機LUN、才能Data ONTAP 使用7-Mode Transition Tool（7MTT）、從以7-Mode運作的VMware移轉到叢集Data ONTAP 式的VMware。您必須執行特定步驟來準備轉換階段、而且在轉換之後、您必須探索LUN。
+
+*相關資訊*
+
+xref:task_preparing_for_transition_of_fc_or_fcoe_san_boot_luns.adoc[準備在RHEL主機上轉換FC或FCoE SAN開機LUN]
+
+xref:task_preparing_for_transition_of_iscsi_san_boot_luns.adoc[準備移轉iSCSI SAN開機LUN]
+
+xref:task_discovering_san_boot_luns_after_transition.adoc[轉換後探索SAN開機LUN]

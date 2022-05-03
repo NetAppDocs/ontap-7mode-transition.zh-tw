@@ -1,0 +1,49 @@
+---
+section: install-admin
+title: 7-Mode Transition Tool安裝與管理
+url: "/install-admin/index.html"
+entries:
+- title: 使用7-Mode Transition Tool移轉至叢集ONTAP 式的VMware
+  url: "/install-admin/concept_transition_to_clustered_ontap_using_7mtt.html"
+  entries:
+  - title: 支援7-Mode Transition Tool的支援目標版本ONTAP
+    url: "/install-admin/concept_ontap_target_releases_supported_by_7mtt.html"
+  - title: 無複本轉換與複本型轉換的比較
+    url: "/install-admin/concept_comparison_of_copy_free_transition_and_copy_based_transition.html"
+  - title: 可在Windows和Linux上使用的介面和移轉功能
+    url: "/install-admin/reference_interfaces_and_transition_capabilities_available_on_windows_and_linux.html"
+- title: 在Windows系統上安裝或解除安裝7-Mode Transition Tool
+  url: "/install-admin/concept_installing_and_uninstalling_7mtt.html"
+  entries:
+  - title: 在Windows系統上安裝7-Mode Transition Tool的系統需求
+    url: "/install-admin/concept_system_requirements_for_7mtt_on_windows.html"
+  - title: 在Windows系統上安裝7-Mode Transition Tool
+    url: "/install-admin/task_installing_7mtt.html"
+  - title: 啟用非系統管理員群組使用者的登入
+    url: "/install-admin/task_enabling_login_for_users_not_part_of_administrator_group.html"
+  - title: 登入7-Mode Transition Tool
+    url: "/install-admin/task_logging_in_to_tool.html"
+  - title: 在Windows系統上解除安裝7-Mode Transition Tool
+    url: "/install-admin/task_uninstalling_7mtt.html"
+- title: 在Linux上安裝或解除安裝7-Mode Transition Tool（僅限複製型轉換）
+  url: "/install-admin/concept_installing_and_uninstalling_7mtt_on_linux.html"
+  entries:
+  - title: 在Linux上安裝7-Mode Transition Tool的系統需求
+    url: "/install-admin/concept_system_requirements_for_7_mode_transition_tool_on_linux.html"
+  - title: 在Linux上安裝7-Mode Transition Tool
+    url: "/install-admin/task_installing_7_mode_transition_tool_on_linux.html"
+  - title: 在Linux上解除安裝7-Mode Transition Tool
+    url: "/install-admin/task_uninstalling_7_mode_transition_tool_on_linux.html"
+- title: 修改7-Mode Transition Tool的組態選項
+  url: "/install-admin/task_modifying_default_configuration_settings_of_7mtt.html"
+- title: 疑難排解問題
+  url: "/install-admin/concept_troubleshooting_web_interface_issues.html"
+  entries:
+  - title: 工具安裝失敗、且OS錯誤不相容
+    url: "/install-admin/reference_tool_installation_fails_with_incompatible_os_error.html"
+  - title: 已封鎖7-Mode Transition Tool的安裝或解除安裝
+    url: "/install-admin/reference_installation_or_uninstallation_of_7mtt_is_blocked.html"
+  - title: 在Windows系統上重新安裝或升級7-Mode Transition Tool失敗
+    url: "/install-admin/reference_reinstalling_or_upgrading_7mtt_fails_on_windows_system.html"
+  - title: 安裝工具時顯示Windows程式相容性小幫手通知
+    url: "/install-admin/reference_windows_compatibility_assistant_notification_displayed_while_installing.html"

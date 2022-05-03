@@ -1,0 +1,22 @@
+---
+permalink: copy-based/concept_considerations_for_transitioning_of_snaplock_audit_volumes.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, snaplock, audit, volumes 
+summary: 7-Mode Transition Tool可支援SnapLock 移轉至《支援不支援的監查》（VMware）磁碟區。轉換SnapLock 《Sof the Same Audit》（《Sof the Same SnapLock Compliance》）磁碟區的工作流程、與《Sof the Same Compliance》（《 
+---
+= 轉換SnapLock 《E29稽核》磁碟區的考量事項
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+7-Mode Transition Tool可支援SnapLock 移轉至《支援不支援的監查》（VMware）磁碟區。轉換SnapLock 《Sof the Same Audit》（《Sof the Same SnapLock Compliance》）磁碟區的工作流程、與《Sof the Same Compliance》（《
+
+將稽核磁碟區移轉ONTAP 至支援區之後、您必須手動將轉換的稽核磁碟區指定為SnapLock 目標SVM的「支援區」。
+
+在本例中、稽核磁碟區是在SVM層級設定。ONTAP在以7-Mode運作的Data ONTAP 過程中、稽核磁碟區可做為整合式儲存庫、用於控制器中橫跨vFiler單元的所有磁碟區。
+
+《不符合要求》（《不符合要求》）是一種「不符合要求」的Volume。SnapLock SnapLock如果目標叢集採用支援的是功能性組態、則不支援移轉SnapLock 功能。MetroCluster
+
+請參閱 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/How_to_configure_audit_volume_in_clustered_Data_ONTAP_for_the_transitioned_SnapLock_volumes["如何在叢集Data ONTAP 式的支援區中設定稽核磁碟區、以供轉換SnapLock 的支援區使用"]

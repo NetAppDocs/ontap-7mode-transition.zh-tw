@@ -1,0 +1,35 @@
+---
+permalink: snapmirror/concept_unsupported_7_mode_san_functions.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, transition, snapmirror, san, clustered, data 
+summary: 您應該注意叢集Data ONTAP 式VMware不支援的7-Mode SAN功能、以便在轉換之前採取必要行動。 
+---
+= SAN移轉不支援的功能
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您應該注意叢集Data ONTAP 式VMware不支援的7-Mode SAN功能、以便在轉換之前採取必要行動。
+
+叢集Data ONTAP 式VMware不支援下列7-Mode SAN功能：
+
+* Snapshot複製備援LUN複本
++
+Snapshot複本所提供的Snapshot複製備援LUN複本不支援任何還原作業。這些LUN無法在叢集Data ONTAP 式的過程中存取。您必須先分割或刪除7-Mode Snapshot複本備份LUN複本、才能進行轉換。
+
+* LUN的類型為「VLD」、「image」或「any user-defined string LUNs」
++
+您必須先變更此類LUN的類型、或是在轉換之前刪除LUN。
+
+* LUN實體複製分割
++
+您必須等待作用中的LUN實體複製分割作業完成、或是中止LUN實體複製分割並刪除LUN、才能進行轉換。
+
+* 「LUN共享區」命令
++
+叢集Data ONTAP 式的不支援透過NAS傳輸協定共享LUN。
+
+* SnapValidator
+

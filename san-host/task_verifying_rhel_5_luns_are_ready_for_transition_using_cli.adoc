@@ -1,0 +1,35 @@
+---
+permalink: san-host/task_verifying_rhel_5_luns_are_ready_for_transition_using_cli.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, rhel, 5, lun, cli 
+summary: 如果您的Red Hat Enterprise Linux（RHEL）5 LUN已設定裝置對應器的多重路徑（DMP）、則在將LUN從Data ONTAP 7-Mode作業的更新至叢集Data ONTAP 式的更新之前、應先確認檔案系統尚未設定。 
+---
+= 使用CLI驗證RHEL 5 LUN是否已準備好進行移轉
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您的Red Hat Enterprise Linux（RHEL）5 LUN已設定裝置對應器多重路徑（DMP）、則在將LUN從Data ONTAP 以7-Mode運作的VMware移轉至叢集Data ONTAP 式的VMware®之前、應先確認檔案系統尚未設定。
+
+.步驟
+. 找出要轉換的LUN的SCSI裝置名稱：
++
+《*三倫午餐秀*》
+
+. 識別LUN的DMP裝置名稱：
++
+‘*多重路徑-11*’
+
++
+DMP裝置名稱可以是裝置處理ID（WWID）、例如「360a980003753456258244538554b4b53」、也可以是別名、例如「dMMP_raw_LUN」。
+
+. 確認LUN沒有檔案系統：
++
+’* dumpe2fs/dev/mapper/_dmp設備名稱__*
+
++
+如果LUN沒有檔案系統、則輸出中會顯示找不到有效的檔案系統超級區塊。
+
+

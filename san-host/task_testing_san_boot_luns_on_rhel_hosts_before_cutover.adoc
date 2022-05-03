@@ -1,0 +1,57 @@
+---
+permalink: san-host/task_testing_san_boot_luns_on_rhel_hosts_before_cutover.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, boot, lun, rhel, cutover, copy, based 
+summary: 如果您使用7-Mode Transition Tool（7MTT\）2.2或更新版本、Data ONTAP 以及VMware 8.3.2或更新版本來執行以複本為基礎的Red Hat Enterprise Linux（RHEL）主機轉換、則可在ONTAP 轉換階段之前測試轉換後的SAN開機LUN。在測試期間、您的來源主機可以繼續執行I/O至來源7-Mode LUN。 
+---
+= 在轉換複本型轉換之前、先在RHEL主機上測試SAN開機LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您使用7-Mode Transition Tool（7MTT）2.2或更新版本、Data ONTAP 以及VMware 8.3.2或更新版本來執行以複製為基礎的Red Hat Enterprise Linux（RHEL）主機轉換作業、則可在ONTAP 轉換階段之前測試轉換的SAN開機LUN。在測試期間、您的來源主機可以繼續執行I/O至來源7-Mode LUN。
+
+您的新ONTAP 版支援LUN必須對應至測試主機、且LUN必須準備好進行轉換。
+
+您應該維持測試主機與來源主機之間的硬體同位元。
+
+* 對於複製型轉換、您必須在完成7-Mode Transition Tool中的Storage Cutover作業之後、執行這些步驟。
+* 若要進行無複製轉換、您必須在7-Mode Transition Tool的Import Data and Configuration（匯入資料與組態）作業之後執行這些步驟。
+
+
+.步驟
+. 僅適用於FC和FCoE組態：
++
+.. 進入HBA BIOS設定模式。
+.. 選擇*重新掃描*、即可探索ONTAP 主機上的還原SAN開機LUN。
+.. 移除7-Mode開機LUN ID。
+.. 在ONTAP HBA BIOS中新增功能更新LUN ID。
+.. 退出HBA BIOS設定模式、然後重新啟動主機。
+
+
+. 主機重新開機後、請變更測試主機上的IP位址和主機名稱。
+. 驗證是否ONTAP 已發現您的新版LUN：
++
+「* sanlun LUN show*」
+
+. 為ONTAP 您的需求LUN設定DMP裝置：
++
+‘*多重路徑-l*’
+
+. 視需要執行測試。
+. 關閉測試主機：
++
+h-t0 now*
+
+. 在7-Mode Transition Tool使用者介面（UI）中、按一下*完成測試*。
+
+
+如果ONTAP 您要將自己的支援LUN重新對應至來源主機、您必須為轉換階段準備好來源主機。如果ONTAP 您的支援LUN仍要對應至測試主機、則不需要在測試主機上執行其他步驟。
+
+*相關資訊*
+
+xref:task_gathering_pretransition_information_from_inventory_assessment_workbook.adoc[從庫存評估工作簿收集過渡前資訊]
+
+xref:concept_preparing_for_cutover_when_transitioning_san_boot_luns.adoc[準備轉換SAN開機LUN時的轉換階段]

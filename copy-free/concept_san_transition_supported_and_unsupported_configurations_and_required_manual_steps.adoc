@@ -1,0 +1,92 @@
+---
+permalink: copy-free/concept_san_transition_supported_and_unsupported_configurations_and_required_manual_steps.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, san, transition, supported, unsupported, required, manual, steps 
+summary: 您必須瞭解7-Mode Transition Tool所轉換的SAN組態。您也應該瞭解ONTAP 不支援的7-Mode SAN功能、以便在轉換前採取必要行動。 
+---
+= SAN移轉：支援和不支援的組態、以及必要的手動步驟
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必須瞭解7-Mode Transition Tool所轉換的SAN組態。您也應該瞭解ONTAP 不支援的7-Mode SAN功能、以便在轉換前採取必要行動。
+
+您應該驗證所有預先檢查的錯誤和警告訊息、以評估此類組態對轉換的影響。
+
+
+
+== 已轉換的組態
+
+7-Mode Transition Tool會轉換下列SAN組態：
+
+* FC與iSCSI服務
+* igroup和LUN對應
++
+[NOTE]
+====
+** 未對應至任何LUN的7-Mode igroup不會移轉至目標SVM。
+** 對於叢集Data ONTAP 式的實體化版本8.3.0和8.3.1、在預先轉換作業期間、不支援轉換igroup和LUN對應組態。
++
+而是在轉換作業期間建立所需的igroup。對於主要和獨立磁碟區、LUN會在轉換作業期間對應至igroup。但是、對於次要磁碟區、轉換作業期間不支援將LUN對應至igroup。完成主磁碟區的移轉之後、您必須手動對應次要LUN。
+
+** 針對支援的發行版本、在執行前置版本作業期間、會套用igroup和LUN對應組態。ONTAP
+
+
+====
+
+
+
+
+== 不支援ONTAP 的組態
+
+不支援ONTAP 的組態如下：
+
+* 7-Mode Snapshot複製備份LUN複本
++
+Snapshot複本所提供的Snapshot複製備援LUN複本不支援任何還原作業。這些LUN無法在ONTAP 整個過程中存取。您必須先分割或刪除7-Mode Snapshot複製備份LUN複本、才能進行轉換。
+
+* 具有osttype參數值VLD、映像或任何使用者定義字串的LUN
++
+您必須變更此類LUN的osttype參數值、或是在轉換之前刪除LUN。
+
+* LUN實體複製分割
++
+您必須等待作用中的LUN實體複製分割作業完成、或是中止LUN實體複製分割並刪除LUN、才能進行轉換。
+
+
+
+下列7-Mode功能可讓您繼續進行轉換程序、ONTAP 但不受支援：
+
+* 「LUN共享區」命令
++
+透過NAS傳輸協定共享LUN
+
+* SnapValidator
+
+
+
+
+== 必須手動轉換的組態
+
+下列組態必須手動轉換：
+
+* SAN LIF
++
+您必須在轉換前手動建立生命階段。
+
+* PortSets
++
+您必須手動設定轉換後繫結至連接埠集的igroup。
+
+* iSCSI存取清單資訊
+* iSNS組態
+* iSCSI CHAP和RADIUS組態
+
+
+*相關資訊*
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.cdot-famg-nfs/home.html["NFS管理"]
+
+https://docs.netapp.com/us-en/ontap/networking/index.html["網路與LIF管理"]

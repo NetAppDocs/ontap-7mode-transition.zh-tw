@@ -1,0 +1,23 @@
+---
+permalink: copy-based/task_transitioning_a_metrocluster_configuration_if_a_switchover_or_switchback_event_occurs.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, metrocluster, configuration, failed, switchover, switchback 
+summary: 轉換作業、例如轉換準備、開始、暫停、繼續或完成、 在進行還原切換或還原還原時失敗MetroCluster 。MetroCluster然後、您必須手動重新建立SnapMirror關係、才能恢復移轉。 
+---
+= 轉換MetroCluster 因切換或切換而失敗的部分組態
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+轉換作業、例如轉換準備、開始、暫停、繼續或完成、 在進行還原切換或還原還原時失敗MetroCluster 。MetroCluster然後、您必須手動重新建立SnapMirror關係、才能恢復移轉。
+
+.步驟
+. 等待切換完成。
+. 在叢集CLI中、使用「napmirror cre創作」命令、重新建立7-Mode Volume與叢集Data ONTAP 式VMware Volume之間的SnapMirror關係、這些磁碟區是轉換過程的一部分。
+. 從7-Mode Transition Tool重新執行轉換作業。
++
+資料複製作業會在下次排程變成作用中時開始。
+
+

@@ -1,0 +1,43 @@
+---
+permalink: san-host/task_preparing_to_transition_san_boot_luns_on_aix_hosts_with_fc_fcoe_configurations.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, san, boot, lun, aix, host, fc, fcoe 
+summary: 在具有FC/FCoE組態的AIX主機上轉換SAN開機LUN之前、您必須記錄安裝AIX的7-Mode LUN名稱、以及該LUN的SCSI裝置名稱。 
+---
+= 準備在具有FC/FCoE組態的AIX主機上轉換SAN開機LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在具有FC/FCoE組態的AIX主機上轉換SAN開機LUN之前、您必須記錄安裝AIX的7-Mode LUN名稱、以及該LUN的SCSI裝置名稱。
+
+. 從以7-Mode控制器運作的支援主控台Data ONTAP 、識別安裝AIX 7.1和AIX 6.1作業系統的7-Mode LUN名稱：
++
+’* LUN show*’
+
+. 取得主機上LUN的SCSI裝置名稱：
++
+「* sanlun LUN show*」
+
++
+在以下範例中、轉換LUN為「LUN_sanboot_FAS3170_aix04」、此LUN的SCSI裝置為「hdisk0」。
+
++
+[listing]
+----
+[04:02 AM root@822-aix03p1/]: sanlun lun show
+controller[7mode]/
+vserver[Cmode] lun-pathname
+---------------------------------------------------------------------
+fas3170-aix04  /vol/vol_fas3170_aix04_sanboot/lun_sanboot_fas3170_aix04
+kit            /vol/kit/kit_0
+kit            /vol/kit/kit_0
+filename	adapter	protocol	size		mode
+-------------------------------------
+hdisk0     fcs0       FCP      100g	  7
+hdisk1     fcs0       FCP      5g       C
+hdisk2     fcs0       FCP      5g       C
+----
+

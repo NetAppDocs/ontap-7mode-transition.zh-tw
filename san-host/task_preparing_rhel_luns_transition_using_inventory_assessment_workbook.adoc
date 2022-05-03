@@ -1,0 +1,59 @@
+---
+permalink: san-host/task_preparing_rhel_luns_transition_using_inventory_assessment_workbook.html 
+sidebar: sidebar 
+keywords: rhel, lun, mount, points, dmmp, device, names, inventory, assessment, workbook 
+summary: 在使用DMP裝置名稱以掛載點轉換LUN之前、您必須以其各自的檔案系統UUID編號來取代DMP裝置名稱。這適用於Red Hat Enterprise Linux（RHEL）5和RHEL 6。 
+---
+= 使用「庫存評估」工作簿、使用DMP裝置名稱準備RHEL LUN與掛載點以進行轉換
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在使用DMP裝置名稱以掛載點轉換LUN之前、您必須以其各自的檔案系統UUID編號來取代DMP裝置名稱。這適用於Red Hat Enterprise Linux（RHEL）5和RHEL 6。
+
+此程序適用於複本型轉換和無複本轉換。
+
+.步驟
+. 從_庫存評估工作簿_收集預先轉換資訊。
++
+具體而言、您需要下列資訊：
+
++
+** 在DMP裝置上設定的檔案系統
+** 安裝DMP裝置的目錄
+** DMP裝置的檔案系統UUID
+
+
+
+
+.步驟
+. 驗證DMP設備的掛載點是否已定義在"etc/stab"文件中。
+. 建立檔案備份：
++
+Check Alignment of PHs>`*CP /etc/fstab /etc/fstb_pre_Transition *
+
+. 編輯「etc/stabs」檔案、以其各自的檔案系統UUID編號取代DMP裝置名稱。
++
+在下列範例中、DMMP裝置/dev/mapper/360a9800037534562572b453855496b41將由UUID a073547e-00b6-4bf9-8e08-5eef08499a9c取代：
+
++
+[listing]
+----
+[root@IBMx3550M3-229-169 ~]# cat /etc/fstab
+/dev/VolGroup00/LogVol00 /  ext3  defaults   1 1
+LABEL=/boot /boot  ext3     defaults         1 2
+tmpfs  /dev/shm    tmpfs    defaults         0 0
+devpts /dev/pts    devpts   gid=5, mode=620  0 0
+sysfs  /sys	       sysfs           defaults  0 0
+proc   /proc       proc           defaults   0 0
+/dev/VolGroup00/LogVol01 swap	swap  defaults 0 0
+/dev/mapper/test_vg-test_lv /mnt/lvm_ext3 ext3 defaults,_netdev 0 0
+UUID=a073547e-00b6-4bf9-8e08-5eef08499a9c /mnt/dmmp_ext3 ext3 defaults,_netdev 0 0
+----
+
+
+*相關資訊*
+
+xref:task_gathering_pretransition_information_from_inventory_assessment_workbook.adoc[從庫存評估工作簿收集過渡前資訊]

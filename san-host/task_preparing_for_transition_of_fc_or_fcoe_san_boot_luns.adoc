@@ -1,0 +1,92 @@
+---
+permalink: san-host/task_preparing_for_transition_of_fc_or_fcoe_san_boot_luns.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, transition, fc, fcoe, san, boot, lun, rhel 
+summary: 在轉換FC或FCoE SAN開機LUN之前、您必須在Red Hat Enterprise Linux（RHEL）主機上執行特定步驟。 
+---
+= 準備在RHEL主機上轉換FC或FCoE SAN開機LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在轉換FC或FCoE SAN開機LUN之前、您必須在Red Hat Enterprise Linux（RHEL）主機上執行特定步驟。
+
+您必須從_庫存評估工作簿_取得下列資訊：
+
+* 安裝RHEL 5或RHEL 6的7-Mode LUN名稱
+* 轉換LUN的SCSI裝置名稱
+* Transition LUN的DMP裝置名稱
+* 掛載目錄
+* 在DMP裝置上設定的檔案系統
+* /boot分割區的UUID編號
+* 「initrid」影像的名稱
+
+
+此程序適用於複本型轉換和無複本轉換。
+
+. 確認DMMP裝置存在於/dev/mapper目錄中：
++
+hes* ls /dev/mapper/_DMMP_DEV_name_*
+
++
+如果您找不到DMP裝置、可能是使用別名或使用者友好名稱。
+
+. 識別安裝RHEL 5或RHEL 6作業系統/boot和root（/）目錄的DMP裝置和邏輯Volume Manager（LVM）名稱：
++
+「* df - h*」
+
++
+根據預設、RHEL 5和RHEL 6會安裝在邏輯磁碟區的根（/）分割區上。如果根分割區安裝在邏輯磁碟區上、則不需要預先轉換組態。
+
+. 如果/boot分割區安裝在DMP裝置上、請確認在開機時、/boot分割區是如何參考在「/etc/stabs」中掛載的。
+. 如果/boot分割區在「etc/stabs」中以其DMP裝置名稱來參照、請以檔案系統UUID名稱來取代DMP裝置名稱。
+. 備份「/etc/stab'檔案：
++
+Check Alignment of PHs>`*CP /etc/fstab /etc/_fstb_pre_Transition文件名__*
+
+. 編輯「etc/stabs」檔案、以其各自的檔案系統UUID編號取代DMP裝置名稱。
+. 備份「initrd-映 像檔：
++
+Check Alignment of PHs>`*cp /boot/__initrd-image_file_nameinitrd-image_file_name_name______.bak*
+
+. 僅適用於RHEL 5：
++
+.. 在「/etc/mut路徑.conf」檔案中、識別交換分割區裝置。
++
+在以下範例中、「/dev/VolGroup00/LogVol01」是交換分割區裝置：
+
++
+dev/VolGroup00/LogVol01交換交換預設值0
+
+.. 建立掛載交換分割區的標籤：+「* swapoff _swap-partition_device_*」
++
+mkswap -L _label-for swapswap-tpartition-device_*
+
++
+「* swapon _swap-partition_device_*」
+
+.. 將「etc/stab」檔案中的交換分割區裝置名稱替換為交換標籤。
++
+在「etc/stab'」檔案中的更新行應如下：
+
++
+[listing]
+----
+LABEL=SwapPartition  swap  swap   defaults    0 0
+----
+
+
+. 重新建立INITRD映像。
++
+** RHEL5：+'* mkinitrd -f/boot/ initrd-"uname-r'.img'uname-r'-含多重路徑*
+** 對於RHEL 6：+`* dracut -force -新增多重路徑-verbose*
+
+
+. 重新啟動主機、從新的「initrd-」映像開機。
+
+
+*相關資訊*
+
+xref:task_gathering_pretransition_information_from_inventory_assessment_workbook.adoc[從庫存評估工作簿收集過渡前資訊]

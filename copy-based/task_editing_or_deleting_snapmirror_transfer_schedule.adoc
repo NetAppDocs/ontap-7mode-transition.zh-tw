@@ -1,0 +1,111 @@
+---
+permalink: copy-based/task_editing_or_deleting_snapmirror_transfer_schedule.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, edit, delete, data, copy, snapmirror, transfer 
+summary: 如果您已設定或修改其他需要修改轉換資料複本排程的DR排程、則可以編輯或刪除用於SnapMirror基礎複製、更新及重新同步作業的資料複本排程。 
+---
+= 編輯或刪除SnapMirror傳輸的資料複本排程
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您已設定或修改其他需要修改轉換資料複本排程的DR排程、則可以編輯或刪除用於SnapMirror基礎複製、更新及重新同步作業的資料複本排程。
+
+專案必須處於準備、資料複製或套用組態（預先轉換）階段。
+
+* 排程經過編輯後、最多需要5分鐘才能生效。
+* 如果在進行有效傳輸時、排程中的節流限制已變更、則新節流限制不適用於目前執行中的SnapMirror傳輸。
++
+在針對特定SnapMirror關係完成目前傳輸之後、會考慮為該SnapMirror關係的後續作業設定新的節流限制。
+
+* 如果您想讓目前SnapMirror傳輸的節流限制立即生效、您必須暫停並繼續進行專案。
+
+
+.步驟
+. 從儀表板選取專案、然後按一下「設定排程」。
++
+顯示專案的所有現有排程。
+
++
+您也可以從「設定排程」選項中編輯或刪除排程。
+
+. 編輯或刪除排程：
++
+|===
+| 如果您想要... | 然後... 
+
+
+ a| 
+編輯現有排程
+ a| 
+.. 按一下 image:../media/edit_schedule.gif[""]。
++
+此時會顯示「修改排程」對話方塊。
+
++
+
+NOTE: 您可以編輯資料複製作業的排程和SnapMirror參數。
+
+.. 進行必要的變更、然後按一下「*儲存*」。
+
+
+
+
+ a| 
+刪除排程
+ a| 
+.. 按一下 image:../media/delete_schedule.gif[""]。
++
+排程會從窗格中刪除。
+
++
+
+NOTE: 資料傳輸至少需要一個排程。因此、您不應刪除所有排程。
+
+
+
+|===
+
+
+
+
+== 範例
+
+以下範例說明專案中有主動式SnapMirror傳輸時、如何套用節流限制。
+
+|===
+| 排程 | 磁碟區數量和資料複製狀態 | 並行SnapMirror傳輸的最大數量 | 節流限制 | 每次傳輸所使用的節流 
+
+
+ a| 
+修改之前
+ a| 
+五個磁碟區等待基準
+ a| 
+五
+ a| 
+500 Mbps
+ a| 
+100 Mbps
+
+
+
+ a| 
+修改後
+ a| 
+* 對於兩個Volume、基準使用100 Mbps節流進行中
+* 對於三個磁碟區、基準已完成、正在等待更新
+
+ a| 
+五
+ a| 
+250 Mbps
+ a| 
+* 兩個位於基準線的Volume會繼續使用100 Mbps節流
+* 完成基準的三個磁碟區會使用修改後的50 Mbps節流進行更新
+
+
+|===
+當兩個磁碟區的基礎複本完成時、這些磁碟區SnapMirror關係會使用50 Mbps的新節流限制、同時排程下一個資料複製作業。

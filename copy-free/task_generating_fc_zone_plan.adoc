@@ -1,0 +1,73 @@
+---
+permalink: copy-free/task_generating_fc_zone_plan.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, fc, zone, plan 
+summary: 對於FC交換器、您必須在移轉評估報告中產生FC區域計畫、以便在移轉後設定區域、以便將啟動器主機和目標分組。 
+---
+= 產生FC區域計畫
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+對於FC交換器、您必須在移轉評估報告中產生FC區域計畫、以便在移轉後設定區域、以便將啟動器主機和目標分組。
+
+* 7-Mode系統、主機和叢集必須連線至相同的交換器。
++
+xref:concept_supported_configurations_for_generating_an_fc_zone_plan.adoc[可產生FC區域計畫的支援組態]
+
+* 您必須在叢集上建立所需的目標SVM和FC LIF。
+* 在目標SVM上建立的FC生命週期將會有WWPN、這與7-Mode WWPN不同。因此、在您為FCP轉換SAN時、請執行FC分區。
+
+
+.步驟
+. 在「收集與評估」區段中、按一下「*新增系統*」。
+. 在Add System（新增系統）視窗中、執行下列其中一項動作：
++
+** 新增單一系統：
++
+... 輸入系統的FQDN或IP位址。
+... 輸入指定系統的使用者名稱和密碼。
+... 選取系統類型：
++
+**** 儲存系統Data ONTAP
+**** 主機：Microsoft Windows、Red Hat Linux Enterprise和VMware ESXi
+**** FC交換器：Cisco與Brocade
+
+
+
+
+** 按一下*瀏覽*、然後選取包含多個系統認證的文字檔、即可新增多個系統。
+
+
+. 按一下「 * 新增 * 」。
++
+如果系統的評估狀態為「Ready（就緒）」、則您可以針對該系統執行轉換評估。
+
+. 使用FC區域計畫產生轉換評估報告：
++
+.. 選取系統（包括必要的FC交換器）以進行轉換評估。
+.. 按一下「*建立轉換評估報告*」。
+.. 在「Pair Systems and start FC Zone（配對系統並啟動FC區域規劃）」對話方塊中、選取7-Mode系統（單一控制器或HA配對）、連接至叢集的交換器、以及叢集中的SVM。
++
+如果您打算透過重新託管移轉的磁碟區、將FC LUN整合至單一SVM、請選取7-Mode HA配對和目標SVM。
+
++
+
+NOTE: 最佳做法是將FC LUN整合至單一SVM、以保留7-Mode單一系統映像（SSI）組態。
+
++
+如果您不打算整合FC LUN、則必須為每個7-Mode控制器和對應的目標SVM產生FC區域計畫。
+
+.. 按一下「* FC分區」以取得配對系統*。
+.. 在「Create Transition Assessment Report（建立轉換評估報告）」對話方塊中、選取Data ONTAP 目標叢集的還原版本。
+.. 指定報告檔案名稱的前置詞。
+.. 按一下*產生報告*。
+
+
+
+
+FC區域計畫是以「.Zip」檔案形式產生。此計畫包含根據7-Mode系統上的igroup組態所建立的區域。每個區域都包含一個啟動器WWPN和多個SVM目標WWPN。
+
+您必須使用FC區域計畫來設定區域、以便將啟動器主機和目標分組、以便從叢集提供資料存取。

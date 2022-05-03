@@ -1,0 +1,73 @@
+---
+permalink: copy-based/concept_port_requirements_for_communicating_with_7mtt.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, port, requirements, communicating, tool 
+summary: 7-Mode Transition Tool會透過特定連接埠與7-Mode系統和叢集進行通訊。您必須確保7-Mode系統和叢集上的這些連接埠都已開啟、以便與7-Mode Transition Tool進行通訊。 
+---
+= 與7-Mode Transition Tool通訊的連接埠需求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+7-Mode Transition Tool會透過特定連接埠與7-Mode系統和叢集進行通訊。您必須確保7-Mode系統和叢集上的這些連接埠都已開啟、以便與7-Mode Transition Tool進行通訊。
+
+
+
+== 必須在7-Mode系統上開啟的連接埠
+
+7-Mode Transition Tool會使用連接埠443上的HTTPS與7-Mode系統通訊。
+
+叢集需要下列連接埠、才能與7-Mode系統進行SnapMirror複寫：
+
+* 10565/TCP
+* 10566/TCP
+* 10567/TCP
+* 10568/TCP
+* 10569/TCP
+* 10670/TCP
+
+
+
+
+== 必須在叢集上開啟的連接埠
+
+7-Mode Transition Tool會使用連接埠443上的HTTPS與叢集通訊。
+
+7-Mode系統需要下列連接埠、才能與叢集進行SnapMirror複寫通訊：
+
+* 10565/TCP
+* 10566/TCP
+* 10567/TCP
+* 10568/TCP
+* 10569/TCP
+* 10670/TCP
+* 11105/TCP
+
+
+此外、7-Mode Transition Tool會從叢集間的lip執行ping作業、並將其傳輸至7-Mode系統的資料複製IP位址、以驗證連線能力。
+
+
+
+== 必須在7-Mode Transition Tool上開啟的連接埠
+
+7-Mode Transition Tool的連接埠844,必須為Web介面開啟。
+
+若要轉換網路群組和CIFS本機使用者和群組、必須符合下列需求：
+
+* 7-Mode Transition Tool的連接埠8088必須可用。
++
+若要取代連接埠8088、您必須變更7-Mode Transition Tool安裝目錄中「Transition工具」檔案中「工具.http：port」參數所指定的連接埠。
+
++
+
+NOTE: 變更組態檔中的連接埠之後、您必須重新啟動7-Mode Transition Tool服務。
+
+* 叢集中的每個節點必須至少為目標SVM設定一個資料LIF。
+* 所有SVM資料LIF都必須能夠與7-Mode Transition Tool連接埠8088或「Transition工具.conf」檔案中的「工具.http連接埠」參數所指定的連接埠進行通訊。
++
+
+NOTE: 您必須確認防火牆不會封鎖此流量。
+
+

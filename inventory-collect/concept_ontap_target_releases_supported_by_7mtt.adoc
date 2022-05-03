@@ -1,0 +1,78 @@
+---
+permalink: inventory-collect/concept_ontap_target_releases_supported_by_7mtt.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, transition, target, releases, supported, tool 
+summary: 發行支援ONTAP 的版本取決於您要使用的轉換方法、複製型或無複製型、以及7-Mode Transition Tool版本。 
+---
+= 支援7-Mode Transition Tool的支援目標版本ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+發行支援ONTAP 的版本取決於您要使用的轉換方法、複製型或無複製型、以及7-Mode Transition Tool版本。
+
+請務必參閱目前的7-Mode Transition Tool link:http://docs.netapp.com/us-en/ontap-7mode-transition/releasenotes.html["版本資訊"] 以取得支援的目標版本和已知問題的最新資訊。
+
+這些ONTAP 版本支援複製型轉換。
+
+|===
+| 如果您的轉換目標正在執行... | 您必須使用此7-Mode Transition Tool版本... 
+
+
+ a| 
+支援的更新版本ONTAP
+ a| 
+3.4.0
+
+
+
+ a| 
+支援的更新版本ONTAP
+ a| 
+3.3.3
+
+
+
+ a| 
+更新版本9.7 P ONTAP
+
+
+NOTE: 不支援較早9.7版本。
+ a| 
+3.3.2
+
+
+
+ a| 
+發行版9.6 P7或更新版本9.6 P ONTAP
+
+
+NOTE: 不支援9.6版之前的版本。
+ a| 
+3.3.2
+
+
+
+ a| 
+發行版不含任何更新版本ONTAP ONTAP
+ a| 
+3.3.2或3.3.1
+
+
+
+ a| 
+叢集Data ONTAP 式發行版本8.1.4P4及更新版本8.x。
+ a| 
+3.3.2或3.3.1
+
+|===
+使用7-Mode Transition Tool 3.3.1、這些ONTAP 支援不複製的支援轉換至這些支援目標版本。
+
+* 更新版本：更新版本：ONTAP ONTAP
+* 叢集Data ONTAP 式的2.x 8.3.2及更新版本。
+
+
+
+NOTE: 您無法使用7-Mode Transition Tool（7-Mode Transition Tool）、ONTAP 使用無複製方法轉換至VMware 9.5或更新版本。若要這麼做、您必須先ONTAP 使用7-Mode Transition Tool 3.3.1移轉至VMware 9.4、然後將叢集升級至ONTAP VMware 9.5或更新版本。7-Mode Transition Tool 3.3.2不支援無複本轉換。

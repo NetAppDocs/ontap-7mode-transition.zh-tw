@@ -1,0 +1,20 @@
+---
+permalink: copy-based/concept_impact_of_takeover_and_giveback_on_transition.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, impact, takeover, giveback 
+summary: 轉換作業、例如轉換準備、開始、暫停、繼續或完成、 在控制器接管或恢復期間失敗。 
+---
+= 接管和恢復對轉換的影響
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+轉換作業、例如轉換準備、開始、暫停、繼續或完成、 在控制器接管或恢復期間失敗。
+
+如果轉換作業因接管而失敗、您必須等待恢復完成、然後再次執行轉換作業。
+
+如果在基準傳輸期間發生控制器接管、傳輸將會失敗。若要從中斷點恢復基準傳輸、您必須等待恢復完成。
+
+根據設定的排程恢復資料複本。

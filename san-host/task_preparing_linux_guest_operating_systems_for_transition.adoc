@@ -1,0 +1,132 @@
+---
+permalink: san-host/task_preparing_linux_guest_operating_systems_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, linux, operating, system 
+summary: 如果將7-Mode LUN對應為與實體相容的RDM（PTRDM\）、對應至Linux虛擬機器（VMs）作為開機裝置、您必須執行一些步驟、以準備Linux VM進行移轉。 
+---
+= 準備要移轉的Linux客體作業系統
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果將7-Mode LUN對應為實體相容RDM（PTRDM）、對應至Linux虛擬機器（VM）作為開機裝置、您必須執行以下步驟、準備Linux VM進行移轉。
+
+* 對於複製型轉換、請先執行這些步驟、再在7-Mode Transition Tool（7MTT）中啟動Storage Cutover（儲存設備轉換）作業。
+* 如需無複製轉換、請在7MTT中啟動匯出及停止7-Mode系統作業之前、先執行下列步驟。
+
+
+.步驟
+. 取得SCSI裝置序號：
++
+‘* cat /boot/grub / menu.lst*’
+
++
+在下列範例中、360a9800024668793362b45777447462d-part2和360a980002467936793362b45774447462d-part1為SCSI裝置編號：
+
++
+[listing]
+----
+# cat /boot/grub/menu.lst
+...
+kernel /boot/vmlinuz-3.0.13-0.27-default root=/dev/disk/by-id/scsi-
+360a9800032466879362b45777447462d-part2 resume=/dev/disk/by-id/scsi-
+360a9800032466879362b45777447462d-part1
+----
+. 確定SCSI設備序列號與SCSI設備/分區之間的映射關係：
++
+`#ls -l /dev/disk/by-id*
+
++
+下列範例顯示關聯對應的顯示方式。「SCSI裝置/分割區」會顯示在「SCSI裝置/分割區序號」之後。在此範例中、「.//./sda、.//./sda1和.//./sda2」是SCSI裝置/分割區。
+
++
+[listing]
+----
+lrwxrwxrwx 1 root root 9 Oct 27 06:54 scsi-360a9800032466879362b45777447462d -> ../../sda
+   lrwxrwxrwx 1 root root 10 Oct 27 05:09 scsi-360a9800032466879362b45777447462d-part1 -> ../../sda1
+   lrwxrwxrwx 1 root root 10 Oct 27 02:21 scsi-360a9800032466879362b45777447462d-part2 -> ../../sda2
+----
+. 確定SCSI設備路徑與UUID之間的對應關係：
++
+"* ls -l /dev/disk/by-uid*
+
++
+下列範例顯示關聯對應的顯示方式。在此範例中、「33d43a8b-cfae-4ac4-9355-36b479cfa524'是SCSI裝置/分割區sda2的UUID、「603e01f8-7873-440a-9182-878abff17143」是SCSI裝置/分割區sdb的UUID、而「c50b75b817-08f8177-14sdb-7f1」則是SCSI裝置的UUID。
+
++
+[listing]
+----
+ lrwxrwxrwx 1 root root 10 Oct 27 02:21 33d43a8b-cfae-4ac4-9355-36b479cfa524 -> ../../sda2
+   lrwxrwxrwx 1 root root 9 Oct 27 06:54 603e01f8-7873-440a-9182-878abff17143 -> ../../sdb
+   lrwxrwxrwx 1 root root 10 Oct 27 05:09 c50b757b-0817-4c19-8291-0d14938f7f0f -> ../../sda1
+----
+. 使用UUID更新grub開機「menu.lst」檔案中的裝置參考、方法是將其與SCSI裝置路徑和SCSI序號配對。
++
+[listing]
+----
+#blkid
+/dev/sda1: UUID="c50b757b-0817-4c19-8291-0d14938f7f0f" TYPE="swap"
+/dev/sda2: UUID="33d43a8b-cfae-4ac4-9355-36b479cfa524" TYPE="ext3"
+/dev/sdb: UUID="603e01f8-7873-440a-9182-878abff17143" SEC_TYPE="ext2" TYPE="ext3"
+----
+. 使用剛擷取的UUID、更新grub開機「menu.lst」檔案中的裝置參考。
++
+以下範例顯示更新後的「menu.lst」檔案：
+
++
+[listing]
+----
+# Modified by YaST2. Last modification on Fri Oct 17 02:08:40 EDT 2014
+default 0
+timeout 8
+##YaST - generic_mbr
+gfxmenu (hd0,1)/boot/message
+##YaST - activate
+###Don't change this comment - YaST2 identifier: Original name: linux###
+title SUSE Linux Enterprise Server 11 SP2 - 3.0.13-0.27
+root (hd0,1)
+kernel /boot/vmlinuz-3.0.13-0.27-default root=/dev/disk/by-uuid/e5127cdf-8b30-
+418e-b0b2-35727161ef41 resume=/dev/disk/by-uuid/d9133964-d2d1-4e29-b064-7316c5ca5566
+splash=silent crashkernel=128M-:64M showopts vga=0x314
+initrd /boot/initrd-3.0.13-0.27-default
+----
+. 更新「etc/stab'檔案：
++
+.. 使用您剛擷取的UUID來更新「etc/stab'」檔案中的裝置參考資料。
++
+以下範例顯示內含SCSI序號的「/etc/stbst"檔案：
+
++
+[listing]
+----
+/dev/disk/by-id/scsi-360a9800032466879362b45777447462d-part1 swap swap
+defaults 0 0
+/dev/disk/by-id/scsi-360a9800032466879362b45777447462d-part2 / ext3
+acl,user_xattr 1 1
+proc /proc proc defaults 0 0
+sysfs /sys sysfs noauto 0 0
+debugfs /sys/kernel/debug debugfs noauto 0 0
+devpts /dev/pts devpts mode=0620,gid=5 0 0
+----
+.. 將SCSI序號的參考資料取代為UUID。
++
+以下範例顯示已更新的「etc/stab'檔案、以UUID取代SCSI序號：
+
++
+[listing]
+----
+cat /etc/fstab
+UUID="c50b757b-0817-4c19-8291-0d14938f7f0f swap swap defaults
+0 0
+UUID="33d43a8b-cfae-4ac4-9355-36b479cfa524 / ext3 acl,user_xattr
+1 1
+proc /proc proc defaults 0 0
+sysfs /sys sysfs noauto 0 0
+debugfs /sys/kernel/debug debugfs noauto 0 0
+devpts /dev/pts devpts mode=0620,gid=5 0 0
+----
+
+
+

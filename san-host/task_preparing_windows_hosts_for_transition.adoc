@@ -1,0 +1,39 @@
+---
+permalink: san-host/task_preparing_windows_hosts_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, windows, host 
+summary: 您必須先執行一些步驟、才能將Windows主機從Data ONTAP 以7-Mode運作的VMware主機移轉至叢集Data ONTAP 式VMware主機。 
+---
+= 準備Windows主機進行移轉
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必須先執行一些步驟、才能將Windows主機從Data ONTAP 以7-Mode運作的VMware主機移轉至叢集Data ONTAP 式VMware主機。
+
+此程序適用於複本型轉換和無複本轉換。
+
+
+NOTE: 如果您使用的是Windows 2003、則必須升級至Windows 2008。Windows 2003不支援Host Remediation Tool（HRT）、需要Windows 2008或更新版本才能正常運作。
+
+.步驟
+. 識別正在轉換的LUN的LUN序號、LUN ID及對應的Windows實體磁碟編號。
++
+** 如果您的系統執行Data ONTAP 的是SetsDSM、請使用Data ONTAP 「SetDSM Management Extension嵌入式管理單元」（可透過伺服器管理程式或「Get-SanDisk」Windows PowerShell Cmdlet存取）。
+** 如果您的系統執行MSDSM、請使用庫存收集工具（ICT）。
+
+
+. 準備好在轉換完成後讓主機看到LUN。
++
+** 如果要轉換的LUN是FC或FCoE LUN、請建立或修改Fabric分區。
+** 如果要轉換的LUN是iSCSI LUN、請建立iSCSI工作階段、以連線至叢集Data ONTAP 式的等化控制器。
+
+
+. 使用ICT來產生庫存評估工作簿。
+
+
+*相關資訊*
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sanconf/home.html["SAN組態"]

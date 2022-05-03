@@ -1,0 +1,61 @@
+---
+permalink: copy-free/task_testing_workloads_and_applications.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, test, workload, application 
+summary: 您應該手動測試正式作業環境中的所有工作負載和應用程式。然後、您可以在短時間內開始正式作業、以評估是否需要在提交專案之前進行復原。 
+---
+= 測試工作負載與應用程式
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您應該手動測試正式作業環境中的所有工作負載和應用程式。然後、您可以在短時間內開始正式作業、以評估是否需要在提交專案之前進行復原。
+
+轉換的集合體必須至少有5%的可用實體空間。
+
+
+NOTE: 最佳實務做法是在轉換的集合體中至少保留20%的可用空間。
+
+部分作業在正式作業前測試期間受到限制。
+
+xref:concept_restrictions_during_preproduction_testing.adoc[正式作業前測試期間的限制]
+
+.步驟
+. 將用戶端連線至轉換的磁碟區。
+. 如果您有SAN工作負載、請在SAN主機上執行轉換後主機補救工作。
++
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-7mtt-sanspl/home.html["SAN主機移轉與補救"]
+
+. 測試所有使用轉換資料和組態的工作負載和應用程式。
+. 從7-Mode Transition Tool儀表板的Aggregate索引標籤監控轉換的Aggregate中的可用實體空間、以確認移轉的Aggregate未耗盡空間。
++
+*疑難排解：*如果轉換的集合體空間不足、您可以新增磁碟。
+
++
+.. 登入進階權限等級：+「*設定-權限進階*」
+.. 從7-Mode磁碟櫃中選取備用磁碟、然後新增磁碟以增加轉換的Aggregate中的空間：+`*儲存Aggregate add-disks -Agggr_name_-diskslist _disk1_*
++
+如果7-Mode備用磁碟無法使用、您可以使用叢集節點磁碟櫃中的備用磁碟、但這樣做會使復原程序複雜化。
+
+
+
+
+
+您可以開始提供正式作業資料。
+
+[IMPORTANT]
+====
+您可以在正式作業環境中提供資料一段時間、以確保工作負載在正式作業環境中正常運作、而且不需要復原至7-Mode。您不得延長此階段、也不得因為下列原因而延遲提交無複本移轉專案：
+
+* 當新資料寫入磁碟區時、在轉換的集合體中空間不足的可能性會增加。
+* 在此階段寫入磁碟區的任何新資料、將無法在復原期間使用。
+
+
+====
+*相關資訊*
+
+xref:concept_reverting_a_copy_free_transition_project.adoc[執行轉換回溯至7-Mode]
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-cmpr/GUID-5CB10C70-AC11-41C0-8C16-B4D0DF916E9B.html["指令ONTAP"]

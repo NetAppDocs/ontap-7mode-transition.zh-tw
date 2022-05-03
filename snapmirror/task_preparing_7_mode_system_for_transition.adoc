@@ -1,0 +1,54 @@
+---
+permalink: snapmirror/task_preparing_7_mode_system_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, transition, prepare, system, snapmirror 
+summary: 在開始轉換之前、您必須先完成7-Mode系統上的特定工作、例如新增SnapMirror授權和7-Mode系統、才能與目標叢集通訊。 
+---
+= 準備7-Mode系統進行轉換
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在開始轉換之前、您必須先完成7-Mode系統上的特定工作、例如新增SnapMirror授權和7-Mode系統、才能與目標叢集通訊。
+
+您要轉換的所有7-Mode磁碟區都必須處於線上狀態。
+
+.步驟
+. 在7-Mode系統上新增並啟用SnapMirror授權：
++
+.. 在7-Mode系統上新增SnapMirror授權：
++
+‘*授權新增_license_code_*
+
++
+「_license_code_」是您購買的授權代碼。
+
+.. 啟用SnapMirror功能：
++
+’*選項SnapMirror。啟用on *
+
+
+
+. 選擇下列其中一個選項、將7-Mode系統和目標叢集設定為彼此通訊：
++
+** 將「napmirror存取」選項設為「ALL」。
+** 將"shnapmirror．access"（快照鏡像存取）選項的值設定為叢集上所有lifs的IP位址。
+** 如果"shnapmirror．access"選項是"legacy（傳統）"、而"napmirror.checkip.enable`選項是"Off"、請將SVM名稱新增至"/etc/SnapMirror．allow"檔案。
+** 如果"shnapmirror．access"選項是"legacy（舊版）"、而"napmirror.checkip.enable`選項是"on"、請將lifs的IP位址新增至"etc/SnapMirror．allow"檔案。
+
+
+. 視7-Mode系統的版本而定Data ONTAP 、請執行下列步驟：
++
+.. 允許所有介面上的SnapMirror流量：
++
+‘*選項interface.blocked.SnapMirror "*
+
+.. 如果您執行Data ONTAP 的是版本7.3.7、8.0.3或8.1、而且使用e0M介面的IP位址做為管理IP位址、以便與7-Mode Transition Tool互動、請允許e0M介面上的資料流量：
++
+‘*選項interface.blocked.mgmt_data_trait off*’
+
+
+
+

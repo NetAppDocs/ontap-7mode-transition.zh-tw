@@ -1,0 +1,598 @@
+---
+permalink: copy-free/reference_copy_free_transition_project_planning_worksheet.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, project, planning, worksheet 
+summary: 您可以使用無複製的轉換規劃工作表來記錄有關節點對應、SVM對應、Volume對應及要移轉的LIF的資訊。這些工作表在使用7-Mode Transition Tool建立轉換專案時非常實用。您應該瞭解完成工作表的準則。 
+---
+= 無複製的移轉專案規劃工作表
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用無複製的轉換規劃工作表來記錄有關節點對應、SVM對應、Volume對應及要移轉的LIF的資訊。這些工作表在使用7-Mode Transition Tool建立轉換專案時非常實用。您應該瞭解完成工作表的準則。
+
+您可以遵循下列準則來完成工作表：
+
+* 將每個vFiler單元對應至SVM。
++
+如果7-Mode控制器中沒有vFiler單元、請將控制器對應至單一SVM。
+
+* 記下7-Mode Volume名稱和對應Data ONTAP 的功能區名稱。
++
+此功能可能與7-Mode磁碟區名稱不同。ONTAP
+
+* 識別要在每個SVM上設定的LIF。
++
+該生命週年的IP位址可以存在於7-Mode系統上、也可以是新的生命週年。
+
+
+
+
+
+== 節點對應
+
+|===
+| 7-Mode控制器 | 對應的叢集節點 
+
+
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+
+|===
+
+
+== SVM與Volume對應
+
+|===
+| 7-Mode控制器 | VFiler元件或控制器 | 對應的SVM | 7-Mode Volume | SVM Volume 
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+
+|===
+
+
+== LIF對應（7-Mode IP位址）
+
+|===
+| 7-Mode控制器 | VFiler元件或控制器 | 對應的SVM | 7-Mode IP位址 | 網路遮罩 | 預設閘道 | 主節點 | 主連接埠 
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+|===
+
+
+== LIF對應（新生命段）
+
+|===
+| SVM | 新IP位址 | 網路遮罩 | 預設閘道 | 主節點 | 主連接埠 
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+|===
+
+
+== 範例
+
+下表顯示7-Mode HA配對與控制器HostA_7mode和HostB_7mode的完整工作表範例。
+
+*節點對應*
+
+|===
+| 7-Mode控制器 | 對應的叢集節點 
+
+
+ a| 
+主機A_7mode
+ a| 
+叢集1_01
+
+
+
+ a| 
+主機B_7mode
+ a| 
+叢集1_02
+
+|===
+* SVM與Volume對應*
+
+|===
+| 7-Mode控制器 | 對應的叢集節點 | VFiler元件或控制器 | 對應的SVM | 7-Mode Volume | SVM Volume 
+
+
+ a| 
+主機A_7mode
+ a| 
+叢集1_01
+ a| 
+VFilerA.
+ a| 
+svm1.
+ a| 
+Vola
+ a| 
+Vola
+
+
+
+ a| 
+VolB
+ a| 
+VolB
+
+
+
+ a| 
+vFilerB
+ a| 
+svm2
+ a| 
+Vol1.
+ a| 
+Vol NFS
+
+
+
+ a| 
+VOL2
+ a| 
+Vol_CIFS
+
+
+
+ a| 
+主機B_7mode
+ a| 
+叢集1_02
+ a| 
+不適用
+ a| 
+svm3
+ a| 
+第3卷
+ a| 
+第3卷
+
+
+
+ a| 
+第4卷
+ a| 
+第4卷
+
+
+
+ a| 
+第5卷
+ a| 
+第5卷
+
+
+
+ a| 
+第6卷
+ a| 
+第6卷
+
+|===
+* LIF對應（7-Mode IP位址）*
+
+|===
+| 7-Mode控制器 | VFiler元件或控制器 | 對應的SVM | 現有的7-Mode IP | 網路遮罩 | 預設閘道 | 主節點 | 主連接埠 
+
+
+ a| 
+主機A_7mode
+ a| 
+VFilerA.
+ a| 
+svm1.
+ a| 
+192.0.2.129
+ a| 
+5.255：128
+ a| 
+192.40.0.1
+ a| 
+叢集1_01
+ a| 
+e0a
+
+
+
+ a| 
+192.0.2.135
+ a| 
+5.255：128
+ a| 
+192.40.0.1
+ a| 
+叢集1_02
+ a| 
+e0b.
+
+
+
+ a| 
+vFilerB
+ a| 
+svm2
+ a| 
+-
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+-
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+主機B_7mode
+ a| 
+不適用
+ a| 
+svm3
+ a| 
+192.0.2.110
+ a| 
+5.255：128
+ a| 
+192.40.0.1
+ a| 
+叢集1_01
+ a| 
+e0c
+
+
+
+ a| 
+192.0.2.111.
+ a| 
+5.255：128
+ a| 
+192.40.0.1
+ a| 
+叢集1_02
+ a| 
+e0d
+
+|===
+* LIF對應（新生命區）*
+
+|===
+| SVM | 新IP位址 | 網路遮罩 | 預設閘道 | 主節點 | 主連接埠 
+
+
+ a| 
+svm1.
+ a| 
+-
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+-
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+svm2
+ a| 
+192.0.2.130
+ a| 
+5.255：128
+ a| 
+192.40.0.1
+ a| 
+叢集1_01
+ a| 
+e1c
+
+
+
+ a| 
+192.0.2.131.
+ a| 
+5.255：128
+ a| 
+192.40.0.1
+ a| 
+叢集1_02
+ a| 
+e1d
+
+
+
+ a| 
+svm3
+ a| 
+192.0.2.136.
+ a| 
+5.255：128
+ a| 
+192.40.0.1
+ a| 
+叢集1_01
+ a| 
+e0c
+
+
+
+ a| 
+192.0.2.137
+ a| 
+5.255：128
+ a| 
+192.40.0.1
+ a| 
+叢集1_02
+ a| 
+e0d
+
+|===

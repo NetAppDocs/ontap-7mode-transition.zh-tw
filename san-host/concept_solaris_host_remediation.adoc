@@ -1,0 +1,27 @@
+---
+permalink: san-host/concept_solaris_host_remediation.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, solaris, host, remediation 
+summary: 如果您使用7-Mode Transition Tool（7-Mode Transition Tool）（7MTT）、在ONTAP SAN環境中從以7-Mode運作的VMware移轉到叢集ONTAP 式的VMware、則必須在轉換前後在Solaris主機上執行一系列步驟、以避免轉換複雜度。 
+---
+= Solaris主機補救
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您使用7-Mode Transition Tool（7MTT）在ONTAP SAN環境中從以7-Mode運作的VMware移轉至叢集ONTAP 式的VMware、則必須在轉換前後在Solaris主機上執行一系列步驟、以避免轉換複雜度。
+
+下列案例不支援任何轉換工作流程（支援複製型或無複製轉換）：
+
+* SAN開機LUN的移轉
++
+您可以執行Solaris主機公用程式並使用FC傳輸協定、設定SAN開機LUN在Veritas動態多重路徑（DMP）環境或Solaris MPxIO環境中運作。您用來設定SAN開機LUN的方法可能有所不同、視磁碟區管理程式和檔案系統而定。
+
++
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2748974["《Solaris Host Utilities 6.2安裝與設定指南》"]
+
+* Solaris主機叢集移轉
+* Veritas組態
+

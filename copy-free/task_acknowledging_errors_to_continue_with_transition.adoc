@@ -1,0 +1,35 @@
+---
+permalink: copy-free/task_acknowledging_errors_to_continue_with_transition.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, ignorable, errors 
+summary: 在轉換期間、您可能會遇到一些錯誤、導致轉換作業遭到封鎖。您可以選擇透過7-Mode Transition Tool CLI確認問題、忽略其中的部分錯誤。您應該在忽略錯誤後重新執行失敗的作業、以繼續進行轉換。 
+---
+= 如果發生可接受的錯誤、請繼續進行轉換
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在轉換期間、您可能會遇到一些錯誤、導致轉換作業遭到封鎖。您可以選擇透過7-Mode Transition Tool CLI確認問題、忽略其中的部分錯誤。您應該在忽略錯誤後重新執行失敗的作業、以繼續進行轉換。
+
+當您確認錯誤時、表示您已瞭解這些錯誤的影響、並已予以確認。
+
+您必須在忽略錯誤之後重新執行轉換作業。在某些情況下、當您確認問題之後、Data ONTAP 下次執行作業時、會對受影響的集合體和磁碟區執行修正動作。
+
+.步驟
+. 如果轉換作業導致任何可接受的錯誤、請從7-Mode Transition Tool CLI執行下列命令：
++
+hy* Transition CFT ignorableerrors add -p _project名稱_-c _ignorable_errorcategor_*
+
++
+「ignorable _errorCategory」是您可以忽略的錯誤類型。
+
++
+xref:reference_ignorable_errors_during_transition.adoc[轉換期間發生可接受的錯誤]
+
+. 重新執行轉換作業。
++
+封鎖錯誤會變更為警告、錯誤會顯示為「已確認」。您可以繼續進行轉換、並顯示警告。
+
+

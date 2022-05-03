@@ -1,0 +1,85 @@
+---
+permalink: san-host/task_reattaching_rdm_using_esxi_cli_console.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, rdm, esxi, cli, console 
+summary: 從Data ONTAP 以7-Mode運作的功能轉型至叢集Data ONTAP 式功能後、您必須重新連接原始裝置對應（RDM）。 
+---
+= 使用ESXi的CLI/Console重新附加RDM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+從以7-Mode運作的VMware移轉至Data ONTAP 叢集Data ONTAP 式功能後、您必須重新連接原始裝置對應（RDM）。
+
+* 您必須擷取_庫存評估工作簿_的「磁碟」欄中所列的RDM磁碟檔案。
+* 您必須從Data ONTAP 7MTT對應檔案擷取新的叢集式LUN naa ID。
+
+
+.步驟
+. 使用SSH登入ESXi主控台。
+. 使用mv命令備份RDM磁碟檔案及相關的裝置檔案。
++
+RDM磁碟檔案會列在_庫存評估工作簿_的「磁碟」欄中。
+
++
+如果RDM磁碟檔案為「/vmfs/volumes/53a3ac3d-df5aca03-3a94-001ec9d631cb/VM2-win-bus-a/VM2-winbus-Avmdk」、您會發出下列命令：
+
++
+mv /vmfs/volumes/53a3ac3d-df5aca03-3a94-001ec9d631cb/vm2-win-bus-a/VM2-winbus-Avmdk /vmfs/volumes/53a3ac3d-df5aca03-3a94-001ec9d63dk/vmbk/vmba-win-bak*
+
++
+** 對於實體相容性RDM（PTRDM）：+「* mv _rdm_disk_file_name__-rdm.vdmk_rdm_disk_file_name_-rdm.vdmk_bak*」
++
+例如：
+
++
+mv/vmfs/volumes/53a3ac3d-df5aca03-3a94-001ec9d631cb/vm2-win-bus-a/VM2-winbus-a-rdmmpvmdk/vmfs/53a3ac3d-df5aca03-3a94-001ec9dk/vmbk/vmba-win63bk/vmbk/vmbk2-winbk/vmbk2
+
+** 對於虛擬相容性RDM（NPTRDM）：+`* mv _rdm_disk_file_name__-rdm.vdmk_rdm_disk_file_name_-rdm.vdmk_bak*
++
+例如：
+
++
+mv/vmfs/volumes/53a3ac3d-df5aca03-3a94-001ec9d631cb/vm2-win-bus-a/VM2-winbus-a-rdmmpvmdk/vmfs/53a3ac3d-df5aca03-3a94-001ec9dk/vmbk/vmba-win63bk/vmbk/vmbk2-winbk/vmbk2
+
+
+
+. 使用新的叢集Data ONTAP 式LUN naa ID和RDM磁碟檔案、重新建立RDM組態和裝置檔案。
++
+** 對於PTRDM：+`*# vmkfsks–z /vmfs/devices/disks/_new_clustered_Data_ontap_na_ID__vmdk*
++
+例如：
+
++
+「* vmkfsks–z /vmfs/devices/disks/naa.600a098054314c6c442b446f79712313 /vmfs/volumes/53a3ac3d-df5aca03-3a94-ec9d631cb/VM2-win-bus-AVM2-win-bus-aus-bus*
+
+** 對於NPTRDM：+`*# vmkfsks–r /vmfs/devices/disks/_new_clustered_Data_ontap_na_ID__vmdk*
++
+例如：
+
++
+「* vmkfsks–r /vmfs/devices/disks/naa.600a098054314c6c442b446f79712313 /vmfs/volumes/53a3ac3d-df5aca03-3a94-ec9d631cb/VM2-win-bus-AVM2-win-bus-aus-bus*
+
+
+
+. 確認已建立組態和指標檔案：
++
+/vmfs/volumes/_datastore/vm_directory__*
+
++
+「*」/vmfs/volumes/53a3ac3d-df5aca03-3a94-001ec9d631cb/VM2-win-bus-a*
+
++
+新的組態和指標檔案會顯示在VM目錄路徑下。
+
+. 針對所有已附加RDM的VM重複上述步驟。
+. 重新啟動ESXi主機中的hostd和vpxa代理程式：
++
+"/etc/init.d/chostd/restart*
+
++
+"/etc/init.d/vpxa/restart*
+
+

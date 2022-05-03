@@ -1,0 +1,37 @@
+---
+permalink: san-host/task_setting_up_esxi_hosts_configured_for_san_boot_after_transition.html 
+sidebar: sidebar 
+keywords: esxi, configured, boot, ontap, san, host, transition 
+summary: 如果您的ESXi主機在從Data ONTAP 以7-Mode運作的VMware移轉之前已設定SAN開機、則在轉換後使用主機之前、您必須先執行數個步驟。 
+---
+= 設定ESXi主機、以便在轉換後進行SAN開機
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您的ESXi主機在從Data ONTAP 以7-Mode運作的VMware移轉之前已設定SAN開機、則在轉換後使用主機之前、您必須先執行數個步驟。
+
+* 對於複製型轉換、請先執行這些步驟、再在7MTT中啟動儲存設備切換作業。
+* 如需無複製轉換、請在7MTT中啟動匯出及停止7-Mode系統作業之前、先執行下列步驟。
+
+
+.步驟
+. 重新設定FC和FCoE HBA BIOS、以便從叢集Data ONTAP 式BIOS的SAN開機LUN開機。
+. 開機ESXi主機。
+. 將主機組態重設為預先轉換設定。
+. 如需iSCSI主機、請參閱如何重新設定VMware iSCSI啟動器。
++
+xref:concept_reconfiguration_of_vmware_software_iscsi_initiator.adoc[重新設定VMware iSCSI啟動器]
+
+. 在預設安裝中、重新掛載從開機LUN建立的VMFS資料存放區。
+
+
+*相關資訊*
+
+xref:task_remounting_vmfs_volumes_after_transition_using_vsphere_client.adoc[使用vSphere Client在轉換後重新掛載VMFS磁碟區]
+
+xref:task_remounting_vmfs_volumes_after_transition_using_esxi_cli_console.adoc[使用ESXi CLI在轉換後重新掛載VMFS磁碟區]
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sanag/home.html["SAN管理"]

@@ -1,0 +1,28 @@
+---
+permalink: copy-free/concept_transition_overview.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, overview 
+summary: 移轉至叢集ONTAP 式的功能包括識別您目前的環境、定義轉換範圍、設計目的地系統的最佳組態、規劃如何移轉資料和組態、以及進行必要的環境更新。 
+---
+= 轉換總覽
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+移轉至叢集ONTAP 式的功能包括識別您目前的環境、定義轉換範圍、設計目的地系統的最佳組態、規劃如何移轉資料和組態、以及進行必要的環境更新。
+
+請務必參閱目前的7-Mode Transition Tool _Release Notes_、以取得支援的目標版本和已知問題的最新資訊。
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-72c-rn/home.html["7-Mode Transition Tool版本資訊"]
+
+您必須先收集目前環境的相關資訊、包括目前的儲存環境、以及主機和應用程式。在收集儲存設備庫存之後、您可以評估目前使用的功能、並找出ONTAP 所選的版本中的差異。您可以使用7-Mode Transition Tool來執行這些工作。
+
+然後您可以定義移轉專案。這包括識別您要一起移轉的磁碟區和工作負載、然後設計叢集、並規劃您的移轉作業。您可以先選擇最佳的移轉方法、開始規劃移轉作業。在設計叢集時、您可以使用收集到的儲存環境相關資訊、將現有組態項目對應到ONTAP 在效益資訊區中的等效項目。例如、7-Mode磁碟區應對應至SVM、ONTAP 而將移轉的Volume則應對應至LIF。您也應該判斷ONTAP 是否必須在該系統上進行任何環境變更。
+
+實作包括部署及設定叢集、移轉資料、套用組態變更、中斷用戶端連線、重新連線至目的地ONTAP 的作業系統、驗證存取、以及執行任何必要的環境變更。
+
+*相關資訊*
+
+http://docs.netapp.com/ontap-9/index.jsp["NetApp文件：ONTAP VMware 9"]

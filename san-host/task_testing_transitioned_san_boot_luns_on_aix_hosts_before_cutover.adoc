@@ -1,0 +1,39 @@
+---
+permalink: san-host/task_testing_transitioned_san_boot_luns_on_aix_hosts_before_cutover.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, boot, lun, aix, hosts, cutover, phase, copy, based 
+summary: 如果您使用7-Mode Transition Tool（7MTT\）2.2或更新版本、Data ONTAP 以及更新版本的版本、以轉換7-Mode Windows主機LUN、您可以在Data ONTAP 轉換階段之前測試轉換後的叢集式LUN、以確認它們是否正常運作。 
+---
+= 在轉換複本型轉換的轉換階段之前、測試AIX主機上轉換後的SAN開機LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您使用7-Mode Transition Tool（7MTT）2.2或更新版本、Data ONTAP 以及更新版本的版本號、以轉換7-Mode Windows主機LUN、您可以在Data ONTAP 轉換階段之前測試轉換的叢集式LUN、以確認它們是否正常運作。
+
+您的7-Mode LUN必須已準備好進行轉換。
+
+您應該維持測試主機與來源主機之間的硬體同位元、而且應該在測試主機上執行下列步驟。
+
+在Data ONTAP 測試期間、叢集式的LUN會處於讀取/寫入模式。當測試完成且您正在準備轉換階段時、它們會轉換成唯讀模式。
+
+.步驟
+. 完成基礎資料複本之後、請在7MTT使用者介面（UI）中選取*測試模式*。
+. 在7MTT UI中、按一下*套用組態*。
+. 在測試主機上、登入硬體管理主控台、然後在* SMS*功能表中開機主機。
+. 主機開機後、請變更IP位址和主機名稱。
+. 驗證叢集Data ONTAP 式的LUN是否存在：
++
+「* sanlun LUN show*」
+
+. 視需要執行測試。
+. 關閉測試主機：
++
+h*關機
+
+. 在7MTT UI中、按一下*完成測試*。
+
+
+如果您的叢集Data ONTAP 式支援LUN要重新對應至來源主機、您必須準備好來源主機以進行轉換階段。如果您的叢集Data ONTAP 式支援LUN仍要對應至測試主機、則測試主機不需要執行其他步驟。

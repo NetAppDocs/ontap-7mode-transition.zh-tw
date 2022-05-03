@@ -1,0 +1,85 @@
+---
+permalink: copy-free/task_transitioning_primary_and_secondary_systems_of_a_snapmirror_relationship_in_staggered_way.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, ha, pairs, snapmirror, relationship, staggered, configuration 
+summary: 您可以先移轉次要HA配對、在7-Mode主要Volume和ONTAP 不二級Volume之間建立交錯的SnapMirror關係、然後在稍後移轉主要HA配對。 
+---
+= 在交錯式組態中、以SnapMirror關係轉換HA配對
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以先移轉次要HA配對、在7-Mode主要Volume和ONTAP 不二級Volume之間建立交錯的SnapMirror關係、然後在稍後移轉主要HA配對。
+
+您必須準備好來源和目的地叢集、以便轉換SnapMirror關係。
+
+xref:task_preparing_cluster_for_transitioning_volume_snapmirror_relationships.adoc[準備叢集以轉換Volume SnapMirror關係]
+
+.步驟
+. 從7-Mode Transition Tool執行HA配對的無複本轉換、該HA配對包含7-Mode Volume SnapMirror關係的次要Volume。
++
+在轉換包含次要磁碟區的7-Mode HA配對之前、7-Mode SnapMirror關係無需手動介入。這可確保7-Mode次要Volume可轉換為ONTAP 唯讀Volume至VMware。
+
++
+xref:task_performing_copy_free_transition_of_7_mode_aggregates.adoc[使用無複本轉換來轉換7-Mode Aggregate]
+
+. 在次要HA配對的預先提交測試階段、在7-Mode主要Volume與ONTAP VMware次要Volume之間建立災難恢復關係：
++
+.. 從次要目的地叢集、使用「vserver對等轉換create」命令、在7-Mode主要Volume和ONTAP Suse次要Volume之間建立SVM對等關係。
+.. 使用「jobschedule cron create」命令建立符合7-Mode SnapMirror關係所設定排程的工作排程。
+.. 使用「napmirror create」命令、在7-Mode主磁碟區和ONTAP 次磁碟區之間建立類型為TDP的SnapMirror關係。
+.. 使用「shnapmirror resSync」命令重新同步ONTAP 化該二線磁碟區。
++
+若要成功重新同步、7-Mode主Volume與ONTAP VMware次要Volume之間必須有通用的7-Mode Snapshot複本。
+
+
+
+. 對轉換的集合體和磁碟區執行必要的測試。
+. 從7-Mode Transition Tool、針對次要HA配對、提交專案的轉換作業。
++
+xref:task_committing_7_mode_aggregates_to_clustered_ontap_format.adoc[提交無複本移轉專案]
+
+. 執行HA配對的無複製移轉、其中包含7-Mode Volume SnapMirror關係的主要磁碟區。
++
+xref:task_performing_copy_free_transition_of_7_mode_aggregates.adoc[使用無複本轉換來轉換7-Mode Aggregate]
+
+. 在主要HA配對的預先提交測試階段、在轉換的次要和主要磁碟區之間建立SnapMirror關係。
++
+.. 從目的地叢集建立叢集間的SVM對等關係、其中包含已轉換的主要和次要Volume。
++
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["系統管理"]
+
+.. 使用「napmirror DELETE」命令、刪除步驟ONTAP 中建立的7-Mode主Volume和不包含VMware的二線Volume之間的TDP SnapMirror關係 <<SUBSTEP_D528769DF8EC49058D1958565914CF47,#Subford_D528769DF8EC49058D1958565914CF47>>。
+.. 刪除步驟中建立的cron工作排程 <<SUBSTEP_EB470706425C45759EAAE8F0A87BA547,#Subsite_EB47706425C45759EAAE8F0A87BA547>>：+`*工作排程cron刪除*
+.. 在轉換的主要和次要磁碟區之間建立Volume SnapMirror關係。
++
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-sm-ic-cg/home.html["Volume災難恢復快速準備"]
+
+.. 在目的地磁碟區上、重新同步SnapMirror關係的來源磁碟區和目的地磁碟區：+「* SnapMirror重新同步*」
++
+
+IMPORTANT: 來源與目的地磁碟區之間至少必須存在一個通用的Snapshot複本。
+
++
+*疑難排解：*如果通用Snapshot複本是在Data ONTAP 8.1之前的版本中建立、SnapMirror重新同步將會失敗。您可以在進階權限層級中使用「-fs-version」參數搭配「volume snapshot show」命令、來檢視建立Snapshot複本的版本。如果發生此問題、請中斷SnapMirror關係、然後執行重新同步。
+
+.. 監控SnapMirror資料傳輸的狀態：+「* SnapMirror show*」
++
+
+IMPORTANT: 在成功完成重新同步之前、您不得在來源與目的地磁碟區上執行任何作業、例如Volume Move或SnapMirror中斷。請確保重新同步不會中斷並順利完成、否則磁碟區可能會進入不一致的狀態。
+
+
+
+. 承諾移轉主要專案。
++
+xref:task_committing_7_mode_aggregates_to_clustered_ontap_format.adoc[提交無複本移轉專案]
+
+
+
+*相關資訊*
+
+http://docs.netapp.com/us-en/ontap-7mode-transition/snapmirror/index.html["使用SnapMirror進行7-Mode資料移轉"]
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-cmpr/GUID-5CB10C70-AC11-41C0-8C16-B4D0DF916E9B.html["指令ONTAP"]

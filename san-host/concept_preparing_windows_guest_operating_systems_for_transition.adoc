@@ -1,0 +1,18 @@
+---
+permalink: san-host/concept_preparing_windows_guest_operating_systems_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, windows, guest, operating, systems 
+summary: 如果您的Windows VM使用實體相容的RDM（PTRDM\）裝置、則在轉換之前、您必須先讓Windows VM上的磁碟離線。您可以使用「磁碟管理程式」將磁碟離線。 
+---
+= 準備Windows客體作業系統以進行移轉
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您的Windows VM使用實體相容的RDM（PTRDM）裝置、則在轉換之前、您必須先讓Windows VM上的磁碟離線。您可以使用「磁碟管理程式」將磁碟離線。
+
+* 對於複製型轉換、請先執行這些步驟、再在7-Mode Transition Tool（7MTT）中啟動Storage Cutover（儲存設備轉換）作業。
+* 如需無複製轉換、請在7MTT中啟動匯出及停止7-Mode系統作業之前、先執行下列步驟。
+

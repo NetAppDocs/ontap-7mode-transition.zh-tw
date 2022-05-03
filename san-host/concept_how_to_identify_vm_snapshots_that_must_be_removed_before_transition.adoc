@@ -1,0 +1,16 @@
+---
+permalink: san-host/concept_how_to_identify_vm_snapshots_that_must_be_removed_before_transition.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, vm, snapshots, removed, identify 
+summary: 快照虛擬機器（VMs）與虛擬RDM掛接、無法從Data ONTAP 以7-Mode運作的VMware移轉至叢集Data ONTAP 式的VMware。在轉換之前、必須先移除這些快照。只有VMFS vDisk和實體RDM（PTRDM\）的VM快照可在轉換期間繼續執行、而且不需要移除。 
+---
+= 如何識別轉換前必須移除的VM快照
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+附加虛擬RDM的快照虛擬機器（VM）無法從Data ONTAP 以7-Mode運作的VMware移轉到叢集Data ONTAP 式的VMware。在轉換之前、必須先移除這些快照。只有VMFS vDisk和實體RDM（PTRDM）的VM快照可在轉換期間繼續執行、而且不需要移除。
+
+您可以使用庫存收集工具產生的_庫存評估工作簿_來識別所有附加虛擬RDM的VM。「VM Snapshot（VM快照）」欄下的「_Inventory Assessment Workbook（_資源清冊評估工作簿）」和「NPTRDM（NPTRDM）」欄中所列值大於0的快照、都是虛擬機器與VM快照相連的虛擬RDM。

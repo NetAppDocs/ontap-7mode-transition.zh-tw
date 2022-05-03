@@ -1,0 +1,99 @@
+---
+permalink: san-host/task_preparing_for_transition_of_iscsi_san_boot_luns.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, iscsi, san, boot, lun 
+summary: 在轉換iSCSI SAN開機LUN之前、您必須在主機上執行特定步驟。不支援移轉Red Hat Enterprise Linux（RHEL）5.x。支援RHEL 6的移轉。 
+---
+= 準備移轉iSCSI SAN開機LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在轉換iSCSI SAN開機LUN之前、您必須在主機上執行特定步驟。不支援Red Hat Enterprise Linux（RHEL）5.x的移轉。支援RHEL 6的移轉。
+
+您必須從_庫存評估工作簿_取得下列資訊：
+
+* 安裝RHEL 6的LUN名稱
+* Transition LUN的DMP裝置名稱
+* 邏輯Volume（lv）名稱
+* Volume群組（VG）名稱
+* 實體Volume（PV）裝置
+* 安裝RHEL 6 /boot和root（/）分割區的邏輯Volume Manager（LVM）名稱和掛載目錄
+* 在DMP上設定的檔案系統
+* 適用於7-Mode控制器的iSCSI工作階段
+* Grub資訊
+* 要建立iSCSI SAN開機LUN的儲存虛擬機器（SVM）IQN編號
+* 將Data ONTAP 在其中建立iSCSI SAN開機LUN的叢集式SVM LIF IP位址
+
+
+此程序適用於複本型轉換和無複本轉換。
+
+.步驟
+. 確認DMMP裝置存在於/dev/mapper目錄中：
++
+`* ls /dev/mapper/_DMMP_DEV_name_*
+
++
+如果未顯示DMP裝置、表示裝置可能使用別名或使用者友好名稱。
+
+. 判斷DMP裝置是否屬於LVM的一部分：
++
+《* blKid*》
+
++
+如果DMP設備的「類型」值為「LVM2_member」、則DMP是LVM的一部分。
+
+. 從「etc/stab'」檔案取得「/」和「/boot」磁碟分割的掛載點詳細資料：
++
+** 如果在DMP裝置上安裝了「/boot」分割區、請檢查在開機時、在「/etc/stab'」檔案中如何參照該分割區來掛載。
+** 如果使用您使用「blchid」命令輸出取得的檔案系統UUID來掛載「/boot」分割區、則不需要預先轉換變更。
+
+
+. 如果/boot分割區在「etc/stabs」檔案中以其DMP裝置名稱來參照、請以檔案系統UUID名稱來取代DMP裝置名稱。
+. 對於iSCSI SAN開機的主機、請編輯「/boot/grub / grub .conf」檔案、以建立新的核心命令列項目、其中包含叢集Data ONTAP 式的故障碼和iSCSI工作階段資訊。
++
+此範例顯示在編輯之前的「/boot/grub / grub .conf」檔案。核心命令列具有7-Mode控制器的IQN編號和iSCSI工作階段資訊。
+
++
+[listing]
+----
+title Red Hat Enterprise Linux Server (2.6.32-431.el6.x86_64)
+    	root (hd0,0)
+	kernel /vmlinuz-2.6.32-431.el6.x86_64 ro root=/dev/mapper/vg_ibmx3550m3229-LogVol00 ifname=eth0:5c:f3:fc:ba:46:d8 rd_NO_LUKS netroot=iscsi:@10.226.228.241::3260::iqn.1992-08.com.netapp:sn.1574168453 LANG=en_US.UTF-8 rd_LVM_LV=vg_ibmx3550m3229/LogVol01 rd_LVM_LV=vg_ibmx3550m3229/LogVol00 rd_NO_MD netroot=iscsi:@10.226.228.155::3260::iqn.1992-08.com.netapp:sn.1574168453 iscsi_initiator= iqn.1994-08.com.redhat:229.167 crashkernel=auto ip=eth0:dhcp
+	initrd /initramfs-2.6.32-431.el6.x86_64.img
+----
++
+此範例顯示在加入cDOT字尾的新標題之後、「/boot/grub / grub．conf」檔案、以及新的核心命令列、其中包含叢集Data ONTAP 式的資訊、即叢集式的IQN編號和iSCSI工作階段資訊：
+
++
+[listing]
+----
+title Red Hat Enterprise Linux Server (2.6.32-431.el6.x86_64) - cDOT
+    	root (hd0,0)
+	kernel /vmlinuz-2.6.32-431.el6.x86_64 ro root=/dev/mapper/vg_ibmx3550m3229-LogVol00 ifname=eth0:5c:f3:fc:ba:46:d8 rd_NO_LUKS netroot=iscsi:@10.226.228.99::3260:: ::iqn.1992-08.com.netapp:sn.81c4f5cc4aa611e5b1ad00a0985d4dbe:vs.15 LANG=en_US.UTF-8 rd_LVM_LV=vg_ibmx3550m3229/LogVol01 rd_LVM_LV=vg_ibmx3550m3229/LogVol00 rd_NO_MD netroot=iscsi:@10.226.228.98::3260:: ::iqn.1992-08.com.netapp:sn.81c4f5cc4aa611e5b1ad00a0985d4dbe:vs.15 netroot=iscsi:@10.226.228.97::3260:: ::iqn.1992-08.com.netapp:sn.81c4f5cc4aa611e5b1ad00a0985d4dbe:vs.15 netroot=iscsi:@10.226.228.96::3260:: ::iqn.1992-08.com.netapp:sn.81c4f5cc4aa611e5b1ad00a0985d4dbe:vs.15 iscsi_initiator= iqn.1994-08.com.redhat:229.167 crashkernel=auto ip=eth0:dhcp
+	initrd /initramfs-2.6.32-431.el6.x86_64.img
+----
+. 備份現有的「initramfs」檔案。
++
+[listing]
+----
+# cd /boot
+# cp initramfs-2.6.32-71.el6.x86_64.img initramfs-2.6.32-
+71.el6.x86_64.img.img_bak
+----
+. 使用備份「initrd-image name」更新「/boot/grub / grub．conf」檔案中的7-Mode核心行。
++
+對於RHEL 6.4及更新版本、請驗證叢集Data ONTAP 式的Sfeskkernel行是否附加在「/boot/grub / grub．conf」檔案中的「rdaemport=scsi_dh _alua」。
+
+. 如果更新了「/boot/grub / grub．conf'檔案、請更新核心初始RAM磁碟（「initramfs」）。
++
+必須重新建立「initramfs」檔案、Data ONTAP 以便參考新的叢集式還原功能編號和iSCSI工作階段、以便主機Data ONTAP 在開機時建立與叢集式還原控制器的iSCSI連線。
+
+. 使用「dracut -force、-add multipath-verbose」命令重新建立「initrd-」映像。
+
+
+*相關資訊*
+
+xref:task_gathering_pretransition_information_from_inventory_assessment_workbook.adoc[從庫存評估工作簿收集過渡前資訊]

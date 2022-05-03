@@ -1,0 +1,25 @@
+---
+permalink: copy-based/task_deleting_7_mode_volume_snapshot_copies_from_transitioned_volumes.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, delete, volume, snapshot, copy 
+summary: 由於7-Mode Volume Snapshot複本不會自動從轉換的Volume中刪除、因此您必須在完成轉換作業之後、手動刪除這些Snapshot複本。 
+---
+= 從轉換的磁碟區刪除7-Mode Volume Snapshot複本
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+由於7-Mode Volume Snapshot複本不會自動從轉換的Volume中刪除、因此您必須在完成轉換作業之後、手動刪除這些Snapshot複本。
+
+由於7-Mode環境與叢集Data ONTAP 式VMware複本的命名慣例不同、因此7-Mode Snapshot複本無法在叢集Data ONTAP 式VMware還原環境中自動覆寫。
+
+為了達到更好的空間使用率、您應該刪除不想要的7-Mode Snapshot複本、包括7-Mode到7-Mode SnapMirror關係的複本、以及7-Mode到叢集Data ONTAP 式的SnapMirror關係。
+
+.步驟
+. 完成儲存設備轉換作業後、請刪除不需要的7-Mode Snapshot複本：
++
+h.*快照刪除-vserver <Svm_name>-volume <volume名稱>-snapshot <snapshot name>*
+
+

@@ -1,0 +1,16 @@
+---
+permalink: copy-free/concept_preparing_for_nfs_transition.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, prepare, nfs 
+summary: 如果NFS已獲授權、且NFS服務正在以7-Mode運作的系統上執行、則您必須手動準備叢集和目標SVM、以便轉換NFS組態。您也必須瞭解哪些組態已轉換。 
+---
+= 準備進行NFS轉換
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果NFS已獲授權、且NFS服務正在以7-Mode運作的系統上執行、則您必須手動準備叢集和目標SVM、以便轉換NFS組態。您也必須瞭解哪些組態已轉換。
+
+某些以7-Mode運作的NFS組態在ONTAP VMware不支援。部分組態並非由7-Mode Transition Tool轉換、必須手動套用至SVM。

@@ -1,0 +1,26 @@
+---
+permalink: copy-free/task_assessing_controllers_and_hosts.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, assess, controllers, hosts 
+summary: 您可以使用7-Mode Transition Tool或Inventory Collect Tool來收集和評估控制器和主機的相關資訊、具體取決於環境中的安全法規。 
+---
+= 評估控制器和主機
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用7-Mode Transition Tool或Inventory Collect Tool來收集和評估控制器和主機的相關資訊、具體取決於環境中的安全法規。
+
+* 7-Mode Transition Tool會透過新增系統或使用庫存收集工具所產生的庫存報告、來收集有關控制器和主機的詳細目錄資訊。
++
+然後、7-Mode Transition Tool會評估庫存資訊、並建立轉換評估報告。
+
+* 執行轉換評估時、您必須注意下列考量事項：
++
+** 您不應同時在控制器上執行評估和移轉作業。
+** 您應避免在尖峰時間對作用中儲存控制器執行評估作業。
+
+
+

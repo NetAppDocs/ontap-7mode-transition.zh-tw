@@ -1,0 +1,78 @@
+---
+permalink: install-admin/reference_interfaces_and_transition_capabilities_available_on_windows_and_linux.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, install, interfaces, transition, capabilities, windows, linux 
+summary: 您可以在Windows或Linux上安裝7-Mode Transition Tool。在安裝7-Mode Transition Tool之前、您必須瞭解支援的功能和使用者介面。 
+---
+= 可在Windows和Linux上使用的介面和移轉功能
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以在Windows或Linux上安裝7-Mode Transition Tool。在安裝7-Mode Transition Tool之前、您必須瞭解支援的功能和使用者介面。
+
+|===
+| 移轉方法 | 功能 | 在Windows上受支援 | 支援Linux 
+
+
+ a| 
+*無複製轉換*
+ a| 
+圖形使用者介面（GUI）
+ a| 
+是的
+ a| 
+否
+
+
+
+ a| 
+命令列介面（CLI）
+ a| 
+否
+
+您無法使用CLI來建立及管理專案；不過、您必須在從Windows CLI轉換期間執行某些命令、例如忽略封鎖錯誤的命令。
+ a| 
+否
+
+
+
+ a| 
+收集與評估
+ a| 
+是的
+ a| 
+否
+
+
+
+ a| 
+*複製型轉換*
+ a| 
+GUI
+ a| 
+是的
+ a| 
+否
+
+
+
+ a| 
+CLI
+ a| 
+是的
+ a| 
+是的
+
+
+
+ a| 
+收集與評估
+ a| 
+是的
+ a| 
+否
+
+|===

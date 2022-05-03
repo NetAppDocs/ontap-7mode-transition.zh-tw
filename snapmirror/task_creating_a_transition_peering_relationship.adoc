@@ -1,0 +1,67 @@
+---
+permalink: snapmirror/task_creating_a_transition_peering_relationship.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, transition, create, peer, relationship, snapmirror 
+summary: 您必須先建立移轉對等關係、才能設定SnapMirror關係、以便在7-Mode系統和叢集之間進行移轉。身為叢集管理員、您可以使用vserver對等轉換create命令、在ANSVM和7-Mode系統之間建立轉換對等關係。 
+---
+= 建立轉換對等關係
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必須先建立移轉對等關係、才能設定SnapMirror關係、以便在7-Mode系統和叢集之間進行移轉。身為叢集管理員、您可以使用「vserver對等轉換create」命令、在ANSVM和7-Mode系統之間建立轉換對等關係。
+
+* 您必須確保來源7-Mode系統的名稱不會與任何本機SVM或已處理的SVM衝突。
+* 您必須建立一個叢集Data ONTAP 式的DP類型、其中的7-Mode資料必須轉換至該類型的。
++
+叢集Data ONTAP 式的等量資料磁碟區大小必須等於或大於7-Mode磁碟區的大小。
+
+* 您必須確保SVM名稱不含「」。
+* 如果您使用的是本機lifs、則必須確保下列各項：
++
+** 在預設IPspace中建立本機lifs
+** 本機生命量是在磁碟區所在的節點上設定
+** LIF移轉原則與Volume節點相同、因此兩者都能移轉至相同的目的地節點
+
+
+
+
+建立轉換對等關係時、您也可以指定多重路徑FQDN或IP位址、以平衡資料傳輸的負載。
+
+.步驟
+. 使用「vserver對等轉換create」命令建立轉換對等關係。
+. 使用「vserver對等轉換展示」來驗證是否已成功建立轉換對等關係。
+
+
+
+
+== 建立及檢視轉換對等關係的範例
+
+下列命令可建立SVM VS1與7-Mode系統Sc1之間的轉換對等關係、其中包含多重路徑位址src1-e0d、以及本機lif1和lif2：
+
+[listing]
+----
+cluster1::> vserver peer transition create -local-vserver vs1 -src-filer-name src1 -multi-path-address src1-e0d -local-lifs lif1,lif2
+----
+下列範例顯示單一SVM（VS1）與多個7-Mode系統之間的轉換對等關係：
+
+[listing]
+----
+cluster1::> vserver peer transition create -local-vserver vs1 -src-filer-name src3
+Transition peering created
+
+cluster1::> vserver peer transition create -local-vserver vs1 -src-filer-name src2
+Transition peering created
+----
+下列輸出顯示SVM VS1的轉換對等關係：
+
+[listing]
+----
+cluster1::> vserver peer transition show
+Vserver  Source Filer  Multi Path Address   Local LIFs
+-------  ------------  -----------------    ---------
+vs1      src2	         	-				    	-
+vs1      src3	        	-				     	-
+----

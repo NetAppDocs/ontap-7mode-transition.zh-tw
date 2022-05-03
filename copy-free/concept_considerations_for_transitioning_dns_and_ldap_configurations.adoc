@@ -1,0 +1,44 @@
+---
+permalink: copy-free/concept_considerations_for_transitioning_dns_and_ldap_configurations.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, dns, nis, ldap, configurations 
+summary: 您應該瞭解Data ONTAP 在7-Mode中運作的DNS、NIS和LDAP組態如何在ONTAP VMware中轉換及套用。 
+---
+= 轉換DNS、NIS和LDAP組態時的考量事項
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您應該瞭解Data ONTAP 在7-Mode中運作的DNS、NIS和LDAP組態如何在ONTAP VMware中轉換及套用。
+
+
+
+== DNS移轉考量
+
+對於DNS組態、ONTAP 每個SVM最多支援六個網域名稱和三個名稱伺服器。如果7-Mode系統與目標SVM之間的網域名稱或名稱伺服器數量獨特、超過支援的上限、7-Mode Transition Tool會報告封鎖錯誤。若要繼續進行轉換、您應該忽略從工具移轉DNS組態的問題。
+
+
+NOTE: 如果您忽略DNS組態的轉換、則必須在目標SVM上手動設定DNS。
+
+
+
+== NIS移轉考量
+
+* 7-Mode系統上的NIS網域名稱長度不得超過64個字元。
+* 若要轉換至執行ONTAP VMware 9.1或更早版本的目標叢集版本、7-Mode系統上的「nis.servers`」選項必須僅設定IP位址、而非完整網域名稱（FQDN）。
++
+如果您要轉換至執行ONTAP VMware 9.1或更早版本的叢集、則必須在7-Mode系統上使用IP位址設定「nis.servers`」選項、然後再轉換至該叢集。如果您在7-Mode系統上設定了「nis.servers`」選項、且您要轉換至執行ONTAP 9.2到9.5之間任何版本的任何版本的叢集、則支援轉換。
+
+
+
+
+
+== LDAP移轉考量
+
+* 如果在7-Mode系統中為使用者對應（「ldap.usermap.base`」）和使用者密碼（「LDAP.base.passwd'）查詢指定個別的基礎值和範圍值、則只會轉換使用者密碼的基本值和範圍值。
++
+基礎值和範圍值用於ONTAP 在畫面上進行使用者對應和使用者密碼查詢、這可能會導致安全問題。如果需要、您必須在ONTAP 轉換後手動新增基礎值和範圍值、以便使用者對應至使用者辨別名稱（DN）選項。
+
+

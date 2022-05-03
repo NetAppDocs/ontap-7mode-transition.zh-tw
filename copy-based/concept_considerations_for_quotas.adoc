@@ -1,0 +1,26 @@
+---
+permalink: copy-based/concept_considerations_for_quotas.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, quotas 
+summary: 當「套用組態」（precutover\）以唯讀和讀寫模式執行時、您必須瞭解配額如何轉換。 
+---
+= 配額考量
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+當「apply configuration」（預先轉換）以唯讀和讀寫模式執行時、您必須瞭解配額如何轉換。
+
+配額會在預先轉換階段以下列方式套用：
+
+* 唯讀模式
++
+配額不會套用ONTAP 到作業系統上的預先轉換唯讀模式、只會在儲存轉換階段套用。
+
+* 讀寫模式
++
+配額會套用ONTAP 到作業系統上的預先轉換讀寫模式、以便您在ONTAP 這個功能中進行測試。不過、在ONTAP 重新同步（測試完成後）期間、會移除這些配額。配額會在儲存設備轉換階段再次套用。
+
+

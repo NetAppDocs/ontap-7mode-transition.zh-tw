@@ -1,0 +1,24 @@
+---
+permalink: san-host/concept_transitioning_luns_with_mount_points_using_dmmp_devices_names.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, lun, mount, points, dmmp, device, name 
+summary: 在使用DMP裝置名稱以掛載點轉換LUN之前、您必須以對應的檔案系統UUID編號來取代DMP裝置名稱。您必須執行特定步驟來準備轉換階段、而且在轉換之後、必須在主機上重新掛載DMP裝置。您對Red Hat Enterprise Linux（RHEL）5和RHEL 6執行相同的程序。 
+---
+= 使用DMP裝置名稱轉換LUN與掛載點
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在使用DMP裝置名稱以掛載點轉換LUN之前、您必須以對應的檔案系統UUID編號來取代DMP裝置名稱。您必須執行特定步驟來準備轉換階段、而且在轉換之後、必須在主機上重新掛載DMP裝置。您對Red Hat Enterprise Linux（RHEL）5和RHEL 6執行相同的程序。
+
+*相關資訊*
+
+xref:task_preparing_rhel_luns_transition_using_inventory_assessment_workbook.adoc[使用「庫存評估」工作簿、使用DMP裝置名稱準備RHEL LUN與掛載點以進行轉換]
+
+xref:task_preparing_rhel_luns_for_transition_using_the_cli.adoc[使用CLI準備使用DMP別名的裝載點執行RHEL LUN移轉作業]
+
+xref:task_preparing_for_cutover_when_transitioning_luns_with_mounts_using_dmmp_aliases_on_linux_hosts.adoc[在Linux主機上使用DMP裝置名稱、以掛載點轉換LUN時、準備轉換階段]
+
+xref:task_remounting_dmmp_devices_on_linux_hosts_after_transition.adoc[轉換後、在Linux主機上重新掛載DMP裝置]

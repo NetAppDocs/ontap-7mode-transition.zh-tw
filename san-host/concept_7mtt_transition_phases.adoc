@@ -1,0 +1,22 @@
+---
+permalink: san-host/concept_7mtt_transition_phases.html 
+sidebar: sidebar 
+keywords: ontap, san, host, 7, mode, transition, phase 
+summary: 您可以使用7-Mode Transition Tool（7-Mode Transition Tool）\（7MTT）執行從Data ONTAP 7-Mode運作的從以複製為基礎的轉換（CBT）、或從以複製為基礎的轉換（CBT）至叢集Data ONTAP 式的更新。您必須瞭解每種轉換方法的各個階段、以便瞭解何時執行主機所需的特定修正步驟。 
+---
+= 7-Mode Transition Tool轉換階段
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用7-Mode Transition Tool（7MTT）執行無複製轉換（CFT）、或是從Data ONTAP 以7-Mode運作的故障複製轉換（CBT）至叢集Data ONTAP 式故障。您必須瞭解每種轉換方法的各個階段、以便瞭解何時執行主機所需的特定修正步驟。
+
+CFT階段如下：
+
+image::../media/delete_me_cft_phases.gif[無複製轉換階段]
+
+CBT階段如下：
+
+image::../media/delete_me_transition_operational_flow.gif[複本型轉換階段]

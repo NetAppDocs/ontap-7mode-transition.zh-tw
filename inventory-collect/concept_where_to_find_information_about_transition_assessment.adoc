@@ -1,0 +1,14 @@
+---
+permalink: inventory-collect/concept_where_to_find_information_about_transition_assessment.html 
+sidebar: sidebar 
+keywords: 7, mode, ontap, transition, assessment, information 
+summary: 您可以在《7-Mode Transition Tool複製型移轉指南》中找到評估儲存系統、主機和主機應用程式的相關資訊、以驗證它們是否已準備好進行移轉。本指南詳細說明如何匯入您為控制器和主機所建立的庫存報告、以及如何評估這些控制器和主機、以驗證它們是否已準備好進行移轉。 
+---
+= 何處可以找到轉換評估的相關資訊
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以找到評估儲存系統、主機和主機應用程式的相關資訊、以驗證它們是否已準備好在中進行移轉 link:http://docs.netapp.com/us-en/ontap-7mode-transition/copy-based/index.html["7-Mode Transition Tool複製型移轉指南"]。本指南詳細說明如何匯入您為控制器和主機所建立的庫存報告、以及如何評估這些控制器和主機、以驗證它們是否已準備好進行移轉。

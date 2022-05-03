@@ -1,0 +1,4356 @@
+---
+permalink: command-map/reference_how_7_mode_commands_map_to_clustered_ontap_commands.html 
+sidebar: sidebar 
+keywords: ontap, command, map, transition, commands, map, commands 
+summary: 除了ONTAP options命令之外、您可以使用提供的表格來尋找7-Mode命令的等效功能。 
+---
+= 7-Mode命令如何對應ONTAP 至VMware指令
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+除了ONTAP options命令之外、您可以使用提供的表格來尋找7-Mode命令的等效功能。
+
+下表列出ONTAP 7-Mode選項命令的等效項。我們也提供瞭解這些表格的相關資訊。
+
+xref:concept_how_to_interpret_clustered_ontap_command_maps_for_7_mode_administrators.adoc[瞭解7-Mode至叢集Data ONTAP 式的VMware指令圖]
+
+
+
+== A-E
+
+[role="lead"]
+* a *
+
+|===
+| 7-Mode命令 | 指令ONTAP 
+
+
+ a| 
+「acpadmin組態」
+ a| 
+系統節點執行節點{_nodename_|local} acpadmin configure *
+
+
+
+ a| 
+「acpadmin list_all」
+ a| 
+系統節點執行節點{_nodename_|local} acpadmin list_all*
+
+
+
+ a| 
+「acpadmin stats」
+ a| 
+系統節點執行節點{_nodename_|local} acpadmin states*
+
+
+
+ a| 
+《Aggradd》
+ a| 
+‘* aggr add*’
+
+「Aggr附加磁碟」
+
+「torage Aggregate add-disks」
+
+
+
+ a| 
+《Aggr cred...》
+ a| 
+‘* aggr cred*’
+
+《torage aggregate create》
+
+
+
+ a| 
+《Aggr. destroy》
+ a| 
+‘* aggr刪除*’
+
+"集合刪除"
+
+
+
+ a| 
+《Aggr_media_gr擦 除》
+ a| 
+系統節點執行節點{_nodename_|local} aggr media_strob*
+
+
+
+ a| 
+《Aggr offline》
+ a| 
+離線*
+
+"離線儲存Aggregate "
+
+
+
+ a| 
+網上的第一名
+ a| 
+線上*
+
+"網上集合體"
+
+
+
+ a| 
+《Aggr options》
+ a| 
+"* aggr modify*（*組修改*）"
+
+「torage Aggregate｛show | modify｝」
+
+
+
+ a| 
+《Aggrrame》
+ a| 
+’* aggr rename *
+
+"集合重命名"
+
+
+
+ a| 
+"限制"
+ a| 
+*限制*
+
+"集合限制"
+
+
+
+ a| 
+《Aggr擦除》
+ a| 
+'’* Aggr清理*
+
+"集合體清理"
+
+
+
+ a| 
+「Aggr show_space'
+ a| 
+「* aggr show-space*」
+
+「torage Aggregate show-space-space」
+
+
+
+ a| 
+「aggr狀態」
+ a| 
+「Aggr show」
+
+《集合體展》
+
+
+
+ a| 
+「Aggrr Verify」
+ a| 
+系統節點執行節點{_nodename_|local} aggr VERIFE*
+
+
+
+ a| 
+《目的地》AutoSupport
+ a| 
+《*目的地*》AutoSupport
+
+《系統節點AutoSupport 不景點》
+
+
+
+ a| 
+《不一樣的歷史》AutoSupport
+ a| 
+《*》*《*歷史*》AutoSupport
+
+《系統節點AutoSupport 的不全歷史》
+
+
+
+ a| 
+《資訊清單》AutoSupport
+ a| 
+*《*資訊清單*》AutoSupport
+
+系統節點AutoSupport 資訊清單
+
+
+
+ a| 
+《可觸發事件》AutoSupport
+ a| 
+*《*》*《*》AutoSupport
+
+'系統節點AutoSupport 不受觸發'
+
+|===
+[role="lead"]
+* B *
+
+|===
+| 7-Mode命令 | 指令ONTAP 
+
+
+ a| 
+「備份狀態」
+ a| 
+系統節點執行節點｛_nodename_-command備份狀態*
+
+
+
+ a| 
+"備份終止"
+ a| 
+不支援
+
+
+
+ a| 
+"大"
+ a| 
+不支援
+
+
+
+ a| 
+"bmc reboot"
+ a| 
+不支援
+
+
+
+ a| 
+「bmc STATUS」
+ a| 
+不支援
+
+
+
+ a| 
+"測試"
+ a| 
+不支援
+
+|===
+[role="lead"]
+* C*
+
+|===
+| 7-Mode命令 | 指令ONTAP 
+
+
+ a| 
+《CDPD示範鄰居》
+ a| 
+系統節點執行節點{_nodename_|local}-command network device-dDiscovery show*
+
+
+
+ a| 
+《CDPD展會統計資料》
+ a| 
+系統節點執行節點{_nodename_|local}-command CDPD show-states*
+
+
+
+ a| 
+《CDPD零統計資料》
+ a| 
+系統節點執行節點{_nodename_|local}-command CDPD零統計資料*
+
+
+
+ a| 
+「cfdisable'
+ a| 
+「cfdisable'
+
+
+
+ a| 
+「cfenable」
+ a| 
+「cfenable」
+
+
+
+ a| 
+《cfforce恢復》
+ a| 
+不支援
+
+
+
+ a| 
+《cetakeover》
+ a| 
+《cetakeover》
+
+
+
+ a| 
+"cf"贈品
+ a| 
+‘* cf*恢復*’
+
+"容錯移轉還原"
+
+
+
+ a| 
+《cfHW_assist》
+ a| 
+‘* cfwassist STATUS*’
+
+「容錯移轉hwassist show」
+
+
+
+ a| 
+全監控
+ a| 
+‘* cf-all監控*’
+
+「torage容錯移轉show -instance」
+
+
+
+ a| 
+《合作夥伴》
+ a| 
+》*《合作夥伴*》
+
+「torage容錯移轉show -功能 變數合作夥伴名稱」
+
+
+
+ a| 
+《cfrsrctbl》
+ a| 
+》*《cfrsrctbl*》
+
+「torage容錯移轉進度-表格顯示」
+
+
+
+ a| 
+「f狀態」
+ a| 
+「* cfSTATUS*」
+
+「容錯移轉顯示」
+
+
+
+ a| 
+《cftakeover》
+ a| 
+‘* cftakeover *’
+
+"容錯移轉接管"
+
+
+
+ a| 
+《chargmap》
+ a| 
+「Vserver CIFS字元對應」
+
+
+
+ a| 
+《CIFS存取》
+ a| 
+* CIFS存取*
+
+《Vserver CIFS存取》
+
+
+
+ a| 
+《CIFS BranchCache》
+ a| 
+《CIFS BranchCache》*
+
+《Vserver CIFS BranchCache》
+
+
+
+ a| 
+"CIFS changefilerpwd"
+ a| 
+《* CIFS變更檔案pwd*》
+
+《Vserver CIFS changefilerpwd》
+
+
+
+ a| 
+《CIFS網域資訊》
+ a| 
+Vserver CIFS｛show instance|網域探索到的伺服器show -instance｝
+
+
+
+ a| 
+《CIFS gpresult》
+ a| 
+「Vserver CIFS群組原則已套用」
+
+
+
+ a| 
+《CIFS gpupdate》
+ a| 
+「Vserver CIFS群組原則更新」
+
+
+
+ a| 
+《CIFS homedir》
+ a| 
+「Vserver CIFS主目錄」
+
+
+
+ a| 
+CIFS nbalias
+ a| 
+Vserver CIFS｛add-netbios-alias | remove-netbios-alias | show -show-netbios-alias｝
+
+
+
+ a| 
+CIFS prefdc
+ a| 
+Vserver CIFS網域慣用DC
+
+
+
+ a| 
+CIFS重新啟動
+ a| 
+Vserver CIFS隨即啟動
+
+
+
+ a| 
+CIFS工作階段
+ a| 
+將顯示Vserver CIFS工作階段
+
+
+
+ a| 
+CIFS設定
+ a| 
+建立Vserver CIFS
+
+
+
+ a| 
+CIFS共用
+ a| 
+* CIFS共享* Vserver CIFS共享
+
+
+
+ a| 
+CIFS統計
+ a| 
+統計資料顯示物件CIFS
+
+
+
+ a| 
+CIFS終止
+ a| 
+Vserver CIFS停止
+
+
+
+ a| 
+CIFS測試
+ a| 
+Vserver CIFS網域探索到的伺服器
+
+
+
+ a| 
+CIFS重新設置
+ a| 
+* CIFS重新設定dc* vserver CIFS網域探索到伺服器重設伺服器
+
+
+
+ a| 
+清除實體複本
+ a| 
+不支援
+
+
+
+ a| 
+開始複製
+ a| 
+建立Volume檔案複製
+
+
+
+ a| 
+實體複本停止
+ a| 
+不支援
+
+
+
+ a| 
+Clone狀態
+ a| 
+Volume檔案複製顯示
+
+
+
+ a| 
+組態複製
+ a| 
+不支援
+
+
+
+ a| 
+組態差異
+ a| 
+不支援
+
+
+
+ a| 
+組態傾印
+ a| 
+不支援
+
+
+
+ a| 
+組態還原
+ a| 
+不支援
+
+
+
+ a| 
+核心傾印
+ a| 
+系統節點coredump
+
+|===
+[role="lead"]
+* D*
+
+|===
+| 7-Mode命令 | 指令ONTAP 
+
+
+ a| 
+日期
+ a| 
+*日期*｛system | cluster｝日期｛show | modify｝
+
+
+
+ a| 
+DCB優先順序
+ a| 
+系統節點執行節點_nodename_命令DCB優先順序
+
+
+
+ a| 
+DCB優先順序顯示
+ a| 
+系統節點執行節點_nodename_命令DCB優先順序顯示
+
+
+
+ a| 
+DCB顯示
+ a| 
+系統節點執行節點_nodename_命令DCB show
+
+
+
+ a| 
+df
+ a| 
+* df*
+
+
+
+ a| 
+DF [ aggr name]
+ a| 
+df-Aggregate _greggregate名稱_
+
+
+
+ a| 
+DF [路徑名稱]
+ a| 
+df-filesys名稱_path- name_
+
+
+
+ a| 
+DF -A
+ a| 
+* df -A*
+
+
+
+ a| 
+df-g
+ a| 
+* df -g* df -技 嘉
+
+
+
+ a| 
+DF -h
+ a| 
+* df -h* df -autossize
+
+
+
+ a| 
+DF -I
+ a| 
+* df -i*
+
+
+
+ a| 
+df-k
+ a| 
+* df -k* df -kilobyt
+
+
+
+ a| 
+DF - L
+ a| 
+* df -l* df -fun FlexCache
+
+
+
+ a| 
+df-m
+ a| 
+* df -m* df -MB
+
+
+
+ a| 
+DF - r
+ a| 
+* df -r*
+
+
+
+ a| 
+df-s
+ a| 
+* df -s*
+
+
+
+ a| 
+DF -S
+ a| 
+* df -S*
+
+
+
+ a| 
+df-t
+ a| 
+* df -t* df -tabyte
+
+
+
+ a| 
+DF -V
+ a| 
+* df -v* df -volume
+
+
+
+ a| 
+DF -x
+ a| 
+* df -x* df -skip快照行
+
+
+
+ a| 
+磁碟指派
+ a| 
+*磁碟指派*儲存磁碟指派
+
+
+
+ a| 
+磁碟加密
+ a| 
+系統節點執行節點run -nodeame__命令磁碟加密
+
+
+
+ a| 
+磁碟故障
+ a| 
+*磁碟故障*儲存磁碟故障
+
+
+
+ a| 
+磁碟維護
+ a| 
+*磁碟維護｛start | abort| STATUS | list｝*系統節點執行節點｛_nodename_| local｝命令磁碟維護｛start | abort| STATUS | list｝
+
+
+
+ a| 
+磁碟移除
+ a| 
+*磁碟移除*儲存磁碟移除
+
+
+
+ a| 
+磁碟更換
+ a| 
+*磁碟更換*儲存磁碟更換
+
+
+
+ a| 
+磁碟資料抹除
+ a| 
+系統節點執行節點_nocename_命令磁碟清理
+
+
+
+ a| 
+磁碟清理
+ a| 
+儲存Aggregate清理
+
+
+
+ a| 
+磁碟展示
+ a| 
+儲存磁碟顯示
+
+
+
+ a| 
+磁碟模態
+ a| 
+系統節點執行-node"_nodename_-command disk simdull
+
+
+
+ a| 
+磁碟simpush
+ a| 
+系統節點執行-node"_nodename_-command disk simpush
+
+
+
+ a| 
+磁碟零備援
+ a| 
+儲存磁碟零備援磁碟
+
+
+
+ a| 
+磁碟韌體更新
+ a| 
+修改系統節點映像
+
+
+
+ a| 
+DNS資訊
+ a| 
+DNS展示
+
+
+
+ a| 
+下載
+ a| 
+系統節點映像更新
+
+
+
+ a| 
+DU [路徑名稱]
+ a| 
+DU -vserver _vservernam__-path __pathname__volume file show-disk-usage -vserver _vserver_name_-path _pathname_
+
+
+
+ a| 
+DU -h
+ a| 
+DU -vserver _vservernam__-path _pathname_-hvolume file show-disk-usage -vserver _vserver_name_-path _pathname_-h
+
+
+
+ a| 
+DU -k
+ a| 
+DU -vserver _vservernam__-path _pathname_-kvolume file show-disk-usage -vserver _vserver_name_-path _pathname_-k
+
+
+
+ a| 
+DU -m
+ a| 
+DU -vserver _vservernam__-path _pathname_-mvolume file show-disk-usage -vserver _vserver_name_-path _pathname_-m
+
+
+
+ a| 
+DU -r
+ a| 
+DU -vserver _vservernam__-path _pathname_-rvolume file show-disk-usage -vserver _vserver_name_-path _pathname_-r
+
+
+
+ a| 
+杜-u
+ a| 
+DU -vserver _vservernam__-path _pathname_-uvolume file show-disk-usage -vserver _vserver_name_-path _pathname_-u
+
+
+
+ a| 
+傾印
+ a| 
+不支援您必須依照磁帶備份文件中的說明、使用NDMP來啟動備份。若要執行傾印至null的功能、您必須設定NDMP環境變數dump to _null。
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-ptbrg/home.html["使用磁帶備份來保護資料"]
+
+|===
+[role="lead"]
+* E *
+
+|===
+| 7-Mode命令 | 指令ONTAP 
+
+
+ a| 
+回應
+ a| 
+*迴應*
+
+
+
+ a| 
+EMS事件狀態
+ a| 
+*顯示EMS事件狀態*事件狀態
+
+
+
+ a| 
+EMS記錄傾印
+ a| 
+事件記錄檔顯示-時間>_Time-時間 間隔__
+
+
+
+ a| 
+EMS記錄傾印值
+ a| 
+事件記錄顯示
+
+
+
+ a| 
+環境機箱
+ a| 
+系統節點執行節點｛_nodename_| local｝命令環境機箱
+
+
+
+ a| 
+環境狀態
+ a| 
+系統節點執行-node__nodename__-command環境狀態
+
+
+
+ a| 
+環境櫃
+ a| 
+不支援
+
+您必須使用「儲存櫃」命令集。
+
+
+
+ a| 
+環境機櫃記錄
+ a| 
+*環境bel_log*系統節點執行節點｛_nodename_| local｝命令環境bel_log
+
+
+
+ a| 
+環境櫃統計資料
+ a| 
+系統節點執行節點｛_nodename_| local｝-command enice enee_stats
+
+
+
+ a| 
+環境櫃_POWER_STATUS
+ a| 
+不支援您必須使用「儲存櫃」命令集。
+
+
+
+ a| 
+環境機箱
+ a| 
+系統節點執行節點｛_nodename_| local｝命令環境機箱
+
+
+
+ a| 
+環境機箱清單感測器
+ a| 
+系統節點執行節點節點｛_nodename_| local｝環境感測器會顯示
+
+
+
+ a| 
+匯出fs
+ a| 
+Vserver匯出原則[規則]
+
+
+
+ a| 
+exportfs -f
+ a| 
+Vserver匯出原則快取排清
+
+
+
+ a| 
+exportfs -o
+ a| 
+Vserver匯出原則規則
+
+
+
+ a| 
+exportfs -p
+ a| 
+Vserver匯出原則規則
+
+
+
+ a| 
+exportfs -q
+ a| 
+Vserver匯出原則[規則]
+
+|===
+
+
+== F-J
+
+[role="lead"]
+* F *
+
+|===
+| 7-Mode命令 | 指令ONTAP 
+
+
+ a| 
+fcadmin組態
+ a| 
+系統節點執行節點｛_nodename_| local｝-command fcadmin config
+
+
+
+ a| 
+fcadmin LINK_stats
+ a| 
+系統節點執行節點｛_nodename_| local｝-command fcadmin LINK_stats
+
+
+
+ a| 
+fcadmin FCAL_stats
+ a| 
+系統節點執行節點｛_nodename_| local｝-command fcadmin FCAL_stats
+
+
+
+ a| 
+fcadmin設備地圖
+ a| 
+系統節點執行節點｛_nodename_| local｝-command fcadmin設備地圖
+
+
+
+ a| 
+fcnic
+ a| 
+不支援
+
+
+
+ a| 
+FCP組態
+ a| 
+修改網路FCP介面卡
+
+
+
+ a| 
+FCP名稱伺服器
+ a| 
+* FCP名稱伺服器show* vserver FCP名稱伺服器show
+
+
+
+ a| 
+FCP節點名稱
+ a| 
+Vserver FCP節點名稱
+
+
+
+ a| 
+FCP Ping
+ a| 
+* FCP ping-igroup show或FCP ping-initiator show*
+
+vserver FCP ping-igroup show或vserver FCP ping-initiator show
+
+
+
+ a| 
+FCP連接埠名稱
+ a| 
+* FCP portname show* vserver FCP portname show
+
+
+
+ a| 
+FCP顯示
+ a| 
+Vserver FCP顯示
+
+
+
+ a| 
+FCP開始
+ a| 
+* FCP start* vserver FCP start
+
+
+
+ a| 
+FCP統計資料
+ a| 
+* FCP stat* FCP介面卡統計資料
+
+
+
+ a| 
+FCP狀態
+ a| 
+Vserver FCP狀態
+
+
+
+ a| 
+FCP停止
+ a| 
+* FCP stop * vserver FCP stop
+
+
+
+ a| 
+FCP拓撲
+ a| 
+網路FCP拓撲顯示或vserver FCP拓撲
+
+
+
+ a| 
+FCP WWPN-別名
+ a| 
+* FCP WWPN-alias* vserver FCP WWPN-alias
+
+
+
+ a| 
+FCP區域
+ a| 
+* FCP區域顯示*
+
+網路FCP區域顯示
+
+
+
+ a| 
+FCP傾印
+ a| 
+* FCP介面卡傾印*網路FCP介面卡傾印
+
+
+
+ a| 
+FCP重設
+ a| 
+* FCP介面卡重設*網路FCP介面卡重設
+
+
+
+ a| 
+fcstat LINK_stats
+ a| 
+系統節點執行節點｛_nodename_| local｝-command fcstat LINK_stats
+
+
+
+ a| 
+fcstat FCAL_stats
+ a| 
+系統節點執行節點｛_nodename_| local｝-command fcstat FCAL_stats
+
+
+
+ a| 
+fcstat設備地圖
+ a| 
+系統節點執行節點｛_nodename_| local｝-command fcstat device_map
+
+
+
+ a| 
+檔案保留
+ a| 
+Volume檔案保留
+
+
+
+ a| 
+檔案
+ a| 
+不支援
+
+
+
+ a| 
+FlexCache
+ a| 
+Volume FlexCache
+
+
+
+ a| 
+fpolicy
+ a| 
+* fpolic* vserver fpolicy
+
+
+
+ a| 
+fsecurity展
+ a| 
+vserver安全性檔案目錄顯示
+
+
+
+ a| 
+適用安全性
+ a| 
+適用Vserver安全檔案目錄
+
+
+
+ a| 
+f安全性狀態
+ a| 
+Vserver安全性檔案目錄job-show
+
+
+
+ a| 
+f取消安全性
+ a| 
+Vserver安全性檔案目錄工作停止
+
+
+
+ a| 
+fsecurity移除保護
+ a| 
+Vserver安全性檔案目錄移除slag
+
+
+
+ a| 
+FTP
+ a| 
+不支援
+
+|===
+[role="lead"]
+* H *
+
+|===
+| 7-Mode命令 | 指令ONTAP 
+
+
+ a| 
+停止
+ a| 
+系統節點halt節點_nodename_
+
+
+
+ a| 
+halt -f
+ a| 
+System Node halt禁止條件- takeover true
+
+
+
+ a| 
+停止- d
+ a| 
+系統節點halt -dump true
+
+
+
+ a| 
+說明
+ a| 
+？
+
+
+NOTE: 您必須輸入問號（？） 符號以ONTAP 執行此指令。
+
+
+
+ a| 
+主機名稱
+ a| 
+*主機名稱*系統主機名稱
+
+
+
+ a| 
+http：stat
+ a| 
+不支援您必須使用統計資料命令。
+
+|===
+[role="lead"]
+*我*
+
+|===
+| 7-Mode命令 | 指令ONTAP 
+
+
+ a| 
+if_addr_filter資訊
+ a| 
+系統節點執行-注意_nodename_-command if_addr_filter資訊
+
+
+
+ a| 
+ifconfig
+ a| 
+網路介面網路｛interface | port｝
+
+
+
+ a| 
+ifconfig-A
+ a| 
+網路介面顯示網路｛interface | port｝show
+
+
+
+ a| 
+ifconfigalias
+ a| 
+建立網路介面
+
+
+
+ a| 
+ifconfig-down
+ a| 
+網路介面修改-STATUS-admin停機
+
+
+
+ a| 
+ifconfigFlowControl
+ a| 
+網路連接埠修改-FlowCtrl-admin
+
+
+
+ a| 
+ifconfig媒體類型
+ a| 
+網路連接埠可修改｛-duplex管理|-speed-admin｝
+
+
+
+ a| 
+ifconfigmtusize
+ a| 
+網路連接埠修改-MTU
+
+
+
+ a| 
+ifconfig網路遮罩
+ a| 
+網路介面修改-網路遮罩
+
+
+
+ a| 
+ifconfigup
+ a| 
+網路介面修改-STATUS-admin UP
+
+
+
+ a| 
+ifgrp建立
+ a| 
+建立網路連接埠ifgrp
+
+
+
+ a| 
+ifgrp新增
+ a| 
+網路連接埠ifgrp add -port
+
+
+
+ a| 
+ifgrp刪除
+ a| 
+網路連接埠ifgrp移除連接埠
+
+
+
+ a| 
+ifgrp銷毀
+ a| 
+網路連接埠ifgrp刪除
+
+
+
+ a| 
+ifgrp支援
+ a| 
+對於發行版的版本、請使用網路介面容錯移轉群組create命令、為兩個連接埠建立容錯移轉群組。ONTAP然後使用network interface modify命令、使用-home-port選項設定偏好的主連接埠、並將-autorevert選項設為true。
+
+
+NOTE: 將連接埠新增至容錯移轉群組之前、請先從ifgrp移除這些連接埠。最佳做法是使用不同NIC的連接埠。這種做法也可防止EMS針對冗餘不足發出警告。
+
+
+
+ a| 
+ifgrp nosf
+ a| 
+若為ONTAP 版本S9、請針對容錯移轉群組使用相同的程序。
+
+
+
+ a| 
+ifgrp狀態
+ a| 
+系統節點執行節點｛_nodename_| local｝-command ifgrp狀態
+
+
+
+ a| 
+ifgrp統計
+ a| 
+系統節點執行節點｛_nodename_| local｝-command ifstat _ifgrp-port_
+
+
+
+ a| 
+ifgrp秀
+ a| 
+網路連接埠ifgrp show
+
+
+
+ a| 
+ifinfo
+ a| 
+系統節點執行節點｛_nodename_| local｝-command ifinfo
+
+
+
+ a| 
+ifstat
+ a| 
+系統節點執行節點｛_nodename_| local｝-command ifstat
+
+
+
+ a| 
+igroup新增
+ a| 
+* igroup add* LUN igroup add
+
+
+
+ a| 
+igroup alua
+ a| 
+LUN igroup修改-alua
+
+
+
+ a| 
+igroup連結
+ a| 
+* igroup bind* LUN igroup bind
+
+
+
+ a| 
+igroup銷毀
+ a| 
+* igroup刪除* LUN igroup刪除
+
+
+
+ a| 
+igroup建立
+ a| 
+*群組建立* LUN igroup建立
+
+
+
+ a| 
+igroup移除
+ a| 
+*群組移除* LUN igroup移除
+
+
+
+ a| 
+igroup重新命名
+ a| 
+*群組重新命名* LUN igroup重新命名
+
+
+
+ a| 
+igroup套件
+ a| 
+igroplun igroup套件
+
+
+
+ a| 
+igroup秀
+ a| 
+* igroup show* LUN igroup show
+
+
+
+ a| 
+igroup set ostype-
+ a| 
+igroup modify -ostype-
+
+
+
+ a| 
+igroup解除連結
+ a| 
+* igroup unbind* LUN igroup unbind
+
+
+
+ a| 
+IPsec
+ a| 
+不支援
+
+
+
+ a| 
+iSCSI別名
+ a| 
+iSCSI createvserver iSCSI建立或
+
+iSCSI修改
+
+Vserver iSCSI修改
+
+
+
+ a| 
+iSCSI連線
+ a| 
+* iSCSI連線* vserver iSCSI連線
+
+
+
+ a| 
+iSCSI啟動器
+ a| 
+* iSCSI啟動器* vserver iSCSI啟動器
+
+
+
+ a| 
+iSCSI介面
+ a| 
+* iSCSI介面* vserver iSCSI介面
+
+
+
+ a| 
+iSCSI SNSSCSI
+ a| 
+* iSCSI SNS* Vserver iSCSI SNSisc
+
+
+
+ a| 
+iSCSI入口網站
+ a| 
+* iSCSI入口網站* vserver iSCSI入口網站
+
+
+
+ a| 
+iSCSI安全性
+ a| 
+* iSCSI安全性* vserver iSCSI安全性
+
+
+
+ a| 
+iSCSI工作階段
+ a| 
+* iSCSI工作階段* vserver iSCSI工作階段
+
+
+
+ a| 
+iSCSI展示
+ a| 
+* iSCSI show* vserver iSCSI show
+
+
+
+ a| 
+iSCSI啟動
+ a| 
+* iSCSI start* vserver iSCSI start
+
+
+
+ a| 
+iSCSI統計資料
+ a| 
+統計資料｛start | stop | show｝-object _object_
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+iSCSI停止
+ a| 
+* iSCSI stop * vserver iSCSI停止
+
+|===
+
+
+== K-O
+
+[role="lead"]
+* K*
+
+|===
+| 7-Mode命令 | 指令ONTAP 
+
+
+ a| 
+索引鍵管理程式
+ a| 
+系統節點執行節點｛_nodename_| local｝-command key_manager
+
+
+
+ a| 
+keymgr
+ a| 
+系統節點執行節點｛_noidename_|local｝-command keymgr的管理介面金鑰、您必須使用「安全性憑證」命令。
+
+|===
+[role="lead"]
+* L*
+
+|===
+| 7-Mode命令 | 指令ONTAP 
+
+
+ a| 
+許可證*
+ a| 
+「*授權展示*」
+
+系統授權展示*
+
+
+
+ a| 
+’*授權附加*
+ a| 
+’*授權附加*
+
+系統授權新增-授權碼_V2_LISure_code_*
+
+
+
+ a| 
+‘*許可證刪除*’
+ a| 
+‘*許可證刪除*’
+
+系統授權刪除-package_package_name_*
+
+
+
+ a| 
+'鎖定中斷*'
+ a| 
+vserver鎖定中斷*
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+'鎖定中斷-h host*'
+ a| 
+「* vserver鎖定中斷-用戶端位址_client-address_*」
+
+
+
+ a| 
+‘*鎖定中斷-net network*’
+ a| 
+「* vserver鎖定中斷-client-address-type _ip address type_*」
+
+
+
+ a| 
+'鎖定中斷-o Oner*'
+ a| 
+「* vserver上的鎖會中斷-Owner-id _Owner-id_*」
+
+
+
+ a| 
+'鎖定中斷-p傳輸協定*'
+ a| 
+Check Alignment of PHs>‘* vserver鎖定中斷-Protocol _protocol_*
+
+
+
+ a| 
+「*鎖定狀態*」
+ a| 
+「* vserver Locks show*」
+
+
+
+ a| 
+'鎖定狀態-h host*
+ a| 
+「* vserver Locks show -client-address_client-address_*」
+
+
+
+ a| 
+「*鎖定狀態-o Oner*」
+ a| 
+「* vserver Locks show -Owner-id _OOwnerid_*」
+
+
+
+ a| 
+「*鎖定狀態-p傳輸協定*」
+ a| 
+「* vserver Locks show -protocol _protocol_*」
+
+
+
+ a| 
+*記錄程式*
+ a| 
+*記錄程式*
+
+系統節點執行節點｛nodename| local｝-command logg程序*
+
+
+
+ a| 
+‘*登出*’
+ a| 
+「* exit*」
+
+
+
+ a| 
+’* LUN clone *’
+ a| 
+‘* Volume file clone cred*’
+
+
+
+ a| 
+’* LUN Comment *（LUN註釋*）
+ a| 
+’* LUN Comment *（LUN註釋*）
+
+
+
+ a| 
+’* LUN config_支票*
+ a| 
+不支援
+
+
+
+ a| 
+‘* LUN cred*’
+ a| 
+LUN create–vserver _vserver_name_*
+
+
+
+ a| 
+’* LUN銷毀*
+ a| 
+’* LUN刪除*
+
+
+
+ a| 
+’* LUN對應*
+ a| 
+’* LUN對應–vserver _vserver_name_*
+
+
+
+ a| 
+’* LUN最大大小*
+ a| 
+’* LUN最大大小*
+
+
+
+ a| 
+’* LUN move*’
+ a| 
+’* LUN move*’
+
+
+
+ a| 
+‘* LUN offline *’
+ a| 
+’* lun modify -state offline *
+
+
+
+ a| 
+*線上LUN *
+ a| 
+’* LUN modify -state online（LUN修改狀態）*
+
+
+
+ a| 
+‘* LUN resize *’（LUN大小調整*）
+ a| 
+‘* LUN resize *’（LUN大小調整*）
+
+
+
+ a| 
+「* LUN Set*」
+ a| 
+「* LUN Set*」
+
+
+
+ a| 
+’* LUN設定*
+ a| 
+‘* LUN cred*’
+
+
+
+ a| 
+’* LUN共享*’
+ a| 
+不支援
+
+
+
+ a| 
+’* LUN show*’
+ a| 
+’* LUN show*’
+
+
+
+ a| 
+’* LUN snap*
+ a| 
+不支援
+
+
+
+ a| 
+’* LUN stats *
+ a| 
+’*統計資料顯示-object LUN*
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+’* LUN UNMAP *
+ a| 
+’* LUN UNMAP *
+
+|===
+[role="lead"]
+*百萬*
+
+|===
+| 7-Mode命令 | 指令ONTAP 
+
+
+ a| 
+人
+ a| 
+*曼*
+
+
+
+ a| 
+最大檔案
+ a| 
+Vol modify -max-_number-of檔案_或vol-Fields檔案
+
+
+
+ a| 
+Mt
+ a| 
+不支援
+
+您必須使用storage tape命令集。
+
+|===
+[role="lead"]
+*不適用*
+
+|===
+| 7-Mode命令 | 指令ONTAP 
+
+
+ a| 
+nbtstat
+ a| 
+Vserver CIFS nbtstat
+
+
+
+ a| 
+ndmpd
+ a| 
+｛system | server｝服務NDMP
+
+
+
+ a| 
+ndmpcopy
+ a| 
+系統節點執行節點｛_nodename_| local｝ndmpcopy
+
+
+
+ a| 
+ndmpd開啟
+ a| 
+* ndmpd on*系統服務ndmpd開啟
+
+
+
+ a| 
+ndmpd關閉
+ a| 
+* ndmpd off*系統服務ndmpd關閉
+
+
+
+ a| 
+ndmpd狀態
+ a| 
+｛system | vserver｝服務NDMP狀態
+
+
+
+ a| 
+ndmpd探針
+ a| 
+｛system | vserver｝服務NDMP探針
+
+
+
+ a| 
+ndmpd kill
+ a| 
+｛system | vserver｝服務NDMP kill
+
+
+
+ a| 
+ndmpd killall
+ a| 
+｛system | vserver｝服務NDMP kill-all
+
+
+
+ a| 
+ndmpd密碼
+ a| 
+｛system | vserver｝服務NDMP密碼
+
+
+
+ a| 
+ndmpd版本
+ a| 
+｛system | vserver｝服務NDMP版本
+
+
+
+ a| 
+NDP
+ a| 
+系統節點執行節點｛_nodename_| local｝keymgr
+
+
+
+ a| 
+Netdiag
+ a| 
+不支援您必須使用網路介面或Netstat命令。
+
+
+
+ a| 
+netsat
+ a| 
+系統節點執行節點_nodename_命令Netstat
+
+
+
+ a| 
+網路介面容錯移轉
+ a| 
+網路介面show -容錯移轉
+
+
+
+ a| 
+修改網路連接埠VLAN
+ a| 
+不支援
+
+
+
+ a| 
+NFS關閉
+ a| 
+*關閉NFS * Vserver NFS
+
+
+
+ a| 
+NFS開啟
+ a| 
+* NFS on vserver NFS on
+
+
+
+ a| 
+NFS設定
+ a| 
+Vserver NFS建立或Vserver設定
+
+
+
+ a| 
+NFS統計資料
+ a| 
+統計資料｛start | stop | show｝-object NFS*
+
+
+
+ a| 
+NFS狀態
+ a| 
+Vserver NFS狀態
+
+
+
+ a| 
+NFS vStorage
+ a| 
+Vserver NFS modify -vStorage
+
+
+
+ a| 
+nfsstat
+ a| 
+統計資料顯示-object NFS*
+
+|===
+[role="lead"]
+* O *
+
+|===
+| 7-Mode命令 | 指令ONTAP 
+
+
+ a| 
+路由
+ a| 
+不支援
+
+|===
+
+
+== P-T
+
+[role="lead"]
+* P*
+
+|===
+| 7-Mode命令 | 指令ONTAP 
+
+
+ a| 
+合作夥伴
+ a| 
+不支援
+
+
+
+ a| 
+密碼
+ a| 
+安全登入密碼
+
+
+
+ a| 
+效能報告- t
+ a| 
+統計資料｛start | stop | show｝-object perf
+
+
+
+ a| 
+Ping \｛host｝
+ a| 
+網路ping｛-nodeame_|-lif_lif-name_｝目的地
+
+
+
+ a| 
+Ping \｛count｝
+ a| 
+網路ping｛-nodeame_|-lif_lif-name_｝-count
+
+
+
+ a| 
+Ping -l介面
+ a| 
+網路ping -lif_lif-name_
+
+
+
+ a| 
+Ping -v
+ a| 
+網路ping節點｛_nodename_|-lif_lif-name_｝-詳細資訊
+
+
+
+ a| 
+Ping /s
+ a| 
+網路ping節點｛_nodename_|-lif_lif-name_｝-show-detail
+
+
+
+ a| 
+Ping -R
+ a| 
+網路ping節點｛_nodename_|-lif_lif-name_｝-reck-Route
+
+
+
+ a| 
+pktt刪除
+ a| 
+系統節點執行節點｛_nosename_| local｝pkttt刪除
+
+
+
+ a| 
+pktt傾印
+ a| 
+系統節點執行節點｛_nosename_| local｝pkttt dump
+
+
+
+ a| 
+pktt清單
+ a| 
+系統節點執行節點｛_nosename_| local｝pkttt清單
+
+
+
+ a| 
+pktt暫停
+ a| 
+系統節點執行節點｛_nosename_| local｝pkttt暫停
+
+
+
+ a| 
+pktt入門
+ a| 
+系統節點執行節點｛_nosename_| local｝pkttt start
+
+
+
+ a| 
+pktt狀態
+ a| 
+系統節點執行節點｛_nosename_| local｝pkttt狀態
+
+
+
+ a| 
+pktt停止
+ a| 
+系統節點執行節點｛_nosename_| local｝pkttt stop
+
+
+
+ a| 
+連接埠集新增
+ a| 
+* portset add* LUN連接埠集add
+
+
+
+ a| 
+連接埠集建立
+ a| 
+*連接埠集create * LUN連接埠集建立
+
+
+
+ a| 
+連接埠集刪除
+ a| 
+*連接埠集刪除* LUN連接埠集刪除
+
+
+
+ a| 
+連接埠集移除
+ a| 
+*連接埠集移除* LUN連接埠集移除
+
+
+
+ a| 
+portset show
+ a| 
+* portset show* LUN portset show
+
+
+
+ a| 
+預設為優先混合式快取
+ a| 
+不支援
+
+
+
+ a| 
+優先混合式快取集
+ a| 
+Volume modify -volume _volume名稱_-vserver _vserver_name_-快 取原則_policy_name_
+
+
+
+ a| 
+優先顯示混合式快取
+ a| 
+Volume show -volume _volume名稱_-vserver _vserver_name_-功能變數快取-原則
+
+
+
+ a| 
+PRIV套件
+ a| 
+設定權限
+
+|===
+[role="lead"]
+*問*
+
+|===
+| 7-Mode命令 | 指令ONTAP 
+
+
+ a| 
+qtree建立
+ a| 
+* qtree cre產生* Volume qtree建立
+
+
+
+ a| 
+qtree oplocks
+ a| 
+* qtree oplocks * Volume qtree oplocks
+
+
+
+ a| 
+qtree安全性
+ a| 
+* qtree安全性* Volume qtree安全性
+
+
+
+ a| 
+qtree狀態
+ a| 
+qtree顯示Volume qtree
+
+
+
+ a| 
+qtree統計資料
+ a| 
+qtree統計資料Volume qtree統計資料
+
+
+
+ a| 
+允許配額
+ a| 
+配額修改狀態磁碟區配額修改狀態為開啟
+
+
+
+ a| 
+不允許配額
+ a| 
+配額修改-statevolume配額修改-state Off
+
+
+
+ a| 
+配額取消
+ a| 
+*配額取消*磁碟區配額取消
+
+
+
+ a| 
+配額開啟
+ a| 
+*上的配額* Volume配額
+
+
+
+ a| 
+配額報告
+ a| 
+*配額報告* Volume配額報告
+
+
+
+ a| 
+配額調整大小
+ a| 
+*配額大小*磁碟區配額大小調整
+
+
+
+ a| 
+配額狀態
+ a| 
+配額顯示Volume配額
+
+
+
+ a| 
+配額記錄
+ a| 
+Volume配額顯示欄位記錄、記錄時間間隔
+
+|===
+[role="lead"]
+* R*
+
+|===
+| 7-Mode命令 | 指令ONTAP 
+
+
+ a| 
+RADIUS
+ a| 
+不支援
+
+
+
+ a| 
+rdate
+ a| 
+不支援
+
+
+
+ a| 
+rdfile
+ a| 
+不支援
+
+
+
+ a| 
+重新分配
+ a| 
+*重新分配*
+
+
+
+ a| 
+重新分配評量
+ a| 
+*重新分配評量*
+
+
+
+ a| 
+重新分配
+ a| 
+*重新分配*
+
+
+
+ a| 
+重新分配靜止
+ a| 
+*重新分配靜止*
+
+
+
+ a| 
+重新分配重新啟動
+ a| 
+*重新分配重新啟動*
+
+
+
+ a| 
+重新分配排程
+ a| 
+*重新分配排程*
+
+
+
+ a| 
+重新分配開始
+ a| 
+*重新分配起點*
+
+
+
+ a| 
+重新分配狀態
+ a| 
+重新分配顯示
+
+
+
+ a| 
+重新分配停止
+ a| 
+*重新分配停止*
+
+
+
+ a| 
+重新開機
+ a| 
+*重新開機*
+
+系統節點重新開機-節點_nodename_
+
+
+
+ a| 
+重新開機- d
+ a| 
+*重新開機-d*
+
+系統節點重新開機- dump true節點_nodename_
+
+
+
+ a| 
+重新開機-f
+ a| 
+*重新開機-f*
+
+重新開機-禁止接管true -nodeame_
+
+
+
+ a| 
+還原
+ a| 
+不支援
+
+您必須依照磁帶備份文件中的說明、使用NDMP來啟動還原。
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-ptbrg/home.html["使用磁帶備份來保護資料"]
+
+
+
+ a| 
+還原備份
+ a| 
+系統節點還原備份
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+Revet_to
+ a| 
+系統節點還原至節點_nodename_版本
+
+
+
+ a| 
+RLM
+ a| 
+不支援
+
+
+
+ a| 
+路由新增
+ a| 
+*路由新增*
+
+建立網路路由
+
+
+
+ a| 
+航線刪除
+ a| 
+*路由刪除*
+
+刪除網路路由
+
+
+
+ a| 
+Route -s
+ a| 
+*路由顯示*
+
+網路路由顯示
+
+
+NOTE: 從9.4開始、網路路由群組命令系列已不再ONTAP 支援。
+
+|===
+[role="lead"]
+* S*
+
+|===
+| 7-Mode命令 | 指令ONTAP 
+
+
+ a| 
+scasadmin介面卡_sten*
+ a| 
+系統節點執行節點｛nodename| local｝命令sasadmin介面卡狀態*
+
+
+
+ a| 
+scasadmin channels*
+ a| 
+系統節點執行節點｛nodename| local｝-command sasadmin channels *
+
+
+
+ a| 
+scasadmin dev_stats*
+ a| 
+系統節點執行節點｛nodename| local｝-command sasadmin dev_states*
+
+
+
+ a| 
+scasadmin expando*
+ a| 
+系統節點執行節點｛nodename| local｝-command sasadmin expando*（節點｛節點名稱|本機）
+
+
+
+ a| 
+scasadmin expander_map*
+ a| 
+系統節點執行節點｛nodename| local｝-command sasadmin expander_map*
+
+
+
+ a| 
+`*sasadmin expander_phy_st現 況*
+ a| 
+系統節點執行節點｛nodename| local｝命令sasadmin expander_phy_station*
+
+
+
+ a| 
+sasadmin clar*
+ a| 
+’*儲存櫃*
+
+
+
+ a| 
+scasadmin sforb_short*
+ a| 
+’*儲存櫃*
+
+
+
+ a| 
+「* sasstat dev_stats*」
+ a| 
+系統節點執行節點｛nodename| local｝-command sasstat dev_stats*
+
+
+
+ a| 
+「* sasstat介面卡狀態*」
+ a| 
+系統節點執行節點｛nodename| local｝-command sasstat介面卡狀態*
+
+
+
+ a| 
+"*sasstat擴充器*
+ a| 
+系統機櫃顯示-port*
+
+
+
+ a| 
+"*sasstat expander_map*
+ a| 
+’*儲存櫃展示-module*
+
+
+
+ a| 
+「* sasstat expander_phy_st現 況*」
+ a| 
+系統節點執行節點｛nodename| local｝sasstat expander_phy_station*
+
+
+
+ a| 
+「* sasstat clar*」
+ a| 
+’*儲存櫃*
+
+
+
+ a| 
+"*儲存資源*
+ a| 
+系統節點coredump SAVE ALL *
+
+
+
+ a| 
+"*儲存資源-i*
+ a| 
+系統節點coredump組態顯示-i*
+
+
+
+ a| 
+"*儲存資源-l*
+ a| 
+系統節點coredump show*
+
+
+
+ a| 
+"*儲存資源-s*
+ a| 
+系統節點coredump狀態*
+
+
+
+ a| 
+"*儲存資源-* w"
+ a| 
+不支援
+
+
+
+ a| 
+"*儲存資源-k*
+ a| 
+系統節點coredump delete-all類型uncall-kernel-`
+
+
+
+ a| 
+‘* sectrace add*’
+ a| 
+‘* vserver安全性追蹤cred*’
+
+
+
+ a| 
+‘*秒跡線刪除*’
+ a| 
+‘* vserver安全性追蹤DELETE *’
+
+
+
+ a| 
+「*秒跡顯示*」
+ a| 
+「* vserver安全性追蹤篩選器show*」
+
+
+
+ a| 
+「* sectrace print狀態*」
+ a| 
+「* vserver安全性追蹤追蹤追蹤結果」show*
+
+
+
+ a| 
+「SecureAdmin附加證書*」
+ a| 
+「*安全性憑證安裝*」
+
+
+
+ a| 
+「SecureAdmin停用ssh *」
+ a| 
+"*安全登入修改*
+
+
+
+ a| 
+「SecureAdmin停用SSL*」
+ a| 
+"*安全性SSL modify*（安全性SSL修改*）"
+
+
+
+ a| 
+「SecureAdmin啟用SSL*」
+ a| 
+"*安全性SSL modify*（安全性SSL修改*）"
+
+
+
+ a| 
+「SecureAdmin設定*」
+ a| 
+*安全性*
+
+
+
+ a| 
+「SecureAdmin設定ssh」
+ a| 
+`*安全ssh {add|modify}*
+
+
+
+ a| 
+「SecureAdmin設定SSL*」
+ a| 
+「*安全SSL｛add | modify｝*」
+
+
+
+ a| 
+「SecureAdmin啟用ssh *」
+ a| 
+"*安全登入修改*
+
+
+
+ a| 
+「SecureAdmin狀態」為ssh *
+ a| 
+「*安全登入秀*」
+
+
+
+ a| 
+「SecureAdmin狀態SSL*」
+ a| 
+「*安全SSL show *」
+
+
+
+ a| 
+‘*設定*’
+ a| 
+不支援
+
+
+
+ a| 
+* helfchk*
+ a| 
+`*安全ssh {add|modify}*
+
+
+
+ a| 
+》*《showfh*》
+ a| 
+「*安全SSL｛add | modify｝*」
+
+
+
+ a| 
+"* sis config*（*組態*）"
+ a| 
+"*安全登入修改*
+
+
+
+ a| 
+「* sis off*」
+ a| 
+「*安全登入秀*」
+
+
+
+ a| 
+「* sis on *」
+ a| 
+「*安全SSL show *」
+
+
+
+ a| 
+‘*分析Revete_to *’
+ a| 
+不支援
+
+
+
+ a| 
+* sis start*
+ a| 
+》*《showfh*》
+
+‘* Volume file show-fileHandl*’
+
+
+
+ a| 
+’* sis stop *
+ a| 
+「* sis off*」
+
+「* Volume Effi高效率 關閉*」
+
+
+
+ a| 
+《* smtape *》
+ a| 
+「* sis on *」
+
+「* Volume Effi高效率on *」
+
+
+
+ a| 
+快照自動刪除*
+ a| 
+《*後化政策*》
+
+
+
+ a| 
+‘*快照建立*’
+ a| 
+‘*分析Revete_to *’
+
+「* Volume Effier-to *」
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+‘*快照刪除*’
+ a| 
+‘*快照刪除*’
+
+‘* Volume Snapshot刪除*’
+
+
+
+ a| 
+'快照delta *'
+ a| 
+不支援
+
+
+
+ a| 
+快照清單*
+ a| 
+「*快照秀*」
+
+「* Volume Snapshot SHOSHO*」
+
+
+
+ a| 
+可回收的*快照*
+ a| 
+‘* Volume Snapshot compute -reclimable *’（* Volume Snapshot運算-可回收*）
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+快照重命名*
+ a| 
+快照重命名*
+
+‘* Volume Snapshot rame *’（* Volume Snapshot rame *）
+
+
+
+ a| 
+快照保留*
+ a| 
+Volume｛modify|show｝-功能變數百分比快照空間- Volume h_volume名稱_
+
+儲存Aggregate｛modify|show｝-欄位%快照空間- Aggregate hesgregate名稱_
+
+
+
+ a| 
+快照還原*
+ a| 
+快照還原*
+
+‘* Volume Snapshot還原*’
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+'快照排程*'
+ a| 
+’* Volume Snapshot policy*（磁碟區快照原則*）
+
+
+
+ a| 
+可回收的*快照*
+ a| 
+「* Volume Snapshot compute可回收*」
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+SnapMirror abort*
+ a| 
+SnapMirror abort*
+
+
+
+ a| 
+SnapMirror中斷*
+ a| 
+SnapMirror中斷*
+
+
+
+ a| 
+SnapMirror目的地*
+ a| 
+SnapMirror list-destinations*
+
+
+
+ a| 
+SnapMirror初始化*
+ a| 
+SnapMirror初始化*
+
+
+
+ a| 
+SnapMirror移轉*
+ a| 
+不支援
+
+
+
+ a| 
+SnapMirror關*
+ a| 
+不支援
+
+
+
+ a| 
+「SnapMirror on」*
+ a| 
+不支援
+
+
+
+ a| 
+SnapMirror靜止*
+ a| 
+SnapMirror靜止*
+
+
+
+ a| 
+SnapMirror版本*
+ a| 
+SnapMirror版本*
+
+
+
+ a| 
+SnapMirror恢復*
+ a| 
+SnapMirror恢復*
+
+
+
+ a| 
+SnapMirror重新同步*
+ a| 
+SnapMirror重新同步*
+
+
+
+ a| 
+SnapMirror狀態*
+ a| 
+SnapMirror SHOGAL*
+
+
+
+ a| 
+SnapMirror節流*
+ a| 
+不支援
+
+
+
+ a| 
+SnapMirror更新*
+ a| 
+SnapMirror更新*
+
+
+
+ a| 
+"* SNMP authTrap *
+ a| 
+"* SNMP authTrap *
+
+
+
+ a| 
+"* SNMP community *
+ a| 
+"* SNMP community *
+
+
+
+ a| 
+"* SNMP contact*
+ a| 
+"* SNMP contact*
+
+
+
+ a| 
+‘* SNMP init*’
+ a| 
+‘* SNMP init*’
+
+
+
+ a| 
+"* SNMP位置*
+ a| 
+"* SNMP位置*
+
+
+
+ a| 
+"* SNMP traphost*
+ a| 
+"* SNMP traphost*
+
+
+
+ a| 
+"* SNMP traps *（* SNMP陷阱*）"
+ a| 
+’*事件路由show -snmp-support true*
+
+
+
+ a| 
+‘*軟體刪除*’
+ a| 
+系統節點映像套件刪除*
+
+
+
+ a| 
+軟體Get*
+ a| 
+系統節點映像Get*
+
+
+
+ a| 
+‘*軟體安裝*’
+ a| 
+系統節點映像更新*
+
+
+
+ a| 
+*軟體清單*
+ a| 
+系統節點映像套件show*
+
+
+
+ a| 
+’*軟體更新*
+ a| 
+系統節點映像更新*
+
+
+
+ a| 
+*來源*
+ a| 
+不支援
+
+
+
+ a| 
+"*sp reboot*
+ a| 
+系統服務處理器reboot-sp*
+
+
+
+ a| 
+‘* sp setup*’
+ a| 
+系統服務處理器網路修改*
+
+
+
+ a| 
+「* sp STATUS*」
+ a| 
+系統服務處理器展示*
+
+
+
+ a| 
+‘* sp狀態-d`*
+ a| 
+‘*系統節點AutoSupport ‘Invoke-splog *’
+
+
+
+ a| 
+‘* sp狀態-v*’
+ a| 
+‘*系統節點AutoSupport ‘Invoke-splog *’
+
+
+
+ a| 
+如* sp update*
+ a| 
+系統服務處理器映像更新*
+
+
+
+ a| 
+「* sp update-STATUS*」
+ a| 
+系統服務處理器映像更新進度*
+
+
+
+ a| 
+《* statit*》
+ a| 
+「*統計資料｛start| stop | show｝-preset statit*」
+
+
+
+ a| 
+*統計資料*
+ a| 
+「*統計資料｛start | stop | show｝–object *」
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+’*儲存Aggregate copy（*）
+ a| 
+不支援
+
+
+
+ a| 
+’*儲存Aggregate media_clim*
+ a| 
+系統節點執行節點nodename -command aggr media_clim*
+
+
+
+ a| 
+’*儲存Aggregate snapshot *
+ a| 
+不支援
+
+
+
+ a| 
+’*儲存Aggregate分割*
+ a| 
+不支援
+
+
+
+ a| 
+’*儲存Aggregate undesty*
+ a| 
+不支援
+
+
+
+ a| 
+’*儲存別名*
+ a| 
+’*儲存磁帶別名組*
+
+
+
+ a| 
+’*儲存陣列*
+ a| 
+’*儲存陣列*
+
+
+
+ a| 
+’*儲存陣列modify*（修改*）
+ a| 
+’*儲存陣列modify*（修改*）
+
+
+
+ a| 
+‘*移除儲存陣列*’
+ a| 
+‘*移除儲存陣列*’
+
+
+
+ a| 
+‘*儲存陣列移除連接埠*’
+ a| 
+‘*儲存陣列連接埠移除*’
+
+
+
+ a| 
+「*儲存陣列show *」
+ a| 
+「*儲存陣列show *」
+
+
+
+ a| 
+「*儲存陣列show-config*」
+ a| 
+「*儲存陣列組態顯示*」
+
+
+
+ a| 
+’*儲存陣列顯示LUN*
+ a| 
+不支援
+
+
+
+ a| 
+’*儲存陣列show-ports *
+ a| 
+「*儲存陣列連接埠show *」
+
+
+
+ a| 
+「*儲存設備停用介面卡*」
+ a| 
+系統節點執行節點｛nodename| local｝命令儲存停用介面卡*
+
+
+
+ a| 
+儲存下載ACP*
+ a| 
+「*儲存櫃ACP韌體更新*」
+
+
+
+ a| 
+’*儲存下載櫃*
+ a| 
+’*儲存韌體下載*
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+「*儲存設備啟用介面卡*」
+ a| 
+系統節點執行節點｛nodename| local｝命令storage enable介面卡*
+
+
+
+ a| 
+’*儲存負載平衡*
+ a| 
+’*儲存負載平衡*
+
+
+
+ a| 
+「*儲存負載顯示*」
+ a| 
+「*儲存負載顯示*」
+
+
+
+ a| 
+「*儲存設備展示ACP*」
+ a| 
+系統節點執行節點｛nodename| local｝-command storage show acg*
+
+
+
+ a| 
+「*儲存設備展示介面卡*」
+ a| 
+系統節點執行節點｛nodename| local｝-command storage show介面卡*
+
+
+
+ a| 
+「*儲存展示橋樑」*
+ a| 
+「*儲存橋展*」
+
+
+
+ a| 
+「*儲存設備」顯示「disk*」
+ a| 
+「*儲存設備」顯示「disk*」
+
+「*儲存磁碟show *」
+
+
+
+ a| 
+「*儲存設備展示擴充器*」
+ a| 
+’*儲存櫃*
+
+
+
+ a| 
+「*儲存設備展示架構*」
+ a| 
+系統節點執行節點｛nodename| local｝-command storage show flexf*
+
+
+
+ a| 
+「*儲存設備顯示故障*」
+ a| 
+系統節點執行節點_nodename_命令storage show fault*
+
+
+
+ a| 
+「*儲存設備展示中樞*」
+ a| 
+系統節點執行節點｛nodename| local｝-command storage show hub*
+
+
+
+ a| 
+’*儲存設備顯示啟動器*
+ a| 
+系統節點執行節點｛nodename| local｝-command storage show啟動器*
+
+
+
+ a| 
+「*儲存設備展示MC*」
+ a| 
+’*儲存磁帶展示媒體更換器*
+
+
+
+ a| 
+「*儲存設備show port*」
+ a| 
+’*儲存交換器*
+
+
+
+ a| 
+「*儲存設備展示櫃*」
+ a| 
+’*儲存櫃*
+
+
+
+ a| 
+「*儲存設備展示交換器*」
+ a| 
+「*儲存交換器show *」
+
+
+
+ a| 
+「*儲存設備展示磁帶*」
+ a| 
+’*儲存磁帶show-tape drive*
+
+
+
+ a| 
+’*儲存統計磁帶*
+ a| 
+’*統計資料顯示-object tape *
+
+
+
+ a| 
+’*儲存統計資料磁帶歸零*
+ a| 
+「*統計資料｛start | stop | show｝-object tape *」
+
+
+
+ a| 
+’*儲存設備unalias *
+ a| 
+’*儲存磁帶別名Clear*
+
+
+
+ a| 
+《*系統管理*》
+ a| 
+不支援
+
+
+
+ a| 
+「* sysconfig -A*」
+ a| 
+系統節點執行節點｛nodename| local｝-command sysconfig -A*
+
+
+
+ a| 
+「* sysconfig -A*」
+ a| 
+系統節點執行節點｛nodename| local｝-command sysconfig -A*
+
+
+
+ a| 
+"*sysconfig -ac*
+ a| 
+系統控制器組態顯示錯誤-verbose*
+
+
+
+ a| 
+Check Alignment of PHs>系統管理-c*
+ a| 
+系統控制器組態錯誤顯示*
+
+
+
+ a| 
+Check Alignment of PHs>系統配置-d*
+ a| 
+系統節點執行節點｛nodename| local｝-command sysconfig -d*
+
+
+
+ a| 
+Check Alignment of PHs>系統管理-D*
+ a| 
+系統控制器組態PCI show-add-on devices*
+
+
+
+ a| 
+h*
+ a| 
+系統節點執行節點｛nodename| local｝-command sysconfig -h*
+
+
+
+ a| 
+Check Alignment of PHs>系統管理-m*
+ a| 
+’*儲存磁帶展示媒體更換器*
+
+
+
+ a| 
+"* syconfig -m*（系統組態- M*）"
+ a| 
+系統節點執行節點｛nodename| local｝-command sysconfig -m*
+
+
+
+ a| 
+Check Alignment of PHs>系統管理-p*
+ a| 
+不支援
+
+您必須使用下列命令做為替代方法：
+
+* Hypervisor資訊：顯示系統節點虛擬機器Hypervisor
+* 系統磁碟備用儲存區：系統節點虛擬機器執行個體show system-disks
+* 虛擬磁碟備份資訊：儲存磁碟show -virtual machine-disks-info
+
+
+
+
+ a| 
+Check Alignment of PHs>系統管理-P*
+ a| 
+系統控制器組態PCI show分層結構*
+
+
+
+ a| 
+Check Alignment of PHs>系統管理-r*
+ a| 
+不支援
+
+若要檢視磁碟資訊、您必須使用下列命令：
+
+* 檔案系統磁碟：儲存Aggregate showSTATUS
+* 備用磁碟：儲存Aggregate show-sparedisks
+* 磁碟毀損：儲存磁碟顯示為毀損
+* 維護中心的磁碟：儲存磁碟顯示-維護
+
+
+
+
+ a| 
+Check Alignment of PHs>系統管理-t*
+ a| 
+「*儲存磁帶展示」*
+
+
+
+ a| 
+"*sysconfig -v*
+ a| 
+系統節點執行節點_nodename_-command sysconfig -v`*
+
+
+
+ a| 
+Check Alignment of PHs>系統化管理-V*
+ a| 
+系統節點執行節點｛nodename| local｝-command sysconfig -v*
+
+
+
+ a| 
+「* Sysstat*」
+ a| 
+「*統計資料｛start| stop | show｝-預設系統*」
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+系統健全狀況警示*
+ a| 
+系統健全狀況警示*
+
+
+
+ a| 
+系統健全狀況AutoSupport 不全*
+ a| 
+系統健全狀況AutoSupport 不全*
+
+
+
+ a| 
+系統健全狀況組態*
+ a| 
+系統健全狀況組態*
+
+
+
+ a| 
+系統健全狀況節點連線功能*
+ a| 
+系統健全狀況節點連線功能*
+
+
+
+ a| 
+系統健全狀況政策*
+ a| 
+系統健全狀況政策*
+
+
+
+ a| 
+系統健全狀況*
+ a| 
+系統健全狀況*
+
+
+
+ a| 
+系統健全狀況子系統顯示*
+ a| 
+系統健全狀況子系統顯示*
+
+|===
+[role="lead"]
+*太*
+
+|===
+| 7-Mode命令 | 指令ONTAP 
+
+
+ a| 
+時區
+ a| 
+*時區*
+
+
+
+ a| 
+traceroute -m
+ a| 
+* traceroute -m*
+
+網路追蹤路由功能｛-nodelame_|-lif_lif-name_｝-mattl _integer_
+
+
+
+ a| 
+traceroute -n
+ a| 
+* traceroute -n*
+
+network traceroute -Node｛_nodename_|-lif_lif-name_｝-數值true
+
+
+
+ a| 
+traceroute -p
+ a| 
+* traceroute -p*
+
+網路追蹤功能｛-node-nodename_|-lif_lif-name_｝-連接埠_integer_
+
+
+
+ a| 
+traceroute -q
+ a| 
+* traceroute -q*
+
+網路追蹤功能｛-node-nodename_|-lif_lif-name_｝-nqueries _integer_
+
+
+
+ a| 
+traceroute -s
+ a| 
+不支援
+
+
+
+ a| 
+traceroute -v
+ a| 
+* traceroute -v*
+
+network traceroute｛-node-nodename_|-lif_lif-name_｝-詳細資訊[ true ]
+
+
+
+ a| 
+traceroute -w
+ a| 
+* traceroute -w*
+
+網路追蹤功能｛-node-nodename_|-lif_lif-name_｝-waittime _integer_
+
+|===
+
+
+== U-Z
+
+[role="lead"]
+* U *
+
+|===
+| 7-Mode命令 | 指令ONTAP 
+
+
+ a| 
+ucadmin
+ a| 
+系統節點硬體統一連線
+
+
+
+ a| 
+UPS
+ a| 
+不支援
+
+
+
+ a| 
+正常運作時間
+ a| 
+系統節點顯示欄位正常運作時間
+
+
+
+ a| 
+使用者新增的Teradmin網域使用者
+ a| 
+建立安全登入
+
+
+
+ a| 
+使用者刪除網域使用者
+ a| 
+刪除安全登入
+
+
+
+ a| 
+使用者刪除網域使用者清單
+ a| 
+安全登入秀
+
+
+
+ a| 
+使用者卸載最少網域使用者負載
+ a| 
+不支援使用「vserver CIFS user-and -Groups」命令集。
+
+
+
+ a| 
+使用者新增的eradmin群組
+ a| 
+建立安全登入角色
+
+
+
+ a| 
+使用者刪除群組
+ a| 
+刪除安全登入角色
+
+
+
+ a| 
+使用者刪除群組清單
+ a| 
+安全登入角色展示
+
+
+
+ a| 
+使用者組的修改
+ a| 
+修改安全登入角色
+
+
+
+ a| 
+使用者角色新增
+ a| 
+建立安全登入角色
+
+
+
+ a| 
+使用者刪除角色
+ a| 
+刪除安全登入角色
+
+
+
+ a| 
+使用者角色清單
+ a| 
+安全登入角色展示
+
+
+
+ a| 
+使用者權限角色修改
+ a| 
+修改安全登入角色
+
+
+
+ a| 
+使用者新增的使用者
+ a| 
+建立安全登入
+
+
+
+ a| 
+使用者刪除的使用者
+ a| 
+刪除安全登入
+
+
+
+ a| 
+使用者清單
+ a| 
+安全登入秀
+
+
+
+ a| 
+使用者修改的使用者
+ a| 
+修改安全登入
+
+|===
+[role="lead"]
+*五*
+
+|===
+| 7-Mode命令 | 指令ONTAP 
+
+
+ a| 
+版本-b
+ a| 
+*版本-B*
+
+或系統映像顯示
+
+
+
+ a| 
+版本-v
+ a| 
+*版本-v*
+
+或系統映像顯示
+
+
+
+ a| 
+VFiler
+ a| 
+不支援
+
+
+
+ a| 
+VFiler執行
+ a| 
+Vserver
+
+
+
+ a| 
+開始使用VFiler
+ a| 
+Vserver啟動
+
+
+
+ a| 
+VFiler停止
+ a| 
+Vserver停止
+
+
+
+ a| 
+VFiler狀態
+ a| 
+Vserver展示
+
+
+
+ a| 
+VFiler不允許
+ a| 
+Vserver修改-不允許的傳輸協定
+
+
+
+ a| 
+VLAN新增
+ a| 
+建立網路連接埠VLAN
+
+
+
+ a| 
+建立VLAN
+ a| 
+建立網路連接埠VLAN
+
+
+
+ a| 
+刪除VLAN
+ a| 
+刪除網路連接埠VLAN
+
+
+
+ a| 
+VLAN修改
+ a| 
+不支援
+
+
+
+ a| 
+VLAN狀態
+ a| 
+系統節點執行節點_nodename_-command vlan stat
+
+
+
+ a| 
+vmservices
+ a| 
+系統節點執行節點｛_nodename_| local｝vmservices
+
+
+
+ a| 
+Volume新增
+ a| 
+不支援
+
+
+
+ a| 
+Volume自動調整大小
+ a| 
+* Volume自動調整大小*
+
+
+
+ a| 
+Volume複製
+ a| 
+* Volume Clone *
+
+
+
+ a| 
+Volume Clone分割
+ a| 
+*磁碟區複製分割*
+
+
+
+ a| 
+Volume Container
+ a| 
+Volume show功能變數Aggregate
+
+
+
+ a| 
+Volume複本
+ a| 
+不支援您必須使用下列其中一種方法、如邏輯儲存設備文件所述：
+
+* 建立原始磁碟區的FlexClone Volume、然後使用Volume Move命令將磁碟區移至另一個Aggregate。
+* 使用SnapMirror複寫原始磁碟區、然後中斷SnapMirror關係以建立讀寫磁碟區複本。
+
+
+http://docs.netapp.com/ontap-9/index.jsp?topic=%2Fcom.netapp.doc.dot-cm-vsmg%2FGUID-5578BA46-5522-4BA6-B354-5C924B8207B1.html["邏輯儲存管理指南"]
+
+
+
+ a| 
+Volume建立
+ a| 
+*建立Volume *
+
+
+
+ a| 
+Vol銷毀
+ a| 
+Volume銷毀
+
+
+
+ a| 
+Volume檔案指紋
+ a| 
+不支援
+
+
+
+ a| 
+Volume media_f擦 除
+ a| 
+不支援
+
+
+
+ a| 
+Volume移轉
+ a| 
+不支援
+
+
+
+ a| 
+Volume鏡射
+ a| 
+不支援
+
+
+
+ a| 
+Volume搬移
+ a| 
+* Volume mov移動*
+
+
+
+ a| 
+Volume離線
+ a| 
+* Volume離線*
+
+
+
+ a| 
+Volume線上
+ a| 
+*線上Volume *
+
+
+
+ a| 
+Volume選項
+ a| 
+Volume｛show | modify｝
+
+
+
+ a| 
+允許磁碟區配額
+ a| 
+不支援
+
+
+
+ a| 
+不允許Volume配額
+ a| 
+不支援
+
+
+
+ a| 
+Volume重新命名
+ a| 
+*磁碟區重新命名*
+
+
+
+ a| 
+Volume限制
+ a| 
+* Volume Restrict *
+
+
+
+ a| 
+Volume清理
+ a| 
+不支援
+
+
+
+ a| 
+Volume大小
+ a| 
+* Volume Size*
+
+
+
+ a| 
+Volume Snapshot差異
+ a| 
+不支援
+
+
+
+ a| 
+Volume Snapshot保留
+ a| 
+不支援
+
+替代命令包括：
+
+* 對於Volume、請使用：「volume show -Fields百分點快照空間」和「volume modify -volume _volumName_-百分 點-snapshot space _百分 點_」命令。
+* 對於Aggregate、請使用「storage Aggregate show -Fields百分點快照空間」和「storage gregate modify -Aggregate _Aggregate name_-百分 點快照空間_%」命令。
+
+
+
+
+ a| 
+Volume分割
+ a| 
+不支援
+
+
+
+ a| 
+Volume狀態
+ a| 
+Volume Show
+
+
+
+ a| 
+Volume驗證
+ a| 
+不支援
+
+
+
+ a| 
+Volume wafliron
+ a| 
+不支援
+
+
+
+ a| 
+VScan
+ a| 
+Vserver vscan
+
+
+
+ a| 
+Vserver CIFS adupdate
+ a| 
+不支援
+
+
+
+ a| 
+Vserver CIFS廣播
+ a| 
+不支援
+
+
+
+ a| 
+Vserver CIFS註釋
+ a| 
+不支援
+
+
+
+ a| 
+Vserver CIFS Top
+ a| 
+不支援
+
+
+
+ a| 
+Vserver iSCSI ip_tpgroup新增
+ a| 
+不支援
+
+
+
+ a| 
+Vserver iSCSI ip_tpgroup建立
+ a| 
+不支援
+
+
+
+ a| 
+Vserver iSCSI ip_tpgroup銷毀
+ a| 
+不支援
+
+
+
+ a| 
+Vserver iSCSI ip_tpgroup移除
+ a| 
+不支援
+
+
+
+ a| 
+Vserver iSCSI ip_tpgroup show
+ a| 
+不支援
+
+
+
+ a| 
+Vserver iSCSI tpgroup alua集
+ a| 
+不支援
+
+
+
+ a| 
+Vserver iSCSI tpgroup alua show
+ a| 
+不支援
+
+
+
+ a| 
+Vserver服務名稱服務DNS排清
+ a| 
+不支援
+
+|===
+[role="lead"]
+* W*
+
+|===
+| 7-Mode命令 | 指令ONTAP 
+
+
+ a| 
+wrfile
+ a| 
+不支援
+
+|===
+[role="lead"]
+*是*
+
+|===
+| 7-Mode命令 | 指令ONTAP 
+
+
+ a| 
+ypcat
+ a| 
+不支援
+
+
+
+ a| 
+ypgroup
+ a| 
+不支援
+
+
+
+ a| 
+類型比對
+ a| 
+不支援
+
+
+
+ a| 
+類型
+ a| 
+不支援
+
+|===

@@ -1,0 +1,14 @@
+---
+permalink: copy-free/concept_troubleshooting_transition_issues.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, troubleshooting, issues 
+summary: 您應該瞭解如何疑難排解7-Mode Transition Tool的問題、以及在何處尋找記錄檔。當您使用7-Mode Transition Tool時、可能會看到錯誤訊息、指出問題並提供解決方案。 
+---
+= 疑難排解轉換問題
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您應該瞭解如何疑難排解7-Mode Transition Tool的問題、以及在何處尋找記錄檔。當您使用7-Mode Transition Tool時、可能會看到錯誤訊息、指出問題並提供解決方案。

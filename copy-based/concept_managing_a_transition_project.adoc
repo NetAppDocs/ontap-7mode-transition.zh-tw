@@ -1,0 +1,14 @@
+---
+permalink: copy-based/concept_managing_a_transition_project.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, manage, project 
+summary: 您可以使用7-Mode Transition Tool（網路介面）來管理轉換專案。您可以編輯、暫停、繼續、中止、刪除、 並在專案上執行預先檢查。 
+---
+= 管理轉換專案
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用7-Mode Transition Tool（網路介面）來管理轉換專案。您可以編輯、暫停、繼續、中止、刪除、 並在專案上執行預先檢查。

@@ -1,0 +1,19 @@
+---
+permalink: install-admin/concept_installing_and_uninstalling_7mtt_on_linux.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, install, uninstall, linux, transition, copy, based 
+summary: 您可以使用命令列介面、在Linux系統上下載並安裝7-Mode Transition Tool。必要時、您可以解除安裝7-Mode Transition Tool。 
+---
+= 在Linux上安裝或解除安裝7-Mode Transition Tool（僅限複製型轉換）
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用命令列介面、在Linux系統上下載並安裝7-Mode Transition Tool。必要時、您可以解除安裝7-Mode Transition Tool。
+
+您只能在Linux系統上執行複本型轉換。Linux不支援無複製轉換。
+
+
+IMPORTANT: Linux不支援7-Mode Transition Tool網路介面。您必須使用CLI在Linux系統上執行複本型轉換工作。

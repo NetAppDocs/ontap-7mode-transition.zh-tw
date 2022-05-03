@@ -1,0 +1,28 @@
+---
+permalink: san-host/concept_linux_host_remediation.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, rhel, host, remediation 
+summary: 如果您使用7-Mode Transition Tool（7-Mode Transition Tool）（7MTT）、在Data ONTAP SAN環境中從以7-Mode運作的VMware移轉至叢集Data ONTAP 式的VMware、 您必須在Red Hat Enterprise Linux（RHEL）主機上執行一系列步驟、以在轉換前後根據LUN類型執行、以避免移轉複雜度。 
+---
+= RHEL主機補救
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您使用7-Mode Transition Tool（7MTT）、在Data ONTAP SAN環境中從以7-Mode運作的VMware移轉至叢集Data ONTAP 式的VMware、 您必須在Red Hat Enterprise Linux（RHEL）主機上執行一系列步驟、以在移轉之前和之後的LUN類型為基礎、以避免移轉複雜度。
+
+7MTT轉換僅支援RHEL 5和RHEL 6。
+
+*相關資訊*
+
+xref:concept_transitioning_rhel_dmmp_devices_without_file_systems.adoc[無需檔案系統即可轉換RHEL DMP裝置]
+
+xref:concept_transitioning_luns_with_mount_points_using_dmmp_devices_names.adoc[使用DMP裝置名稱轉換LUN與掛載點]
+
+xref:concept_transitioning_luns_with_mount_points_using_dmmp_alias_names.adoc[使用DMP別名轉換LUN與掛載點]
+
+xref:concept_transitioning_linux_host_file_systems_on_lvm_devices.adoc[在LVM裝置上轉換Linux主機檔案系統]
+
+xref:concept_transition_of_san_boot_luns.adoc[轉換SAN開機LUN]

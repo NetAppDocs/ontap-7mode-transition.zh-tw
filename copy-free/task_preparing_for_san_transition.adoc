@@ -1,0 +1,14 @@
+---
+permalink: copy-free/task_preparing_for_san_transition.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, san, prepare 
+summary: 在轉換SAN環境之前、您必須先瞭解SAN移轉所支援的組態、在SVM上建立SAN LIF、以及準備SAN主機進行移轉。 
+---
+= 準備進行SAN移轉
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在轉換SAN環境之前、您必須先瞭解SAN移轉所支援的組態、在SVM上建立SAN LIF、以及準備SAN主機進行移轉。

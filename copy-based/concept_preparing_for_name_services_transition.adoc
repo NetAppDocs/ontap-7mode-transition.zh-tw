@@ -1,0 +1,14 @@
+---
+permalink: copy-based/concept_preparing_for_name_services_transition.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, prepare, name, services 
+summary: 名稱服務組態、包括DNS、LDAP、NIS、主機、名稱服務交換器、 UNIX使用者和群組、以及網路群組組組態、都是透過7-Mode Transition Tool進行轉換。在轉換名稱服務組態之前、您必須先注意一些考量事項。 
+---
+= 準備轉換名稱服務
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+名稱服務組態、包括DNS、LDAP、NIS、主機、名稱服務交換器、 UNIX使用者和群組、以及網路群組組組態、都是透過7-Mode Transition Tool進行轉換。在轉換名稱服務組態之前、您必須先注意一些考量事項。

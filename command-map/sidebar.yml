@@ -1,0 +1,13 @@
+---
+section: command-map
+title: 適用於7-Mode系統管理員的命令對應
+url: "/command-map/index.html"
+entries:
+- title: 7-Mode命令如何對應ONTAP 至VMware指令
+  url: "/command-map/reference_how_7_mode_commands_map_to_clustered_ontap_commands.html"
+- title: 7-Mode選項如何對應ONTAP 至VMware指令
+  url: "/command-map/reference_how_7_mode_options_map_to_clustered_ontap_commands.html"
+- title: 7-Mode組態檔如何對應至叢集Data ONTAP 式的等位元指令
+  url: "/command-map/reference_how_7_mode_configuration_files_map_to_clustered_ontap_commands.html"
+- title: 如何為Data ONTAP 7-Mode管理員解譯叢集式的效能分析命令、選項和組態檔案對應
+  url: "/command-map/concept_how_to_interpret_clustered_ontap_command_maps_for_7_mode_administrators.html"

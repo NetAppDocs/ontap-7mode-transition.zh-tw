@@ -1,0 +1,57 @@
+---
+permalink: san-host/task_testing_data_luns_on_hp_ux_hosts_before_cutover.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, data, lun, hp, ux, citover, phase, copy, based 
+summary: 如果您使用7-Mode Transition Tool（7MTT\）2.2或更新版本、Data ONTAP 以及更新版本的版本號-8.3.2或更新版本來執行HP-UX主機資料LUN的複本轉換、 您可以測試轉換後的叢集Data ONTAP 式支援LUN、以驗證是否能在轉換階段之前掛載MPIO裝置。在測試期間、您的來源主機可以繼續執行I/O至來源7-Mode LUN。 
+---
+= 在複製型轉換轉換的轉換階段之前、先在HP-UX主機上測試資料LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您使用7-Mode Transition Tool（7MTT）2.2或更新版本、Data ONTAP 以及更新版本的版本號、以執行HP-UX主機資料LUN的複製型移轉、 您可以測試轉換後的叢集Data ONTAP 式支援LUN、以驗證是否能在轉換階段之前掛載MPIO裝置。在測試期間、您的來源主機可以繼續執行I/O至來源7-Mode LUN。
+
+您的新ONTAP 版支援LUN必須對應至測試主機、且LUN必須已準備好進行轉換
+
+您應該維持測試主機與來源主機之間的硬體同位元、而且應該在測試主機上執行下列步驟。
+
+測試期間、您的LUN處於讀寫模式。ONTAP當測試完成且您正在準備轉換階段時、它們會轉換成唯讀模式。
+
+.步驟
+. 完成基礎資料複本之後、請在7MTT使用者介面（UI）中選取*測試模式*。
+. 在7MTT UI中、按一下*套用組態*。
+. 在測試主機上、重新掃描新ONTAP 的支援LUN：
++
+"* ioscan -fNC disk*
+
+. 驗證ONTAP 您的LUN是否存在：
++
+「* sanlun LUN show*」
+
+. 將先前複製到外部來源的「/tmp/mapfile.vg01 mapfile」複製到新主機。
+. 使用mapfile匯入Volume群組：
++
+"* vgimport -s -m /tmp/mapfile/vg01 vg01*
+
+. 確認「VG Status（VG狀態）」顯示為「Available（可用）」：
++
+「* vgdisplay*」
+
+. 將舊版裝置特殊檔案名稱（DSF）轉換為持續性DSF：
++
+hy*vgdsf -c dev/vg01*
+
+. 使用mount命令手動掛載每個邏輯磁碟區。
+. 如果系統提示您執行「flexf2」命令、請執行此命令。
+. 驗證掛載點：
++
+《*第二工作日*》
+
+. 視需要執行測試。
+. 關閉測試主機。
+. 在7MTT UI中、按一下「*完成測試*」。
+
+
+如果ONTAP 您的不支援LUN必須重新對應至來源主機、則必須準備來源主機以進行轉換階段。如果ONTAP 您的支援LUN必須維持對應至測試主機、則測試主機上不需要執行其他步驟。

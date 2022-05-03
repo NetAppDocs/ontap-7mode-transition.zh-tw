@@ -1,0 +1,36 @@
+---
+permalink: install-admin/task_enabling_login_for_users_not_part_of_administrator_group.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, install, enable, login, user, administrator, group 
+summary: 根據預設、使用者必須是安裝7-Mode Transition Tool之Windows系統上的Administrator群組成員。您可以隨時為非系統管理員群組成員、且無法安裝工具但已驗證的使用者啟用登入、以便使用安裝此工具的Windows系統。 
+---
+= 啟用非系統管理員群組使用者的登入
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+根據預設、使用者必須是安裝7-Mode Transition Tool之Windows系統上的Administrator群組成員。您可以隨時為非系統管理員群組成員、且無法安裝工具但已驗證的使用者啟用登入、以便使用安裝此工具的Windows系統。
+
+.步驟
+. 使用管理權限登入Windows主機。
+. 修改工具的組態檔、讓不屬於管理員群組的使用者能夠登入工具：
++
+.. 從安裝目錄開啟「/etc/conf\Transition工具.conf」檔案。
+.. 將「Transition工具.conf」檔案中的「tool.login.non.admin.enabled`」參數值設為true。
+.. 儲存檔案。
+
+
+. 重新啟動轉換服務。
++
+.. 按一下*開始*>*控制台*>*系統與服務*>*系統管理工具*>*服務*。
+.. 在「* NetApp 7-Mode Transition Tool*」服務上按一下滑鼠右鍵、然後按一下「*停止*」。
+.. 再次在* NetApp 7-Mode Transition Tool*服務上按一下滑鼠右鍵、然後按一下* Start*。
+
+
+
+
+*相關資訊*
+
+xref:task_modifying_default_configuration_settings_of_7mtt.adoc[修改7-Mode Transition Tool的組態選項]

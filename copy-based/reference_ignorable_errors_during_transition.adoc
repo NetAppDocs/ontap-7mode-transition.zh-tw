@@ -1,0 +1,83 @@
+---
+permalink: copy-based/reference_ignorable_errors_during_transition.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, ignorable, errors 
+summary: 您可能會在轉換期間遇到一些可忽略的錯誤。您必須先確認這些錯誤、才能繼續進行轉換。 
+---
+= 轉換期間發生可接受的錯誤
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可能會在轉換期間遇到一些可忽略的錯誤。您必須先確認這些錯誤、才能繼續進行轉換。
+
+當您使用7-Mode Transition Tool CLI將任何可接受的錯誤類別新增至複本型轉換專案時、表示您已瞭解錯誤的影響。您必須在忽略錯誤之後重新執行轉換作業。此時、封鎖錯誤會變更為警告訊息、錯誤會顯示為「已確認」。您可以繼續進行轉換、並顯示警告。
+
+|===
+| 類別 | 說明 
+
+
+ a| 
+「acknow-nonascii-filename-in來源磁碟區」
+ a| 
+確認此錯誤表示您已驗證SnapLock 您為保管鏈驗證作業所選的不含任何檔案名稱的非Ascii字元。
+
+
+
+ a| 
+「Acknowledge-SnapLock、oc-volume、autocit-period」
+ a| 
+在專案中新增此可接受的錯誤之後、即使將自動提交期間屬性設定在ONTAP SnapLock 設定用來儲存SnapLock 驗證資料鏈結果的流通量中、7-Mode Transition Tool仍會繼續進行轉換。
+
+
+
+ a| 
+「NFS-qtree匯出」
+ a| 
+確認此錯誤表示您已瞭解執行qtree匯出規則的差異、即Data ONTAP 在7-Mode和ONTAP VMware中操作的VMware。這也表示您已瞭解在7-Mode Transition Tool套用NFS匯出規則之後、可能需要的手動步驟。 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/7MTT_Precheck_10111_-_How_to_transition_7-Mode_volumes_that_have_qtree_level_exports["7MTT預先檢查10111 -如何轉換具有qtree層級匯出的7-Mode磁碟區"]
+
+
+
+ a| 
+「ignore（忽略）- CIF-ad-domain-mismisd」
+ a| 
+如果您確認此錯誤、即使7-Mode系統的CIFS Active Directory（AD）網域與目標SVM的CIFS AD網域不同、7-Mode Transition Tool仍會繼續移轉CIFS組態。您必須確保7-Mode系統和目標SVM的CIFS AD網域是信任的網域。否則、將CIFS組態移轉至目標SVM會失敗。 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/How_to_transition_CIFS_configurations_when_Active_Directory_Domain_of_CIFS_server_on_7-Mode_and_target_SVM_are_different["當7-Mode上CIFS伺服器的Active Directory網域與目標SVM不同時、如何轉換CIFS組態"]
+
+
+
+ a| 
+「ignore、ping、check、from、ic、lifs-to、7mode」
+ a| 
+在專案中新增此可接受的錯誤之後、7-Mode Transition Tool不會執行檢查、從目標叢集間叢集生命週期ping 7-Mode儲存系統。https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/7MTT_cbt_-_How_to_handle_the_scenario_where_7-Mode_data-copy_IP_address["7MTT複製型移轉：如何處理無法從目標叢集內部叢集生命週期存取7-Mode資料複製IP位址的情況"]
+
+
+
+ a| 
+「ignore、secondary、SnapMirror來源檢查」
+ a| 
+在專案中新增此可接受的錯誤之後、7-Mode Transition Tool不會檢查是否已將所有必要的主要7-Mode詳細資料新增至次要專案。由於此錯誤、7-Mode Transition Tool可能無法在次要專案完成（轉換）作業期間、在主要7-Mode磁碟區與次要叢集磁碟區之間建立SnapMirror關係。
+
+
+
+ a| 
+「ignore、configuration、limits、Check」（忽略組態限制檢查）
+ a| 
+您可以使用此選項確認組態限制（預先檢查錯誤）、然後繼續進行轉換。您瞭解到這個錯誤之後、儲存設備轉換時間預期將超過3到8小時、包括匯出、停止和匯入作業（自動化作業）的時間、以及將磁碟櫃連接至新控制器的時間。 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/Storage_cutover_time_considerations_for_Copy-Free_Transition["無複製轉換的儲存設備轉換時間考量"]
+
+
+
+ a| 
+「使用7模式的磁碟區名稱」
+ a| 
+在專案中新增此可接受的錯誤之後、7-Mode Transition Tool會以SnapLock 掛載路徑「/<7-mode-volume名稱>」掛載該等資料
+
+
+
+ a| 
+「Acknowledge、no、SnapLock、稽核、轉換至MCC」
+ a| 
+在專案中新增此可接受的錯誤之後、即使目標叢集處於MetroCluster VMware組態、7-Mode Transition Tool仍會繼續進行轉換。
+
+|===

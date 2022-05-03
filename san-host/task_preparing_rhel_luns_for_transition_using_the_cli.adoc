@@ -1,0 +1,91 @@
+---
+permalink: san-host/task_preparing_rhel_luns_for_transition_using_the_cli.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, phel, lun, mount, points, dmmp, alias, names, cli 
+summary: 在使用DMP裝置名稱轉換掛載點之前、您必須以其各自的檔案系統UUID編號來取代DMP裝置名稱。 
+---
+= 使用CLI準備使用DMP別名的裝載點執行RHEL LUN移轉作業
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在使用DMP裝置名稱轉換掛載點之前、您必須以其各自的檔案系統UUID編號來取代DMP裝置名稱。
+
+此程序適用於複本型轉換和無複本轉換。
+
+.步驟
+. 識別並記錄要轉換的LUN的SCSI裝置ID：
++
+「* sanlun LUN show*」
+
++
+SCSI設備ID會列在輸出的檔案名稱欄下。
+
+. 識別並記錄要轉換的LUN的DMP裝置名稱：
++
+"*多重路徑-ll _scsi_device_ID_*
+
++
+在下列範例中、「360a9800037534562572b453855496b41」為DMP裝置名稱：
+
++
+[listing]
+----
+[root@IBMx3550M3-229-169 ~]# multipath -ll /dev/sdc
+dmmp_fs_lun (360a9800037534562572b453855496b41) dm-3 NETAPP, LUN
+[size=1.0G] [features=3 queue_if_no_path pg_init_retries 50] [hwhandler=0][rw]
+\_ round-robin 0 [prio=2][active]
+	\_ 9:0:0:1 sdc 8:32  [active][ready]
+	\_ 9:0:0:1 sdg 8:96  [active][ready]
+----
+. 識別在DMP裝置上設定的檔案系統：
++
+hy*blKid | grep -i _DMMP_DEVICE名稱_*
+
++
+輸出中的類型值表示檔案系統。
+
++
+在以下範例中、檔案系統為「ext3」。
+
++
+[listing]
+----
+[root@ibmx3550-229-108 ~]#blkid | grep -i 3600a09804d532d79565d47617679658
+/dev/mapper/3600a09804d532d79565d47617679658:
+UUID="450b999a-4f51-4828-8139-29b20d2f8708" TYPE="ext3" SEC_TYPE="ext2"
+----
+. 識別LUN的UUID編號：
++
+hy*dumpe2fs _device_path_name_| grep UUID *
+
+. 識別要掛載DMP裝置的目錄：
++
+‘* df -h*’
+
++
+在以下範例中、「/mnt/dmmp_ext3」代表安裝DMP裝置的目錄：
+
++
+[listing]
+----
+[root@IBMx3550M3-229-169 ~]# df -h
+Filesystem Size Used Avail Use% Mounted on
+/dev/mapper/dmmp_fs_lun
+1008M 34M 924M 4% /mnt/dmnp_ext3
+----
+. 在「etc/stbstabs（etc/stabs）檔案中、確認已定義DMP裝置的掛載點：
++
+"* cat /etc/stab*
+
++
+輸出中應顯示DMP裝置名稱和掛載目錄。
+
+. 建立「/etc/stab'檔案的備份：
++
+Check Alignment of PHs>`*CP /etc/fstab /etc/_fstb_pre_Transition _bkup_*
+
+. 編輯「etc/stabs」檔案、以其各自的檔案系統UUID編號取代DMP裝置名稱。
+

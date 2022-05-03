@@ -1,0 +1,36 @@
+---
+permalink: san-host/task_discovering_san_boot_luns_after_transition.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, discover, san, boot, lun 
+summary: 將SAN開機LUN從Data ONTAP 以7-Mode運作的VMware移轉至叢集Data ONTAP 式VMware後、您必須探索主機上的SAN開機LUN。這對於複製型轉換（CBTs）和無複製轉換（CFTs）來說是必要的。這適用於FC、FCoE和iSCSI組態。 
+---
+= 轉換後探索SAN開機LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+將SAN開機LUN從Data ONTAP 以7-Mode運作的VMware移轉至叢集Data ONTAP 式VMware後、您必須探索主機上的SAN開機LUN。這對於複製型轉換（CBT）和無複製轉換（CFT）而言是必要的。這適用於FC、FCoE和iSCSI組態。
+
+如果您執行CFT、則必須完成「vol rehost」的程序。請參閱 link:https://docs.netapp.com/us-en/ontap-7mode-transition/copy-free/index.html["7-Mode Transition Tool無複製移轉指南"] 以取得詳細資料。
+
+. 開機主機。
+. 僅適用於FC和FCoE組態：
++
+.. 進入HBA BIOS設定模式。
+.. 選擇*重新掃描*以探索Data ONTAP 主機上的叢集式SAN開機LUN。
+.. 移除7-Mode開機LUN ID。
+.. 在Data ONTAP HBA BIOS中新增叢集式的SBIOS開機LUN ID。
+.. 退出HBA BIOS設定模式、然後重新啟動主機。
+
+
+. 重新開機完成後、請驗證叢集Data ONTAP 式的等化LUN：
++
+「* sanlun LUN show*」
+
+. 驗證DMP裝置：
++
+‘*多重路徑-l*’
+
+

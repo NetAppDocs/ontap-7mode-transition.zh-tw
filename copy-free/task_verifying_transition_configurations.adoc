@@ -1,0 +1,19 @@
+---
+permalink: copy-free/task_verifying_transition_configurations.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, verify, configurations 
+summary: 成功匯入7-Mode磁碟區和組態之後、您必須手動驗證轉換的集合體、磁碟區、LUN和組態。 
+---
+= 驗證轉換的組態
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+成功匯入7-Mode磁碟區和組態之後、您必須手動驗證轉換的集合體、磁碟區、LUN和組態。
+
+.步驟
+. 驗證7-Mode集合體、磁碟區和LUN、以及CIFS共用區、NFS匯出和LUN對應是否已轉換。
+. 確認所有7-Mode組態均已保留。
+

@@ -1,0 +1,37 @@
+---
+permalink: install-admin/task_installing_7mtt.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, install, transition, tool, windows 
+summary: 您可以使用精靈型安裝程式、在Windows系統上安裝7-Mode Transition Tool。 
+---
+= 在Windows系統上安裝7-Mode Transition Tool
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用精靈型安裝程式、在Windows系統上安裝7-Mode Transition Tool。
+
+* 您必須已檢閱7-Mode Transition Tool的系統需求。
++
+xref:concept_system_requirements_for_7mtt_on_windows.adoc[Windows上7-Mode Transition Tool的系統需求]
+
+* 您必須擁有必要的系統管理員權限、才能安裝及啟動應用程式。
+* 您必須按下Ctrl+F5清除瀏覽器快取。
++
+每次安裝新版本的工具時、您都必須清除快取。
+
+
+
+.步驟
+. 請從NetApp支援網站下載軟體。
++
+http://mysupport.netapp.com/NOW/cgi-bin/software["NetApp下載：軟體"]
+
+. 執行「NetApp_7ModeTransitionTool_Setup．exe」檔案。
+. 在7-Mode Transition Tool Setup歡迎畫面中、按一下* Next*。
+. 依照螢幕上的提示繼續安裝。
+. 選取*啟動工具*、即可在安裝後立即開啟7-Mode Transition Tool。
+. 按一下「*完成*」以完成安裝。
+

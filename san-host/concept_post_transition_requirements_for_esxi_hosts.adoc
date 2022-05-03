@@ -1,0 +1,32 @@
+---
+permalink: san-host/concept_post_transition_requirements_for_esxi_hosts.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, post, remediation, esxi, host 
+summary: 使用Data ONTAP 7-Mode Transition Tool（7MTT）、將ESXi主機的LUN從以7-Mode運作的VMware移轉至叢集Data ONTAP 式VMware後、您必須執行一系列的補救工作、使LUN上線並開始服務資料。 
+---
+= ESXi主機的移轉後修正需求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+使用Data ONTAP 7-Mode Transition Tool（7MTT）、將ESXi主機的LUN從以7-Mode運作的VMware移轉至叢集Data ONTAP 式的VMware後、您必須執行一系列補救工作、使LUN上線並開始服務資料。
+
+*相關資訊*
+
+xref:task_preparing_for_post_transition_esxi_host_remediation.adoc[準備進行移轉後ESXi主機補救]
+
+xref:task_reregistering_vms_after_transition_on_non_san_boot_esxi_host_using_vsphere_client.adoc[在非SAN上進行移轉之後、使用vSphere Client重新登錄VM]
+
+xref:task_setting_up_esxi_hosts_configured_for_san_boot_after_transition.adoc[設定ESXi主機、以便在轉換後進行SAN開機]
+
+xref:task_determining_whether_vmfs_volumes_need_to_be_remounted_after_transition.adoc[確定在轉換後是否需要重新掛載VMFS磁碟區]
+
+xref:task_reattaching_rdm_luns_to_vms.adoc[將RDM LUN重新附加至VM]
+
+xref:task_enabling_caw_on_a_datastore_using_esxi_cli.adoc[使用ESXi CLI在資料存放區上啟用CAW]
+
+xref:concept_post_transition_remediation_for_linux_and_windows_guest_operating_systems.adoc[適用於Linux和Windows客體作業系統的轉換後補救措施]
+
+xref:concept_configure_recommended_settings_for_esxi_hosts.adoc[移轉修正後ESXi主機的建議設定]

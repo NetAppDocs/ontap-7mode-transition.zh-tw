@@ -1,0 +1,52 @@
+---
+permalink: san-host/task_preparing_for_transition_of_esxi_hosts.html 
+sidebar: sidebar 
+keywords: transition, esxi, host, initiator, hba driver, collect assess feature 
+summary: 從Data ONTAP VMware移轉ESXi主機之前必須完成的工作 
+---
+= 準備移轉ESXi主機
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在使用7-Mode Transition Tool（7MTT）之前、您必須先完成幾項必要的工作、才能將ESXi主機從Data ONTAP 以7-Mode運作的VMware移轉至ONTAP VMware。
+
+.步驟
+. 如Data ONTAP 中所述、設定叢集式的功能 link:http://docs.netapp.com/us-en/ontap-7mode-transition/copy-based/index.html["7-Mode Transition Tool複製型移轉指南"] 或 link:https://docs.netapp.com/us-en/ontap-7mode-transition/copy-free/index.html["7-Mode Transition Tool無複製移轉指南"] 根據您正在執行的轉換類型。
+. 針對您要轉換的ESXi主機、收集下列資訊：
++
+** IP 位址
+** 主機名稱
+** 驗證詳細資料
+
+
+. 完成FC或FCoE主機與新叢集Data ONTAP 式節點之間的分區。
++
+您可以使用「收集與評估」功能來產生分區計畫。
+
+. 使用 link:https://mysupport.netapp.com/matrix["NetApp 互通性對照表工具"] 若要驗證是否支援下列項目、以移轉至叢集Data ONTAP 式的支援功能：
++
+** 您的Data ONTAP 版本的支援功能是以7-Mode運作
++
+在某些情況下、您可能必須將Data ONTAP 以7-Mode運作的版本升級為7MTT SAN相容版本。例如Data ONTAP 、以7-Mode運作的VMware支援不適用於使用7MTT的轉換作業。如果您執行的是此版本、則必須在開始轉換之前先升級。
+
+** 您的ESXi主機組態
+** 您的HBA驅動程式和韌體
++
+對於iSCSI、僅支援軟體啟動器。對於FC和FCoE、僅支援QLogic和Emulex啟動器。如果您的ESXi FC或FCoE啟動器不受支援、您必須升級至叢集Data ONTAP 式VMware支援的版本、如互通性對照表所述。
+
+
+
+. 如果已設定、請停用VMware高可用度（HA）和分散式資源排程器（DRS）。
++
+在轉換期間不支援VMware HA和DRS。
+
+
+
+*相關資訊*
+
+http://kb.vmware.com/kb/2032893["停用vSphere Web Client中的VMware DRS叢集時、保留資源集區"]
+
+http://kb.vmware.com/kb/1008025["停用VMware High Availability（HA）"]

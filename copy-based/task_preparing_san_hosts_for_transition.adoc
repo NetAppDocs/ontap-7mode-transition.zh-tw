@@ -1,0 +1,29 @@
+---
+permalink: copy-based/task_preparing_san_hosts_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, prepare, san, host 
+summary: 在轉換SAN環境之前、您必須先執行一些手動步驟、準備SAN主機進行移轉。 
+---
+= 準備SAN主機進行移轉
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在轉換SAN環境之前、您必須先執行一些手動步驟、準備SAN主機進行移轉。
+
+您必須使用Inventory Collect Tool來產生SAN主機的庫存工作簿。
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-ict-icg/home.html["主機與儲存設備移轉資訊收集"]
+
+.步驟
+. 驗證主機是否支援移轉。
++
+https://mysupport.netapp.com/matrix["NetApp 互通性對照表工具"]
+
+. 在主機上執行預先轉換步驟。
++
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-7mtt-sanspl/home.html["SAN主機移轉與補救"]
+
+

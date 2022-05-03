@@ -1,0 +1,26 @@
+---
+permalink: copy-based/concept_considerations_for_space_when_transitioning_san_volumes.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, space, considerations, san, volumes 
+summary: 在轉換期間、您必須確保磁碟區有足夠的可用空間。除了儲存資料和Snapshot複本所需的空間之外、轉換程序也需要每個LUN 1 MB的空間來更新某些檔案系統中繼資料。 
+---
+= 轉換SAN磁碟區時的空間考量
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在轉換期間、您必須確保磁碟區有足夠的可用空間。除了儲存資料和Snapshot複本所需的空間之外、轉換程序也需要每個LUN 1 MB的空間來更新某些檔案系統中繼資料。
+
+轉換之前、您可以在7-Mode磁碟區上使用「df -h」命令、驗證磁碟區中是否有每個LUN 1 MB的可用空間。磁碟區的可用空間也應相當於最終轉換之前預期寫入磁碟區的資料量。如果磁碟區沒有足夠的可用空間、則必須在7-Mode磁碟區中新增所需的空間量。
+
+如果由於目的地磁碟區空間不足而導致LUN的移轉失敗、則會產生下列EMS訊息：「LUN.vol.proc.fail.no.space: Processing for LUNs in volume vol1 fails due to the spacing（處理磁碟區vol1中的LUN由於空間不足而失敗）」。
+
+在這種情況下、您必須在目的地磁碟區上將「filesys－size-固定」屬性設為「假」、然後在磁碟區中為每個LUN新增1 MB可用空間。
+
+如果有包含空間保留LUN的磁碟區、則每個LUN將磁碟區增加1MB可能無法提供足夠的空間。在這種情況下、必須新增的額外空間量是磁碟區的Snapshot保留空間大小。將空間新增至目的地磁碟區之後、您可以使用「LUN Transition start」命令來轉換LUN。
+
+*相關資訊*
+
+http://docs.netapp.com/ontap-9/index.jsp["NetApp文件：ONTAP VMware 9"]

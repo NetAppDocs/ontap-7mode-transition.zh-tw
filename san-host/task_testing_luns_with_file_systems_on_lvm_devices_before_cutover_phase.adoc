@@ -1,0 +1,106 @@
+---
+permalink: san-host/task_testing_luns_with_file_systems_on_lvm_devices_before_cutover_phase.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, lun, file, system, lvm, devices, cutover, phase 
+summary: 如果您使用7-Mode Transition Tool（7MTT\）2.2或更新版本、Data ONTAP 以及更新版本的版本號、以執行Red Hat Enterprise Linux（RHEL）主機的複製型移轉、則可在Data ONTAP 轉換階段之前、在LVM裝置上使用檔案系統測試轉換的叢集式LUN。在測試期間、您的來源主機可以繼續執行I/O至來源7-Mode LUN。 
+---
+= 在轉換複本型轉換的轉換階段之前、先在LVM裝置上測試LUN與檔案系統
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您使用7-Mode Transition Tool（7MTT）2.2或更新版本、Data ONTAP 以及支援以複製方式轉換Red Hat Enterprise Linux（RHEL）主機、則可在Data ONTAP 轉換階段之前、在LVM裝置上測試已轉換的叢集式LUN與檔案系統。在測試期間、您的來源主機可以繼續執行I/O至來源7-Mode LUN。
+
+* 您的新叢集Data ONTAP 式LUN必須對應至測試主機。
+* 您的LUN必須已準備好進行轉換。
+
+
+您應該維持測試主機與來源主機之間的硬體同位元、並在測試主機上執行下列步驟。
+
+在Data ONTAP 測試期間、叢集式的LUN會處於讀取/寫入模式。當測試完成且您正在準備轉換階段時、它們會轉換成唯讀模式。
+
+在測試模式期間、您不會停用或匯出Volume群組。因此、在測試主機上掛載邏輯磁碟區時、可能會看到檔案系統錯誤。
+
+.步驟
+. 完成基礎資料複本之後、請在7MTT使用者介面（UI）中選取*測試模式*。
+. 在7MTT UI中、按一下*套用組態*。
+. 在測試主機上、探索全新的叢集Data ONTAP 式支援LUN：
++
+「* resce-scsi-bus.sh*」
+
+. 驗證是否Data ONTAP 已發現新的叢集式LUN：
++
+「* sanlun LUN show*」
+
+. 為叢集Data ONTAP 式的各種樣片LUN設定DMP裝置：
++
+‘*多重路徑*’
+
+. 取得叢集Data ONTAP 式的叢集式LUN的裝置處理ID：
++
+‘*多重路徑-l*’
+
++
+以下是裝置處理編號的範例：「'3600a09804d532d79565d47617679764d'」
+
+. 識別LVM所使用的DMP裝置：
++
+‘* pvscan *’
+
++
+3600a09804d532d79565d476176797655A是LVM使用的DMP裝置範例。
+
+. 識別Volume群組：
++
+‘* vgscan *’
+
+. 識別邏輯磁碟區：
++
+‘* lvscan *’
+
+. 啟用邏輯磁碟區：*`* vgchange -ay _volume _group _*
+. 驗證邏輯磁碟區狀態：*「* lvdisplay*」
++
+輸出中的「左室狀態」欄應會顯示為可用。
+
+. 確定邏輯磁碟區的掛載點項目是否存在於來源主機上的「etc/stabs」檔案中。
++
+在以下範例中、邏輯磁碟區「/dev/mapper/vg_7MTT-v1」會顯示在「etc/fstab'」檔案中：
+
++
+[listing]
+----
+# /etc/fstab
+...
+tmpfs   /dev/shm  tmpfs   defaults        0 0
+devpts  /dev/pts  devpts  gid=5, mode=620 0 0
+sysfs   /sys      sysfs   defaults        0 0
+proc    /proc     proc    defaults        0 0
+/dev/mapper/vg_7MTT-lv1 /7MTT  ext4  defaults 0	0
+----
+. 如果來源主機上的「etc/stabs」檔案中存在邏輯磁碟區的掛載點項目、請手動編輯測試主機上的「etc/stabs」檔案、以新增掛載點項目。
+. 掛載點：
++
+「* mount -A*」
+
+. 確認掛載點已掛載：
++
+* mount*
+
+. 視需要執行測試。
+. 完成測試後、請關閉主機：
++
+h-t0 now*
+
+. 在7MTT UI中、按一下*完成測試*。
+
+
+如果您的叢集Data ONTAP 式支援LUN要重新對應至來源主機、您必須準備好來源主機以進行轉換階段。如果您的叢集Data ONTAP 式支援LUN仍要對應至測試主機、則測試主機不需要執行其他步驟。
+
+*相關資訊*
+
+xref:task_gathering_pretransition_information_from_inventory_assessment_workbook.adoc[從庫存評估工作簿收集過渡前資訊]
+
+xref:task_preparing_for_cutover_when_transitioning_linux_host_file_systems_on_lvm_devices.adoc[在LVM裝置上轉換Linux主機檔案系統時、準備轉換階段]

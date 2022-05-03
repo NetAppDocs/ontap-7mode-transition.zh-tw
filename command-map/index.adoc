@@ -1,0 +1,14 @@
+---
+permalink: command-map/index.html 
+sidebar: sidebar 
+keywords: ontap, command, map, transition, index 
+summary: 將7-Mode命令對應ONTAP 至其等效的功能、以供使用 
+---
+= 適用於7-Mode系統管理員的命令對應表
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+本指南將7-Mode命令對應ONTAP 至其在VMware中的等效命令。

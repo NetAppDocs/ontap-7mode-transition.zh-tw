@@ -1,0 +1,29 @@
+---
+permalink: san-host/concept_rolling_back_luns_to_7_mode_after_transition.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, rolling, lun, 7, mode 
+summary: 如果您不滿意叢集Data ONTAP 式VMware LUN的效能、可以從叢集Data ONTAP 式的故障恢復到Data ONTAP 以7-Mode運作的故障恢復、以進行無複製的轉換（CFTs）。複本型轉換（CBTs）不支援復原。只有某些主機支援復原。 
+---
+= 轉換後將LUN復原至7-Mode
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您不滿意叢集Data ONTAP 式的支援LUN效能、可以從叢集Data ONTAP 式的支援升級到Data ONTAP 以7-Mode運作的支援、以實現無複製轉換（CFT）。複本型轉換（CBT）不支援復原。只有某些主機支援復原。
+
+在7-Mode Transition Tool（7MTT）中按一下* Commit *之前、您可以Data ONTAP 隨時從叢集式的支援功能復原至Data ONTAP 以7-Mode運作的支援功能。按一下* commit *之後、就無法復原。
+
+下列主機支援復原：
+
+* Windows
+* Red Hat Enterprise Linux（RHEL）
+* ESXi
+
+
+下列主機不支援復原：
+
+* HP-UX
+* AIX
+

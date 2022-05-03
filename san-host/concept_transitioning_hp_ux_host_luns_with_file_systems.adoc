@@ -1,0 +1,14 @@
+---
+permalink: san-host/concept_transitioning_hp_ux_host_luns_with_file_systems.html 
+sidebar: sidebar 
+keywords: transition, ontap, san, host, transition, hp, ux, host, lun, file, system 
+summary: 如果您使用Data ONTAP 7-Mode Transition Tool（7MTT\）將檔案系統的HP-UX主機LUN從以7-Mode運作的VMware移轉至叢集Data ONTAP 式VMware、則必須在轉換前後執行特定步驟、以修正主機上的轉換問題。 
+---
+= 使用檔案系統轉換HP-UX主機LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您使用Data ONTAP 7-Mode Transition Tool（7MTT）將檔案系統的HP-UX主機LUN從以7-Mode運作的VMware移轉至叢集Data ONTAP 式VMware、則必須在轉換前後執行特定步驟、以修正主機上的轉換問題。

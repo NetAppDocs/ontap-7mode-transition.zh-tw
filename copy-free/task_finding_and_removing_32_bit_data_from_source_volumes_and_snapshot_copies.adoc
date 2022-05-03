@@ -1,0 +1,84 @@
+---
+permalink: copy-free/task_finding_and_removing_32_bit_data_from_source_volumes_and_snapshot_copies.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, find, remove, volumes, snapshot, copy 
+summary: 即使您已將所有的Aggregate擴充為64位元格式、部分32位元或混合格式FlexVol 的支援區或Snapshot複本仍可保留。在執行Data ONTAP 版本不清的叢集存取資料之前、必須先移除這些Volume和Snapshot複本。 
+---
+= 尋找及移除32位元磁碟區和Snapshot複本
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+即使您已將所有的Aggregate擴充為64位元格式、部分32位元或混合格式FlexVol 的支援區或Snapshot複本仍可保留。在執行Data ONTAP 版本不清的叢集存取資料之前、必須先移除這些Volume和Snapshot複本。
+
+* 您必須將系統上的所有32位元Aggregate擴充為64位元格式。
+
+
+您必須針對包含32位元磁碟區和Snapshot複本的每個Aggregate重複執行本工作中的步驟。
+
+.步驟
+. 進入進階模式：
++
+「* priv set advanc進 階*」
+
+. 顯示集合體中所有磁碟區的格式：
++
+「* aggr 64bit升級狀態_agggr_name_-all*」
+
++
+Aggregate中的每個Volume都會以其格式顯示。
+
+. 對於每個32位元或混合格式的Volume、請判斷該磁碟區未擴充為64位元格式的原因、然後採取適當的行動。
++
+如果您無法判斷未擴充磁碟區的原因、請重試Aggregate擴充。
+
++
+|===
+| 如果磁碟區... | 然後... 
+
+
+ a| 
+是SnapMirror關係的目的地
+ a| 
+將包含來源Volume的Aggregate擴充為64位元格式。
+
+
+
+ a| 
+為唯讀磁碟區（但非SnapMirror目的地）
+ a| 
+將磁碟區設定為可寫入、然後重試擴充、或銷毀磁碟區。
+
+
+
+ a| 
+因為磁碟區或Aggregate的可用空間不足、所以沒有擴充
+ a| 
+增加磁碟區或Aggregate的可用空間、然後重試擴充。
+
+|===
++
+現在、集合體中的所有32位元和混合格式磁碟區都是64位元。您可以重複上一個步驟來確認這一點。
+
+. 顯示系統上所有Snapshot複本的格式：
++
+快照清單-FS-block-format *
+
+. 使用SnapDelete命令移除32位元Snapshot複本。
++
+
+IMPORTANT: 此動作會刪除Snapshot複本中的資料。刪除Snapshot複本之前、您必須確定不需要保留Snapshot複本。或者、您也可以等待32位元Snapshot複本過期。所需時間取決於Snapshot複本排程。
+
++
+如果Snapshot複本是FlexClone磁碟區的基礎Snapshot複本、您必須先從其父磁碟區分割FlexClone磁碟區、才能移除Snapshot複本。
+
++
+所有32位元Snapshot複本都會移除。您可以重複上一個步驟來確認這一點。
+
+. 返回管理權限層級：
++
+「* priv set admin*」
+
+

@@ -1,0 +1,237 @@
+---
+permalink: copy-based/reference_configurations_that_can_be_excluded.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, configurations, excluded 
+summary: 您可以使用7-Mode Transition Tool CLI的Transition CBT屬性集命令、指定內容名稱、藉以自訂組態轉換、將NFS、CIFS、SAN及名稱服務組態的部分Volume層級或SVM層級組態從轉換中排除。 
+---
+= 可從轉換中排除的組態
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用7-Mode Transition Tool CLI的「Transition CBT屬性集」命令來指定屬性名稱、藉以自訂組態轉換、將NFS、CIFS、SAN及名稱服務組態的部分Volume層級或SVM層級組態從轉換中排除。
+
+
+
+== NFS
+
+|===
+| 要排除的7-Mode組態 | 內容名稱 
+
+
+ a| 
+匯出原則
+ a| 
+「ignore、nfs、exports、Transition」
+
+
+
+ a| 
+NFS選項
+ a| 
+「ignore、nfs、options、Transition」
+
+
+
+ a| 
+所有NFS組態
+ a| 
+「ignore、all-nfs組態轉換」
+
+|===
+
+
+== CIFS
+
+|===
+| 要排除的7-Mode組態 | 內容名稱 
+
+
+ a| 
+本機使用者和群組
+ a| 
+「Ignore、local-user-Group-Transition」
+
+
+
+ a| 
+主目錄路徑
+ a| 
+「ignore、CIFS、home-directory-paths、Transition」
+
+
+
+ a| 
+符號連結
+ a| 
+「ignore、CIFS/symlinks、Transition」
+
+
+
+ a| 
+Widgelinks
+ a| 
+「ignore、CIF-wideellink-Transition」
+
+
+
+ a| 
+共用及共用ACL
+ a| 
+「ignore（忽略）CIFS共享與ACL轉換」
+
+
+
+ a| 
+CIFS選項
+ a| 
+「ignore、CIFS、options、Transition」
+
+
+
+ a| 
+名稱對應
+ a| 
+「ignore、CIFS、name-mapping、Transition」
+
+
+
+ a| 
+稽核組態
+ a| 
+「ignore、CIFS稽核移轉」
+
+
+
+ a| 
+慣用網域控制器清單
+ a| 
+「ignore、CIFS、preferred、domain-controllers、list-Transition」
+
+
+
+ a| 
+所有CIFS組態
+ a| 
+「ignore、all-CIFS組態- Transition」
+
+|===
+
+
+== 名稱服務
+
+|===
+| 要排除的7-Mode組態 | 內容名稱 
+
+
+ a| 
+網路群組
+ a| 
+「ignore、netGroups、Transition」
+
+
+
+ a| 
+UNIX使用者與群組
+ a| 
+「ignore、unix、user-Group-Transition」
+
+
+
+ a| 
+NIS
+ a| 
+《Ignore—NIS—Transition》
+
+
+
+ a| 
+DNS
+ a| 
+「ignore DNS移轉」
+
+
+
+ a| 
+LDAP
+ a| 
+「ignore、LDAP移轉」
+
+
+
+ a| 
+/etc/nsswitch.conf檔案
+ a| 
+「ignore、nsswitch-Transition」
+
+
+
+ a| 
+LDAP型使用者對應
+ a| 
+「ignore、nmswitch-Transition」
+
+
+
+ a| 
+/etc/hosts檔案
+ a| 
+「ignore、etc、host-Transition」
+
+
+
+ a| 
+所有名稱服務組態
+ a| 
+「Ignore All nameservices-configuration-Transition」
+
+|===
+
+
+== SAN
+
+|===
+| 要排除的7-Mode組態 | 內容名稱 
+
+
+ a| 
+igroup和LUN對應
+ a| 
+《ignore -igroup-and lunmapmapmapping Transition》（忽略igroup-and lunmapping轉換
+
+
+
+ a| 
+所有組態
+ a| 
+「ignore、all-san組態- Transition」
+
+|===
+
+
+== Snapshot排程
+
+|===
+| 要排除的7-Mode組態 | 內容名稱 
+
+
+ a| 
+Snapshot排程
+ a| 
+ignore快照排程轉換
+
+
+NOTE: 如果此選項設為true、則「預設」的Snapshot原則會套用至轉換的Volume。
+
+|===
+*相關資訊*
+
+xref:concept_cifs_configurations_supported_unsupported_or_requiring_manual_steps_for_transition.adoc[支援且不受支援的CIFS組態、可移轉ONTAP 至支援的不支援]
+
+xref:concept_nfs_configurations_supported_unsupported_or_requiring_manual_steps_for_transition.adoc[NFS移轉：支援和不支援的組態、以及必要的手動步驟]
+
+xref:concept_supported_and_unsupported_name_services_configurations.adoc[名稱服務轉換：支援和不支援的組態、以及必要的手動步驟]
+
+xref:concept_san_transition_supported_and_unsupported_configurations_and_required_manual_steps.adoc[SAN移轉：支援和不支援的組態、以及必要的手動步驟]

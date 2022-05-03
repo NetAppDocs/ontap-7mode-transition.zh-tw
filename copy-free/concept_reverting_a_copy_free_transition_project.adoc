@@ -1,0 +1,18 @@
+---
+permalink: copy-free/concept_reverting_a_copy_free_transition_project.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, performing, rollback, 7, mode 
+summary: 復原是指不再繼續轉換ONTAP 至還原至7-Mode系統。轉換復原是手動的、但是7-Mode Transition Tool會提供您必須執行的手動工作清單、以便進行復原。 
+---
+= 執行轉換回溯至7-Mode
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+復原是指不再繼續轉換ONTAP 至還原至7-Mode系統。轉換復原是手動的、但是7-Mode Transition Tool會提供您必須執行的手動工作清單、以便進行復原。
+
+您可以在SVM資源配置、匯出、佈線、匯入或正式作業前測試階段復原轉換專案。您無法在提交轉換專案之後回溯。
+
+在轉換的磁碟區中寫入或修改的任何新資料、例如LUN或LUN複製、將會在復原後遺失。這些磁碟區將還原為原始的7-Mode狀態。

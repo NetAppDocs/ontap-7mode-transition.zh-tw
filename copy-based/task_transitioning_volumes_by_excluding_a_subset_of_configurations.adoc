@@ -1,0 +1,58 @@
+---
+permalink: copy-based/task_transitioning_volumes_by_excluding_a_subset_of_configurations.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, customize, cli 
+summary: 根據預設、所有7-Mode組態都會轉換為ONTAP VMware。您可以選擇使用7-Mode Transition Tool CLI、將部分或全部的Volume、NFS、CIFS、SAN及名稱服務組態排除在轉換之外。您也可以選擇整合7-Mode NFS匯出規則和Snapshot排程、並在目標SVM上重複使用現有的NFS匯出原則和Snapshot原則。 
+---
+= 使用CLI自訂7-Mode組態的轉換
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+根據預設、所有7-Mode組態都會轉換為ONTAP VMware。您可以選擇使用7-Mode Transition Tool CLI、將部分或全部的Volume、NFS、CIFS、SAN及名稱服務組態排除在轉換之外。您也可以選擇整合7-Mode NFS匯出規則和Snapshot排程、並在目標SVM上重複使用現有的NFS匯出原則和Snapshot原則。
+
+您必須在套用組態之前執行此工作、之後將會忽略任何修改。
+
+7-Mode Transition Tool不會針對排除的組態執行預先檢查。
+
+根據預設、所有7-Mode組態都會選取以進行轉換。
+
+最佳做法是先執行所有組態的預先檢查、然後在後續的預先檢查執行中排除一或多個組態。這有助於您瞭解哪些組態會從轉換中排除、以及哪些預先檢查會在後續略過。
+
+.步驟
+* 排除並驗證組態：
++
+.. 排除組態：+`* Transition CBT屬性集-p _project名稱_-n _config_property_name_-v true*
++
+「_config_property_name_」是您要排除的組態。
+
++
+xref:reference_configurations_that_can_be_excluded.adoc[可從轉換中排除的組態]
+
+.. 驗證為排除組態而設定的內容值：
++
+'轉換CBT屬性-Get -p _project名稱_-n _config_property_name_*
+
+
+
+* 整合NFS匯出規則以進行移轉：
++
+** 將類似的7-Mode NFS匯出規則整合至叢集Data ONTAP 式的單一匯出原則、然後套用至轉換的Volume或qtree：+`* Transition CBT屬性集-p _project名稱_-n _nfs_netnfs_step-silar-7mode-exports _-v true*
++
+如果將「nfs合併-類似ar-7mode-exports」屬性設為「假」、7-Mode Transition Tool會針對ONTAP 每個7-Mode NFS匯出規則、在「樣」中建立新的NFS匯出原則。
+
+** 在SVM上重複使用符合工具所建立之匯出原則的現有NFS匯出原則、此原則可套用至已轉換的磁碟區或qtree：+`* Transition CBT屬性集-p _project name_-n _nfs_REUST-mating-SVM匯出原則_-v true*
+
+
+* 整合Snapshot轉換排程：
++
+** 將類似的7-Mode Snapshot排程整合至ONTAP VMware的單一Snapshot原則、然後套用至轉換的磁碟區：+ hy* Transition CBT屬性集-p _project名稱_-n _stale-sine-7mode-snapshot policies _-v true*
++
+如果將「整合類似的7-7mode-snapshot原則」屬性設為假、7-Mode Transition Tool會針對ONTAP 每個Snapshot排程建立一個全新的Snapshot原則。
+
+** 在SVM上重複使用現有的Snapshot原則、該原則符合將由工具建立的Snapshot原則、可套用至轉換的磁碟區：+`* Transition CBT屬性集-p _project名稱_-n _REUSEYON-ALTing-Svm-snapshot policies _-v true*
+
+
+

@@ -1,0 +1,12 @@
+---
+permalink: copy-free/reference_copyright_and_trademark.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, copyright, trademark 
+summary: 《免費複製移轉指南》的版權與商標。 
+---
+= 版權與商標
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+

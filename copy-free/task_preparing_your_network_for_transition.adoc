@@ -1,0 +1,47 @@
+---
+permalink: copy-free/task_preparing_your_network_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, prepare, network 
+summary: 您必須建立邏輯連接埠（VLAN和介面群組）、以準備叢集的資料網路進行移轉。 
+---
+= 準備網路進行轉換
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必須建立邏輯連接埠（VLAN和介面群組）、以準備叢集的資料網路進行移轉。
+
+必須設定NTP伺服器、且時間必須在7-Mode系統和叢集之間同步。
+
+.步驟
+. 視需要在目標叢集節點上建立VLAN或介面群組：
++
+「*網路連接埠VLAN cred*」
+
++
+或
+
++
+‘*網路連接埠ifgrp cred*’
+
++
+若要在轉換後提供網路連線、您應該將7-Mode IP位址轉換成ONTAP 類似的VMware網路拓撲。例如、如果在實體連接埠上設定7-Mode IP位址、則IP位址應轉換至ONTAP 位於VMware的適當實體連接埠。同樣地、在VLAN連接埠或介面群組上設定的IP位址也應該轉換到ONTAP 適當的VLAN連接埠或是在支援中的介面群組。
+
+. 如果您想要在非預設IPspace中使用SVM、請建立所需的IPspaces：
++
+‘*網路IPSpace cred*’
+
++
+選取要轉換的7-Mode IP位址或新生命週期會建立在對應SVM的IPspace中。
+
++
+
+NOTE: IPv6位址無法轉換、必須在轉換後手動設定。
+
+
+
+*相關資訊*
+
+https://docs.netapp.com/us-en/ontap/networking/index.html["網路與LIF管理"]

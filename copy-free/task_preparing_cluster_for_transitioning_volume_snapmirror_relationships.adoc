@@ -1,0 +1,35 @@
+---
+permalink: copy-free/task_preparing_cluster_for_transitioning_volume_snapmirror_relationships.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, prepare, cluster, snapmirror, relationship 
+summary: 若要轉換7-Mode Volume SnapMirror關係、您必須將SnapMirror授權新增至來源與目的地叢集。您也必須在SnapMirror關係的主要和次要磁碟區移轉到的叢集之間建立叢集對等關係、並建立SnapMirror排程。 
+---
+= 準備叢集以轉換Volume SnapMirror關係
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+若要轉換7-Mode Volume SnapMirror關係、您必須將SnapMirror授權新增至來源與目的地叢集。您也必須在SnapMirror關係的主要和次要磁碟區移轉到的叢集之間建立叢集對等關係、並建立SnapMirror排程。
+
+您必須記錄在7-Mode二線系統的/etc/SnapMirror檔案中定義的SnapMirror排程。
+
+.步驟
+. 在來源叢集和目的地叢集上新增SnapMirror授權：
++
+系統授權新增_license_code_*
+
+. 從每個叢集建立叢集對等關係。
++
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-clus-peer/home.html["叢集與SVM對等化快速組態"]
+
+. 在次要SVM上建立符合7-Mode次要系統排程的排程：
++
+‘*工作排程cron cred*’
+
+
+
+*相關資訊*
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-cmpr/GUID-5CB10C70-AC11-41C0-8C16-B4D0DF916E9B.html["指令ONTAP"]

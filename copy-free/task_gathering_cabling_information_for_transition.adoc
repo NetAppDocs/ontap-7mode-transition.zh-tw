@@ -1,0 +1,103 @@
+---
+permalink: copy-free/task_gathering_cabling_information_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, gather, cabling, information 
+summary: 在開始無複本轉換之前、您必須先收集7-Mode控制器的介面卡、連接埠、磁碟櫃及儲存連線相關資訊、然後規劃如何將7-Mode磁碟櫃連接至目標叢集節點。 
+---
+= 收集纜線資訊以供轉換
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在開始無複本轉換之前、您必須先收集7-Mode控制器的介面卡、連接埠、磁碟櫃及儲存連線相關資訊、然後規劃如何將7-Mode磁碟櫃連接至目標叢集節點。
+
+您必須已列印無複本的轉換佈線工作表單。
+
+xref:reference_copy_free_transition_cabling_worksheet.adoc[無複製轉換佈線工作表]
+
+. 使用VMware Data Data Data Data Storage and纜線、在7-Mode儲存設備和纜線上執行健全狀況檢查、並收集纜線資料。Config Advisor
++
+您應該使用Data ONTAP 「'VMware 7和8（7-Mode）」執行設定檔中的「7-Mode Install checks'（7-Mode安裝檢查）」選項。
+
+. 使用下列命令收集每個7-Mode控制器的必要資訊：
++
+文件名：sysconfig _slid_number_*
+
++
+您可以使用此命令的輸出來識別用於磁碟櫃連線的連接埠。
+
++
+[listing]
+----
+host1> sysconfig 3
+        slot 3: SAS Host Adapter 3a
+                24 Disks:            13440.0GB
+                1 shelf with IOM3
+        slot 3: SAS Host Adapter 3b
+                24 Disks:            13440.0GB
+                1 shelf with IOM3
+        slot 3: SAS Host Adapter 3c
+                24 Disks:            13440.0GB
+                1 shelf with IOM3
+        slot 3: SAS Host Adapter 3d
+                24 Disks:            13440.0GB
+                1 shelf with IOM3
+----
+. 從叢集、在每個節點上執行下列nodesl解除 命令：
++
+系統節點運行-node_node_name_-command sysconfig -A*
+
++
+您可以使用此命令的輸出來取得可用連接埠和擴充卡插槽的相關資訊。
+
+. 在目標叢集節點上、規劃用於連接7-Mode磁碟櫃的連接埠：
++
+.. 檢閱可用（開放式）連接埠。
+.. 檢查擴充卡插槽。
+.. 規劃擴充卡組態。
++
+如果目標平台和ONTAP 版本支援7-Mode系統、您可以規劃將擴充卡從7-Mode系統中搬移。如有需要、您也可以規劃PAM卡。
+
++
+https://hwu.netapp.com["NetApp Hardware Universe"]
+
+.. 規劃要用於磁碟櫃佈線的目的地連接埠。
++
+目的地連接埠的選擇取決於下列因素：
+
++
+*** 分隔或現有的磁碟櫃堆疊
+*** 連接埠可用度
+*** SAS或FC連線
+*** 內建連接埠或擴充卡的可用度
+
+
+
+
+. 前往資料中心、在纜線工作表中實際記錄7-Mode控制器和目標叢集節點上的連接埠連線：
++
+.. 在佈線工作表中記錄7-Mode控制器上使用的連接埠。
+.. 在佈線工作表中記錄目標叢集節點上使用的連接埠。
+.. 記錄用於連接7-Mode磁碟櫃的目的地連接埠、如步驟中所規劃 <<STEP_D0CFE719A0384F7FA5D9E73C8EA6C2E7,#d步_D0CFE719A0384F7FA5D9E73C8EA6C2E7>>。
+.. 請確定您有正確的纜線來連接磁碟櫃。
++
+您應該根據新的磁碟櫃堆疊位置來識別纜線的任何問題。
+
+.. 由於爬梯架或資料中心需求、請規劃較長的纜線長度。
+.. 在7-Mode控制器上標示每個磁碟櫃堆疊和纜線。
++
+最佳實務做法是標示7-Mode磁碟櫃堆疊、以便回復轉換作業、並將磁碟櫃重新連接至7-Mode控制器。
+
+
+
+
+
+*相關資訊*
+
+https://library.netapp.com/ecm/ecm_download_file/ECMP1119629["適用於DS4243、DS2246、DS4486和DS4246的SAS磁碟櫃安裝與服務指南"]
+
+https://library.netapp.com/ecm/ecm_download_file/ECMM1280273["《硬體服務指南》中的DiskShelf14mk2"]
+
+https://library.netapp.com/ecm/ecm_download_file/ECMP1112854["DS14mk2 FC與DS14mk4 FC硬體服務指南"]

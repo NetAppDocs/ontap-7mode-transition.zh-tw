@@ -1,0 +1,16 @@
+---
+permalink: copy-based/concept_support_for_transitioning_snaplock_volumes.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, support, snaplock, volumes 
+summary: 7-Mode Transition Tool可支援SnapLock 將不ONTAP 含9.6版的支援功能、將支援的不含支援功能的功能區移轉至執行任何版本的VMware 9.0的目標叢集。 
+---
+= 支援轉換SnapLock 功能
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+7-Mode Transition Tool可支援SnapLock 將不ONTAP 含9.6版的支援功能、將支援的不含支援功能的功能區移轉至執行任何版本的VMware 9.0的目標叢集。
+
+支援《支援使用支援的支援對象叢集》（除了9.6版之外）、以支援《支援使用支援的支援對象》和《不符合要求》。SnapLock SnapLock ONTAP不過SnapLock 、不支援將「符合需求」Volume移轉至MetroCluster 採用支援各種組態的目標叢集。

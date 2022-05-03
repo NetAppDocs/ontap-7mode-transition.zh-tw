@@ -1,0 +1,44 @@
+---
+permalink: copy-free/concept_considerations_for_transitioning_unix_users_and_groups.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, netgroups, unix, users, groups 
+summary: 只有當7-Mode /etc/netgroup檔案大小小於5 MB時、才會轉換Netgroup組態。UNIX使用者和群組只有在SVM上的UNIX使用者和群組總數未超過ONTAP 使用者和群組的數量限制時、才會移轉。 
+---
+= 轉換網路群組和UNIX使用者和群組時的考量
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+只有當7-Mode /etc/netgroup檔案大小小於5 MB時、才會轉換Netgroup組態。UNIX使用者和群組只有在SVM上的UNIX使用者和群組總數未超過ONTAP 使用者和群組的數量限制時、才會移轉。
+
+
+
+== 網路群組的考量
+
+如果7-Mode上的/etc/netgroup檔案大於5 MB、則不會轉換netgroup組態。您必須執行下列其中一項動作、才能繼續進行轉換：
+
+* 排除網路群組的轉換。
++
+xref:task_customizing_configurations_for_transition.adoc[自訂7-Mode組態的轉換]
+
+* 在轉換之前、將netgroup組態移至NIS或LDAP伺服器。
+
+
+
+
+== UNIX使用者和群組的考量
+
+如果轉換UNIX使用者和群組的總數超過ONTAP 了VMware的UNIX使用者和群組限制、7-Mode Transition Tool將會封鎖轉換。您必須執行下列其中一項動作、才能繼續進行轉換：
+
+* 排除UNIX使用者和群組的移轉。
++
+xref:task_customizing_configurations_for_transition.adoc[自訂7-Mode組態的轉換]
+
+* 移轉之前、請先將UNIX使用者和群組移至NIS或LDAP伺服器。
+
+
+*相關資訊*
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.cdot-famg-nfs/home.html["NFS管理"]

@@ -1,0 +1,44 @@
+---
+permalink: copy-based/task_completing_transition_process.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, complete 
+summary: 由於完整作業會造成中斷、因此您應該評估何時執行。在SnapMirror關係中轉換磁碟區時、必須先完成次要專案、才能完成主要專案的移轉作業。 
+---
+= 完成轉換
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+由於完整作業會造成中斷、因此您應該評估何時執行。在SnapMirror關係中轉換磁碟區時、必須先完成次要專案、才能完成主要專案的移轉作業。
+
+.步驟
+. 從7-Mode磁碟區執行資料複本至ONTAP 《VMware資料保護區：
++
+'轉換CBT更新-p _project名稱_-t _可用 的傳輸百分比_-c _SnapMirror -節流lemax-CAP並行傳輸_-x -r互動*'
+
++
+這有助於縮短儲存設備轉換期間的停機時間。
+
+. 手動：中斷用戶端存取。
+. 完成轉換程序：
++
+'轉換CBT轉換-p _project名稱_-t _可用 的傳輸百分比_-c _max-cap-並行 傳輸_-x _SnapMirror、throus_-r互動-o [true|fals]*
+
++
+依預設、7-Mode磁碟區會設為離線。若要讓7-Mode磁碟區保持連線、請將「-o」選項設為「假」。
+
++
+
+NOTE: 如果由於某種原因（例如無法連線到7-Mode系統或叢集）導致轉換失敗、您必須解決這些問題、然後再次執行「轉換轉換轉換轉換」命令。
+
++
+如需命令的詳細資訊、請參閱手冊頁。
+
++
+轉換工作階段會移至轉換狀態。如果轉換成功、工作階段會移至「已完成」狀態。
+
+
+
+您必須執行任何轉換後的工作、並將用戶端重新連線至ONTAP 本手冊。

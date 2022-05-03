@@ -1,0 +1,46 @@
+---
+permalink: san-host/task_gathering_pretransition_information_from_inventory_assessment_workbook.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, pretransition, information, inventory, assessment, workbook 
+summary: 庫存評估工作簿中有您在轉換的各個階段所需的資訊。在開始轉換之前、您應該先收集並記錄這些資訊、以便在整個流程中視需要參考。 
+---
+= 從庫存評估工作簿收集過渡前資訊
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在「庫存評估工作簿」中有您在轉換的各個階段所需的資訊。在開始轉換之前、您應該先收集並記錄這些資訊、以便在整個流程中視需要參考。
+
+.步驟
+. 使用庫存收集工具（ICT）來產生_庫存評估工作簿_。
+. 開啟_庫存評估工作簿_。
+. 移至「* LUN *」索引標籤。
+. 在「* LUN名稱*」欄中、識別並記錄要移轉的LUN名稱。
+. 移至「* SAN主機LUN*」標籤。
+. 在「* SCSI Device ID*（* SCSI裝置ID*）」欄中、識別並記錄SCSI裝置名稱。
+. 在「* OS Device ID*」（作業系統裝置ID*）欄中、識別並記錄要移轉的LUN的DMP裝置名稱。
+. 在*檔案系統*欄中、識別並記錄在DMP裝置上設定的檔案系統。
+. 在「* UUID *」欄中、識別並記錄LUN的UUID編號。
+. 在*掛載*欄中、識別並記錄安裝DMP裝置的目錄。
+. 移至* LVMS*索引標籤。
+. 在「*實體Volume Name*」欄中、識別並記錄邏輯磁碟區所使用的DMP裝置。
+. 移至「* SAN主機LVMS*」索引標籤。
+. 在* Volume Group Name*（磁碟區群組名稱*）欄中、識別並記錄磁碟區群組。
+. 在「*邏輯磁碟區路徑*」欄中、識別並記錄邏輯磁碟區。
+. 移至「* SAN主機檔案系統*」索引標籤。
+. 在*檔案系統*欄中、識別並記錄在邏輯磁碟區上設定的檔案系統。
+. 在*掛載*欄中、識別並記錄要掛載邏輯磁碟區的目錄。
+. 移至* Grub Configuration *索引標籤。
+. 在「* initrd-*」欄中、識別並記錄要修改的INITRD映像。
+. 移至「* SAN主機HBA*」索引標籤。
++
+您也可以查看「* iSCSI SAN介面*」索引標籤、以識別在7-Mode控制器上設定的iSCSI IQN編號和IP位址。
+
+. 在*目標IP（iSCSI）*欄中、識別並記錄7-Mode控制器的iSCSI工作階段。
+
+
+*相關資訊*
+
+xref:concept_what_the_inventory_collect_tool_is.adoc[庫存收集工具的功能]

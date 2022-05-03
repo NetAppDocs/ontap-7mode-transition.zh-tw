@@ -1,0 +1,59 @@
+---
+permalink: san-host/task_preparing_to_transition_san_boot_luns_on_hp_ux_hosts_with_fc_configurations.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, hp, ux, hosts, fc, configurations 
+summary: 在具有FC組態的HP-UX主機上轉換SAN開機LUN之前、您必須記錄安裝HP-UX的7-Mode LUN名稱、該LUN的SCSI裝置名稱、敏捷式命名慣例及WWID。 
+---
+= 準備在具有FC組態的HP-UX主機上轉換SAN開機LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在具有FC組態的HP-UX主機上轉換SAN開機LUN之前、您必須記錄安裝HP-UX的7-Mode LUN名稱、該LUN的SCSI裝置名稱、敏捷式命名慣例及WWID。
+
+. 從7-Mode控制器的主控台顯示7-Mode LUN、以識別安裝「'HPUX11v3 2014年3月'」作業系統的LUN名稱：
++
+’* LUN show*’
+
+. 取得LUN的SCSI裝置名稱：
++
+「* sanlun LUN show -p*」
+
++
+在此範例中、轉換LUN為bootlun_94。此LUN的SCSI設備包括："/dev/dsk/c14t0d0"、"/dev/dsk/c27t0d0"、"/dev/dsk/c40t0d0"和"/dev/dsk/c31t0d0"。
+
++
+[listing]
+----
+        ONTAP Path: f8040-211-183:/vol/vol_183/bootlun_94
+               LUN: 0
+          LUN Size: 100g
+       Host Device: /dev/rdisk/disk6
+              Mode: 7
+Multipath Provider: None
+host      vserver   /dev/dsk
+path      path      filename           host     vserver
+state     type      or hardware path   adapter  LIF
+-----     -------   ----------------   -------  -------
+up        secondary /dev/dsk/c14t0d0   fcd0     fc4
+up        primary   /dev/dsk/c27t0d0   fcd0     fc2
+up        primary   /dev/dsk/c40t0d0   fcd1     fc1
+up        secondary /dev/dsk/c31t0d0   fcd1     fc3
+----
+. 識別主機上LUN的WWID：
++
+scsimgr Get_info -D _scsi_device_name_|grep WWID*
+
++
+在下列範例中、裝置「/dev/rdisk/disk6」的LUN WWID為0x600a09804d537739422445386b755556：
+
++
+[listing]
+----
+bash-2.05# scsimgr get_info -D /dev/rdisk/disk6 | grep WWID
+World Wide Identifier (WWID)      = 0x600a09804d537739422445386b755564
+bash-2.05#
+----
+

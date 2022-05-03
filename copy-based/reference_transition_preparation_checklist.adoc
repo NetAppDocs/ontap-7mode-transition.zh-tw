@@ -1,0 +1,405 @@
+---
+permalink: copy-based/reference_transition_preparation_checklist.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, preparation, checklist 
+summary: 在開始轉換之前、您應確認已滿足轉換的所有先決條件。 
+---
+= 轉換準備檢查清單
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在開始轉換之前、您應確認已滿足轉換的所有先決條件。
+
+
+
+== 版本需求ONTAP
+
+|===
+| 項目 | 是的 
+
+
+ a| 
+支援的7-Mode版本 https://mysupport.netapp.com/matrix["NetApp 互通性對照表工具"]
+ a| 
+
+
+
+ a| 
+您的叢集必須執行下列Data ONTAP 任一版本的資訊更新：
+
+* 版本8.2.x Data ONTAP
+* 版本8.3.x Data ONTAP
+
+ a| 
+
+
+
+ a| 
+您必須轉換至下列ONTAP 其中一個版本：
+
+* 使用7-Mode Transition Tool 3.3.3：
++
+** 支援的更新版本ONTAP
+
+
+* 使用7-Mode Transition Tool 3.3.2：
++
+** 1.7P2或更新版本9.7 P版本（不支援較早9.7版本）ONTAP
+** 支援更新版本9.6 P7或更新版本9.6 P（不支援較早版本9.6）ONTAP
+** 發行版不含任何更新版本ONTAP ONTAP
+** 叢集Data ONTAP 式發行版本8.1.4P4或更新版本8.x
+
+
+* 使用7-Mode Transition Tool 3.3.1：
++
+** 發行版不含任何更新版本ONTAP ONTAP
+** 叢集Data ONTAP 式發行版本8.1.4P4或更新版本8.x
+
+
+
+ a| 
+
+|===
+
+
+== 授權要求
+
+|===
+| 項目 | 是的 
+
+
+ a| 
+SnapMirror授權可在7-Mode系統上啟用
+ a| 
+
+
+
+ a| 
+SnapMirror授權可在主要和次要叢集上啟用、以轉換Volume SnapMirror關係
+ a| 
+
+
+
+ a| 
+如果在7-Mode系統上啟用CIFS授權、則會在叢集上啟用CIFS授權
+ a| 
+
+
+
+ a| 
+如果已在7-Mode系統上啟用NFS授權、則會在叢集上啟用NFS授權
+ a| 
+
+
+
+ a| 
+如果已在7-Mode系統上啟用iSCSI授權、則會在叢集上啟用iSCSI授權
+ a| 
+
+
+
+ a| 
+如果叢集已在7-Mode系統上啟用FC授權、則會在叢集上啟用FC授權
+ a| 
+
+
+
+ a| 
+其他功能授權（如果在7-Mode系統上可用）則會新增至叢集
+ a| 
+
+|===
+
+
+== 7-Mode系統的SnapMirror需求
+
+|===
+| 項目 | 是的 
+
+
+ a| 
+SnapMirror授權
+ a| 
+
+
+
+ a| 
+「選項SnapMirror。啟用」
+ a| 
+
+
+
+ a| 
+「options interface.SnapMirror、blocked」
+ a| 
+
+
+
+ a| 
+確認下列其中一項是否屬實：
+
+* 將"shnapmirror．access"選項設置爲"all"（全部）
+* 將「snapmirror存取」選項設定為叢集上所有叢集間LIF的IP位址
+* 如果將"shnapmirror．access"選項設置爲"legacy（舊版）"，而"shapnapmirror.checkip.enable`選項設置爲"Off"，則SVM名稱將被添加到"/etc/SnapMirror．allow"文件中
+* 如果將"shnapmirror．access"選項設置爲legacy且"shnapmirror.checkip.enable`選項設置爲"on"，則會將羣集間lifs的IP地址添加到"/etc/SnapMirror．allow"文件中
+
+ a| 
+
+|===
+
+
+== 7-Mode系統上的Volume設定
+
+|===
+| 項目 | 是的 
+
+
+ a| 
+Volume已上線
+ a| 
+
+
+
+ a| 
+Volume不受限制
+ a| 
+
+
+
+ a| 
+下列Volume選項已停用：
+
+* 「no_I2P」
+* "read_realloc"
+* "nv失敗"
+
+ a| 
+
+|===
+
+
+== 管理對叢集的存取
+
+|===
+| 項目 | 是的 
+
+
+ a| 
+SSL已啟用
+
+「系統服務網路展」
+ a| 
+
+
+
+ a| 
+叢集管理LIF允許使用HTTPS
+
+「系統服務防火牆政策展示」
+ a| 
+
+|===
+
+
+== 管理對7-Mode系統的存取
+
+|===
+| 項目 | 是的 
+
+
+ a| 
+HTTPS已啟用
+
+「options httpd.admin.SSL、enable on」
+ a| 
+
+
+
+ a| 
+SSL已啟用
+
+"Recreadmins setup SSL"
+
+「選項SSL-enable on」
+ a| 
+
+
+
+ a| 
+SSLv2和SSLv3已停用
+
+「options SSL.v2.enable Off」
+
+「options SSL.v3.enable Off」
+ a| 
+
+|===
+
+
+== 網路需求
+
+|===
+| 項目 | 是的 
+
+
+ a| 
+使用叢集管理LIF可連線至叢集
+ a| 
+
+
+
+ a| 
+在叢集的每個節點上設定一個或多個叢集間生命體、以執行多重路徑作業、每個節點需要兩個叢集間生命體
+ a| 
+
+
+
+ a| 
+靜態路由是針對叢集間生命體所建立的
+ a| 
+
+
+
+ a| 
+7-Mode系統和叢集可從安裝7-Mode Transition Tool的Windows系統存取
+ a| 
+
+
+
+ a| 
+NTP伺服器已設定、且7-Mode系統時間會與叢集時間同步
+ a| 
+
+|===
+
+
+== 連接埠需求
+
+|===
+| 項目 | 是的 
+
+
+ a| 
+7-Mode系統
+
+* 10565/TCP
+* 10566/TCP
+* 10567/TCP
+* 10568/TCP
+* 10569/TCP
+* 10670/TCP
+* 80/TCP
+* 443/TCP
+
+ a| 
+
+
+
+ a| 
+叢集
+
+* 10565/TCP
+* 10566/TCP
+* 10567/TCP
+* 10568/TCP
+* 10569/TCP
+* 10670/TCP
+* 11105/TCP
+* 80/TCP
+* 443/TCP
+
+ a| 
+
+|===
+
+
+== NFS需求
+
+|===
+| 項目 | 是的 
+
+
+ a| 
+NFS授權已新增至叢集
+ a| 
+
+
+
+ a| 
+必須為SVM上的AD網域設定DNS項目
+ a| 
+
+
+
+ a| 
+NFS會新增至SVM允許的傳輸協定清單
+ a| 
+
+
+
+ a| 
+在Kdc與叢集之間的時鐘偏移小於或等於5分鐘
+ a| 
+
+|===
+
+
+== CIFS需求
+
+|===
+| 項目 | 是的 
+
+
+ a| 
+CIFS授權已新增至叢集
+ a| 
+
+
+
+ a| 
+如果啟用了「支援區」、則必須將CIFS新增至擁有轉換磁碟區之vFiler單元允許的傳輸協定清單MultiStore
+ a| 
+
+
+
+ a| 
+CIFS是在7-Mode系統上設定及執行
+ a| 
+
+
+
+ a| 
+CIFS 7-Mode的驗證類型為Active Directory（AD）或工作群組
+ a| 
+
+
+
+ a| 
+CIFS會新增至SVM允許的傳輸協定清單
+ a| 
+
+
+
+ a| 
+DNS是針對SVM進行設定
+ a| 
+
+
+
+ a| 
+CIFS伺服器已針對SVM進行設定
+ a| 
+
+
+
+ a| 
+CIFS正在SVM上執行
+ a| 
+
+|===
+*相關資訊*
+
+xref:concept_preparing_for_copy_based_transition.adoc[準備複製型轉換]

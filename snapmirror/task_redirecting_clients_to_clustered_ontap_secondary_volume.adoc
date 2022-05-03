@@ -1,0 +1,33 @@
+---
+permalink: snapmirror/task_redirecting_clients_to_clustered_ontap_secondary_volume.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, transition, snapmirror, redirect, clients, disaster, clustered, secondary, volume 
+summary: 如果您已在7-Mode主Volume與叢集Data ONTAP 式的非二級Volume之間建立SnapMirror災難恢復（DR）關係、而且7-Mode主站台發生災難、則必須將用戶端存取重新導向至叢集Data ONTAP 式非二級Volume。 
+---
+= 在災難發生後、將用戶端重新導向至叢集Data ONTAP 式的不二級磁碟區
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您已在7-Mode主Volume與叢集Data ONTAP 式VMware次要Volume之間建立SnapMirror災難恢復（DR）關係、且7-Mode主站台發生災難、則必須將用戶端存取重新導向至叢集Data ONTAP 式的VMware次要Volume。
+
+.步驟
+. 從次要叢集、使用「napmirror Break」命令來中斷7-Mode主要Volume與叢集Data ONTAP 式VMware次要Volume之間的SnapMirror關係。
++
+[listing]
+----
+sec_cluster::> snapmirror break -destination-path dst_vserver:dst_c_vol
+----
+. 從次要叢集、使用「napmirror DELETE」命令刪除7-Mode主要Volume與叢集Data ONTAP 式的二線磁碟區之間的SnapMirror關係。
++
+[listing]
+----
+sec_cluster::> snapmirror delete -destination-path dst_vserver:dst_c_vol
+----
+. 將用戶端存取重新導向至叢集Data ONTAP 式的二線磁碟區。
++
+如需在叢集Data ONTAP 式不景環境中設定用戶端存取的詳細資訊、請參閱 link:https://library.netapp.com/ecm/ecm_get_file/ECMP1401220["叢集Data ONTAP 式的《叢集式功能檔存取與通訊協定管理指南》"]。
+
+

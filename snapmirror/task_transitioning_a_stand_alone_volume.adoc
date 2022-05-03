@@ -1,0 +1,264 @@
+---
+permalink: snapmirror/task_transitioning_a_stand_alone_volume.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, transition, stand, alone, volume, snapmirror 
+summary: 轉換獨立磁碟區包括建立SnapMirror關係、執行基礎傳輸、執行遞增更新、監控資料複製作業、打破SnapMirror關係、以及將用戶端存取從7-Mode磁碟區移至叢集Data ONTAP 式的等量資料。 
+---
+= 轉換獨立Volume
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+轉換獨立磁碟區包括建立SnapMirror關係、執行基礎傳輸、執行遞增更新、監控資料複製作業、打破SnapMirror關係、以及將用戶端存取從7-Mode磁碟區移至叢集Data ONTAP 式的等量資料。
+
+* 叢集和SVM必須已設定完成。
+* 您必須已檢閱準備移轉的相關資訊。
++
+xref:task_preparing_for_transition.adoc[準備轉換]
+
+
+
+.步驟
+. 將資料從7-Mode磁碟區複製到叢集Data ONTAP 式的功能集區：
++
+.. 如果您想要設定7-Mode系統與SVM之間SnapMirror關係的TCP視窗大小、請使用「window-size-for TDP -mirror」選項建立類型為「as同步 鏡射」的SnapMirror原則。
++
+然後、您必須將此原則套用至7-Mode系統與SVM之間的TDP SnapMirror關係。
+
++
+您可以設定256 KB至7 MB的TCP視窗大小、以改善SnapMirror傳輸處理量、使轉換複本作業更快完成。TCP視窗大小的預設值為2 MB。
+
++
+[listing]
+----
+cluster1::> snapmirror policy create -vserver vs1 –policy tdp_policy -window-size-for-tdp-mirror 5MB -type async-mirror
+----
+.. 使用關係類型為TDP的「napmirror create」命令、在7-Mode系統和SVM之間建立SnapMirror關係。
++
+如果您已建立SnapMirror原則來設定TCP視窗大小、則必須將原則套用至此SnapMirror關係。
+
++
+[listing]
+----
+cluster1::> snapmirror create -source-path system7mode:dataVol20 -destination-path vs1:dst_vol -type TDP -policy tdp_policy
+Operation succeeded: snapmirror create the relationship with destination vs1:dst_vol.
+----
+.. 使用「napmirror initialize」命令來啟動基礎傳輸。
++
+[listing]
+----
+cluster1::> snapmirror initialize -destination-path vs1:dst_vol
+Operation is queued: snapmirror initialize of destination vs1:dst_vol.
+----
+.. 使用「napmirror show」命令來監控狀態。
++
+[listing]
+----
+cluster1::>snapmirror show -destination-path vs1:dst_vol
+
+                            Source Path: system7mode:dataVol20
+                       Destination Path: vs1:dst_vol
+                      Relationship Type: TDP
+                Relationship Group Type: none
+                    SnapMirror Schedule: -
+                 SnapMirror Policy Type: async-mirror
+                      SnapMirror Policy: DPDefault
+                            Tries Limit: -
+                      Throttle (KB/sec): unlimited
+                           **Mirror State: Snapmirrored**
+                    Relationship Status: Idle
+                File Restore File Count: -
+                 File Restore File List: -
+                      Transfer Snapshot: -
+                      Snapshot Progress: -
+                         Total Progress: -
+              Network Compression Ratio: -
+                    Snapshot Checkpoint: -
+                        Newest Snapshot: vs1(4080431166)_dst_vol.1
+              Newest Snapshot Timestamp: 10/16 02:49:03
+                      Exported Snapshot: vs1(4080431166)_dst_vol.1
+            Exported Snapshot Timestamp: 10/16 02:49:03
+                                Healthy: true
+                       Unhealthy Reason: -
+               Constituent Relationship: false
+                Destination Volume Node: cluster1-01
+                        Relationship ID: 97b205a1-54ff-11e4-9f30-005056a68289
+                   Current Operation ID: -
+                          Transfer Type: -
+                         Transfer Error: -
+                       Current Throttle: -
+              Current Transfer Priority: -
+                     Last Transfer Type: initialize
+                    Last Transfer Error: -
+                     Last Transfer Size: 152KB
+Last Transfer Network Compression Ratio: 1:1
+                 Last Transfer Duration: 0:0:6
+                     Last Transfer From: system7mode:dataVol20
+            Last Transfer End Timestamp: 10/16 02:43:53
+                  Progress Last Updated: -
+                Relationship Capability: 8.2 and above
+                               Lag Time: -
+           Number of Successful Updates: 0
+               Number of Failed Updates: 0
+           Number of Successful Resyncs: 0
+               Number of Failed Resyncs: 0
+            Number of Successful Breaks: 0
+                Number of Failed Breaks: 0
+                   Total Transfer Bytes: 155648
+         Total Transfer Time in Seconds: 6
+----
+.. 視您想Data ONTAP 要手動更新叢集式的流通量或設定SnapMirror排程而定、請執行適當的行動：
++
+|===
+| 如果您想要... | 然後... 
+
+
+ a| 
+手動更新傳輸
+ a| 
+... 使用「napmirror update」命令。
++
+[listing]
+----
+cluster1::> snapmirror update -destination-path vs1:dst_vol
+----
+... 使用「napmirror show」命令來監控資料複製狀態。
++
+[listing]
+----
+cluster1::> snapmirror show -destination-path vs1:dst_vol
+                            Source Path: system7mode:dataVol20
+                       Destination Path: vs1:dst_vol
+                      Relationship Type: TDP
+                Relationship Group Type: none
+                    SnapMirror Schedule: -
+                 SnapMirror Policy Type: async-mirror
+                      SnapMirror Policy: DPDefault
+                            Tries Limit: -
+                      Throttle (KB/sec): unlimited
+                           Mirror State: Snapmirrored
+ ...
+               Number of Failed Updates: 0
+           Number of Successful Resyncs: 0
+               Number of Failed Resyncs: 0
+            Number of Successful Breaks: 0
+                Number of Failed Breaks: 0
+                   Total Transfer Bytes: 278528
+         Total Transfer Time in Seconds: 11
+----
+... 前往步驟3。
+
+
+
+
+ a| 
+執行排程的更新傳輸
+ a| 
+... 使用「jobschedule cron create」命令來建立更新傳輸的排程。
++
+[listing]
+----
+cluster1::> job schedule cron create -name 15_minute_sched -minute 15
+----
+... 使用「napmirror modify」命令、將排程套用至SnapMirror關係。
++
+[listing]
+----
+cluster1::> snapmirror modify -destination-path vs1:dst_vol -schedule 15_minute_sched
+----
+... 使用「napmirror show」命令來監控資料複製狀態。
++
+[listing]
+----
+cluster1::> snapmirror show -destination-path vs1:dst_vol
+                            Source Path: system7mode:dataVol20
+                       Destination Path: vs1:dst_vol
+                      Relationship Type: TDP
+                Relationship Group Type: none
+                    SnapMirror Schedule: 15_minute_sched
+                 SnapMirror Policy Type: async-mirror
+                      SnapMirror Policy: DPDefault
+                            Tries Limit: -
+                      Throttle (KB/sec): unlimited
+                           Mirror State: Snapmirrored
+ ...
+               Number of Failed Updates: 0
+           Number of Successful Resyncs: 0
+               Number of Failed Resyncs: 0
+            Number of Successful Breaks: 0
+                Number of Failed Breaks: 0
+                   Total Transfer Bytes: 278528
+         Total Transfer Time in Seconds: 11
+----
+
+
+|===
+
+
+. 如果您有遞增傳輸的排程、請在準備執行轉換時執行下列步驟：
++
+.. 使用「napmirror quiesce」命令來停用所有未來的更新傳輸。
++
+[listing]
+----
+cluster1::> snapmirror quiesce -destination-path vs1:dst_vol
+----
+.. 使用「napmirror modify」命令刪除SnapMirror排程。
++
+[listing]
+----
+cluster1::> snapmirror modify -destination-path vs1:dst_vol -schedule ""
+----
+.. 如果您稍早停止SnapMirror傳輸、請使用「napmirror resume」命令來啟用SnapMirror傳輸。
++
+[listing]
+----
+cluster1::> snapmirror resume -destination-path vs1:dst_vol
+----
+
+
+. 等待7-Mode磁碟區與叢集Data ONTAP 式VMware磁碟區之間的任何持續傳輸完成、然後中斷用戶端對7-Mode磁碟區的存取、以開始轉換。
+. 使用「napmirror update」命令、對叢集Data ONTAP 式的BIOS Volume執行最終資料更新。
++
+[listing]
+----
+cluster1::> snapmirror update -destination-path vs1:dst_vol
+Operation is queued: snapmirror update of destination vs1:dst_vol.
+----
+. 使用「shnapmirror show」命令來驗證上次傳輸是否成功。
+. 使用「napmirror Break」命令來中斷7-Mode Volume與叢集Data ONTAP 式VMware Volume之間的SnapMirror關係。
++
+[listing]
+----
+cluster1::> snapmirror break -destination-path vs1:dst_vol
+[Job 60] Job succeeded: SnapMirror Break Succeeded
+----
+. 如果您的磁碟區已設定LUN、請在進階權限層級使用「LUN Transition 7-mode show」命令來驗證LUN是否已轉換。
++
+您也可以在叢集Data ONTAP 式的支援區上使用「LUN show」命令來檢視所有已成功轉換的LUN。
+
+. 使用「napmirror DELETE」命令刪除7-Mode Volume與叢集Data ONTAP 式VMware Volume之間的SnapMirror關係。
++
+[listing]
+----
+cluster1::> snapmirror delete -destination-path vs1:dst_vol
+----
+. 使用「napmirror release」命令、從7-Mode系統移除SnapMirror關係資訊。
++
+[listing]
+----
+system7mode> snapmirror release dataVol20 vs1:dst_vol
+----
+
+
+當7-Mode系統中的所有必要磁碟區都轉換為SVM時、您必須刪除7-Mode系統與SVM之間的SVM對等關係。
+
+*相關資訊*
+
+xref:task_resuming_a_failed_snapmirror_transfer_transition.adoc[恢復失敗的SnapMirror基礎傳輸]
+
+xref:task_recovering_from_a_failed_lun_transition.adoc[從發生故障的LUN轉換中恢復]
+
+xref:task_configuring_a_tcp_window_size_for_snapmirror_relationships.adoc[設定SnapMirror關係的TCP視窗大小]

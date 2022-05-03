@@ -1,0 +1,16 @@
+---
+permalink: copy-based/concept_preparing_for_smb_cifs_transition.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, prepare, smb, cifs 
+summary: 如果已取得SMB/CIFS授權、且SMB/CIFS服務正在7-Mode系統上執行、則您必須在目標叢集和SVM上手動執行某些工作、例如新增SMB/CIFS授權和建立SMB/CIFS伺服器、以便轉換SMB/CIFS組態。 
+---
+= 準備進行SMB/CIFS移轉
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果已取得SMB/CIFS授權、且SMB/CIFS服務正在7-Mode系統上執行、則您必須在目標叢集和SVM上手動執行某些工作、例如新增SMB/CIFS授權和建立SMB/CIFS伺服器、以便轉換SMB/CIFS組態。
+
+您也必須瞭解哪些組態已轉換。部分以7-Mode運作的SMB/CIFS組態在ONTAP VMware不支援。部分組態並非由7-Mode Transition Tool轉換、必須手動套用至SVM。

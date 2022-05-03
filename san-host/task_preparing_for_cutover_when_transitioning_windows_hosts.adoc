@@ -1,0 +1,36 @@
+---
+permalink: san-host/task_preparing_for_cutover_when_transitioning_windows_hosts.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, cutover, phase, windows, hosts 
+summary: 如果您要將Windows主機從Data ONTAP 以7-Mode運作的VMware主機移轉至叢集Data ONTAP 式的VMware主機、您必須在轉換開始之後、但轉換階段開始之前執行一些步驟。 
+---
+= 準備轉換Windows主機時的轉換階段
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您要將Windows主機從Data ONTAP 以7-Mode運作的VMware主機移轉至叢集Data ONTAP 式的VMware主機、您必須在轉換開始之後、但轉換階段開始之前執行一些步驟。
+
+如果您執行Data ONTAP 的是功能完整的DSM、Data ONTAP 則伺服器上安裝的版本必須支援Data ONTAP 在目標叢集Data ONTAP 式節點上執行的版本不完整的功能。
+
+如果您執行的是MSDSM、則伺服器上安裝的Windows主機公用程式版本必須支援Data ONTAP 目標叢集Data ONTAP 式節點上執行的版本。
+
+* 對於複製型轉換、請先執行這些步驟、再在7-Mode Transition Tool（7MTT）中啟動Storage Cutover（儲存設備轉換）作業。
+* 如需無複製轉換、請先執行這些步驟、再在7MTT中啟動「匯出及停止7-Mode」作業。
+
+
+.步驟
+. 使用磁碟管理程式將要移轉的磁碟離線。
+. 如果主機是從SAN開機、而且開機LUN正在轉換、請關閉開機主機。
+. 如果主機為叢集式、請使用容錯移轉叢集管理程式將叢集式磁碟（包括仲裁磁碟）離線。
+. 如果主機執行的是Windows Server 2003、而您需要移轉仲裁裝置、請停止所有叢集節點上的叢集服務。
+. 如果您要在已啟用Hyper-V的伺服器上轉換LUN、請針對您的客體作業系統執行適當的主機端移轉步驟。
+. 如果您要轉換已啟用Hyper-V的伺服器上的LUN、而客體作業系統的開機裝置位於Data ONTAP 正在轉換的實體LUN上、請執行下列步驟：
++
+.. 關閉客體作業系統。
+.. 使父系統上的對應磁碟離線。
+
+
+

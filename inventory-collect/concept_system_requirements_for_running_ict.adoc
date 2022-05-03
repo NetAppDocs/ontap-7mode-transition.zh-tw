@@ -1,0 +1,31 @@
+---
+permalink: inventory-collect/concept_system_requirements_for_running_ict.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, transition, system, requirements, inventory, collect, tool 
+summary: 您可以在Windows系統上下載並執行Inventory Collect Tool。Windows系統必須具備必要的組態、才能執行Inventory Collect Tool。 
+---
+= 執行Inventory Collect Tool的系統需求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以在Windows系統上下載並執行Inventory Collect Tool。Windows系統必須具備必要的組態、才能執行Inventory Collect Tool。
+
+* Windows系統必須是下列其中一項：
++
+** 64位元Windows 7 Enterprise
+** Windows Server 2008 R2 Enterprise（含SP1或更新版本）
+** Windows Server 2012 R2 Standard
+
+
+
+
+
+NOTE: 您可以使用符合所需軟體和硬體需求的Windows虛擬機器來安裝Inventory Collect Tool。
+
+* 雙核心x64處理器（1.0 GHz以上）
+* 4-GB RAM
+* 40 GB HDD
+

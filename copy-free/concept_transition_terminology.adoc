@@ -1,0 +1,32 @@
+---
+permalink: copy-free/concept_transition_terminology.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, terminology 
+summary: 瞭解7-Mode Transition Tool的相關轉換詞彙、有助於瞭解轉換程序。 
+---
+= 移轉術語
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+瞭解7-Mode Transition Tool的相關轉換詞彙、有助於瞭解轉換程序。
+
+* *收集與評估*
++
+在將資料和組態轉換為ONTAP 資料中心之前、您必須收集儲存環境的相關資訊、包括儲存系統、主機和應用程式。然後您必須評估這些系統的功能和特性、並找出這些功能在ONTAP 選定的版本中如何在轉換中運作。
+
+* *移轉*
++
+指將資料和組態從7-Mode磁碟區移轉至ONTAP VMware。在評估7-Mode控制器之後、應執行移轉。
+
+* *專案*
++
+在7-Mode Transition Tool中、專案可讓您設定及管理一組磁碟區的移轉作業。
+
+* *專案群組*
++
+在7-Mode Transition Tool中、專案群組是一個邏輯容器、可用來存放相關的移轉專案。系統中永遠有一個預設群組具有預設的群組名稱。
+
+

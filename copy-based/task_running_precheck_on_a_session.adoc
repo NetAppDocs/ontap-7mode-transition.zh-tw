@@ -1,0 +1,58 @@
+---
+permalink: copy-based/task_running_precheck_on_a_session.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, run, prechecks 
+summary: 建立轉換工作階段之後、您可以驗證工作階段、使用Transition preCheck命令來驗證7-Mode環境是否可以轉換。您可以驗證7-Mode儲存系統與SVM之間的相容性、以確定功能和安全性設定等因素。 
+---
+= 執行預先檢查
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+建立轉換工作階段之後、您可以使用「Transition preCheck」命令來驗證工作階段、以確認7-Mode環境是否可以轉換。您可以驗證7-Mode儲存系統與SVM之間的相容性、以確定功能和安全性設定等因素。
+
+轉換工作階段必須處於準備狀態。
+
+「Transition CBT preCheck」命令會產生詳細的錯誤訊息報告。根據問題對轉換程序的影響、報告中識別的問題會指派不同的嚴重性等級。由於某些錯誤可能會阻礙轉換、因此您必須針對錯誤和警告執行修正動作。您也應該先檢閱其他嚴重性層級的訊息影響、再繼續進行轉換。
+
+.步驟
+. 驗證移轉的相容性：
++
+'轉換CBT預先檢查-p _project名稱_*
+
++
+[listing]
+----
+7-Mode Transition Tool>transition cbt precheck -p project_finance
+
+[1/14 ] Project status checks                                                  [    Errors     ]
+
+Operation summary:
+------------------
+The 'precheck' operation on the project 'project_finance' has failed.
+
+ 1  Errors - Failed!
+
+Do you want to see a detailed report {yes, no} [yes]:
+
+1 Errors:
+---------
+90202: Checking whether any of the 7-Mode volumes are in 'offline' state.                              [     Error     ]
+  > Following volumes are in 'offline' state.
+  > CORRECTIVE-ACTION: Bring offline volumes online by using the following command: 'vol online
+  > <volume_name>'.
+  > AFFECTED-OBJECTS: { vol2 }
+
+Next suggested steps:
+---------------------
+1. Review the 'precheck' operation results, fix all blocking errors and run the 'precheck' operation again.
+2. Use the 'transition job-results -j 6e33e0a7-bb36-49df-91f3-2e52cbfa3074' command to see the results of this
+operation.
+
+Ran precheck for project 'project_finance'.
+----
+
+
+從7-Mode磁碟區開始資料複本之前、您必須先解決可能導致轉換問題的所有錯誤。

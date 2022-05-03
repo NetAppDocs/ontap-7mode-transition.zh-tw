@@ -1,0 +1,25 @@
+---
+permalink: copy-free/task_committing_7_mode_aggregates_to_clustered_ontap_format.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, commit, project 
+summary: 最後一個轉換步驟是提交無複本轉換專案。提交Aggregate之後、您無法執行7-Mode復原。 
+---
+= 提交無複本移轉專案
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+最後一個轉換步驟是提交無複本轉換專案。提交Aggregate之後、您無法執行7-Mode復原。
+
+您必須手動驗證轉換後的資料和組態、以及測試過的工作負載和應用程式。
+
+在匯出階段建立的所有集合體層級Snapshot複本都會刪除。
+
+.步驟
+. 按一下* commit *。
+. 在顯示的警告訊息中、按一下*是*。
+
+
+所有的正式作業前測試階段限制都會移除、而轉換後的磁碟區也能在正式作業前測試階段提供正式作業資料。

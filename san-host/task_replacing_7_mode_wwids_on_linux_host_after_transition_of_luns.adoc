@@ -1,0 +1,97 @@
+---
+permalink: san-host/task_replacing_7_mode_wwids_on_linux_host_after_transition_of_luns.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, 7, mode, wwids, linux, lun 
+summary: LUN移轉之後、7-Mode LUN WWID會變更。您必須先用對應ONTAP 的VMware LUN WWID來取代它、才能開始服務資料。 
+---
+= 在轉換LUN之後、更換Linux主機上的7-Mode LUN WWID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+LUN移轉之後、7-Mode LUN WWID會變更。您必須先用對應ONTAP 的VMware LUN WWID來取代它、才能開始服務資料。
+
+如果您執行的是無複製轉換（CFT）、則必須完成vol rehost的程序。
+
+請參閱 link:https://docs.netapp.com/us-en/ontap-7mode-transition/copy-free/index.html["7-Mode Transition Tool無複製移轉指南"]以取得詳細資料。
+
+* 對於複製型轉換（CBT）、請在完成7MTT中的儲存轉換作業之後、執行這些步驟。
+* 對於CFT、請在完成7MTT的匯入資料與組態作業之後執行這些步驟。
+
+
+.步驟
+. 產生7-Mode to ONTAP VMware LUN對應檔案：
++
+** 對於CBT、請從安裝7MTT的Linux主機執行下列命令：+`* Transition CBT匯出lunmap -p project名稱-o _file_path_*
++
+例如：
+
++
+「* Transition CBT匯出lunmap -p SanWorkLoad -o c：/Lithraes/7-to-C-lun-mapping．csv*」
+
+** 對於CFT、請從安裝7MTT的系統執行下列命令：+`* Transition CFT匯出lunmap -p _project nam__-s _svm-name_-o _output-file_*
++
+例如：
+
++
+「* Transition CFT匯出lunmap -p SanWorkLoad -s svml-0 cs/磁帶 庫/Documents/7-to-C-lun-maping-svml.csv*」
+
++
+
+NOTE: 您必須為每個儲存虛擬機器（SVM）執行此命令。
+
+
+
+. 請記下ONTAP LUN對應檔案中的新版「更新的LUN設備處理ID」。
+. 移除針對7-Mode LUN所建立的SCSI裝置：
++
+** 若要移除所有SCSI裝置：+`* rescan-scsi-bus.sh -r*
+** 若要個別移除每個SCSI裝置：+`*回應1>/sys/block/_scsi_ID__/DELETE *
++
+此命令必須在所有7-Mode LUN SCSI裝置上執行。請參閱_庫存評估工作簿_的SAN主機LUN選項卡上的SCSI設備ID列，以識別LUN的SCSI設備ID。
+
+
+
+. 探索全新ONTAP 的功能LUN：
++
+「* resce-scsi-bus.sh*」
+
+. 識別新ONTAP 的哪些SCSI設備的哪些LUN具備下列特性：
++
+「* sanlun LUN show*」
+
+. 取得新ONTAP 的功能區LUN的WWID：
++
+Check Alignment of PHs>"*/lib/udev/scsi_id -g -u -d /dev_scsi_dev_*"
+
+. 如果定義了DMP別名、請更新/etc/multipath.conf檔案、將7-Mode LUN WWID替換為其對應ONTAP 的LUN WWID、使DMP別名指向叢集Data ONTAP 式的實體LUN：
++
+"* cat /etc/multipath.conf *
+
+. 設定DMP裝置：
++
+‘*多重路徑*’
+
+. 驗證DMP別名是否正確參考ONTAP 了《LUN WWID：
++
+‘*多重路徑-11*’
+
++
+在下列輸出範例中、DMP別名「dMMP_raw_LUN」參照「3600a098051764b2d4f3f45335452d31」做ONTAP 為「the WWWID」：
+
++
+[listing]
+----
+root@IBMx3550M3-229-169 ~]# multipath -ll dmmp_raw_lun
+dmmp_raw_lun (3600a098051764b2d4f3f453135452d31) dm-8 NETAPP, LUN C-Mode
+[size=1.0G] [features=3 queue_if_no_path pg_init_retries 50] [hwhandler=1 alua] [rw]
+\_round-robin 0 [prio=50][enabled]
+ \_5:0:0:6 sdx 	65:112 [active][ready]
+	\_8:0:0:6 sdab 65:176 [active][ready]
+\_round-robin 0 [prio=10][enabled]
+ \_6:0:0:6 sdy 	65:128 [active][ready]
+	\_7:0:0:6 sdaa 65:160 [active][ready]
+----
+

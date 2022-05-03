@@ -1,0 +1,62 @@
+---
+permalink: san-host/task_testing_transitioned_luns_on_windows_hosts_before_cutover.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, test, lun, windows, cutover, phase 
+summary: 如果您使用7-Mode Transition Tool（7MTT\）2.2或更新版本、Data ONTAP 以及更新版本的版本號-8.3.2或更新版本來轉換Windows主機LUN、 您可以測試轉換後的叢集Data ONTAP 式支援LUN、以確認您可以將磁碟上線、以及應用程式作業在轉換階段之前如預期般運作。在測試期間、您的來源主機可以繼續執行I/O至來源7-Mode LUN。 
+---
+= 在轉換階段之前、在Windows主機上測試轉換的LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您使用7-Mode Transition Tool（7MTT）2.2或更新版本、Data ONTAP 以及更新版本的版本號、以轉換Windows主機LUN、 您可以測試轉換後的叢集Data ONTAP 式支援LUN、以確認您可以將磁碟上線、以及應用程式作業在轉換階段之前如預期般運作。在測試期間、您的來源主機可以繼續執行I/O至來源7-Mode LUN。
+
+您的7-Mode LUN必須已準備好進行轉換。
+
+您應該維持測試主機與來源主機之間的硬體同位元、而且應該在測試主機上執行下列步驟。
+
+在Data ONTAP 測試期間、叢集式的LUN會處於讀取/寫入模式。當測試完成且您正在準備轉換階段時、它們會轉換成唯讀模式。
+
+.步驟
+. 完成基礎資料複本之後、請在7MTT使用者介面（UI）中選取*測試模式*。
+. 在7MTT UI中、按一下*套用組態*。
+. 產生7-Mode至叢集Data ONTAP 式的實體LUN對應檔案：
++
+** 對於複製型轉換、請從安裝7MTT的主機執行下列命令：+`* Transition CBT匯出lunmap -p _project name_-o _file_path_*
++
+例如：
+
++
+「* Transition CBT匯出lunmap -p SanWorkLoad -o c：/Lithraes/7-to-C-lun-mapping．csv*」
+
+** 對於無複製轉換、請從安裝7MTT的系統執行下列命令：+`* Transition CFT匯出lunmap -p _project name_-s _svm-name_-o _output-file_
++
+
+NOTE: 您必須為每個儲存虛擬機器（SVM）執行此命令。
+
++
+例如：
+
++
+'轉換CFT匯出lunmap -p SANWorkLoad -s svml-o cs/磁帶 庫/Documents/7-to-C-lun-mapping -svml.csv*'
+
+
+
+. 將轉換的磁碟和應用程式上線：
++
+** 如果轉換的磁碟不屬於叢集容錯移轉、請使用Windows磁碟管理程式將磁碟上線。
+** 如果轉換的磁碟是叢集容錯移轉的一部分、請使用叢集容錯移轉管理程式將磁碟上線。
+
+
+. 視需要執行測試。
+. 測試完成後、請將應用程式和磁碟離線：
++
+** 如果轉換的磁碟不屬於叢集容錯移轉、請使用Windows磁碟管理程式將磁碟離線。
+** 如果轉換的磁碟是叢集容錯移轉的一部分、請使用叢集容錯移轉管理程式將磁碟離線。
+
+
+
+
+如果您的叢集Data ONTAP 式支援LUN要重新對應至來源主機、您必須準備好來源主機以進行轉換階段。如果您的叢集Data ONTAP 式支援LUN仍要對應至測試主機、則測試主機不需要執行其他步驟。

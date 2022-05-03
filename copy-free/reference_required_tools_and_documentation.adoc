@@ -1,0 +1,30 @@
+---
+permalink: copy-free/reference_required_tools_and_documentation.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, tools, documentation, required 
+summary: 不需複製的轉換作業需要使用此功能。Config Advisor您應該使用Config Advisor 資訊功能驗證磁碟櫃的佈線。SAN主機補救也可取得其他文件。 
+---
+= 無複本轉換所需的工具與文件
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+不需複製的轉換作業需要使用此功能。Config Advisor您應該使用Config Advisor 資訊功能驗證磁碟櫃的佈線。SAN主機補救也可取得其他文件。
+
+
+
+== Config Advisor
+
+在7-Mode磁碟櫃連接至目標叢集節點之後、您應該使用Config Advisor VMware Data架構中的「Transition」執行設定檔來驗證纜線。
+
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["NetApp下載Config Advisor"]
+
+
+
+== 文件
+
+說明使用無複本轉換進行轉換時、SAN主機必須執行的轉換前和轉換後步驟。
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-7mtt-sanspl/home.html["SAN主機移轉與補救"]

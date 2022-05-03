@@ -1,0 +1,116 @@
+---
+permalink: san-host/task_making_san_boot_lun_primary_boot_lun_for_hp_ux_qlogic_hbas_after_transition.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, boot, lun, primary, hp, ux, logic, hbas 
+summary: 如果Data ONTAP 您在7-Mode HP-UX主機上執行的作業系統是SAN開機、則在移轉至叢集Data ONTAP 式功能後、您必須將SAN開機LUN設定為主要開機LUN。 
+---
+= 將SAN開機LUN設定為移轉後適用於HP-UX QLogic HBA的主要開機LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果Data ONTAP 您在7-Mode HP-UX主機上執行的作業系統是SAN開機、則在移轉至叢集Data ONTAP 式功能後、您必須將SAN開機LUN設定為主要開機LUN。
+
+* 您的資料移轉必須完成。
+* 您的開機LUN必須從叢集Data ONTAP 式節點對應至主機。
+
+
+在HP 9000系統上、使用BCH功能表的HP-UX 11.3x支援SAN開機、在使用HP-UX載入器（EFi）的HP Integrity伺服器上支援SAN開機。
+
+對於複製型轉換、請在完成7-Mode Transition Tool中的Storage Cutover作業之後、執行這些步驟。HP-UX主機不支援無複製轉換。
+
+.步驟
+. 開啟Shell提示：
++
+‘* Ctrl B*’
+
+. 開機至efi Shell。
++
+只有HP Integrity系統才能使用EFI Shell。
+
+. 使用序列主控台存取服務處理器（MP）的登入資訊。
+. 存取主控台清單：「co」
++
+這會開啟「EFI開機管理程式」功能表。
+
+. 從「EFi開機管理程式」功能表中、選取「EFi Shell」功能表選項以存取EFi Shell環境。
+. 識別您的QLogic驅動程式編號：
++
+驅動程式*
+
++
+驅動程式編號位於DRV欄中。
+
+. 識別每個驅動程式的對應控制器編號：
++
+drvcfg _driver_number_*
+
++
+在以下範例中、「27」是驅動程式「23」的對應控制器編號、而「26」則是驅動程式「24」的對應控制器編號：
+
++
+[listing]
+----
+Shell> drvcfg 23
+Configurable Components
+		Drv[23]		Ctrl[27]			Lang[eng]
+
+Shell> drvcfg 24
+Configurable Components
+		Drv[24]		Ctrl[26]			Lang[eng]
+----
+. 開啟驅動程式BIOS：
++
+"* drvcfg/_drv_number ctr_number_-s*（*）"
+
+. 輸入「* 4 *」以選取「* 4」。編輯開機設定*。
+. 在Edit Boot Settings（編輯開機設定）中、輸入「6」以選取* 6。EFIF變數EFIFCScanLevel *。
+. 輸入「* 1*」、將「EFIFCScanLevel」的值從0變更為1。
+. 輸入「* 7*」以選取「* 7」。啟用World Login *。
+. 輸入「* y*」以啟用全球登入。
+. 輸入「* 0*」以移至上一個功能表。
+. 在主功能表中、輸入「* 11 *」以儲存變更。
+. 輸入「'*12*」結束。
+. 在Shell提示字元中、重新掃描您的裝置：
++
+「*重新連線-r*」
+
+. 顯示LUN以取得您要從中開機的LUN路徑：
++
+’*地圖-r*
+
++
+LUN路徑會列在「Device（裝置）」欄下方。可開機SAN磁碟會顯示在對應表欄下方、並在輸出字串中顯示「'WWN'」和「'Part 1'」。
+
+. 輸入SAN開機LUN的LUN路徑。
++
+LUN路徑的範例為fs0。
+
+. 結束efi Shell：
++
+「* CD EFI*」
+
+. 輸入HPUX目錄：
++
+h.* CD HPUX*
+
+. 將新的叢集Data ONTAP 式SAN開機LUN設為主要開機LUN：
++
+'* bcfg開機新增1個HPUx.efi「HP-UX -主要開機」*
+
+. 在適用於SAN開機LUN的EFi中輸入項目、以手動更新HBA BIOS。
+. 建立替代開機路徑：
++
+hy*bcfg開機新增2個HPUx.efi「HPUX Alternate boot」*
+
+. 建立第三個開機路徑：
++
+bcfg開機新增2個HPUx.efi「HPUX第三次開機」*
+
+. 建立第四個開機路徑：
++
+bcfg開機新增2個HPUx.efi「HPUX第四次開機」*
+
+

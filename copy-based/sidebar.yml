@@ -1,0 +1,264 @@
+---
+section: copy-based
+title: 複本型轉換
+url: "/copy-based/index.html"
+entries:
+- title: 轉換總覽
+  url: "/copy-based/concept_transition_overview.html"
+  entries:
+  - title: 使用7-Mode Transition Tool進行複本型轉換
+    url: "/copy-based/concept_copy_based_transition_using_7mtt.html"
+  - title: 移轉術語
+    url: "/copy-based/concept_transition_terminology.html"
+  - title: 移轉限制
+    url: "/copy-based/reference_limits_for_transition.html"
+- title: 收集和評估庫存資訊
+  url: "/copy-based/concept_collecting_and_assessing_inventory_information.html"
+  entries:
+  - title: 儲存設備、主機和FC交換器版本要求、以利進行轉換評估
+    url: "/copy-based/concept_storage_host_fc_switches_version_requirements.html"
+  - title: 準備7-Mode系統和主機以進行轉換評估
+    url: "/copy-based/task_preparing_7_mode_systems_for_inventory_collection.html"
+  - title: 評估控制器和主機
+    url: "/copy-based/task_assessing_controllers_and_hosts.html"
+    entries:
+    - title: 將系統新增至7-Mode Transition Tool、以產生評估報告
+      url: "/copy-based/task_generating_an_assessment_report_by_adding_systems_to_7mtt.html"
+    - title: 匯入庫存報告XML以產生評估報告
+      url: "/copy-based/task_generating_an_assessment_report_by_importing_inventory_report_xml.html"
+  - title: 產生FC區域計畫
+    url: "/copy-based/task_generating_fc_zone_plan.html"
+    entries:
+    - title: 可產生FC區域計畫的支援組態
+      url: "/copy-based/concept_supported_configurations_for_generating_an_fc_zone_plan.html"
+  - title: 如何使用評估執行摘要進行轉換評估
+    url: "/copy-based/concept_how_you_can_use_assessment_executive_summary_for_transition_assessment.html"
+- title: 複本型轉換工作流程
+  url: "/copy-based/concept_copy_based_transition_workflow.html"
+- title: 資料與組態移轉程序
+  url: "/copy-based/concept_data_and_configuration_migration_process.html"
+  entries:
+  - title: 如何轉換獨立Volume
+    url: "/copy-based/concept_how_you_transition_a_stand_alone_volume.html"
+  - title: 如何在SnapMirror關係中轉換磁碟區
+    url: "/copy-based/concept_how_you_transition_volumes_in_a_snapmirror_relationship.html"
+- title: 準備複製型轉換
+  url: "/copy-based/concept_preparing_for_copy_based_transition.html"
+  entries:
+  - title: 複本型轉換的需求
+    url: "/copy-based/concept_requirements_for_copy_based_transition.html"
+  - title: 與7-Mode Transition Tool通訊的連接埠需求
+    url: "/copy-based/concept_port_requirements_for_communicating_with_7mtt.html"
+  - title: 移轉限制
+    url: "/copy-based/concept_restrictions_for_transition.html"
+  - title: 準備7-Mode系統進行轉換
+    url: "/copy-based/task_preparing_7_mode_system_for_transition.html"
+  - title: 準備網路進行轉換
+    url: "/copy-based/task_preparing_network_for_transition.html"
+    entries:
+    - title: 轉換7-Mode IP位址的考量
+      url: "/copy-based/concept_considerations_for_transitioning_7_mode_ip_addresses.html"
+  - title: 準備叢集以進行移轉
+    url: "/copy-based/task_preparing_cluster_for_transition.html"
+  - title: 準備7-Mode集合體和磁碟區以進行轉換
+    url: "/copy-based/task_preparing_7_mode_volumes_and_aggregates_for_transition.html"
+    entries:
+    - title: 7-Mode磁碟區的轉換限制
+      url: "/copy-based/concept_restrictions_for_copy_free_transition.html"
+    - title: 準備移轉至ONTAP 支援的版本支援的版本
+      url: "/copy-based/task_transitioning_to_clustered_ontap_8_3_from_a_7_mode_version_with_32_bit_data.html"
+      entries:
+      - title: 將Aggregate擴充為64位元格式
+        url: "/copy-based/task_expanding_an_aggregate_to_64_bit_format_without_adding_storage.html"
+      - title: 尋找及移除32位元磁碟區和Snapshot複本
+        url: "/copy-based/task_finding_and_removing_32_bit_data_from_source_volumes_and_snapshot_copies.html"
+    - title: 重複資料刪除與壓縮的考量
+      url: "/copy-based/concept_considerations_for_deduplication_and_compression.html"
+    - title: FlexClone Volume的考量
+      url: "/copy-based/concept_considerations_for_flexclone_volumes.html"
+    - title: 配額考量
+      url: "/copy-based/concept_considerations_for_quotas.html"
+  - title: 支援轉換SnapLock 功能
+    url: "/copy-based/concept_support_for_transitioning_snaplock_volumes.html"
+    entries:
+    - title: 轉換SnapLock 功能時的考量事項
+      url: "/copy-based/concept_considerations_for_transitioning_of_snaplock_enterprise_volumes.html"
+    - title: 轉換SnapLock 不符合法規的考量
+      url: "/copy-based/concept_considerations_for_transitioning_of_snaplock_compliance_volumes.html"
+    - title: 轉換SnapLock 《E29稽核》磁碟區的考量事項
+      url: "/copy-based/concept_considerations_for_transitioning_of_snaplock_audit_volumes.html"
+    - title: 7-Mode SnapLock 的轉換考量
+      url: "/copy-based/concept_considerations_for_transitioning_of_7_mode_snaplock_options.html"
+    - title: 使用7-Mode SnapLock 的監管鏈驗證功能時的考量事項
+      url: "/copy-based/concept_considerations_for_chain_of_custody_verification_for_7_mode_snaplock_volumes.html"
+  - title: 準備轉換名稱服務
+    url: "/copy-based/concept_preparing_for_name_services_transition.html"
+    entries:
+    - title: 名稱服務轉換：支援和不支援的組態、以及必要的手動步驟
+      url: "/copy-based/concept_supported_and_unsupported_name_services_configurations.html"
+    - title: 轉換DNS、NIS和LDAP組態時的考量事項
+      url: "/copy-based/concept_considerations_for_transitioning_dns_and_ldap_configurations.html"
+    - title: 轉換網路群組和UNIX使用者和群組時的考量
+      url: "/copy-based/concept_considerations_for_transitioning_unix_users_and_groups.html"
+  - title: 準備進行NFS轉換
+    url: "/copy-based/concept_preparing_for_nfs_transition.html"
+    entries:
+    - title: 轉換NFS組態的先決條件
+      url: "/copy-based/concept_prerequisites_to_transition_nfs_configurations.html"
+    - title: NFS移轉：支援和不支援的組態、以及必要的手動步驟
+      url: "/copy-based/concept_nfs_configurations_supported_unsupported_or_requiring_manual_steps_for_transition.html"
+    - title: NFS匯出的轉換方式
+      url: "/copy-based/concept_how_nfs_exports_are_transitioned.html"
+  - title: 準備進行SMB/CIFS移轉
+    url: "/copy-based/concept_preparing_for_smb_cifs_transition.html"
+    entries:
+    - title: 轉換CIFS組態的先決條件
+      url: "/copy-based/concept_prerequisites_for_transitioning_cifs_configurations.html"
+    - title: 支援且不受支援的CIFS組態、可移轉ONTAP 至支援的不支援
+      url: "/copy-based/concept_cifs_configurations_supported_unsupported_or_requiring_manual_steps_for_transition.html"
+    - title: 移轉CIFS本機使用者和群組的考量
+      url: "/copy-based/concept_considerations_for_local_users_and_groups_transition.html"
+  - title: 準備MetroCluster 進行組態轉換
+    url: "/copy-based/concept_preparing_for_metrocluster_configuration_transition.html"
+  - title: 準備進行SAN移轉
+    url: "/copy-based/task_preparing_for_san_transition.html"
+    entries:
+    - title: 準備SAN主機進行移轉
+      url: "/copy-based/task_preparing_san_hosts_for_transition.html"
+    - title: 使用FC區域計畫設定區域
+      url: "/copy-based/task_configuring_zones_by_using_fc_zone_plan.html"
+    - title: 在轉換前建立SAN生命期
+      url: "/copy-based/task_creating_san_lifs_before_transition.html"
+    - title: SAN移轉：支援和不支援的組態、以及必要的手動步驟
+      url: "/copy-based/concept_san_transition_supported_and_unsupported_configurations_and_required_manual_steps.html"
+    - title: 轉換SAN磁碟區時的空間考量
+      url: "/copy-based/concept_considerations_for_space_when_transitioning_san_volumes.html"
+  - title: 準備資料保護功能以進行移轉
+    url: "/copy-based/concept_preparing_data_protection_features_for_transition.html"
+    entries:
+    - title: 資料保護移轉：支援及不支援的組態
+      url: "/copy-based/concept_supported_and_unsupported_data_protection_relationships.html"
+    - title: 使用SnapMirror進行移轉時的考量
+      url: "/copy-based/concept_considerations_for_using_snapmirror_for_transition.html"
+  - title: 決定何時執行轉換的準則
+    url: "/copy-based/concept_guidelines_for_deciding_when_to_cutover.html"
+  - title: 接管和恢復對轉換的影響
+    url: "/copy-based/concept_impact_of_takeover_and_giveback_on_transition.html"
+- title: 從7-Mode磁碟區移轉資料與組態
+  url: "/copy-based/task_transitioning_volumes_using_7mtt.html"
+  entries:
+  - title: 轉換準備檢查清單
+    url: "/copy-based/reference_transition_preparation_checklist.html"
+  - title: 新增控制器和叢集
+    url: "/copy-based/task_adding_controllers_and_clusters.html"
+  - title: 建立轉換專案
+    url: "/copy-based/task_creating_a_transition_project.html"
+  - title: 自訂7-Mode組態的轉換
+    url: "/copy-based/task_customizing_configurations_for_transition.html"
+  - title: 執行預先檢查
+    url: "/copy-based/task_running_prechecks.html"
+    entries:
+    - title: 預先檢查訊息的嚴重性等級
+      url: "/copy-based/concept_severity_levels_for_precheck_messages.html"
+  - title: 開始基礎資料複本
+    url: "/copy-based/task_starting_baseline_data_copy.html"
+  - title: 套用7-Mode組態
+    url: "/copy-based/task_applying_7_mode_configurations.html"
+  - title: 使用FC區域計畫設定區域
+    url: "/copy-based/task_configuring_zones_by_using_fc_zone_plan.html"
+  - title: 執行隨需SnapMirror更新
+    url: "/copy-based/task_performing_on_demand_snapmirror_update_operation.html"
+  - title: 完成轉換專案
+    url: "/copy-based/task_completing_a_transition_project.html"
+  - title: 完成監管鏈驗證
+    url: "/copy-based/task_completing_chain_of_custody_verification.html"
+- title: 使用7-Mode Transition Tool CLI轉換磁碟區
+  url: "/copy-based/concept_transitioning_volumes_using_7mtt_cli.html"
+  entries:
+  - title: 在專案中選取磁碟區的案例
+    url: "/copy-based/concept_scenarios_for_selecting_volumes_in_a_session.html"
+  - title: 使用7-Mode Transition Tool CLI轉換磁碟區
+    url: "/copy-based/concept_transitioning_volumes_using_7mtt_cli.html"
+    entries:
+    - title: 建立轉換專案
+      url: "/copy-based/task_creating_a_transition_session.html"
+    - title: 使用CLI自訂7-Mode組態的轉換
+      url: "/copy-based/task_transitioning_volumes_by_excluding_a_subset_of_configurations.html"
+      entries:
+      - title: 可從轉換中排除的組態
+        url: "/copy-based/reference_configurations_that_can_be_excluded.html"
+      - title: 整合NFS匯出規則和Snapshot移轉排程的範例
+        url: "/copy-based/reference_example_consolidating_nfs_export_rules_for_transition.html"
+    - title: 執行預先檢查
+      url: "/copy-based/task_running_precheck_on_a_session.html"
+    - title: 開始執行移轉專案的資料複本
+      url: "/copy-based/task_starting_data_copy_for_a_transition_session.html"
+    - title: 將組態套用ONTAP 至功能區
+      url: "/copy-based/task_applying_configurations_to_ontap_volumes.html"
+    - title: 完成轉換
+      url: "/copy-based/task_completing_transition_process.html"
+  - title: 管理轉換的命令
+    url: "/copy-based/reference_commands_for_managing_transition_sessions.html"
+- title: 執行手動轉換後工作
+  url: "/copy-based/task_performing_post_transition_tasks.html"
+  entries:
+  - title: 使用FC區域計畫設定區域
+    url: "/copy-based/task_configuring_zones_by_using_fc_zone_planner.html"
+  - title: 從發生故障的LUN轉換中恢復
+    url: "/copy-based/task_recovering_from_a_failed_lun_transition.html"
+  - title: 檢視轉換的SAN組態
+    url: "/copy-based/task_viewing_transitioned_san_configurations.html"
+  - title: 7模式Snapshot複本的限制、這些複本是由SnapDrive VMware及SnapManager VMware在轉換後所管理的LUN
+    url: "/copy-based/concept_limitations_with_snapshot_copies_and_luns_managed_by_snap_products.html"
+  - title: 在轉換MetroCluster 完一套功能表後、在遠端站台上設定cron工作排程
+    url: "/copy-based/task_post_transition_task_for_a_metrocluster_configuration.html"
+  - title: 從轉換的磁碟區刪除7-Mode Volume Snapshot複本
+    url: "/copy-based/task_deleting_7_mode_volume_snapshot_copies_from_transitioned_volumes.html"
+  - title: 整合轉換磁碟區的cron排程
+    url: "/copy-based/task_consolidating_snapshot_policies_and_cron_schedules_on_transitioned_volumes.html"
+- title: 管理轉換專案
+  url: "/copy-based/concept_managing_a_transition_project.html"
+  entries:
+  - title: 編輯專案
+    url: "/copy-based/task_editing_a_subproject.html"
+  - title: 管理SnapMirror傳輸與排程
+    url: "/copy-based/concept_managing_snapmirror_transfers_and_schedule.html"
+    entries:
+    - title: 建立SnapMirror傳輸的資料複製排程
+      url: "/copy-based/task_creating_schedule_for_snapmirror_transfers.html"
+    - title: 建立資料複本排程的考量事項
+      url: "/copy-based/concept_guidelines_for_creating_a_data_copy_schedule.html"
+    - title: 編輯或刪除SnapMirror傳輸的資料複本排程
+      url: "/copy-based/task_editing_or_deleting_snapmirror_transfer_schedule.html"
+  - title: 管理邏輯介面
+    url: "/copy-based/task_managing_logical_interfaces.html"
+  - title: 從專案移除磁碟區
+    url: "/copy-based/task_removing_volumes_from_a_project.html"
+  - title: 暫停及恢復專案
+    url: "/copy-based/task_pausing_and_resuming_a_subproject.html"
+  - title: 正在中止專案
+    url: "/copy-based/task_aborting_a_subproject.html"
+  - title: 刪除專案
+    url: "/copy-based/task_deleting_a_project.html"
+- title: 疑難排解問題
+  url: "/copy-based/concept_troubleshooting_web_interface_issues.html"
+  entries:
+  - title: 正在下載轉換記錄檔
+    url: "/copy-based/task_collecting_tool_logs.html"
+  - title: 7-Mode Transition Tool的記錄檔
+    url: "/copy-based/concept_log_files_for_7mtt.html"
+  - title: 如果發生可接受的錯誤、請繼續進行轉換
+    url: "/copy-based/task_acknowledging_errors_to_continue_with_transition.html"
+    entries:
+    - title: 轉換期間發生可接受的錯誤
+      url: "/copy-based/reference_ignorable_errors_during_transition.html"
+  - title: 轉換MetroCluster 因切換或切換而失敗的部分組態
+    url: "/copy-based/task_transitioning_a_metrocluster_configuration_if_a_switchover_or_switchback_event_occurs.html"
+  - title: 無法從Volume選擇窗格中選取次要Volume
+    url: "/copy-based/reference_cannot_select_a_secondary_volume_from_volume_selection_pane.html"
+  - title: 如果工具無法擷取磁碟區資訊、則無法選取要轉換的磁碟區
+    url: "/copy-based/reference_cannot_select_volume_for_transition_if_tool_fails_to_retrieve_volume_information.html"
+  - title: 如果選取的SVM沒有Aggregate、則無法從Volume對應窗格繼續
+    url: "/copy-based/reference_cannot_proceed_from_volume_mapping_pane_if_selected_svm_has_no_aggregate.html"
+  - title: 從Data ONTAP e.7.3 x轉換後、壓縮功能無法啟用
+    url: "/copy-based/reference_compression_fails_to_start_after_transition.html"

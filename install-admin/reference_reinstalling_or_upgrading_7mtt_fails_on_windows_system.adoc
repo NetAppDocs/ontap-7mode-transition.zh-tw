@@ -1,0 +1,36 @@
+---
+permalink: install-admin/reference_reinstalling_or_upgrading_7mtt_fails_on_windows_system.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, install, reinstall, upgrade, transition, tool, fail, window 
+summary: 本節提供在Windows系統上重新安裝或升級7-Mode Transition Tool時發生錯誤的相關資訊。它也提供錯誤的原因及解決錯誤的步驟。 
+---
+= 在Windows系統上重新安裝或升級7-Mode Transition Tool失敗
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+本節提供在Windows系統上重新安裝或升級7-Mode Transition Tool時發生錯誤的相關資訊。它也提供錯誤的原因及解決錯誤的步驟。
+
+* *訊息*
++
+「NetApp 7-Mode Transition Tool設定或解除安裝的另一個執行個體正在執行中。一次只能執行一個執行個體。
+
+* *原因*
++
+7-Mode Transition Tool安裝資料夾中的部分檔案已開啟。
+
+* *修正行動*
++
+.. 關閉所有7-Mode Transition Tool安裝檔案。
+.. 開啟7-Mode Transition Tool的登錄項目：
++
+... 檢查* installation_STATUS*欄位。
+... 如果值為「* installer_is _foring_*」、請將其變更為「* install*」。
+
+
+.. 重新安裝或升級工具。
+
+
+

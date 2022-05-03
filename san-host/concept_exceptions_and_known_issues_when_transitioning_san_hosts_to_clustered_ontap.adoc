@@ -1,0 +1,24 @@
+---
+permalink: san-host/concept_exceptions_and_known_issues_when_transitioning_san_hosts_to_clustered_ontap.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, exceptions, issues, san, host 
+summary: 當將SAN主機從Data ONTAP 以7-Mode運作的VMware移轉至ONTAP 更新版本的VMware時、您應該瞭解某些例外情況和已知問題。 
+---
+= 將SAN主機移轉至ONTAP 不支援功能時的例外狀況和已知問題
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+當將SAN主機從Data ONTAP 以7-Mode運作的VMware移轉至ONTAP 更新版本的VMware時、您應該瞭解某些例外情況和已知問題。
+
+* 若要轉換只有VHD或VHDX檔案類型的超虛擬機器（VM）、您可以使用儲存即時移轉、而非7-Mode轉換工具（7MTT）。
++
+如需Hyper-V儲存設備即時移轉的詳細資訊、請參閱Microsoft文件。
+
+* 如果您在7-Mode控制器的兩個節點上使用相同的igroup名稱、則轉換工具可能無法解決igroup衝突。
++
+錯誤ID https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=769715["769715"]。
+
+

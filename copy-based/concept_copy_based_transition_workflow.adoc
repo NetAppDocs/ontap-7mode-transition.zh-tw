@@ -1,0 +1,16 @@
+---
+permalink: copy-based/concept_copy_based_transition_workflow.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, workflow 
+summary: 複製型轉換工作流程包括準備移轉、移轉資料與組態、以及執行轉換後的組態。 
+---
+= 複本型轉換工作流程
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+複製型轉換工作流程包括準備移轉、移轉資料與組態、以及執行轉換後的組態。
+
+image::../media/cbt_workflow.gif[CBT工作流程]

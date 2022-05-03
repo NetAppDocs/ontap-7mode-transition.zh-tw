@@ -1,0 +1,43 @@
+---
+permalink: snapmirror/concept_features_and_volumes_not_supported_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, transition, feature, volumes, supported, snapmirror 
+summary: 您無法移轉某些7-Mode Volume、例如傳統Volume和某些7-Mode功能、例如同步SnapMirror關係、因為叢集Data ONTAP 式的SnapMirror可能無法使用某些功能。 
+---
+= 不支援移轉的功能和磁碟區
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您無法移轉某些7-Mode Volume、例如傳統Volume和某些7-Mode功能、例如同步SnapMirror關係、因為叢集Data ONTAP 式的SnapMirror可能無法使用某些功能。
+
+您只能將7-Mode磁碟區轉換為SVM。
+
+您無法轉換下列7-Mode磁碟區或組態：
+
+* 受限或離線磁碟區
+* 傳統磁碟區
+* 具有NFS對CIFS字元對應的磁碟區（charmap）
+* 具有儲存層級存取保護組態的磁碟區
+* 包含qtree的磁碟區、具有儲存層級存取保護組態
++
+如果目標叢集執行Data ONTAP 的是不含更新版本的版本、您可以使用此組態來轉換包含qtree的磁碟區。
+
+* 已啟用「no_I2P」選項的磁碟區。
+* 資料量FlexCache
+* 如果目的地叢集執行Data ONTAP 的是32位元Volume和64位元Volume、則具有32位元Snapshot複本（如果目的地叢集執行的是32位元Snapshot 8.3或更新版本）
+* FlexClone Volume
++
+FlexClone Volume可轉換為FlexVol 支援功能的實體磁碟區、但複製階層架構和儲存效率將會喪失。
+
+* vFiler單元的根Volume、其根磁碟區是以屬於預設vFiler單元的qtree為基礎
+* 同步SnapMirror組態
+* qtree SnapMirror關係
+* IPv6組態
+* 相依關係SnapVault
+* SnapMirror的網路壓縮
+* 將目的地磁碟區還原至特定的Snapshot複本（SnapMirror「中斷s-s」命令）
+* Volume Move作業
+

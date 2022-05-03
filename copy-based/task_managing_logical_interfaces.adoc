@@ -1,0 +1,77 @@
+---
+permalink: copy-based/task_managing_logical_interfaces.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, manage, logical, interfaces 
+summary: 您可以新增、編輯或移除專案中的7-Mode IP位址。 
+---
+= 管理邏輯介面
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以新增、編輯或移除專案中的7-Mode IP位址。
+
+在套用組態（預先轉換）階段的儲存虛擬機器（SVM）上設定LIF：
+
+* 現有的7-Mode IP位址是以管理「down」狀態建立。
+* 新的IP位址會以管理「up」狀態建立。
+
+
+
+IMPORTANT: 7-Mode Transition Tool不會移轉FC和iSCSI生命週期。
+
+.步驟
+. 執行下列其中一項動作：
++
+|===
+| 如果您想要... | 然後... 
+
+
+ a| 
+編輯現有的LIF
+ a| 
+.. 按一下 image:../media/edit_schedule.gif[""] 。
+.. 在「修改LIF」對話方塊中、進行必要的變更、然後按一下「*儲存*」。
+
+
+
+
+ a| 
+移除現有的LIF
+ a| 
+.. 按一下 image:../media/delete_schedule.gif[""] 在表格中。
++
+
+NOTE: 您只能在專案處於準備、基準資料複製、暫停、預先轉換或更新狀態時、才移除LIF。但是、如果轉換作業失敗、您就無法移除LIF。
+
+.. 按一下*選取7-Mode LIF*。
+.. 選取要轉換的7-Mode IP位址。
+.. 輸入目標節點和目標連接埠詳細資料。
+.. 按一下「 * 儲存 * 」。
+
+
+
+
+ a| 
+新增7-Mode IP位址
+ a| 
+** 按一下*選取7-Mode LIF*。
+** 選取要轉換的7-Mode IP位址。
+** 輸入目標節點和目標連接埠詳細資料。
+** 按一下「 * 儲存 * 」。
+
+
+
+
+ a| 
+新增LIF
+ a| 
+.. 按一下表格下方的「*新增LIF*」。
+.. 輸入所需的值。
+.. 按一下「 * 儲存 * 」。
+
+
+|===
+

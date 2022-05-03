@@ -1,0 +1,40 @@
+---
+permalink: copy-based/task_performing_post_transition_tasks.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, perform, manual, post, tasks 
+summary: 儲存設備轉換成功完成並完成轉換之後、您必須先執行一些轉換後的工作、以設定未轉換的功能、然後才能讓用戶端存取ONTAP 完更新的功能。 
+---
+= 執行手動轉換後工作
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+儲存設備轉換成功完成並完成轉換之後、您必須先執行一些轉換後的工作、以設定未轉換的功能、然後才能讓用戶端存取ONTAP 完更新的功能。
+
+.步驟
+. 手冊：執行必要步驟來設定未轉換的功能、如預先檢查報告所列。
++
+例如、您必須在轉換後手動設定IPv6和FPolicy。
+
+. 刪除或整合轉換的組態。
++
+7-Mode Transition Tool會為從7-Mode轉換的所有組態建立新執行個體。因此、某些組態可能有多個執行個體（例如cron排程）、可能需要手動合併或刪除。
+
+. SAN移轉：手動重新設定主機。
++
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-7mtt-sanspl/home.html["SAN主機移轉與補救"]
+
+. 驗證下列項目、確保SVM已準備好提供資料給用戶端：
++
+** SVM上的磁碟區已上線並可讀寫。
+** SVM上的IP位址可從名稱伺服器啟動並存取。
+
+
+. 將用戶端存取重新導向ONTAP 至功能區。
+
+
+*相關資訊*
+
+http://docs.netapp.com/ontap-9/index.jsp["NetApp文件：ONTAP VMware 9"]

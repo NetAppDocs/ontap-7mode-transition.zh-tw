@@ -1,0 +1,32 @@
+---
+permalink: install-admin/reference_installation_or_uninstallation_of_7mtt_is_blocked.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, install, uninstall, transition, tool, blocked 
+summary: 當您使用7-Mode Transition Tool安裝程式或解除安裝程式來執行任何作業（例如安裝、修復、重新安裝、升級、解除安裝）時、 顯示下列錯誤訊息：另一個執行個體正在執行NetApp 7-Mode Transition Tool設定或解除安裝。一次只能執行一個執行個體。 
+---
+= 已封鎖7-Mode Transition Tool的安裝或解除安裝
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+當您使用7-Mode Transition Tool安裝程式或解除安裝程式來執行任何作業（例如安裝、修復、重新安裝、升級、解除安裝）時、 顯示下列錯誤訊息：「另一個執行個體正在執行NetApp 7-Mode Transition Tool設定或解除安裝。一次只能執行一個執行個體。
+
+
+
+== 因應措施
+
+開始之前、請確定7-Mode Transition Tool沒有開啟的執行個體或對話方塊。否則、您可能必須再次執行這些步驟。
+
+. 按一下* Start*開啟*登錄*。
+. 在*搜尋程式與檔案*中、輸入「* regedit*」。
+. 當「登錄編輯程式」開啟時、找到Hkey_local_machine登錄Hive。
+. 按一下資料夾圖示左側的「展開」圖示、展開「機箱」Hive。
+. 繼續擴充登錄機碼和子機碼、直到找到「Hkey_local_machine\ software \NetApp \7-Mode Transition Tool」為止。
+. 按一下「* 7-Mode Transition Tool*」。
+. 在installation_Status上按一下滑鼠右鍵、然後選取*修改*。
+. 將值從installer_running變更為Installed、然後按一下* OK*。
+
+
+現在您應該可以使用7-Mode Transition Tool安裝程式或解除安裝程式來執行任何作業。

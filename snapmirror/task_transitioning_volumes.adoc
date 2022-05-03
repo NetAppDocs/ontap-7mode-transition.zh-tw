@@ -1,0 +1,24 @@
+---
+permalink: snapmirror/task_transitioning_volumes.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, snapmirror, transition, volume, data, protection, relationship, stand, alone 
+summary: 您可以使用SnapMirror技術、移轉與資料保護關係（位於Volume SnapMirror關係中）有關的獨立磁碟區或磁碟區。 
+---
+= 移轉磁碟區
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用SnapMirror技術、移轉與資料保護關係（在Volume SnapMirror關係中）有關的獨立磁碟區或磁碟區。
+
+如果由於n作業（接管或集合重新配置）而中止進行中的排程更新、則在n作業完成後、更新將自動恢復。
+
+如果您轉換獨立磁碟區或與LUN的Volume SnapMirror關係、則必須建立igroup並對應LUN。接著、您必須在主機上執行必要的轉換後工作、才能設定對轉換的叢集Data ONTAP 式功能區的存取權限。
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-7mtt-sanspl/home.html["SAN主機移轉與補救"]
+
+*相關資訊*
+
+xref:task_transitioning_7_mode_volumes_using_snapmirror.adoc[使用SnapMirror移轉7-Mode磁碟區]

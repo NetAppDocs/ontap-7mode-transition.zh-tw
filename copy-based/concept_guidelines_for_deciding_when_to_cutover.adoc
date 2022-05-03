@@ -1,0 +1,24 @@
+---
+permalink: copy-based/concept_guidelines_for_deciding_when_to_cutover.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, decide, perform, cutover 
+summary: 因為轉換轉換轉換會對用戶端造成破壞、所以您必須規劃活動、以將停機時間降至最低。您必須在低活動期間排程轉換。您應該更新ONTAP 完整套資料、等待傳輸完成、再中斷用戶端連線、並啟動儲存設備轉換、以縮短停機時間。 
+---
+= 決定何時執行轉換的準則
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+因為轉換轉換轉換會對用戶端造成破壞、所以您必須規劃活動、以將停機時間降至最低。您必須在低活動期間排程轉換。您應該更新ONTAP 完整套資料、等待傳輸完成、再中斷用戶端連線、並啟動儲存設備轉換、以縮短停機時間。
+
+您必須持續監控每個Volume的SnapMirror狀態。如果磁碟區上幾次更新的最後傳輸時間在可接受的限制內、則磁碟區中的大部分資料變更都應該已經複製、轉換期間的最終資料更新時間應該在可接受的限制內。
+
+您可以根據移轉的磁碟區數量、得出大約的停機時間。
+
+若要將轉換時間減至最低、7-Mode Transition Tool與儲存系統之間的網路延遲應為最低。若要轉換Volume SnapMirror關係、工具與主要系統之間的網路延遲應該最短。
+
+*相關資訊*
+
+xref:task_performing_on_demand_snapmirror_update_operation.adoc[執行隨需SnapMirror更新]

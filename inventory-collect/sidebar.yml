@@ -1,0 +1,28 @@
+---
+section: inventory-collect
+title: 主機與儲存資訊收集指南
+url: "/inventory-collect/index.html"
+entries:
+- title: 收集儲存設備和主機庫存資訊
+  url: "/inventory-collect/concept_collecting_host_and_storage_inventory_information_for_transition_assessment.html"
+  entries:
+  - title: 支援7-Mode Transition Tool的支援目標版本ONTAP
+    url: "/inventory-collect/concept_ontap_target_releases_supported_by_7mtt.html"
+  - title: 執行Inventory Collect Tool的系統需求
+    url: "/inventory-collect/concept_system_requirements_for_running_ict.html"
+  - title: 儲存設備、主機和FC交換器的版本要求、以利進行庫存收集
+    url: "/inventory-collect/concept_storage_and_host_version_requirements.html"
+  - title: 準備7-Mode系統和主機進行庫存收集
+    url: "/inventory-collect/task_preparing_7_mode_systems_for_inventory_collection.html"
+  - title: 可產生FC區域計畫的支援組態
+    url: "/inventory-collect/concept_supported_configurations_for_generating_an_fc_zone_plan.html"
+  - title: 語法和選項
+    url: "/inventory-collect/reference_syntax_and_options.html"
+  - title: 收集庫存並產生庫存報告
+    url: "/inventory-collect/task_collecting_inventory_and_generating_inventory_report.html"
+  - title: 產生FC區域計畫
+    url: "/inventory-collect/task_generating_fc_zone_plan.html"
+  - title: 收集與評估命令
+    url: "/inventory-collect/reference_collection_and_assessment_commands.html"
+  - title: 何處可以找到轉換評估的相關資訊
+    url: "/inventory-collect/concept_where_to_find_information_about_transition_assessment.html"

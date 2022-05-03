@@ -1,0 +1,34 @@
+---
+permalink: snapmirror/task_resuming_a_failed_snapmirror_transfer_transition.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, resume, failed, snapmirror, baseline, transfer, transition 
+summary: 在轉換期間、SnapMirror基準傳輸可能會因為許多原因而失敗、例如網路連線中斷、傳輸中止或控制器容錯移轉。在矯正故障原因之後、如果有重新啟動檢查點可用、您可以繼續SnapMirror傳輸。 
+---
+= 恢復失敗的SnapMirror基礎傳輸
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在轉換期間、SnapMirror基準傳輸可能會因為許多原因而失敗、例如網路連線中斷、傳輸中止或控制器容錯移轉。在矯正故障原因之後、如果有重新啟動檢查點可用、您可以繼續SnapMirror傳輸。
+
+如果基準傳輸的重新啟動檢查點無法使用、您必須刪除並重新建立磁碟區、重新建立SnapMirror關係、然後重新開始轉換。
+
+.步驟
+. 從目的地叢集、使用「napmirror show」命令搭配「-snapshot -checkpoint」參數、即可檢視基準傳輸和重新啟動檢查點的狀態。
++
+[listing]
+----
+cluster2::> snapmirror show -destination-path dest_vserver:vol3 -fields snapshot-checkpoint
+source-path          destination-path snapshot-checkpoint
+-------------------- ---------------- -------------------
+src_system:vol3    dest_vserver:vol3 50MB
+----
+. 如果SnapMirror檢查點存在、請使用「napmirror initialize」命令來恢復基礎傳輸。
++
+[listing]
+----
+cluster2::> snapmirror initialize -destination-path dest_vserver:vol3
+----
+

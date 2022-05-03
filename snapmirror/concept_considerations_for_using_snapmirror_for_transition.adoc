@@ -1,0 +1,34 @@
+---
+permalink: snapmirror/concept_considerations_for_using_snapmirror_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, 7, transition, mode, snapmirror, operations, snapvault, considerations 
+summary: 在SnapVault 7-Mode系統中同時執行SnapMirror或SnapMirror作業時、您必須注意某些考量事項、例如並行SnapMirror傳輸的最大數量、資料複製排程、以及使用多個路徑進行轉換。 
+---
+= 使用SnapMirror進行移轉時的考量
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在SnapVault 7-Mode系統中同時執行SnapMirror或SnapMirror作業時、您必須注意某些考量事項、例如並行SnapMirror傳輸的最大數量、資料複製排程、以及使用多個路徑進行轉換。
+
+
+
+== 並行SnapMirror傳輸的最大數量
+
+在轉換期間、7-Mode和ONTAP VMware系統所支援的最大並行SnapMirror傳輸數取決於特定儲存系統機型所允許的Volume SnapMirror複寫作業數。
+
+如需系統機型並行Volume SnapMirror傳輸的最大數量資訊、請參閱 link:https://library.netapp.com/ecm/ecm_get_file/ECMP1635994["《7-Mode資料保護線上備份與恢復指南》Data ONTAP"]。
+
+
+
+== 資料複製排程
+
+移轉作業的資料複本排程不應與SnapVault 目前在7-Mode系統上執行的SnapMirror或SnapMirror作業排程重疊。
+
+
+
+== 使用多個路徑進行轉換
+
+您可以使用資料複製IP位址和多重路徑IP位址、指定兩個轉換路徑。不過、這兩個路徑都只能用於負載平衡、而不能用於容錯移轉。

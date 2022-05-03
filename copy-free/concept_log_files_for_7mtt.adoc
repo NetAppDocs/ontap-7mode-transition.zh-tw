@@ -1,0 +1,92 @@
+---
+permalink: copy-free/concept_log_files_for_7mtt.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, log, files, tool 
+summary: 7-Mode Transition Tool會建立記錄檔、提供系統上發生之轉換作業的處理詳細資料。記錄檔位於安裝7-Mode Transition Tool之路徑的記錄目錄中。 
+---
+= 7-Mode Transition Tool的記錄檔
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+7-Mode Transition Tool會建立記錄檔、提供系統上發生之轉換作業的處理詳細資料。記錄檔位於安裝7-Mode Transition Tool之路徑的記錄目錄中。
+
+您也可以使用7-Mode系統和叢集的SnapMirror記錄相關EMS訊息來疑難排解問題。
+
+下表列出與特定轉換專案相關的記錄檔：
+
+|===
+| 記錄檔路徑 | 包含有關...的資訊 
+
+
+ a| 
+專案名稱/轉換記錄
+ a| 
+偵錯專案專屬的訊息
+
+
+
+ a| 
+「專案名稱」/「ZAPI-傳出記錄」
+ a| 
+所有由7-Mode Transition Tool針對特定專案執行的VMware API輸出Data ONTAP
+
+|===
+下表列出與任何特定專案無關的記錄檔：
+
+|===
+| 記錄檔路徑 | 包含有關...的資訊 
+
+
+ a| 
+「Transition（轉換）-GUI（日誌）」
+ a| 
+使用Web介面執行的所有動作項目
+
+
+
+ a| 
+「預設/稽核記錄」
+ a| 
+* 每次執行7-Mode Transition Tool時、工具所使用的所有參數、例如HTTP或HTTPS連接埠及記錄目錄路徑
+* 與輸出一起執行的所有轉換命令
+
+
+
+
+ a| 
+「預設/預設/轉換記錄」
+ a| 
+偵錯任何非特定專案的訊息
+
+
+
+ a| 
+「預設/串流管理/串流管理.log」
+ a| 
+偵錯排程器在管理排程時記錄的訊息、這些訊息不屬於任何專案
+
+
+
+ a| 
+「預設/預設/ ZAPI-輸出記錄」
+ a| 
+所有由7-Mode Transition Tool執行且不屬於任何專案的VMware API輸出Data ONTAP
+
+
+
+ a| 
+「預設/串流管理/ZAPI-傳出記錄」
+ a| 
+所有Data ONTAP 由7-Mode Transition Tool排程器執行、同時管理排程且不屬於任何專案的資訊、都能輸出所有的不完整API
+
+
+
+ a| 
+"erver-console.log"
+ a| 
+使用7-Mode Transition Tool伺服器完成的所有封包交換記錄項目。此檔案有助於疑難排解與伺服器當機相關的問題。
+
+|===

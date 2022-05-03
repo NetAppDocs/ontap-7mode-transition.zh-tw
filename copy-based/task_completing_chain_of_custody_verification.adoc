@@ -1,0 +1,35 @@
+---
+permalink: copy-based/task_completing_chain_of_custody_verification.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, complete, chain, custody, verification 
+summary: 如果SnapLock 選擇一或多個驗證監管鏈的資料、則您必須執行監管鏈作業、以產生監管鏈報告。 
+---
+= 完成監管鏈驗證
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果SnapLock 選擇一或多個驗證監管鏈的資料、則您必須執行監管鏈作業、以產生監管鏈報告。
+
+您必須已完成專案的移轉作業。
+
+含有檔案名稱且僅含Ascii字元的磁碟區支援鏈保管作業。SnapLock
+
+. 在移轉儀表板中、按一下*開始監管鏈*。
++
+如果SnapLock 您想要在監管鏈驗證後保持7-Mode的更新狀態、您應該清除*在SnapLock 監管鏈驗證作業完成後、將7-Mode的驗證資料鏈離線*核取方塊。
+
+. 按一下 * 繼續 * 。
++
+開始執行監管鏈驗證作業。此作業可能需要大量時間、視SnapLock 資料來源上的檔案數量而定。您可以按一下*在背景中執行*來在背景中執行作業。
+
++
+您可以按一SnapLock 下「移轉儀表板」視窗中的「鏈託管」標籤、來追蹤保管鏈驗證作業的進度。此索引標籤會顯示監管鏈作業的每個Volume進度。
+
+. 監管鏈作業完成後、按SnapLock 一下「鏈託管」標籤中的「下載報告」*、即可下載監管鏈驗證報告。
++
+監管鏈驗證報告詳細說明SnapLock 了驗證過程是否成功。此報告會顯示SnapLock 選取用於監管鏈作業的7-Mode餐廳每個磁碟區中的檔案總數和非WORM檔案數目。您也可以驗證指紋相符且不相符的檔案數量。報告也會顯示保存鏈驗證失敗的WORM檔案數量、以及故障原因。
+
+

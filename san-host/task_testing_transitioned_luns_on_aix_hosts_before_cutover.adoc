@@ -1,0 +1,53 @@
+---
+permalink: san-host/task_testing_transitioned_luns_on_aix_hosts_before_cutover.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, lun, aix, cutover, phase, copy, based, test 
+summary: 如果您使用7-Mode Transition Tool（7MTT\）2.2或更新版本、Data ONTAP 以及更新版本的版本號、以轉換AIX主機LUN、您可以測試轉換的叢集Data ONTAP 式LUN、以確認您可以在轉換階段之前掛載MPIO裝置。在測試期間、您的來源主機可以繼續執行I/O至來源7-Mode LUN。 
+---
+= 在轉換複本型轉換的轉換階段之前、在AIX主機上測試轉換的LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您使用7-Mode Transition Tool（7MTT）2.2或更新版本、Data ONTAP 以及更新版本的版本、以轉換AIX主機LUN、您可以測試轉換的叢集Data ONTAP 式LUN、以確認您可以在轉換階段之前掛載MPIO裝置。在測試期間、您的來源主機可以繼續執行I/O至來源7-Mode LUN。
+
+您的LUN必須做好移轉準備。
+
+您應該維持測試主機與來源主機之間的硬體同位元、並在測試主機上執行下列步驟。
+
+在Data ONTAP 測試期間、叢集式的LUN會處於讀取/寫入模式。當測試完成且您正在準備轉換階段時、它們會轉換成唯讀模式。
+
+.步驟
+. 完成「基準資料複本」之後、請在7MTT使用者介面（UI）中選取「*測試模式*」。
+. 在7MTT UI中、按一下*套用組態*。
+. 在測試主機上、重新掃描新的叢集Data ONTAP 式LUN：
++
+‘* cfgmgr*’
+
+. 驗證您的新叢集Data ONTAP 式LUN是否存在：
++
+「* sanlun LUN show*」
+
+. 驗證Volume群組狀態：
++
+‘* lsvg vg_name*’
+
+. 掛載每個邏輯磁碟區：
++
+「* mount -o log/dev/logv00 _file_system_mount_point_*」
+
+. 驗證掛載點：
++
+‘* df*’
+
+. 視需要執行測試。
+. 關閉測試主機：
++
+h*關機
+
+. 在7MTT UI中、按一下*完成測試*。
+
+
+如果您的叢集Data ONTAP 式支援LUN要重新對應至來源主機、您必須準備好來源主機以進行轉換階段。如果您的叢集Data ONTAP 式支援LUN仍要對應至測試主機、則測試主機不需要執行其他步驟。

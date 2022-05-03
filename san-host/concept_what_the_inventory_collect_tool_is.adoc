@@ -1,0 +1,18 @@
+---
+permalink: san-host/concept_what_the_inventory_collect_tool_is.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, inventory, collect, tool 
+summary: Inventory Collect Tool（ICT）是獨立的公用程式、可收集有關7-Mode儲存控制器、連接至控制器的主機、以及這些主機上執行的應用程式的組態與庫存資訊、以評估這些系統的轉換準備程度。您可以使用ICT來產生有關LUN及轉換所需組態的資訊。 
+---
+= 庫存收集工具的功能
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+庫存收集工具（ICT）是獨立公用程式、可收集有關7-Mode儲存控制器、連接控制器的主機、以及這些主機上執行的應用程式的組態與庫存資訊、以評估這些系統的轉換準備程度。您可以使用ICT來產生有關LUN及轉換所需組態的資訊。
+
+ICT會產生_庫存評估工作簿_和庫存報告XML檔案、其中包含儲存設備和主機系統的組態詳細資料。
+
+ICT適用於ESXi、5.x、ESXi 6.x及Windows主機。

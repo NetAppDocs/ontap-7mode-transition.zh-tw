@@ -1,0 +1,37 @@
+---
+permalink: copy-based/task_creating_san_lifs_before_transition.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, create, san, lif 
+summary: 由於FC和iSCSI生命週期並未由7-Mode Transition Tool轉換、因此您必須在SVM上建立這些生命週期、才能進行轉換。您必須在擁有LUN的節點和節點的HA合作夥伴上設定SAN LIF。 
+---
+= 在轉換前建立SAN生命期
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+由於FC和iSCSI生命週期並未由7-Mode Transition Tool轉換、因此您必須在SVM上建立這些生命週期、才能進行轉換。您必須在擁有LUN的節點和節點的HA合作夥伴上設定SAN LIF。
+
+所需的SAN（FC或iSCSI）授權必須新增至叢集。
+
+為了提供備援、您必須在裝載LUN的節點及其HA合作夥伴上建立SAN LIF。
+
+.步驟
+. 視使用的傳輸協定而定、在LUN轉換至的目標節點上建立FC或iSCSI LIF：
++
+‘*網路介面cred*’
+
++
+如果您要將7-Mode IP位址重複用於iSCSI l生命 週期、則必須在管理中斷狀態下建立l生命 週期。您可以在轉換作業之後、將這些生命期移至管理啟動狀態。
+
+. 在節點的HA合作夥伴上建立LIF。
+. 請確認您已正確設定lifs：
++
+「*網路介面show *」
+
+
+
+*相關資訊*
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sanag/home.html["SAN管理"]

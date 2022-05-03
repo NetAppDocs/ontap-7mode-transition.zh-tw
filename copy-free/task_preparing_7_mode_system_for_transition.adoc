@@ -1,0 +1,48 @@
+---
+permalink: copy-free/task_preparing_7_mode_system_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, prepare, ha, pair 
+summary: 在開始轉換之前、您必須在7-Mode系統上完成某些工作、例如啟用7-Mode系統與目標叢集通訊、以及啟用HTTPS和TLS。 
+---
+= 準備7-Mode HA配對以進行轉換
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在開始轉換之前、您必須在7-Mode系統上完成某些工作、例如啟用7-Mode系統與目標叢集通訊、以及啟用HTTPS和TLS。
+
+HA配對必須健全、且所有節點都必須處於接管模式、才能使用cf STATUS命令來驗證。您也可以使用NetApp AutoSupport 解決方案工具來偵測任何錯誤或風險情況。
+
+. 如果儲存系統未啟用HTTPS、請啟用HTTPS：
++
+‘*選項httpd.admin.SSL.enable on *’
+
++
+HTTPS預設為啟用。
+
+. 在7-Mode儲存系統上啟用TLS、讓7-Mode Transition Tool能夠與7-Mode系統通訊：
++
+.. 如果儲存系統尚未啟用SSL、請設定並啟動SSL：+「* SecureAdmin設定SSL*」
++
+預設會為儲存系統設定SSL。如果先前已針對儲存系統設定SSL、系統會詢問您是否要繼續。如果您不想進行任何變更、可以結束SSL設定。
+
+.. 啟用SSL：+`*選項SSL.enable on*
++
+必須啟用此選項、才能允許透過TLS進行通訊。
+
+.. 啟用TLS：+`*選項TLS。啟用on*
+.. 在7-Mode系統上停用SSLv2和SSLv3：+「*選項SSLv2.enable off*」
++
+「*選項SSL.v3.enable off*」
+
+
+
++
+7-Mode Transition Tool使用TLS或SSL傳輸協定與7-Mode儲存系統通訊。如果儲存系統上已啟用TLS、則此工具會使用TLS傳輸協定與儲存系統通訊。如果停用TLS、且儲存系統上已啟用SSLv3、則此工具會使用SSLv3與儲存系統通訊。
+
++
++重要：最佳做法是啟用TLS並停用SSLv2和SSLv3、以避免安全性弱點。
+
+

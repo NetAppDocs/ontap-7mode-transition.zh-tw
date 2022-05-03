@@ -1,0 +1,80 @@
+---
+permalink: snapmirror/task_preparing_cluster_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, prepare, transition, cluster, requirements 
+summary: 在轉換7-Mode系統之前、您必須先設定叢集、並確保叢集符合設定LIF及驗證網路連線以進行轉換等需求。 
+---
+= 準備叢集以進行移轉
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在轉換7-Mode系統之前、您必須先設定叢集、並確保叢集符合設定LIF及驗證網路連線以進行轉換等需求。
+
+* 叢集和SVM必須已設定完成。
++
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-ssg/home.html["軟體設定"]
+
++
+目標SVM不得處於SVM災難恢復關係中。
+
+* 叢集必須使用叢集管理LIF才能連線。
+* 叢集必須健全、且所有節點都必須處於接管模式。
+* 將包含移轉磁碟區的目標集合體必須具有SFO原則。
+* 集合體必須位於尚未達到最大Volume限制的節點上。
+* 若要在轉換Volume SnapMirror關係時建立SVM對等關係、必須符合下列條件：
++
+** 次要叢集的SVM名稱不得與主要SVM相同。
+** 主叢集的SVM名稱不得與次要SVM相同。
+** 來源7-Mode系統的名稱不應與任何已處理的本機SVM或SVM發生衝突。
+
+
+
+
+您可以在叢集的每個節點上設定預設IPspace或叢集間LIF的本機LIF、以便在叢集與7-Mode系統之間進行通訊。如果您已設定本機lifs、則不必設定叢集間lifs。如果您同時設定叢集間生命與本機生命體、則偏好使用本機生命體。
+
+. 在叢集的每個節點上建立叢集間LIF、以便叢集與7-Mode系統之間進行通訊：
++
+.. 建立叢集間LIF：
++
+hy*網路介面create -vserver _Svm_name_-lif_intercluster _lif_-role inter-cluster -home-node_node_-home-port _home_port_-address_ip_address_-netm _netask_*
+
++
+[listing]
+----
+cluster1::> network interface create -vserver cluster1-01 -lif intercluster_lif -role intercluster -home-node cluster1-01 -home-port e0c -address 192.0.2.130 -netmask 255.255.255.0
+----
+.. 為叢集間LIF建立靜態路由：
++
+hy*網路路由會建立-vserver _Svm_name_-destination _ip_address/mask_-gateway_ip_address_*
+
++
+[listing]
+----
+cluster1::> network route create -vserver vs0 -destination 0.0.0.0/0 -gateway 10.61.208.1
+----
+.. 確認您可以使用叢集間LIF來ping 7-Mode系統：
++
+hy*網路ping -lif_intercluster _lif_-vserver _Svm_name_-destination _remente_inetaddress_*
+
++
+[listing]
+----
+cluster1::> network ping -lif intercluster_lif -vserver cluster1 -destination system7mode
+system7mode is alive
+----
+
+
+
+
+對於多重路徑、您必須在每個節點上有兩個叢集間生命體。
+
+https://docs.netapp.com/us-en/ontap/networking/index.html["網路與LIF管理"]
+
+*相關資訊*
+
+xref:task_creating_a_transition_peering_relationship.adoc[建立轉換對等關係]
+
+https://mysupport.netapp.com/site/docs-and-kb["NetApp文件：產品庫A-Z"]

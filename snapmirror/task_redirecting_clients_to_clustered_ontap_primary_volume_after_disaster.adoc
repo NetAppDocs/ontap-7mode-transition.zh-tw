@@ -1,0 +1,91 @@
+---
+permalink: snapmirror/task_redirecting_clients_to_clustered_ontap_primary_volume_after_disaster.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, redirect, clients, clustered, data, primary, volume, snapmirror 
+summary: 當7-Mode主Volume恢復上線後、您可以轉換7-Mode主Volume、與叢集Data ONTAP 式的SnapMirror次要Volume建立SnapMirror關係、並將用戶端存取重新導向至叢集Data ONTAP 式的VMware主Volume。 
+---
+= 將用戶端重新導向至叢集Data ONTAP 式的功能區
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+當7-Mode主Volume恢復上線後、您可以轉換7-Mode主Volume、與叢集Data ONTAP 式的SnapMirror次要Volume建立SnapMirror關係、並將用戶端存取重新導向至叢集Data ONTAP 式的VMware主Volume。
+
+.步驟
+. 在主要和次要SVM之間建立SVM對等關係。
++
+.. 使用「cluster對等create」命令建立叢集對等關係。
++
+[listing]
+----
+pri_cluster::> cluster peer create -peer-addrs cluster2-d2, 10.98.234.246 -timeout 60
+
+Notice: Choose a passphrase of 8 or more characters. To ensure the authenticity of the peering relationship, use a phrase or sequence of characters that would be hard to guess.
+
+Enter the passphrase: ********
+Confirm the passphrase: ********
+----
+.. 從來源叢集、使用「vserver對等create」命令、在叢集Data ONTAP 式的實體化主磁碟區和叢集Data ONTAP 式的二線實體磁碟區之間建立一個SVM對等關係。
++
+[listing]
+----
+pri_cluster::> vserver peer create -vserver src_vserver -peervserver src_c_vserver -applications snapmirror -peer-cluster sec_cluster
+----
+.. 從目的地叢集、使用「vserver對等端點接受」命令來接受SVM對等端點要求、並建立SVM對等端點關係。
++
+[listing]
+----
+sec_cluster::> vserver peer accept -vserver dst_vserver -peervserver src_vserver
+----
+
+
+. 使用「napmirror create」命令建立SnapMirror關係、將叢集Data ONTAP 式的等二級磁碟區作為來源、並Data ONTAP 將叢集式的等一級磁碟區作為目的地。
++
+[listing]
+----
+pri_cluster::> snapmirror create -source-path dst_vserver:dst_c_vol -destination-path src_vserver:src_c_vol
+----
+. 從主叢集、使用「napmirror resSync」命令重新同步叢集Data ONTAP 式的二線Volume。
++
+[listing]
+----
+pri_cluster::> snapmirror resync -source-path dst_vserver:dst_c_vol -destination-path src_vserver:src_c_vol
+----
++
+您必須等到重新同步完成。SnapMirror狀態會在重新同步完成時變更為「naprror」（快照複本）。
+
+. 當您準備好切換至叢集Data ONTAP 式的「叢集式」功能主磁碟區時、請中斷用戶端對叢集Data ONTAP 式「二線」磁碟區的存取。
+. 從主叢集、使用「napmirror update」命令來更新主磁碟區。
++
+[listing]
+----
+pri_cluster::> snapmirror update -destination-path src_vserver:src_c_vol
+----
+. 從主叢集、使用「napmirror Break」命令來中斷叢集Data ONTAP 式故障主磁碟區和次磁碟區之間的SnapMirror關係。
++
+[listing]
+----
+pri_cluster::> snapmirror break -destination-path src_vserver:src_c_vol
+----
+. 讓用戶端能夠存取叢集Data ONTAP 式的等化主磁碟區。
+. 從主叢集中、使用「napmirror DELETE」命令刪除叢集Data ONTAP 式的SnapMirror主要和次要磁碟區之間的SnapMirror關係。
++
+[listing]
+----
+pri_cluster::> snapmirror delete -destination-path src_vserver:src_c_vol
+----
+. 從次要叢集、使用「napmirror cred」命令建立SnapMirror關係、將叢集Data ONTAP 式的等一級磁碟區做為來源、並Data ONTAP 將叢集式的等二級磁碟區做為目的地、 排程類似於先前排程的7-Mode主Volume與叢集Data ONTAP 式的VMware次要Volume。
++
+[listing]
+----
+sec_cluster::> snapmirror create -source-path src_vserver:src_c_vol -destination-path dst_vserver:dst_c_vol -schedule 15_minute_sched
+----
+. 從次要叢集、使用「napmirror resSync」命令重新同步叢集Data ONTAP 式的主Volume。
++
+[listing]
+----
+sec_cluster::> snapmirror resync -source-path src_vserver:src_c_vol -destination-path dst_vserver:dst_c_vol
+----
+

@@ -1,0 +1,16 @@
+---
+permalink: copy-free/task_planning_a_copy_free_transition_project.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, plan, project 
+summary: 規劃無複製移轉專案時、需要選取來源7-Mode控制器和目標叢集節點、將7-Mode磁碟區對應至儲存虛擬機器（SVM）、選取要移轉的生命週期、以及執行預先檢查。 
+---
+= 規劃無複本轉換專案
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+規劃無複製移轉專案時、需要選取來源7-Mode控制器和目標叢集節點、將7-Mode磁碟區對應至儲存虛擬機器（SVM）、選取要移轉的生命週期、以及執行預先檢查。
+
+您可以使用相同的目標叢集HA配對節點來建立多個專案。然後您可以執行預先檢查、並在所有這些專案上套用SVM組態。不過、在指定時間內、只能有一個專案位於關鍵區段視窗中。如果專案處於從匯出到提交的任一階段、或專案已啟動復原作業、則專案會出現在關鍵區段視窗中。只有在關鍵區段視窗中的專案已完成提交或復原作業之後、您才能繼續執行另一個專案的匯出和停止作業。

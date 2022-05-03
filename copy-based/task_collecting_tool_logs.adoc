@@ -1,0 +1,26 @@
+---
+permalink: copy-based/task_collecting_tool_logs.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, download, log, files 
+summary: 7-Mode Transition Tool會建立記錄檔、提供系統上執行之轉換評估與移轉作業的處理詳細資料。 
+---
+= 正在下載轉換記錄檔
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+7-Mode Transition Tool會建立記錄檔、提供系統上執行之轉換評估與移轉作業的處理詳細資料。
+
+. 按一下頂端功能表中的* Log*。
+. 按一下「*收集專案記錄*」以收集與所有專案相關的記錄。
+. 若要收集特定專案的記錄、請從專案清單中找出專案、然後按一下*下載*。
++
+記錄檔會以「.Zip」檔案格式下載、而資料夾名稱則是時間戳記。
+
+
+
+*相關資訊*
+
+https://kb.netapp.com/Advice_and_Troubleshooting/Miscellaneous/How_to_upload_a_file_to_NetApp["如何將檔案上傳至NetApp"]

@@ -1,0 +1,38 @@
+---
+permalink: copy-based/task_pausing_and_resuming_a_subproject.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, pause, resume, project 
+summary: 您可以暫停及繼續已開始執行資料複本的專案。 
+---
+= 暫停及恢復專案
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以暫停及繼續已開始執行資料複本的專案。
+
+當您暫停主要專案時、只Data ONTAP 會暫停從7-Mode主Volume到對應叢集式故障主Volume的複製作業。從7-Mode主Volume到ONTAP VMware次要Volume的資料複本會繼續依照排程執行。如此可確保主磁碟區的資料持續受到保護。
+
+. 從儀表板選取您要暫停的專案。
+. 按一下*暫停*。
++
+專案中所有磁碟區的資料複製作業都會停止。
+
++
+如果正在進行磁碟區的基準傳輸、且未針對SnapMirror關係建立Snapshot複本檢查點、則會忽略該磁碟區的暫停作業。等待建立Snapshot複本檢查點、然後再次執行暫停作業。
+
+. 按一下*恢復*。
++
+複製作業會從暫停點開始恢復。
+
++
+
+NOTE: 資料複製作業會根據當時可用的使用中排程而恢復。
+
+
+
+*相關資訊*
+
+xref:task_starting_baseline_data_copy.adoc[開始基礎資料複本]

@@ -1,0 +1,298 @@
+---
+permalink: copy-based/reference_example_consolidating_nfs_export_rules_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, nfs, export, rules, snapshot, schedules 
+summary: 您可能想要檢閱類似的7-Mode匯出規則和7-Mode Snapshot排程如何整合至ONTAP 單一NFS匯出原則和位於VMware中的單一Snapshot原則的範例。您也可能想要瞭解如何將整合式原則指派給已轉換的磁碟區或qtree、無論是否在目標SVM上重複使用相符的現有原則。 
+---
+= 整合NFS匯出規則和Snapshot移轉排程的範例
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可能想要檢閱類似的7-Mode匯出規則和7-Mode Snapshot排程如何整合至ONTAP 單一NFS匯出原則和位於VMware中的單一Snapshot原則的範例。您也可能想要瞭解如何將整合式原則指派給已轉換的磁碟區或qtree、無論是否在目標SVM上重複使用相符的現有原則。
+
+
+
+== 整合NFS匯出規則以進行移轉的範例
+
+*在7-Mode和ONTAP 不轉換前*的NFS匯出規則
+
+* 7-Mode匯出規則*
+
+[listing]
+----
+/vol/vol1       -sec=sys,rw,nosuid
+/vol/vol2       -sec=sys,rw,nosuid
+/vol/vol3       -sec=sys,rw,nosuid
+----
+*匯出ONTAP 目前存在於此*的原則
+
+[listing]
+----
+cluster-2::> vserver export-policy show -vserver vs1
+Vserver          Policy Name
+---------------  -------------------
+vs1              default
+vs1              export_policy_1
+----
+現有的匯出原則匯出原則policy_1具有下列匯出規則：
+
+[listing]
+----
+cluster-2::> vserver export-policy rule show -vserver vs1 -policyname export_policy_1
+             Policy          Rule    Access   Client                RO
+Vserver      Name            Index   Protocol Match                 Rule
+------------ --------------- ------  -------- --------------------- ---------
+vs1          export_policy_1 1       nfs      0.0.0.0/0             sys
+----
+*整ONTAP 合後、將原則匯出至非集中（不可重複使用）*
+
+Volume vol1、vol2和vol3在7-Mode中具有類似的匯出規則、因此在轉換後、會將新的合併匯出原則Transition（Transition）EXPROP_policy_1指派給這些Volume：
+
+[listing]
+----
+cluster-2::> vserver export-policy show -vserver vs1
+Vserver          Policy Name
+---------------  -------------------
+vs1              default
+vs1              export_policy_1
+vs1              transition_export_policy_1
+3 entries were displayed.
+----
+[listing]
+----
+cluster-2::> vserver export-policy rule show -vserver vs1 -policyname transition_export_policy_1
+             Policy          Rule    Access   Client                RO
+Vserver      Name            Index   Protocol Match                 Rule
+------------ --------------- ------  -------- --------------------- ---------
+vs1          transition_export_policy_1
+                             1       nfs      0.0.0.0/0             sys
+----
+[listing]
+----
+cluster-2::> volume show -vserver vs1 -volume vol1,vol2,vol3 -fields policy
+vserver volume policy
+------- ------ --------------------------
+vs1     vol1   transition_export_policy_1
+vs1     vol2   transition_export_policy_1
+vs1     vol3   transition_export_policy_1
+3 entries were displayed.
+----
+* ONTAP 透過整合與重複使用、在轉換後將原則匯出*
+
+Volume vol1、vol2和vol3在7-Mode中具有類似的匯出規則、因此在轉換後會將合併匯出原則指派給這些Volume。SVM上已存在符合7-Mode匯出規則的匯出原則exappe_policy_1。因此、原則會套用至下列磁碟區：
+
+[listing]
+----
+cluster-2::> vserver export-policy show -vserver vs1
+Vserver          Policy Name
+---------------  -------------------
+vs1              default
+vs1              export_policy_1
+2 entries were displayed.
+----
+[listing]
+----
+cluster-2::> vserver export-policy rule show -vserver vs1 -policyname export_policy_1
+             Policy          Rule    Access   Client                RO
+Vserver      Name            Index   Protocol Match                 Rule
+------------ --------------- ------  -------- --------------------- ---------
+vs1          export_policy_1 1       nfs      0.0.0.0/0             sys
+----
+[listing]
+----
+cluster-2::> volume show -vserver vs1 -volume vol1,vol2,vol3 -fields policy
+vserver volume policy
+------- ------ --------------------------
+vs1     vol1   export_policy_1
+vs1     vol2   export_policy_1
+vs1     vol3   export_policy_1
+3 entries were displayed.
+----
+
+
+== 整合Snapshot原則以進行轉換的範例
+
+*快照排程為7-Mode和ONTAP 不轉換前的功能*
+
+* 7-Mode排程*
+
+|===
+| 7-Mode Volume | 7-Mode Snapshot排程 
+
+
+ a| 
+Vol1.
+ a| 
+0 2 4@8、12、16、20（每週Snapshot複本：0、每日Snapshot複本：2、每小時Snapshot複本：6於2、4、8、12、16、 20小時）
+
+
+
+ a| 
+VOL2
+ a| 
+0 2 4 @ 8、12、16、20
+
+
+
+ a| 
+第3卷
+ a| 
+0 2 4 @ 8、12、16、20
+
+
+
+ a| 
+第4卷
+ a| 
+1 2 3@8、12、16（每週Snapshot複本：1、每日Snapshot複本：2、每小時Snapshot複本：3、8、12、16小時）
+
+
+
+ a| 
+第5卷
+ a| 
+2 2 3 @ 8、12、16（每週Snapshot複本：2、每日Snapshot複本：2、每小時Snapshot複本：3、8、12、16小時）
+
+|===
+* ONTAP Snapshot原則存在於S針對 性*
+
+|===
+| Snapshot原則名稱 | 原則詳細資料 
+
+
+ a| 
+每週排程
+ a| 
+每週數：1.
+
+
+
+ a| 
+排程DailyHourly4.
+ a| 
+*排程詳細資料*
+
+* 排程1：每日、count1：2
+* 日程表2：每小時、每8、12、16、20小時計算2：4
+
+
+
+
+ a| 
+排程Hourly1.
+ a| 
+每小時8、12、16、20小時計算：4
+
+|===
+* ONTAP 採用整合（不重複使用）的Snapshot政策在轉換後*
+
+|===
+| 7-Mode Volume | 7-Mode Snapshot排程 | Snapshot原則ONTAP 
+
+
+ a| 
+Vol1.
+ a| 
+0 2 4@8、12、16、20（每週Snapshot複本：0、每日Snapshot複本：2、每小時Snapshot複本：4於8、12、16、20小時）
+ a| 
+* Vol1、vol2和vol3的合併原則*
+
+* 名稱：Transition、snapshot、policy_0
+* 排程詳細資料
++
+** 排程1：每日、count1：2
+** 日程表2：每小時、每8、12、16、20小時計算2：4
+
+
+
+
+
+
+ a| 
+VOL2
+ a| 
+0 2 4 @ 8、12、16、20
+ a| 
+第3卷
+
+
+
+ a| 
+0 2 4 @ 8、12、16、20
+ a| 
+第4卷
+ a| 
+1 2 3@8、12、16（每週Snapshot複本：1、每日Snapshot複本：2、每小時Snapshot複本：3、8、12、16小時）
+
+
+
+ a| 
+* 名稱：Transition、snapshot、policy_1
+* 排程詳細資料
++
+** 排程1：每週、count1：1.
+** 日程表2：每日、count2：2.
+** 排程3：每小時、每8、12、16小時計3次
+
+
+
+ a| 
+第5卷
+ a| 
+2 2 3 @ 8、12、16（每週Snapshot複本：2、每日Snapshot複本：2、每小時Snapshot複本：3、8、12、16小時）
+
+|===
+* ONTAP 利用整合與重複使用*、在轉換後執行Snapshot原則
+
+|===
+| 7-Mode Volume | 7-Mode Snapshot排程 | Snapshot原則ONTAP 
+
+
+ a| 
+Vol1.
+ a| 
+0 2 4@8、12、16、20（每週Snapshot複本：0、每日Snapshot複本：2、每小時Snapshot複本：4於2、4、8、12、16、 20小時）
+ a| 
+針對已ONTAP 重複使用現有的版本資訊原則的vol1、vol2和vol3合併原則
+
+名稱：ScheduleDailyHourly4.
+
+
+
+ a| 
+VOL2
+ a| 
+0 2 4 @ 8、12、16、20
+ a| 
+第3卷
+
+
+
+ a| 
+0 2 4 @ 8、12、16、20
+ a| 
+第4卷
+ a| 
+1 2 3@8、12、16（每週Snapshot複本：1、每日Snapshot複本：2、每小時Snapshot複本：3、8、12、16小時）
+
+
+
+ a| 
+* 名稱：Transition、snapshot、policy_1
+* 排程詳細資料
++
+** 排程1：每週、count1：1.
+** 日程表2：每日、count2：2.
+** 排程3：每小時、每8、12、16小時計3次
+
+
+
+ a| 
+第5卷
+ a| 
+2 2 3 @ 8、12、16（每週Snapshot複本：2、每日Snapshot複本：2、每小時Snapshot複本：3、8、12、16小時）
+
+|===

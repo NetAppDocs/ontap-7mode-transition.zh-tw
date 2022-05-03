@@ -1,0 +1,238 @@
+---
+section: san-host
+title: SAN主機移轉與補救
+url: "/san-host/index.html"
+entries:
+- title: 支援7-Mode Transition Tool的支援目標版本ONTAP
+  url: "/san-host/concept_ontap_target_releases_supported_by_7mtt.html"
+- title: 7-Mode Transition Tool轉換階段
+  url: "/san-host/concept_7mtt_transition_phases.html"
+- title: VMware ESXi主機補救
+  url: "/san-host/concept_vmware_esxi_host_remediation.html"
+  entries:
+  - title: 使用7MTT進行SAN轉換時、支援的ESXi版本與功能
+    url: "/san-host/concept_esxi_versions_and_features_supported_for_san_transitions_using_7mtt.html"
+  - title: 準備移轉ESXi主機
+    url: "/san-host/task_preparing_for_transition_of_esxi_hosts.html"
+    entries:
+    - title: 庫存收集工具的功能
+      url: "/san-host/concept_what_the_inventory_collect_tool_is.html"
+    - title: 準備要移轉的Linux客體作業系統
+      url: "/san-host/task_preparing_linux_guest_operating_systems_for_transition.html"
+    - title: 準備Windows客體作業系統以進行移轉
+      url: "/san-host/concept_preparing_windows_guest_operating_systems_for_transition.html"
+    - title: 如何識別轉換前必須移除的VM快照
+      url: "/san-host/concept_how_to_identify_vm_snapshots_that_must_be_removed_before_transition.html"
+      entries:
+      - title: 使用vSphere Client刪除VM快照複本
+        url: "/san-host/task_deleting_vm_snapshots_using_vsphere_client.html"
+      - title: 使用ESXi CLI移除VM快照
+        url: "/san-host/task_removing_vm_snapshots_using_esxi_cli.html"
+  - title: 在複本型轉換轉換的轉換階段之前、先測試轉換的LUN和ESXi主機應用程式
+    url: "/san-host/task_testing_transitioned_luns_and_esxi_host_applications_before_cutover.html"
+  - title: ESXi主機移轉的套用組態（預先轉換）階段停機
+    url: "/san-host/concept_downtime_at_precutover_phase_of_esxi_host_transition.html"
+  - title: ESXi主機的移轉後修正需求
+    url: "/san-host/concept_post_transition_requirements_for_esxi_hosts.html"
+    entries:
+    - title: 準備進行移轉後ESXi主機補救
+      url: "/san-host/task_preparing_for_post_transition_esxi_host_remediation.html"
+    - title: 在非SAN上進行移轉之後、使用vSphere Client重新登錄VM
+      url: "/san-host/task_reregistering_vms_after_transition_on_non_san_boot_esxi_host_using_vsphere_client.html"
+    - title: 轉換後重新設定VMware軟體iSCSI啟動器
+      url: "/san-host/concept_reconfiguration_of_vmware_software_iscsi_initiator.html"
+    - title: 設定ESXi主機、以便在轉換後進行SAN開機
+      url: "/san-host/task_setting_up_esxi_hosts_configured_for_san_boot_after_transition.html"
+    - title: 確定在轉換後是否需要重新掛載VMFS磁碟區
+      url: "/san-host/task_determining_whether_vmfs_volumes_need_to_be_remounted_after_transition.html"
+      entries:
+      - title: 使用vSphere Client在轉換後重新掛載VMFS磁碟區
+        url: "/san-host/task_remounting_vmfs_volumes_after_transition_using_vsphere_client.html"
+      - title: 使用ESXi CLI在轉換後重新掛載VMFS磁碟區
+        url: "/san-host/task_remounting_vmfs_volumes_after_transition_using_esxi_cli_console.html"
+    - title: 將RDM LUN重新附加至VM
+      url: "/san-host/task_reattaching_rdm_luns_to_vms.html"
+      entries:
+      - title: 使用vSphere Client移除過時的RDM
+        url: "/san-host/task_removing_stale_rdm_using_vsphere_client.html"
+      - title: 使用vSphere Client將RDM重新附加至VM
+        url: "/san-host/task_reattaching_rdm_to_vms_using_vsphere_client.html"
+      - title: 使用ESXi的CLI/Console重新附加RDM
+        url: "/san-host/task_reattaching_rdm_using_esxi_cli_console.html"
+    - title: 適用於Linux和Windows客體作業系統的轉換後補救措施
+      url: "/san-host/concept_post_transition_remediation_for_linux_and_windows_guest_operating_systems.html"
+    - title: 移轉修正後ESXi主機的建議設定
+      url: "/san-host/concept_configure_recommended_settings_for_esxi_hosts.html"
+  - title: 使用ESXi CLI在資料存放區上啟用CAW
+    url: "/san-host/task_enabling_caw_on_a_datastore_using_esxi_cli.html"
+- title: RHEL主機補救
+  url: "/san-host/concept_linux_host_remediation.html"
+  entries:
+  - title: 從庫存評估工作簿收集過渡前資訊
+    url: "/san-host/task_gathering_pretransition_information_from_inventory_assessment_workbook.html"
+    entries:
+    - title: 庫存收集工具的功能
+      url: "/san-host/concept_what_the_inventory_collect_tool_is.html"
+  - title: 無需檔案系統即可轉換RHEL DMP裝置
+    url: "/san-host/concept_transitioning_rhel_dmmp_devices_without_file_systems.html"
+    entries:
+    - title: 使用庫存評估工作簿驗證RHEL LUN是否已準備好進行轉換
+      url: "/san-host/task_verifying_that_rhel_luns_are_ready_for_transition_using_inventory_assessment_workbook.html"
+    - title: 使用CLI驗證RHEL 5 LUN是否已準備好進行移轉
+      url: "/san-host/task_verifying_rhel_5_luns_are_ready_for_transition_using_cli.html"
+    - title: 使用CLI驗證RHEL 6 DDMP裝置是否已準備好進行移轉
+      url: "/san-host/task_verifying_rhel_6_ddmp_devices_are_ready_for_transition_using_cli.html"
+    - title: 在轉換複本型轉換的轉換階段之前、先在RHEL主機上測試不含檔案系統的DMP裝置
+      url: "/san-host/task_testing_dmmp_devices_on_rhel_before_cutover.html"
+    - title: 準備在不使用檔案系統的情況下轉換Linux主機DMP裝置時轉換
+      url: "/san-host/task_preparing_for_cutover_when_transitioning_linux_host_dmmp_device_without_file_system.html"
+    - title: 在轉換LUN之後、更換Linux主機上的7-Mode LUN WWID
+      url: "/san-host/task_replacing_7_mode_wwids_on_linux_host_after_transition_of_luns.html"
+  - title: 使用DMP裝置名稱轉換LUN與掛載點
+    url: "/san-host/concept_transitioning_luns_with_mount_points_using_dmmp_devices_names.html"
+    entries:
+    - title: 使用「庫存評估」工作簿、使用DMP裝置名稱準備RHEL LUN與掛載點以進行轉換
+      url: "/san-host/task_preparing_rhel_luns_transition_using_inventory_assessment_workbook.html"
+    - title: 使用CLI準備使用DMP別名的裝載點執行RHEL LUN移轉作業
+      url: "/san-host/task_preparing_rhel_luns_for_transition_using_the_cli.html"
+    - title: 在轉換複本型轉換的轉換階段之前、先在RHEL主機上測試含有檔案系統的DMP裝置
+      url: "/san-host/task_testing_dmmp_devices_with_file_systems_on_rhel_hosts_before_cutover_phase.html"
+    - title: 在Linux主機上使用DMP裝置名稱、以掛載點轉換LUN時、準備轉換階段
+      url: "/san-host/task_preparing_for_cutover_when_transitioning_luns_with_mounts_using_dmmp_aliases_on_linux_hosts.html"
+    - title: 轉換後、在Linux主機上重新掛載DMP裝置
+      url: "/san-host/task_remounting_dmmp_devices_on_linux_hosts_after_transition.html"
+  - title: 使用DMP別名轉換LUN與掛載點
+    url: "/san-host/concept_transitioning_luns_with_mount_points_using_dmmp_alias_names.html"
+    entries:
+    - title: 使用CLI準備使用DMP別名的裝載點執行RHEL LUN移轉作業
+      url: "/san-host/task_preparing_rhel_luns_for_transition_using_the_cli.html"
+    - title: 在轉換複本型轉換的轉換階段之前、使用RHEL主機上的DMP別名來測試LUN與掛載點
+      url: "/san-host/task_testing_luns_with_mounts_using_dmmp_aliases_on_rhel_hosts_before_cutover.html"
+    - title: 在Linux主機上使用DMP裝置名稱、以掛載點轉換LUN時、準備轉換階段
+      url: "/san-host/task_preparing_for_cutover_when_transitioning_luns_with_mounts_using_dmmp_aliases_on_linux_hosts.html"
+    - title: 轉換後、在Linux主機上使用DMP別名重新掛載LUN與掛載點
+      url: "/san-host/task_remounting_luns_with_mount_point_using_dmmp_alias_name_on_linux_hosts_after_transition.html"
+  - title: 在LVM裝置上轉換Linux主機檔案系統
+    url: "/san-host/concept_transitioning_linux_host_file_systems_on_lvm_devices.html"
+    entries:
+    - title: 在轉換複本型轉換的轉換階段之前、先在LVM裝置上測試LUN與檔案系統
+      url: "/san-host/task_testing_luns_with_file_systems_on_lvm_devices_before_cutover_phase.html"
+    - title: 在LVM裝置上轉換Linux主機檔案系統時、準備轉換階段
+      url: "/san-host/task_preparing_for_cutover_when_transitioning_linux_host_file_systems_on_lvm_devices.html"
+    - title: 轉換後、將邏輯磁碟區掛載到Linux主機上
+      url: "/san-host/task_mounting_logical_volumes_on_linux_host_after_transition.html"
+  - title: 轉換SAN開機LUN
+    url: "/san-host/concept_transition_of_san_boot_luns.html"
+    entries:
+    - title: 支援移轉的SAN開機LUN類型
+      url: "/san-host/concept_types_of_san_boot_luns_supported_for_transition.html"
+    - title: 準備在RHEL主機上轉換FC或FCoE SAN開機LUN
+      url: "/san-host/task_preparing_for_transition_of_fc_or_fcoe_san_boot_luns.html"
+    - title: 準備移轉iSCSI SAN開機LUN
+      url: "/san-host/task_preparing_for_transition_of_iscsi_san_boot_luns.html"
+    - title: 在轉換複本型轉換之前、先在RHEL主機上測試SAN開機LUN
+      url: "/san-host/task_testing_san_boot_luns_on_rhel_hosts_before_cutover.html"
+    - title: 準備轉換SAN開機LUN時的轉換階段
+      url: "/san-host/concept_preparing_for_cutover_when_transitioning_san_boot_luns.html"
+    - title: 轉換後探索SAN開機LUN
+      url: "/san-host/task_discovering_san_boot_luns_after_transition.html"
+- title: Windows主機補救
+  url: "/san-host/concept_windows_host_remediation.html"
+  entries:
+  - title: 準備Windows主機進行移轉
+    url: "/san-host/task_preparing_windows_hosts_for_transition.html"
+    entries:
+    - title: 庫存收集工具的功能
+      url: "/san-host/concept_what_the_inventory_collect_tool_is.html"
+  - title: 在轉換階段之前、在Windows主機上測試轉換的LUN
+    url: "/san-host/task_testing_transitioned_luns_on_windows_hosts_before_cutover.html"
+  - title: 準備轉換Windows主機時的轉換階段
+    url: "/san-host/task_preparing_for_cutover_when_transitioning_windows_hosts.html"
+  - title: 轉換後讓Windows主機上線
+    url: "/san-host/task_bringing_windows_hosts_online_after_transition.html"
+  - title: 將SAN主機移轉至ONTAP 不支援功能時的例外狀況和已知問題
+    url: "/san-host/concept_exceptions_and_known_issues_when_transitioning_san_hosts_to_clustered_ontap.html"
+- title: HP-UX主機補救
+  url: "/san-host/concept_hp_ux_host_remediation.html"
+  entries:
+  - title: 使用檔案系統轉換HP-UX主機LUN
+    url: "/san-host/concept_transitioning_hp_ux_host_luns_with_file_systems.html"
+    entries:
+    - title: 準備使用檔案系統來轉換HP-UX主機LUN
+      url: "/san-host/task_preparing_to_transition_hp_ux_host_luns_with_file_systems.html"
+    - title: 在複製型轉換轉換的轉換階段之前、先在HP-UX主機上測試資料LUN
+      url: "/san-host/task_testing_data_luns_on_hp_ux_hosts_before_cutover.html"
+    - title: 準備轉換使用檔案系統的HP-UX主機資料LUN時的轉換階段
+      url: "/san-host/task_preparing_for_cutover_when_transitioning_hp_ux_host_data_luns_with_file_systems.html"
+    - title: 在轉換後、將HP-UX主機LUN與檔案系統一起掛載
+      url: "/san-host/task_mounting_hp_ux_host_luns_with_file_systems_after_transition.html"
+  - title: 轉換採用FC/FCoE組態的HP-UX主機SAN開機LUN
+    url: "/san-host/concept_transitioning_hp_ux_host_san_boot_luns_with_fc_fcoe_configurations.html"
+    entries:
+    - title: 準備在具有FC組態的HP-UX主機上轉換SAN開機LUN
+      url: "/san-host/task_preparing_to_transition_san_boot_luns_on_hp_ux_hosts_with_fc_configurations.html"
+    - title: 在複製型轉換轉換的轉換階段之前、測試HP-UX主機上的轉換式SAN開機LUN
+      url: "/san-host/task_testing_transitioned_san_boot_luns_on_hp_ux_hosts_before_cutover.html"
+    - title: 準備轉換SAN開機LUN時的轉換階段
+      url: "/san-host/concept_preparing_for_cutover_when_transitioning_san_boot_luns.html"
+    - title: 將SAN開機LUN設定為移轉後適用於HP-UX Emulex HBA的主要開機LUN
+      url: "/san-host/task_making_a_san_boot_lun_primary_for_hp_ux_emulex_hbas_after_transition.html"
+    - title: 將SAN開機LUN設定為移轉後適用於HP-UX QLogic HBA的主要開機LUN
+      url: "/san-host/task_making_san_boot_lun_primary_boot_lun_for_hp_ux_qlogic_hbas_after_transition.html"
+- title: AIX主機補救
+  url: "/san-host/concept_aix_host_remediation.html"
+  entries:
+  - title: 在具有FC/FCoE組態的AIX主機上轉換SAN開機LUN
+    url: "/san-host/concept_transition_of_san_boot_luns_on_aix_hosts_with_fc_fcoe_configurations.html"
+    entries:
+    - title: 準備在具有FC/FCoE組態的AIX主機上轉換SAN開機LUN
+      url: "/san-host/task_preparing_to_transition_san_boot_luns_on_aix_hosts_with_fc_fcoe_configurations.html"
+    - title: 在轉換複本型轉換的轉換階段之前、測試AIX主機上轉換後的SAN開機LUN
+      url: "/san-host/task_testing_transitioned_san_boot_luns_on_aix_hosts_before_cutover.html"
+    - title: 準備轉換具有FC/FCoE組態的AIX主機時、進行轉換階段的準備工作。
+      url: "/san-host/task_preparing_for_cutover_when_transitioning_aix_hosts_with_fc_fcoe_configurations.html"
+    - title: 在轉換後、從具有FC/FCoE組態的AIX主機上的SAN開機LUN開機
+      url: "/san-host/task_booting_from_san_boot_lun_on_aix_hosts_with_fc_fcoe_configurations_after_transition.html"
+  - title: 將AIX主機資料LUN轉換為檔案系統
+    url: "/san-host/concept_transitioning_aix_host_data_luns_with_file_systems.html"
+    entries:
+    - title: 準備使用檔案系統來轉換AIX主機資料LUN
+      url: "/san-host/task_preparing_to_transition_aix_data_host_luns_with_file_systems.html"
+    - title: 在轉換複本型轉換的轉換階段之前、在AIX主機上測試轉換的LUN
+      url: "/san-host/task_testing_transitioned_luns_on_aix_hosts_before_cutover.html"
+    - title: 準備轉換AIX主機資料LUN與檔案系統時的轉換階段
+      url: "/san-host/task_preparing_for_cutover_when_transitioning_aix_data_luns_with_file_systems.html"
+    - title: 在轉換後、將AIX主機資料LUN與檔案系統一起掛載
+      url: "/san-host/task_mounting_aix_host_luns_with_file_systems_after_transition.html"
+- title: Solaris主機補救
+  url: "/san-host/concept_solaris_host_remediation.html"
+  entries:
+  - title: 使用ZFS檔案系統轉換Solaris主機資料LUN
+    url: "/san-host/concept_transitioning_solaris_host_data_luns_with_zfs_file_systems.html"
+    entries:
+    - title: 準備使用ZFS檔案系統來轉換Solaris主機資料LUN
+      url: "/san-host/task_preparing_to_transition_solaris_host_data_luns_with_zfs_file_system.html"
+    - title: 在轉換複本型轉換的轉換階段之前、使用ZFS檔案系統測試Solaris主機上的資料LUN
+      url: "/san-host/task_testing_data_luns_on_solaris_hosts_with_zfs_file_system_before_cutover.html"
+    - title: 在使用ZFS檔案系統轉換Solaris主機資料LUN時、準備轉換階段
+      url: "/san-host/task_preparing_for_cutover_when_transitioning_solaris_host_data_luns_with_zfs_file_systems.html"
+    - title: 在轉換後、使用ZFS檔案系統掛載Solaris主機LUN
+      url: "/san-host/task_mounting_solaris_host_luns_with_zfs_file_systems_after_transition.html"
+  - title: 使用Sun Volume Manager轉換Solaris主機資料LUN
+    url: "/san-host/concept_transitioning_solaris_host_data_luns_with_sun_volume_manager.html"
+    entries:
+    - title: 準備使用Sun Volume Manager移轉Solaris主機LUN
+      url: "/san-host/task_preparing_to_transition_solaris_host_data_luns_with_sun_volume_manager.html"
+    - title: 在複製型轉換的轉換階段之前、使用Sun Volume Manager測試Solaris主機上的資料LUN
+      url: "/san-host/task_testing_data_luns_on_solaris_hosts_with_sun_volume_manager_svm_before_cutover.html"
+    - title: 準備轉換Solaris主機Sun Volume Manager資料LUN時的轉換階段
+      url: "/san-host/task_preparing_for_cutover_when_transitioning_solaris_host_sun_volume_manager_data_luns.html"
+    - title: 轉換後使用Solaris Volume Manager掛載Solaris主機LUN
+      url: "/san-host/task_mounting_solaris_host_luns_with_sun_volume_manager_after_transition.html"
+- title: 轉換後將LUN復原至7-Mode
+  url: "/san-host/concept_rolling_back_luns_to_7_mode_after_transition.html"
+  entries:
+  - title: 在ONTAP RHEL主機上將VMware LUN復原至7-Mode LUN
+    url: "/san-host/task_rolling_back_clustered_ontap_luns_back_to_7_mode_on_rhel_hosts.html"
+  - title: 在ONTAP Windows主機上、將還原的LUN復原至7-Mode LUN
+    url: "/san-host/task_rolling_back_clustered_ontap_luns_back_to_7_mode_on_windows_hosts.html"

@@ -1,0 +1,404 @@
+---
+permalink: copy-based/reference_commands_for_managing_transition_sessions.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, cbt, command, manage 
+summary: 您可以使用Transition CBT命令來管理功能、例如建立、修改、刪除及顯示轉換專案。 
+---
+= 管理轉換的命令
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用「Transition CBT」命令來管理功能、例如建立、修改、刪除及顯示轉換專案。
+
+下列選項可搭配所有命令使用：
+
+-`-r no：停用命令的互動性質。預設會啟用此選項。
+
+您也可以使用「-v」選項、以「Transition version」（轉換版本）和「Transition CBT Menu」（轉換CBT功能表）命令來啟用詳細模式。
+
+
+
+== 管理轉換作業的命令
+
+|===
+| 如果您想要... | 使用此命令... 
+
+
+ a| 
+建立轉換專案
+ a| 
+《Transition CBT create》（轉換CBT建立）
+
+
+
+ a| 
+將叢集資訊新增至指定專案
+ a| 
+「Transition CBT add-cluster資訊」
+
+
+
+ a| 
+修改轉換專案
+ a| 
+《Transition CBT modify》（轉換CBT修改）
+
+
+
+ a| 
+完成ONTAP 對一套不完整的儲存系統的轉換
+ a| 
+《轉換CBT轉換》
+
+
+
+ a| 
+對專案執行預先檢查
+ a| 
+《Transition CBT preCheck》（轉換CBT預先檢查）
+
+
+
+ a| 
+將組態套用ONTAP 至一個不完整的儲存系統
+ a| 
+《Transition CBT precutover》
+
+
+
+ a| 
+觸發ONTAP 專案中7-Mode Volume與VMware Volume之間的SnapMirror重新同步
+ a| 
+《Transition CBT resSync》（轉換CBT重新同步）
+
+
+
+ a| 
+觸發ONTAP 針對整個過程的SnapMirror更新作業
+ a| 
+《Transition CBT update》（轉換CBT更新）
+
+
+
+ a| 
+顯示7-Mode Transition Tool版本
+ a| 
+《Transition CBT version》（轉換CBT版本）
+
+
+
+ a| 
+在ONTAP 專案中、從7-Mode Volume開始基準資料複本、並將其複製到VMware Volume
+ a| 
+《Transition CBT start》（轉換CBT入門）
+
+
+
+ a| 
+在ONTAP 專案中、將資料複本從7-Mode磁碟區暫停至VMware磁碟區
+ a| 
+《Transition CBT Pause》（轉換CBT暫停）
+
+
+
+ a| 
+恢復從7-Mode Volume傳輸資料複本至ONTAP 暫停專案的RESUME Volume
+ a| 
+《轉換CBT恢復》
+
+
+
+ a| 
+中止轉換專案
+ a| 
+《Transition CBT abort...》（轉換CBT中止
+
+
+
+ a| 
+刪除轉換專案
+ a| 
+《Transition CBT DELETE》（轉換CBT刪除）
+
+
+
+ a| 
+顯示轉換專案清單或顯示專案相關資訊
+ a| 
+《轉換CBT展》
+
+|===
+
+
+== 管理Volume SnapMirror關係的命令
+
+|===
+| 如果您想要... | 使用此命令... 
+
+
+ a| 
+將7-Mode主要系統的相關資訊新增至次要專案
+ a| 
+《Transition CBT add-primer-7-mode-system》
+
+https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapMirror/CBT_%3A_How_to_provide_all_the_required_primary_7-Mode_details_for_a_given_secondary_project["CBT：如何提供指定次要專案所需的所有主要7-Mode詳細資料"]
+
+
+
+ a| 
+新增ONTAP 關於二線系統的資訊至一線專案
+ a| 
+「Transition CBT add-secondary叢集模式系統」
+
+https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/CBT%3A_How_to_add_the_required_secondary_cluster_details_to_the_primary_project["CBT：如何將必要的次要叢集詳細資料新增至主要專案"]
+
+
+
+ a| 
+從次要專案移除7-Mode主要系統的相關資訊
+ a| 
+《Transition CBT remove-primer-7-mode-system》（Transition CBT移除主七模式系統）
+
+
+
+ a| 
+從ONTAP 主要專案移除有關二線系統的資訊
+ a| 
+「Transition CBT remove-secondary叢集模式系統」
+
+
+
+ a| 
+列出新增至次要專案的7-Mode主要系統
+ a| 
+《Transition CBT show-primer-7-mode-Systems》（轉換CBT顯示主要七模式系統）
+
+
+
+ a| 
+列出ONTAP 新增至主要專案的不二系統
+ a| 
+《Transition CBT show-secondary叢集模式系統》（Transition CBT show-secondary cluster mode）
+
+|===
+
+
+== 管理Data ONTAP 資訊系統認證的命令
+
+|===
+| 如果您想要... | 使用此命令... 
+
+
+ a| 
+儲存移轉伺服器中主機的認證資料（使用者名稱和密碼）
+ a| 
+《轉換認證資料新增》
+
+
+
+ a| 
+擷取主機的使用者名稱
+ a| 
+《轉換認證資料》
+
+
+
+ a| 
+修改主機的使用者名稱或密碼
+ a| 
+轉換認證資料會修改
+
+
+
+ a| 
+從轉換伺服器刪除主機的認證資料
+ a| 
+移除轉換認證資料
+
+|===
+
+
+== 管理專案中磁碟區配對的命令
+
+|===
+| 如果您想要... | 使用此命令... 
+
+
+ a| 
+新增7-Mode Volume與ONTAP 《聲音量共享》（Volume Pair）至專案
+ a| 
+《Transition CBT volumepair add》
+
+
+
+ a| 
+修改ONTAP 專案的整個功能
+ a| 
+《Transition CBT volumepair modify》
+
+
+
+ a| 
+從專案移除Volume配對
+ a| 
+《Transition CBT volumepair remove》
+
+
+
+ a| 
+列出專案中的Volume配對
+ a| 
+《Transition CBT volumepair show》
+
+|===
+
+
+== 管理LIF詳細資料的命令
+
+
+NOTE: 7-Mode Transition Tool不會移轉FC和iSCSI生命週期。
+
+|===
+| 如果您想要... | 使用此命令... 
+
+
+ a| 
+將anSVM資料LIF新增至專案
+ a| 
+《Transition CBT LIF ADD》
+
+
+
+ a| 
+修改專案的anSVM資料LIF
+ a| 
+《Transition CBT LIF MODIFY》
+
+
+
+ a| 
+從專案移除生命
+ a| 
+《Transition CBT LIF remove》（移除轉換CBT LIF）
+
+
+
+ a| 
+列出新增至專案的所有生命期
+ a| 
+《轉換CBT LIF展示》
+
+|===
+
+
+== 管理專案內容的命令
+
+|===
+| 如果您想要... | 使用此命令... 
+
+
+ a| 
+設定特定專案屬性的值
+ a| 
+「Transition CBT屬性集」
+
+
+
+ a| 
+清除特定專案屬性的值
+ a| 
+「Transition CBT屬性重設」
+
+
+
+ a| 
+取得特定專案屬性的值
+ a| 
+「Transition CBT屬性取得」
+
+|===
+
+
+== 管理轉換工作的命令
+
+|===
+| 如果您想要... | 使用此命令... 
+
+
+ a| 
+列出在指定專案和作業上執行或正在執行的工作
+ a| 
+《轉換工作》
+
+
+
+ a| 
+檢視工作狀態
+ a| 
+「轉換工作狀態」
+
+
+
+ a| 
+檢視工作結果
+ a| 
+「轉換工作成果」
+
+|===
+
+
+== 管理轉換排程的命令
+
+|===
+| 如果您想要... | 使用此命令... 
+
+
+ a| 
+新增排程來管理SnapMirror傳輸和頻寬
+ a| 
+《Transition CBT schedule add》（轉換CBT排程新增
+
+
+
+ a| 
+修改專案的SnapMirror排程
+ a| 
+《Transition CBT schedule modify》
+
+
+
+ a| 
+從專案中移除SnapMirror排程
+ a| 
+《Transition CBT排程移除》
+
+
+
+ a| 
+列出專案中的所有SnapMirror排程
+ a| 
+《Transition CBT排程展示》
+
+|===
+
+
+== 收集工具記錄的命令
+
+|===
+| 如果您想要... | 使用此命令... 
+
+
+ a| 
+「收集7-Mode Transition Tool記錄檔」的記錄檔會儲存在伺服器上7-Mode Transition Tool安裝路徑的「asup」目錄中。
+ a| 
+「轉換套裝組合工具記錄」
+
+|===
+如需這些命令的詳細資訊、請參閱7-Mode Transition Tool CLI的手冊頁。
+
+*相關資訊*
+
+xref:task_transitioning_volumes_using_7mtt.adoc[從7-Mode磁碟區移轉資料與組態]

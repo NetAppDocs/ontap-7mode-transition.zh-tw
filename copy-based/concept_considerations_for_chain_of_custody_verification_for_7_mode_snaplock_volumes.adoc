@@ -1,0 +1,26 @@
+---
+permalink: copy-based/concept_considerations_for_chain_of_custody_verification_for_7_mode_snaplock_volumes.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, chain, custody, verification, snaplock, volumes, considerations 
+summary: 您應該瞭解使用7-Mode SnapLock 餐廳監管鏈驗證的考量事項。 
+---
+= 使用7-Mode SnapLock 的監管鏈驗證功能時的考量事項
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您應該瞭解使用7-Mode SnapLock 餐廳監管鏈驗證的考量事項。
+
+* 只有在需要轉換完本產品時、才能執行驗證鏈驗證功能。SnapLock SnapLock
++
+您可以針對SnapLock 專案中的所有或部分的各個環節、執行監管鏈驗證。
+
+* 根據7-Mode更新版本上的檔案數量、驗證資料鏈可能需要相當長的時間。SnapLock SnapLock
+* 只有讀寫7-Mode SnapLock 的資料複本才支援保管鏈驗證
++
+唯讀磁碟區不支援監管鏈驗證。
+
+* 不支援SnapLock 驗證鏈保管驗證功能、因為包含名稱為非Ascii字元的檔案。
+

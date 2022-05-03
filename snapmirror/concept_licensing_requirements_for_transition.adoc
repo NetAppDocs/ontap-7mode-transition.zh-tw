@@ -1,0 +1,18 @@
+---
+permalink: snapmirror/concept_licensing_requirements_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, license, requirements, transition, snapmirror, clusters, volume 
+summary: 在您將磁碟區從7-Mode移轉至叢集Data ONTAP 式的SnapMirror之前、您必須確保SnapMirror已獲得7-Mode儲存系統的授權。如果您要轉換7-Mode Volume SnapMirror關係、則來源叢集和目的地叢集也需要SnapMirror授權。 
+---
+= 移轉授權需求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在您將磁碟區從7-Mode移轉至叢集Data ONTAP 式的SnapMirror之前、您必須確保SnapMirror已獲得7-Mode儲存系統的授權。如果您要轉換7-Mode Volume SnapMirror關係、則來源叢集和目的地叢集也需要SnapMirror授權。
+
+如果SnapMirror已在7-Mode系統上獲得授權、您可以使用相同的授權進行轉換。如果您沒有7-Mode SnapMirror授權、您可以從銷售代表處取得暫時的SnapMirror授權以進行移轉。
+
+在7-Mode系統上啟用的功能授權必須新增至叢集。如需取得叢集功能授權的相關資訊、請參閱 link:https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["系統管理參考資料"]。

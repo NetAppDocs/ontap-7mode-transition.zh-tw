@@ -1,0 +1,118 @@
+---
+permalink: copy-free/concept_prerequisites_for_transitioning_cifs_configurations.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, cifs, configurations, prerequisites 
+summary: 只有在7-Mode系統和叢集符合特定先決條件時、7-Mode Transition Tool才會轉換CIFS組態。如果不符合任何條件、則此工具不會轉換組態。 
+---
+= 轉換CIFS組態的先決條件
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+只有在7-Mode系統和叢集符合特定先決條件時、7-Mode Transition Tool才會轉換CIFS組態。如果不符合任何條件、則此工具不會轉換組態。
+
+
+
+== 7-Mode必備條件
+
+* 必須新增CIFS授權。
+* 如果MultiStore 啟用了「不支援」授權、則必須將CIFS新增至擁有轉換磁碟區之vFiler單元允許的傳輸協定清單。
+* CIFS必須在轉換期間設定及執行。
++
+即使在用戶端存取中斷連線並準備開始匯出階段之後、CIFS服務仍必須在7-Mode系統上執行。
+
+* CIFS的驗證類型必須是Active Directory（AD）或工作群組。
+
+
+
+
+== 叢集先決條件
+
+* 必須新增CIFS授權。
+* 下列CIFS驗證方法在ONTAP 不同的版本中均受支援：
++
+** 叢集Data ONTAP 式的0.2.x和8.3.x支援AD驗證。
+** 支援AD驗證和工作群組驗證的支援版本為9.0或更新版本。ONTAP
+
+
+* 下表指出目標SVM上必須使用的驗證方法：
++
+|===
+| 7-Mode驗證方法 | 叢集Data ONTAP 式的0.2.x和8.3.x驗證方法 | 適用於更新版本的驗證方法ONTAP 
+
+
+ a| 
+廣告
+ a| 
+廣告
+ a| 
+廣告
+
+
+
+ a| 
+工作群組
+ a| 
+廣告
+ a| 
+工作群組或AD
+
+|===
+* 如果7-Mode CIFS伺服器和目標SVM CIFS伺服器之間的AD網域不相符、您可以將CIFS組態從7-Mode移轉ONTAP 至Sf24。
++
+當偵測到AD網域名稱不相符時、此工具會觸發可接受的封鎖錯誤。若要繼續進行轉換、您可以確認封鎖錯誤。
+
+* CIFS伺服器必須在套用組態（預先轉換）階段之前手動設定。
++
+您可以使用下列兩種方式在SVM上建立CIFS伺服器：
+
++
+|===
+| 如果您想要... | 請執行下列動作... 
+
+
+ a| 
+將CIFS伺服器身分識別傳輸或保留至目標SVM
+ a| 
+ You have the following two options to create the CIFS server:
+.. 適用於ONTAP 所有版本的不適用：
++
+*** 在SVM資源配置階段之前、您必須使用暫時性的CIFS身分識別、在7-Mode系統上重新設定CIFS伺服器。
++
+這項重新設定可讓您在SVM上設定原始CIFS伺服器身分識別。您必須驗證CIFS伺服器在「VM資源配置」和「匯出與停止」階段的7-Mode系統上是否執行、以及新的暫用身分識別。在SVM資源配置和「Export & Halt」（匯出與停止）階段期間、必須從7-Mode讀取CIFS組態。
+
+*** 您必須在目標SVM上設定具有原始7-Mode CIFS身分識別的CIFS伺服器。
+*** 在符合這些條件之後、您可以執行「VM資源配置」作業、然後執行「Export & halt」作業、讓用戶端能夠存取ONTAP 到故障資料。
+
+
+.. 適用於9.0至9.5版的更新版本：ONTAP
++
+*** 使用「vserver CIFS modify」命令來變更CIFS伺服器名稱（CIFS伺服器NetBios名稱）。
++
+使用此功能時、您應該在目標SVM上建立具有暫用身分識別的CIFS伺服器、然後執行「VM資源配置」作業。
+
+*** 在「匯入」階段之後、您可以在目標叢集上執行「vserver CIFS modify」命令、以7-Mode CIFS身分識別取代目標SVM CIFS身分識別。
+
+
+
+
+
+
+ a| 
+使用新身分識別
+ a| 
+** 在「VM資源配置」階段之前、您必須使用新的CIFS身分識別、在目標SVM上設定CIFS伺服器。
+** 您必須在「VM資源配置」和「匯出與停止」階段、確認CIFS伺服器已在7-Mode系統上啟動並執行。
++
+在「VM資源配置」和「匯出與停止」期間、您必須採取此行動、才能從7-Mode讀取CIFS組態。
+
+** 在驗證這些條件之後、您可以執行「VM資源配置」作業。
++
+接著您可以測試SVM組態、然後規劃執行儲存設備轉換。
+
+
+
+|===
+

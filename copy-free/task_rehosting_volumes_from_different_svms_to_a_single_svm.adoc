@@ -1,0 +1,144 @@
+---
+permalink: copy-free/task_rehosting_volumes_from_different_svms_to_a_single_svm.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, rehost, volumes, svm 
+summary: Volume rehost可讓您將已轉換的磁碟區從一個SVM移轉至另一個SVM、而不需複製資料。重新主機作業可讓您將所有具有FC LUN的磁碟區整合至單一SVM、進而保留7-Mode單一系統映像（SSI）語義。您也可以重新裝載轉換後的NAS磁碟區。 
+---
+= 將已轉換的磁碟區重新託管至不同的SVM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Volume rehost可讓您將已轉換的磁碟區從一個SVM移轉至另一個SVM、而不需複製資料。重新主機作業可讓您將所有具有FC LUN的磁碟區整合至單一SVM、進而保留7-Mode單一系統映像（SSI）語義。您也可以重新裝載轉換後的NAS磁碟區。
+
+* 您要重新裝載的磁碟區必須在線上。
+* Volume管理作業（例如Volume Move或LUN Move）不得執行。
+* 必須停止對正在重新託管的磁碟區的資料存取。
++
+重新託管是一項顛覆性的作業。
+
+
+
+下列磁碟區原則、原則規則和組態會從來源磁碟區中遺失、必須在重新裝載作業之後、在重新裝載的磁碟區上手動重新設定：
+
+* Volume與qtree匯出原則
+* 防毒原則
+* Volume效率原則
+* 服務品質（QoS）原則
+* Snapshot原則
+* 配額規則
+* CIFS共用
+* 與連接埠集相關的igroup
+
+
+.步驟
+* *重新託管FC和iSCSI磁碟區*
++
+.. 切換至進階權限等級：+「*設定-權限進階*」
+.. 在目的地SVM上重新裝載磁碟區：
++
+|===
+| 如果您想要... | 執行下列命令... 
+
+
+ a| 
+重新託管後取消對應LUN
+ a| 
+h.* Volume rehost -vserver _svm_-volume _vol_name_-destination-vserver _detal_svm_-force–unmap-LUNs true*
+
+
+
+ a| 
+重新託管後、將LUN重新對應至相同的igroup
+ a| 
+h.* Volume rehost -vserver _svm_-volume _vol_name_-destination-vserver _detal_svm_-auto-remap-LUNs true*
+
+|===
+
+
+* *重新託管NFS磁碟區*
++
+.. 記錄NFS匯出原則的相關資訊。
+.. 從父磁碟區卸載磁碟區：+「* volume unmount *」
+.. 切換到進階權限等級：「*設定-權限進階*」
+.. 在目的地SVM上重新裝載磁碟區：+ hy* Volume rehost -vserver _source_Svm_-volume _vol_name_-destination-vserver _destination_Svm_*
++
+目的地SVM的預設匯出原則會套用至重新裝載的Volume。
+
+.. 建立匯出原則：+「* vserver匯出原則cred*」
+.. 將重新託管磁碟區的匯出原則更新為使用者定義的匯出原則：+「* Volume modify*」
+.. 將磁碟區掛載到目的地SVM中適當的交會路徑下：+「* volume mount*」
+.. 驗證NFS服務是否在目的地SVM上執行：+「* vserver NFS STATUS*」
+.. 恢復NFS對重新託管磁碟區的存取。
++
+由於磁碟區存取路徑（LIF和交會路徑）已發生變更、因此您必須更新NFS用戶端認證和LIF組態、以反映目的地SVM lifs。
+
+
+
++
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.cdot-famg-nfs/home.html["NFS管理"]
+
+* *移轉CIFS磁碟區*
++
+.. 記錄CIFS共用的相關資訊。
+.. 從父磁碟區卸載磁碟區：+「* volume unmount *」
+.. 切換至進階權限等級：+「*設定-權限進階*」
+.. 在目的地SVM上重新裝載磁碟區：+ hy* Volume rehost -vserver _source_Svm_-volume _vol_name_-destination-vserver _destination_Svm_*
+.. 將磁碟區掛載到目的地SVM中適當的交會路徑下：+「* volume mount*」
+.. 為重新託管的Volume建立CIFS共用：+「* vserver CIFS共用cred*」
+.. 如果來源和目的地SVM之間的DNS網域不同、請建立新的使用者和群組。
+.. 使用新的目的地SVM LIF及連線路徑、更新CIFS用戶端至重新裝載的Volume。
+
+
++
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.cdot-famg-cifs/home.html["SMB/CIFS管理"]
+
+* *在SnapMirror關係中重新託管磁碟區*
++
+.. 記錄SnapMirror關係類型：+'* SnapMirror show*
+.. 從目的地叢集刪除SnapMirror關係：+「* SnapMirror刪除*」
++
+
+IMPORTANT: 您不得中斷SnapMirror關係；否則、目的地Volume的資料保護功能將會遺失、而且在重新託管作業之後、將無法重新建立關係。
+
+.. 從來源叢集發佈SnapMirror關係資訊：+「* SnapMirror版本*」
++
+您將-information-info-only參數設為true、以便不會刪除Snapshot複本、而且只會移除來源關係資訊。
+
+.. 切換至進階權限等級：+「*設定-權限進階*」
+.. 在目的地SVM上重新裝載磁碟區：+ hy* Volume rehost -vserver _source_Svm_-volume _vol_name_-destination-vserver _destination_Svm_*
+.. 在來源SVM和目的地SVM之間建立SVM對等關係：+「* vserver對等點creation*」
+.. 在來源與目的地磁碟區之間建立SnapMirror關係：+「* SnapMirror creation*」
++
+重新託管的Volume可以是SnapMirror關係的來源或目的地。
+
+.. 重新同步資料保護關係：+「* SnapMirror重新同步*」
+
+
++
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-dap/home.html["資料保護"]
+
+
+
+您必須執行下列步驟、手動建立重新託管磁碟區的自動Volume工作負載：
+
+. 為SVM建立使用者定義的原則群組：
++
+hoS* qos原則群組create -vserver _destination-vserver_-police-group _police-group name_*
+
+. 將QoS原則群組指派給重新託管的Volume：
++
+h.* Volume modify -vserver _detime-vserver_-volume _rebovide-volume _-qos-policy-group police-group name_*
+
+
+
+您必須手動重新設定重新裝載磁碟區上的原則和相關規則。
+
+
+NOTE: 如果重新託管作業失敗、您可能需要重新設定來源Volume上的Volume原則和相關規則。
+
+*相關資訊*
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-cmpr/GUID-5CB10C70-AC11-41C0-8C16-B4D0DF916E9B.html["指令ONTAP"]

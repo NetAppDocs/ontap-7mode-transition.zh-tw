@@ -1,0 +1,50 @@
+---
+permalink: copy-free/concept_considerations_for_local_users_and_groups_transition.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, cifs, local, users, group 
+summary: 移轉CIFS本機使用者和群組時、您必須注意執行移轉作業的考量事項。 
+---
+= 移轉CIFS本機使用者和群組的考量
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+移轉CIFS本機使用者和群組時、您必須注意執行移轉作業的考量事項。
+
+* 不支援將CIFS資料服務磁碟區從具有本機使用者和群組的7-Mode控制器或VFiler裝置移轉至具有非BUILTINCIFS本機使用者和群組的SVM。
++
+SVM必須只有BUILTINCIFS本機使用者和群組才能進行轉換。
+
+* 您必須確保7-Mode中的本機使用者和群組數量不會超過ONTAP 本機使用者和群組對VMware的限制。
++
+如果7-Mode中的本機使用者和群組數量超過ONTAP 了VMware所定義的上限、您必須聯絡技術支援部門。
+
+* 使用空白密碼的本機使用者帳戶、或使用密碼超過14個字元的本機使用者帳戶、將會改用ONTAP 密碼「* cifsUser@1*」的VMware軟體。
++
+轉換完成後、您可以使用密碼「* cifsUser@1*」從Windows系統存取這些使用者。然後、您必須使用下列命令、在SVM上手動變更這類CIFS本機使用者的密碼：
+
++
+「* CIFS使用者與群組本機使用者設定密碼-vserver _Svm_name_-user-name _user_name_*」。
+
+* 如果無法從目標ONTAP 版的VMware軟體存取7-Mode Transition Tool IP位址、7-Mode Transition Tool會在ONTAP 預先檢查階段、封鎖CIFS本機使用者和群組移轉至VMware軟體的過程。如果您在預先檢查階段看到此錯誤、請使用
++
+‘*網路ping節點本機-目的地_ip_address_*
+
++
+命令以確保7-Mode Transition Tool IP位址可從目標ONTAP VMware軟體存取。您可以編輯隨7-Mode Transition Tool安裝的「etc\conf\transition工具.conf」檔案、以修改工具所使用的任何組態選項、例如7-Mode Transition Tool IP位址。
+
+* 本機使用者和群組移轉至的SVM必須具有資料LIF。
+* 如果本機群組有多個成員系統識別碼（SID）對應至7-Mode系統上的單一網域使用者或群組、7-Mode Transition Tool會在ONTAP 預先檢查階段、封鎖本機使用者和群組移轉至VMware。
++
+如果您在預先檢查階段看到此錯誤、則必須手動移除對應至7-Mode系統上單一網域使用者或群組的其他SID。然後、您必須重新執行預先檢查作業、只將單一SID對應至網域使用者或群組。
+
++
+https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/Troubleshooting_Workflow%3A_CIFS%3A_Device_attached_to_the_system_is_not_functioning["疑難排解工作流程：CIFS：附加至系統的裝置無法運作"]
+
+
+
+*相關資訊*
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.cdot-famg-cifs/home.html["SMB/CIFS管理"]

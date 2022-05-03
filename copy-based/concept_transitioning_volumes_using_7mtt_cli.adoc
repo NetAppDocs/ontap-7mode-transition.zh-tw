@@ -1,0 +1,16 @@
+---
+permalink: copy-based/concept_transitioning_volumes_using_7mtt_cli.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, cli, tool, columes 
+summary: 7-Mode Transition Tool提供可讓您轉換7-Mode Volume的命令。如果Linux系統上安裝了7-Mode Transition Tool、則必須使用CLI執行轉換。 
+---
+= 使用7-Mode Transition Tool CLI轉換磁碟區
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+7-Mode Transition Tool提供可讓您轉換7-Mode Volume的命令。如果Linux系統上安裝了7-Mode Transition Tool、則必須使用CLI執行轉換。
+
+此工具會收集7-Mode儲存系統的磁碟區和IP位址資訊、驗證7-Mode組態、並與叢集互動、以在SVM上套用組態。

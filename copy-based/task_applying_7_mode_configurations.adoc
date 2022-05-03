@@ -1,0 +1,126 @@
+---
+permalink: copy-based/task_applying_7_mode_configurations.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, apply, 7, mode, configuration 
+summary: 完成基礎資料複本之後、您可以將7-Mode系統（包括傳輸協定和服務組態）的所有組態複製並套用至ONTAP VMware Volume。如果目標叢集執行ONTAP 任何版本的不支援版本、則SAN組態會在此階段轉換。 
+---
+= 套用7-Mode組態
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+完成基礎資料複本之後、您可以將7-Mode系統（包括傳輸協定和服務組態）的所有組態複製並套用至ONTAP VMware Volume。如果目標叢集執行ONTAP 任何版本的不支援版本、則SAN組態會在此階段轉換。
+
+如果要轉換SAN磁碟區、您必須為叢集中的每個節點建立至少一個適當傳輸協定（iSCSI或FC）的資料LIF。
+
+* 組態會套用至套用組態（切換前）階段、此階段有兩種模式：切換唯讀模式和切換前讀取/寫入模式。
+
+
+專案包含下列項目時、不支援預先轉換讀取/寫入模式：
+
+* SAN Volume和目標叢集執行Data ONTAP 的是不含更新版本的在這種情況下、下列組態不會套用到預先轉換階段、而是會在轉換階段套用：
++
+** SAN組態
+** Snapshot排程組態
+
+
+* 符合法規的大量資料。SnapLock
++
+如果專案包含SnapLock 「不符合需求」磁碟區、則「快照排程」組態不會套用到「預先轉換」階段、而是會在轉換階段套用這些組態。
+
++
+請參閱 xref:concept_considerations_for_transitioning_of_snaplock_compliance_volumes.adoc[轉換SnapLock 不符合法規的考量]。
+
+
+
+.步驟
+. 從儀表板選取專案。
+. 套用組態：
++
+|===
+| 如果您要套用所有組態... | 然後... 
+
+
+ a| 
+唯讀模式
+ a| 
+按一下「*套用組態*」。
+
+
+
+ a| 
+讀寫模式
+ a| 
+.. 選取「*測試模式*」核取方塊。
+.. 按一下「*套用組態*」。
++
+此功能可讓您進行讀寫、並可測試組態和資料存取作業。ONTAP
+
+.. 在「Apply Configuration（Precutover）（套用組態（預先轉換））」對話方塊中、選取「* Apply configuration in test mode*（在測試模式中套用組態
+
+
+|===
+. 選取*自訂此作業的並行SnapMirror傳輸數和節流限制*核取方塊、以指定SnapMirror資料複製作業數和節流限制：
++
+.. 輸入轉換期間要執行的最大並行SnapMirror傳輸數。
+.. 輸入可用於SnapMirror傳輸的可用串流百分比。
++
+根據預設、此工具會使用可用Volume SnapMirror傳輸的50%。
+
+.. 輸入節流限制、或選取*最大*以使用最大頻寬。
++
+根據預設、此工具會使用最大節流來進行組態轉換。
+
+
+
+. 選取「*移轉Kerberos組態*」核取方塊、提供UNIX或Microsoft AD型Kerberos伺服器組態詳細資料、以供轉換之用。
++
+
+NOTE: 只有在來源7-Mode儲存系統上設定Kerberos時、才會啟用此選項。
+
++
+.. 輸入Kerberos伺服器詳細資料、例如主機名稱、IP位址、使用者名稱和密碼。
++
+
+NOTE: 若要轉換Kerberos組態、至少必須將一個LIF轉換為專案的一部分、且LIF必須可解析為主機名稱。
+
+
+
+. 按一下 * 繼續 * 。
++
+隨即顯示「操作進度」對話方塊、並開始複本組態作業。
+
+. 如果組態轉換是以讀寫模式執行、請在組態測試與驗證完成後、按一下「*完成測試*」。
++
+此模式只能用於測試目的。在測試模式期間移轉的磁碟區上寫入叢集的所有資料都會遺失。
+
++
+此工具會重新建立SnapMirror關係、並根據當時該專案的作用中排程、重新同步ONTAP 化各個版本。寫入7-Mode的任何資料都會與ONTAP VMware磁碟區重新同步。
+
++
+
+NOTE: 若要成功重新同步、7-Mode和叢集Data ONTAP 式VMware等磁碟區之間必須存在一個通用的Snapshot複本。您不應手動刪除一般Snapshot複本、否則重新同步會失敗。
+
+
+
+7-Mode IP位址仍可運作。這些LIF是以下列方式在儲存虛擬機器（SVM）上設定：
+
+* 現有的7-Mode IP位址會以系統管理的當機狀態建立。
++
+在儲存設備轉換期間、這些IP位址會從7-Mode系統中移除、而對應的儲存虛擬機器（SVM）生命週期會進入管理啟動狀態。如果您選取預先轉換讀取/寫入模式、則必須使用不同的LIF來存取要移轉至叢集的磁碟區。
+
+* 新的IP位址會在系統管理啟動狀態下建立。
++
+如果您選取預先轉換讀取/寫入模式、則這些LIF可用於測試叢集中要移轉之磁碟區的存取。
+
+
+
+*相關資訊*
+
+xref:task_managing_logical_interfaces.adoc[管理邏輯介面]
+
+xref:concept_considerations_for_quotas.adoc[配額考量]
+
+https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/7MTT_v2.0%2F%2FTransitioned_Data_ONTAP_features["7MTT v2.0 /轉換Data ONTAP 版的功能"]

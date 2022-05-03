@@ -1,0 +1,124 @@
+---
+permalink: command-map/reference_how_7_mode_configuration_files_map_to_clustered_ontap_commands.html 
+sidebar: sidebar 
+keywords: ontap, command, map, transition, configuration, files, clustered, data, ontap 
+summary: 在7-Mode中運作時、您通常會使用平面檔案來設定儲存系統。Data ONTAP在叢集Data ONTAP 式的功能表中、您可以使用組態命令。您需要知道7-Mode組態檔案如何對應至叢集Data ONTAP 式的VMware組態命令。 
+---
+= 7-Mode組態檔如何對應至叢集Data ONTAP 式的等位元指令
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在7-Mode中運作時、您通常會使用平面檔案來設定儲存系統。Data ONTAP在叢集Data ONTAP 式的功能表中、您可以使用組態命令。您需要知道7-Mode組態檔案如何對應至叢集Data ONTAP 式的VMware組態命令。
+
+|===
+| 7-Mode組態檔 | 叢集Data ONTAP 式的組態命令 
+
+
+ a| 
+/etc/cIFs_homedir.cfg'
+ a| 
+「Vserver CIFS主目錄搜尋路徑」
+
+
+
+ a| 
+（例如：etc/exports）
+ a| 
+「Vserver匯出原則」
+
+
+
+ a| 
+/etc/hosts/hosts/
+ a| 
+"Vserver services DNS hosts"（Vserver服務DNS主機）
+
+
+
+ a| 
+/etc/hosts.Equiv
+ a| 
+不適用。
+
+「安全登入」命令可建立使用者存取設定檔。
+
+
+
+ a| 
+（例如：etc/messages'）
+ a| 
+「事件記錄顯示」
+
+
+
+ a| 
+（例如：etc/motd）
+ a| 
+"ecurity登入motd modify"
+
+
+
+ a| 
+/etc/nsswitch.conf
+ a| 
+"vserver modify"
+
+
+
+ a| 
+/etc/rc
+ a| 
+在叢集Data ONTAP 式功能中、保留開機時處理的節點組態資訊、會傳輸到保留組態資訊的其他內部檔案。
+
+在7-Mode中運作時、記憶體中設定的功能也會保留在/etc/rc檔案中、以便在開機時重新播放及重新設定。Data ONTAP
+
+
+
+ a| 
+/etc/quot限制
+ a| 
+磁碟區配額
+
+
+
+ a| 
+/etc/resolv.conf
+ a| 
+"Vserver services DNS modify"（Vserver服務DNS修改）
+
+
+
+ a| 
+/etc/SnapMirror。允許
+ a| 
+叢集間的關係存在於兩個叢集之間。
+
+同一叢集上的兩個節點之間存在叢集內關聯。在建立叢集對等關係期間、會進行遠端叢集驗證。
+
+叢集內的「儲存鏡射建立」命令只能由叢集管理員執行、以強制執行每個儲存虛擬機器（SVM）的安全性。
+
+
+
+ a| 
+/etc/SnapMirror
+ a| 
+'建立napmirror '
+
+
+
+ a| 
+/etc/symlink.譯文
+ a| 
+《Vserver CIFS symlink》
+
+
+
+ a| 
+/etc/usermap.cfg/'
+ a| 
+「vserver名稱對應建立」
+
+|===

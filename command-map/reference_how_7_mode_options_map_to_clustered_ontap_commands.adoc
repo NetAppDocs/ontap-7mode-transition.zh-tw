@@ -1,0 +1,3449 @@
+---
+permalink: command-map/reference_how_7_mode_options_map_to_clustered_ontap_commands.html 
+sidebar: sidebar 
+keywords: ontap, command, map, transition, commands, options 
+summary: 在7-Mode中運作時、您可以執行options命令來設定可設定的儲存系統軟體選項。Data ONTAP在這個選項中、您可以使用命令參數來設定這些選項。ONTAP您可以使用所提供的表格來檢視7-Mode命令如何對應ONTAP 至VMware指令。 
+---
+= 7-Mode選項如何對應ONTAP 至VMware指令
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在7-Mode中運作時、您會執行「options」命令來設定可設定的儲存系統軟體選項。Data ONTAP在這個選項中、您可以使用命令參數來設定這些選項。ONTAP您可以使用所提供的表格來檢視7-Mode命令如何對應ONTAP 至VMware指令。
+
+在「'7-Mode command」欄中、為清楚起見、不會顯示base options命令。在您看到「ACP.DOMADOM」的地方、命令的真正長形式是選項「ACP.DOMADOM」。
+
+「瞭解7-Mode to clustered Data ONTAP f2命令對應」一節包含如何組織本章表格的相關資訊。
+
+xref:concept_how_to_interpret_clustered_ontap_command_maps_for_7_mode_administrators.adoc[瞭解7-Mode到叢集Data ONTAP 式的指令程式指令對應]
+
+
+
+== A-E
+
+[role="lead"]
+* a *
+
+|===
+| 7-Mode選項 | 叢集Data ONTAP 式的指令 
+
+
+ a| 
+《ACP.DOMAIN'》
+ a| 
+系統節點執行節點｛nodename| local｝選項ACP.DOMAIN*
+
+
+
+ a| 
+「ACP.啟用」
+ a| 
+系統節點執行節點｛nodename| local｝選項ACP.enabled*
+
+
+
+ a| 
+acp.netmask`
+ a| 
+系統節點執行節點｛nodename| local｝選項acp.netmask*`
+
+
+
+ a| 
+《ACP.port》
+ a| 
+系統節點執行節點｛nodename| local｝選項ACP.port*
+
+
+
+ a| 
+「auditlog.enable」
+ a| 
+《安全稽核》
+
+
+
+ a| 
+"auditlog.max.file_Size"
+ a| 
+不支援
+
+
+
+ a| 
+「auditlog.readonly _API.enable」
+ a| 
+《安全稽核》
+
+
+
+ a| 
+「autodlogout.console.enable」
+ a| 
+系統超時修改-timeout*
+
+
+
+ a| 
+"autodlogout.console.timeout"
+ a| 
+系統超時修改-timeout*
+
+
+
+ a| 
+「autodlogout.nets.enable」
+ a| 
+不支援
+
+
+
+ a| 
+"autodlogout.net-timeout"
+ a| 
+不支援
+
+
+
+ a| 
+"autosupsupport.CIFs.verbos"
+ a| 
+不支援
+
+
+
+ a| 
+"autosupsupport.content"
+ a| 
+`*系統節點AutoSupport 不修訂-nodeedename_-remove -Private -data {true|formal}*
+
+
+
+ a| 
+《autosupd.doit》
+ a| 
+系統節點AutoSupport 不完整地叫用節點_nodename_-type {all| test}*
+
+
+
+ a| 
+「autosupsupport.enable」
+ a| 
+`*系統節點AutoSupport 不修訂-nodeame_-st態｛enable| disable}*
+
+
+
+ a| 
+autosupport.from`
+ a| 
+`*系統節點AutoSupport 不修訂節點_nodename_-from *
+
+
+
+ a| 
+"autosupd.local_collection"
+ a| 
+系統節點AutoSupport fesmodify -nodeame_-local-collection {true|fals}*
+
+
+
+ a| 
+"autosupsupport.mailhost"
+ a| 
+`*系統節點AutoSupport 不修訂節點_nodename_-mail-hosts*
+
+
+
+ a| 
+"autosupport.main_htt_size"
+ a| 
+`*系統節點AutoSupport 不修訂節點_nodename_-max-http-Size*
+
+
+
+ a| 
+"autosupd.main_smt_size"
+ a| 
+系統節點AutoSupport fedmodify -nodeame_-max-smtp-Size*
+
+
+
+ a| 
+「autosup支撐、minimal.Subject」
+ a| 
+系統節點AutoSupport formodify -nodeame_-hostname-subj*
+
+
+
+ a| 
+「autosupsupport.nth_data.enable」（不適用於smfp）
+ a| 
+《* AutoSupport 》-nth*》
+
+系統節點AutoSupport 不需要修改-nth*
+
+
+
+ a| 
+autosupport.noteto`
+ a| 
+系統節點AutoSupport fedmodify -nodeame_-noteTo*
+
+
+
+ a| 
+"autosupsupport.ano.to（自動支援、合作夥伴）
+ a| 
+系統節點AutoSupport fedmodify -nodeename_-Partner address*
+
+
+
+ a| 
+"autosupd.ence_data.doit"
+ a| 
+‘*系統節點AutoSupport 不調用-nodeame_-type Performance *’
+
+
+
+ a| 
+「autodupsupport.表演 資料啟用」
+ a| 
+`*系統節點AutoSupport 不修訂-nodeename_-perf {true|formal}*
+
+
+
+ a| 
+「autosupd.periode.tx_window
+ a| 
+`*系統節點AutoSupport 不修訂節點_nodename_-定期-tx-window*
+
+
+
+ a| 
+「autosupsupport.retry、count」
+ a| 
+系統節點AutoSupport fedmodify -nodeename_-retry count*
+
+
+
+ a| 
+autosupport.retry.interval`
+ a| 
+系統節點AutoSupport fedmodify -nodeame_-retry時間間隔*
+
+
+
+ a| 
+「autosupsupport.support.enable」
+ a| 
+系統節點AutoSupport 不支援節點節點_nodename_-support｛enable| disable}*
+
+
+
+ a| 
+autosupport.support.proxy`
+ a| 
+系統節點AutoSupport flexmodify -nodeame_-proxy-url*
+
+
+
+ a| 
+「autosupsupport.support.inpl提醒」
+ a| 
+系統節點AutoSupport flexshow -nodeame_-Fields notele*
+
+
+
+ a| 
+"autosupsupport.support.transit"
+ a| 
+系統節點AutoSupport 不修訂-nodeame_-transport｛http | https | smtp｝*
+
+
+
+ a| 
+"autosupsupport.to（自動支援）"
+ a| 
+系統節點AutoSupport fedmodify -nodeame_-to*
+
+
+
+ a| 
+「autosupd.validate_digital憑證」
+ a| 
+`*系統節點AutoSupport 不修訂節點節點名稱-valide-digital憑證{true|falsoE}*
+
+|===
+[role="lead"]
+* B *
+
+|===
+| 7-Mode選項 | 叢集Data ONTAP 式的指令 
+
+
+ a| 
+「backup.log.enable」
+ a| 
+不支援
+
+|===
+[role="lead"]
+* C*
+
+|===
+| 7-Mode選項 | 叢集Data ONTAP 式的指令 
+
+
+ a| 
+「CDPD.enable」
+ a| 
+系統節點執行節點｛nodename| local｝選項CDPD.ened*
+
+
+
+ a| 
+《CDPD.HoldTime》
+ a| 
+系統節點執行節點｛nodename| local｝選項CDPD.HoldTime*
+
+
+
+ a| 
+cdpd.interval`
+ a| 
+系統節點執行節點｛nodename| local｝選項cdpd.interval*`
+
+
+
+ a| 
+cf.giveback.auto.after.panic.takeover`
+ a| 
+「*儲存容錯移轉修改-在發生嚴重錯誤後自動恢復*」
+
+
+
+ a| 
+cf.giveback.auto.cancel.on_network_failure`
+ a| 
+不支援
+
+
+
+ a| 
+cf.giveback.auto.delay.seconds`
+ a| 
+「*儲存容錯移轉修改-延遲秒*」
+
+
+
+ a| 
+cf.giveback.auto.enable`
+ a| 
+「*儲存容錯移轉修改-自動恢復*」
+
+
+
+ a| 
+「cf.HW_assist。啟用」
+ a| 
+`*儲存容錯移轉修改-hwassist *
+
+
+
+ a| 
+cf.HW_assist。partner.address'
+ a| 
+「*儲存容錯移轉修改-hwassist合作夥伴-ip*」
+
+
+
+ a| 
+《cf.HW_assist、partner.port》
+ a| 
+「*儲存容錯移轉修改-hwassist合作夥伴連接埠*」
+
+
+
+ a| 
+《cf.mode》
+ a| 
+‘*儲存容錯移轉修改-mode*’
+
+
+
+ a| 
+「cf.remite_SyncMirror.enable」
+ a| 
+不支援
+
+
+
+ a| 
+"cf.sfoagg_mastime"
+ a| 
+「*儲存容錯移轉修改-Aggregate移轉逾時*」
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+cf.takeover.change_fsid`
+ a| 
+不支援
+
+
+
+ a| 
+cf.takeover.detection.seconds`
+ a| 
+「*儲存容錯移轉修改-偵測-時間*」
+
+
+
+ a| 
+「cf.takeover、on_disk_bid_miscompare」
+ a| 
+不支援
+
+
+
+ a| 
+「cf.takeake.on_f失敗」
+ a| 
+`*儲存容錯移轉修改-onfailon*
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+「cf.takeover、on_network_interface_f失敗」
+ a| 
+不支援
+
+
+
+ a| 
+「cf.takeover、on_network_interface_fall.policy all_nics」
+ a| 
+不支援
+
+
+
+ a| 
+「cf.takeover、on_p恐慌」
+ a| 
+’*儲存容錯移轉修改-on痛苦*
+
+
+
+ a| 
+「cf.takeover、on重新開機」
+ a| 
+`*儲存容錯移轉修改-onreboot*
+
+
+
+ a| 
+「cf.takeover、on_short_uptime」
+ a| 
+「*儲存容錯移轉修改-短期正常運作時間*」
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+《CIFs.LMCompatibilityLevel》
+ a| 
+「* vserver CIFS安全性修改-lm-compatibility level *」
+
+
+
+ a| 
+cifs.audit.autosave.file.extension`
+ a| 
+不支援
+
+
+
+ a| 
+cifs.audit.autosave.file.limit`
+ a| 
+「* vserver稽核修改-旋轉限制*」
+
+
+
+ a| 
+cifs.audit.autosave.onsize.enable`
+ a| 
+不支援
+
+
+
+ a| 
+cifs.audit.autosave.onsize.threshold`
+ a| 
+不支援
+
+
+
+ a| 
+cifs.audit.autosave.ontime.enable`
+ a| 
+不支援
+
+
+
+ a| 
+cifs.audit.autosave.ontime.interval`
+ a| 
+不支援
+
+
+
+ a| 
+cifs.audit.enable`
+ a| 
+vserver稽核*
+
+
+
+ a| 
+cifs.audit.file_access_events.enable`
+ a| 
+"* vserver稽核修改-EVERS*
+
+
+
+ a| 
+cifs.audit.nfs.filter.filename`
+ a| 
+不支援
+
+
+
+ a| 
+cifs.audit.logon_events.enable`
+ a| 
+「* vserver稽核修改-事件CIFS-登入-登出*」
+
+
+
+ a| 
+cifs.audit.logsize`
+ a| 
+不支援
+
+
+
+ a| 
+cifs.audit.nfs.enable`
+ a| 
+「* vserver稽核修改-事件file-op*」
+
+
+
+ a| 
+cifs.audit.nfs.filter.filename`
+ a| 
+不支援
+
+
+
+ a| 
+cifs.audit.saveas`
+ a| 
+‘* vserver稽核修改-destination*’
+
+
+
+ a| 
+"CIFs.bypass（繞過）遍歷檢查"
+ a| 
+「* vserver CIFS使用者與群組權限*」
+
+
+
+ a| 
+cifs.comment`
+ a| 
+‘* vserver CIFS create -comment *’（* vserver CIFS create -comment *）
+
+
+
+ a| 
+「CIFs.enable共享瀏覽」
+ a| 
+"Vserver CIFS共享區"
+
+
+
+ a| 
+「CIFS/GPO。啟用」
+ a| 
+「* vserver CIFS群組原則*」
+
+
+
+ a| 
+「CIFS/GPO追蹤」
+ a| 
+不支援
+
+
+
+ a| 
+cifs.grant_implicit_exe_perms`
+ a| 
+Check Alignment of PHs>"* vserver CIFS選項修改-read-pr撥款-exec*
+
+
+
+ a| 
+"CIFs.guest_account"
+ a| 
+不支援
+
+
+
+ a| 
+"CIFs.home_dir_namestyesty"
+ a| 
+‘* vserver CIFS共享cred*’
+
+
+
+ a| 
+"CIFs.home_dirs_public"
+ a| 
+「* vserver CIFS主目錄修改-is-home-dirs-access-for public-enabled {true|假}*」
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+「CIFs.home_dirs_public_for_admin」
+ a| 
+「* vserver CIFS主目錄修改-is-home-dirs-access-for public-enabled｛true|假｝*」
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+"CIFs.IDIDAT_Timeout"
+ a| 
+"* vserver CIFS選項修改-client-session-timeout*
+
+
+
+ a| 
+「CIFs.ipv6.enable」
+ a| 
+不支援
+
+
+
+ a| 
+《CIFs.max_MPX》
+ a| 
+"* vserver CIFS選項修改-max-MPX*
+
+
+
+ a| 
+"CIFs.ms_snapshot模式"
+ a| 
+不支援
+
+
+
+ a| 
+「CIFs.Mapped_null使用者_Extra群組」
+ a| 
+vserver CIFS選項可修改-win-name-for-null使用者_
+
+
+
+ a| 
+cifs.netbios_over_tcp.enable`
+ a| 
+不支援
+
+
+
+ a| 
+"CIFs.NFs_root_ignore _acl
+ a| 
+Check Alignment of PHs>"* vserver NFS modify -ignore -NT-acl-for root*"
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+"CIFs.ntfs_ignore UNIX安全性作業"
+ a| 
+「* vserver NFS modify -ntfs-unix-security-ops/」
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+「CIFs.oplocks.enable」
+ a| 
+「Vserver CIFS共用內容」新增-share-屬性
+
+
+
+ a| 
+《CIFs.oplocks.opendelta*》
+ a| 
+不支援
+
+
+
+ a| 
+"CIFs.perm_支票_ro_del_ok"
+ a| 
+"* vserver CIFS選項修改-is、read-only、delete-enably*
+
+
+
+ a| 
+「CIFs.perm_Check使用_gid」
+ a| 
+不支援
+
+
+
+ a| 
+"CIFs.restry_anoanent"
+ a| 
+"* vserver CIFS選項修改-restrict匿名*
+
+
+
+ a| 
+"CIFs.SAVE案例"
+ a| 
+不支援
+
+
+
+ a| 
+《CIFs.scopeid》
+ a| 
+不支援
+
+
+
+ a| 
+cifs.search_domains`
+ a| 
+「* vserver CIFS網域名稱-對應-搜尋*」
+
+
+
+ a| 
+「CIFs.show_dotfiles.
+ a| 
+「是隱藏的多個檔案」
+
+
+
+ a| 
+「CIFs.show_snapshot」
+ a| 
+‘* vserver CIFS共享屬性add -share-properties*’
+
+
+
+ a| 
+"CIFs.shutd_msg_level
+ a| 
+不支援
+
+
+
+ a| 
+「CIFs.Signing、enable」
+ a| 
+「* vserver CIFS安全性修改-is簽署-required *」
+
+
+
+ a| 
+「CIFs.smb2.client.enable」
+ a| 
+不支援
+
+
+
+ a| 
+「CIFs.smb2.耐久 的_Handle.enable」
+ a| 
+不支援
+
+
+
+ a| 
+"CIFs.smb2.耐久 的處理逾時"
+ a| 
+不支援
+
+
+
+ a| 
+「CIFs.smb2.enable」
+ a| 
+"* vserver CIFS選項修改-smb2-enablatable*
+
+
+
+ a| 
+"CIFs.smb2.Signates.required "
+ a| 
+「* vserver CIFS安全性修改-is簽署-required *」
+
+
+
+ a| 
+cifs.smb2_1.branch_cache.enable`
+ a| 
+「* vserver CIFS共用內容*」
+
+
+
+ a| 
+cifs.smb2_1.branch_cache.hash_time_out`
+ a| 
+不支援
+
+
+
+ a| 
+「CIFs.snapshot _file_fapped.enable」
+ a| 
+不支援
+
+
+
+ a| 
+《cIFs.symlinks》
+ a| 
+不支援
+
+
+
+ a| 
+「CIFs.symlines.enable」
+ a| 
+「* vserver CIFS共用修改-symlink屬性*」
+
+
+
+ a| 
+「CIFs.UNION_INAT嵌 套式群組.enable」
+ a| 
+不支援
+
+
+
+ a| 
+《CIFs.W2K_Password_change.》
+ a| 
+‘* vserver CIFS網域密碼變更*’
+
+
+
+ a| 
+"CIFs.W2K_Password_change_intervent"
+ a| 
+‘* vserver CIFS網域密碼變更排程*’
+
+
+
+ a| 
+"CIFs.W2K_Password_change_within"
+ a| 
+‘* vserver CIFS網域密碼變更排程*’
+
+
+
+ a| 
+《CIFs.wideellink.TTL》
+ a| 
+不支援
+
+
+
+ a| 
+"console.encoding（控制檯編碼）"
+ a| 
+不支援
+
+
+
+ a| 
+「coredumpd.dump」
+ a| 
+系統節點coredump組態修改-coredump-Attempts *
+
+
+
+ a| 
+「coredump.made_only」
+ a| 
+系統節點coredump組態修改啟用了標準的-sparsecore的true*
+
+|===
+[role="lead"]
+* D*
+
+|===
+| 7-Mode選項 | 叢集Data ONTAP 式的指令 
+
+
+ a| 
+「磁碟.asup」、「on_mp_loss」
+ a| 
+系統節點AutoSupport 不正常觸發程序可修改dsk.redun.fault*
+
+
+
+ a| 
+《isk.auto_assign`》
+ a| 
+hy*儲存磁碟選項modify -autodassign*
+
+
+
+ a| 
+《isk.auto_assign_shelf`》
+ a| 
+hy*儲存磁碟選項修改-autodassign-h性 磁碟機*
+
+
+
+ a| 
+"磁 碟.maint_center.allowed_entries」
+ a| 
+不支援
+
+
+
+ a| 
+「磁碟管理」
+ a| 
+系統節點執行節點｛nodename| local｝選項disk.maint_center.ened*
+
+
+
+ a| 
+"磁 碟.maint_center.max.disks"
+ a| 
+系統節點執行節點｛nodename| local｝選項disk.maint_center.mast_disks*
+
+
+
+ a| 
+"磁 碟.maint_center.rec_allowed_entries」
+ a| 
+系統節點執行節點｛nodename| local｝選項disk.maint_center.rec_allowed_entries *
+
+
+
+ a| 
+"磁 碟機.maint_center.fappents_check」
+ a| 
+系統節點執行節點｛nodename| local｝選項disk.maint_center.dispose_check *
+
+
+
+ a| 
+「磁碟機循環啟用」
+ a| 
+系統節點執行節點｛nodename| local｝選項disk.powercup.ened*
+
+
+
+ a| 
+"磁 碟。recovery必要的.count"
+ a| 
+不支援
+
+
+
+ a| 
+"磁 碟目標連接埠.cmd佇列深度"
+ a| 
+hy*儲存陣列修改-name _array_name_-max-queue-深度*
+
+
+
+ a| 
+《ns.cache.enable`》
+ a| 
+不支援
+
+
+
+ a| 
+"Dns.domainname"
+ a| 
+'* vserver服務名稱服務DNS修改-domain*
+
+
+
+ a| 
+「Dns.enable」
+ a| 
+'* vserver服務名稱服務DNS修改-陳述*
+
+
+
+ a| 
+「Dns.update.enable」
+ a| 
+不支援
+
+
+
+ a| 
+"Dns.update.ttm"
+ a| 
+不支援
+
+|===
+[role="lead"]
+* E *
+
+|===
+| 7-Mode選項 | 叢集Data ONTAP 式的指令 
+
+
+ a| 
+ems.autosuppress.enable`
+ a| 
+‘*事件組態修改-suppression｛_on| off_｝*
+
+
+NOTE: 可在進階權限層級使用。
+
+|===
+
+
+== F-K
+
+[role="lead"]
+* F *
+
+|===
+| 7-Mode選項 | 叢集Data ONTAP 式的指令 
+
+
+ a| 
+「FCP、enable」
+ a| 
+‘* FCP start*’
+
+
+
+ a| 
+"FlexCache存取"
+ a| 
+不支援
+
+
+
+ a| 
+flexcache.deleg.high_water`
+ a| 
+不支援
+
+
+
+ a| 
+flexcache.deleg.low_water`
+ a| 
+不支援
+
+
+
+ a| 
+「FlexCache。啟用」
+ a| 
+不支援
+
+
+
+ a| 
+FlexCache。per_client_stats
+ a| 
+不支援
+
+
+
+ a| 
+「FLEXscale.enable」
+ a| 
+系統節點執行-node_node_name_|local｝選項FLEXscale.enable *
+
+
+
+ a| 
+「FLEXscale.loprim_blocks」
+ a| 
+系統節點執行-node_node_name_|local｝選項FLEXscale.lopriz_blockes*
+
+
+
+ a| 
+flexscale.normal_data_blocks`
+ a| 
+系統節點執行-node_node_name_|local｝選項flexscale.normal_data_blocks*`
+
+
+
+ a| 
+「FLEXscale.ps_High資源」
+ a| 
+系統節點執行-node_node_name_|local｝選項FLEXscale.ps_hHigh res*
+
+
+
+ a| 
+「FLEXscale.ps_size」
+ a| 
+系統節點執行-node_node_name_|local｝選項FLEXscale.ps_Size*
+
+
+
+ a| 
+《FLEXscale.rewarm》（《FLEXscale.rewarm》）
+ a| 
+系統節點執行-node_node_name_|local｝選項FLEXscale.rewon*
+
+
+
+ a| 
+「fpolicy.enable」
+ a| 
+「* vserver fpolicy enable *」
+
+
+
+ a| 
+「fpolicy.I2P_Ems_interval」
+ a| 
+不支援
+
+
+
+ a| 
+fpolicy.multie_pipes
+ a| 
+不支援
+
+
+
+ a| 
+「ftpd.3way、enable」
+ a| 
+不支援
+
+
+
+ a| 
+「ftpd.anone.enable」
+ a| 
+不支援
+
+
+
+ a| 
+"ftpd.anyno.home_dir"
+ a| 
+不支援
+
+
+
+ a| 
+ftpd.anonymous.name
+ a| 
+不支援
+
+
+
+ a| 
+ftpd.auth_style`
+ a| 
+不支援
+
+
+
+ a| 
+"ftpd.bypass遍歷檢查"
+ a| 
+不支援
+
+
+
+ a| 
+"ftpd.dir.overrup"
+ a| 
+不支援
+
+
+
+ a| 
+"ftpd.dir.ontry"
+ a| 
+不支援
+
+
+
+ a| 
+「ftpd.enable」
+ a| 
+不支援
+
+
+
+ a| 
+"ftpd.explicent.allow_secure_data_conn"
+ a| 
+不支援
+
+
+
+ a| 
+「ftpd.explicit.enable」
+ a| 
+不支援
+
+
+
+ a| 
+"ftpd.id閒 置逾時"
+ a| 
+不支援
+
+
+
+ a| 
+「ftpd.inicit.enable」
+ a| 
+不支援
+
+
+
+ a| 
+「ftpd.ipv6.enable」
+ a| 
+不支援
+
+
+
+ a| 
+"ftpd.上 鎖"
+ a| 
+不支援
+
+
+
+ a| 
+「ftpd.log.enable」
+ a| 
+不支援
+
+
+
+ a| 
+"ftpd.log.filesize."
+ a| 
+不支援
+
+
+
+ a| 
+"ftpd.log.nfiles."
+ a| 
+不支援
+
+
+
+ a| 
+"ftpd.max.connections"
+ a| 
+不支援
+
+
+
+ a| 
+"ftpd.max.connects_threshold"
+ a| 
+不支援
+
+
+
+ a| 
+「ftpd.tcp_window_size」
+ a| 
+不支援
+
+|===
+[role="lead"]
+* H *
+
+|===
+| 7-Mode選項 | 叢集Data ONTAP 式的指令 
+
+
+ a| 
+"httpd.access"
+ a| 
+不支援
+
+
+
+ a| 
+"httpd.admin.access"
+ a| 
+不支援
+
+
+
+ a| 
+「httpd.admin.enable」
+ a| 
+「* vserver services web modify -enabled｛true|假｝*」
+
+
+
+ a| 
+"httpd.admin.hostsequiv.enable
+ a| 
+不支援
+
+
+
+ a| 
+「httpd.admin.max.connections」
+ a| 
+不支援
+
+
+
+ a| 
+「httpd.admin.SSL。啟用」
+ a| 
+"*安全性SSL*
+
+
+
+ a| 
+httpd.admin.top-page.authentication`
+ a| 
+不支援
+
+
+
+ a| 
+"httpd.bypass遍歷檢查"
+ a| 
+不支援
+
+
+
+ a| 
+「httpd.enable」
+ a| 
+不支援
+
+
+
+ a| 
+「httpd.ipv6.enable」
+ a| 
+不支援
+
+
+
+ a| 
+"httpd.log.format"
+ a| 
+不支援
+
+
+
+ a| 
+「httpd.method.trace.enable」
+ a| 
+不支援
+
+
+
+ a| 
+"httpd.rootdir"
+ a| 
+不支援
+
+
+
+ a| 
+"httpd.timeout"
+ a| 
+不支援
+
+
+
+ a| 
+「httpd.timewait.enable」
+ a| 
+不支援
+
+|===
+[role="lead"]
+*我*
+
+|===
+| 7-Mode選項 | 叢集Data ONTAP 式的指令 
+
+
+ a| 
+"ifgrp.容 錯移轉.LINK_DEGRADED"
+ a| 
+不支援
+
+
+
+ a| 
+"interface.blocked.CIFs"
+ a| 
+‘*網路介面可建立-data-Protocol *
+
+
+
+ a| 
+"interface.blocked.iscsi"
+ a| 
+‘*網路介面可建立-data-Protocol *
+
+
+
+ a| 
+"interface.blocked.mgmt_data_train"
+ a| 
+‘*網路介面可建立-role *
+
+
+
+ a| 
+"interface.blocked.NDMP
+ a| 
+系統服務防火牆原則修改-policy _policy_name_-service NDMP *
+
+
+
+ a| 
+"interface.blocked.NFS"
+ a| 
+‘*網路介面可建立-data-Protocol *
+
+
+
+ a| 
+"interface.blocked.SnapMirror"
+ a| 
+‘*網路介面可建立-role *
+
+
+
+ a| 
+「ip.fastpath.enable」
+ a| 
+系統節點執行-node_node_name_|local｝選項ip.fastpath.enable *
+
+
+NOTE: 從功能支援的功能部分起、不再支援Fastpath。ONTAP
+
+
+
+ a| 
+「ip.ippse.enable」
+ a| 
+不支援
+
+
+
+ a| 
+「ip.match_any _ifaddr」
+ a| 
+不支援
+
+
+
+ a| 
+「ip.path_MTU探索啟用」
+ a| 
+系統節點執行-node_node_name__|local｝選項ip.path_MTU探索.enable *
+
+
+
+ a| 
+"ip.ping節流器.alarm間隔"
+ a| 
+系統節點執行-node_node_name__|本機｝選項ip.ping節流調節警示__no_name__interval*
+
+
+
+ a| 
+「ip.ping節流調節」。drop_level
+ a| 
+系統節點執行-node|local}選項ip.ping節流調節.drod.level *
+
+
+
+ a| 
+「ip.tcp.abc.enable」
+ a| 
+系統節點執行-node_node_name__|local｝選項ip.tcp.abc.enable *
+
+
+
+ a| 
+「ip.tcp.abc.l_limit」
+ a| 
+系統節點執行-node_node_name__|local｝選項ip.tcp.abc.l_limit*
+
+
+
+ a| 
+「ip.tcp.bating.enable」
+ a| 
+系統節點執行-node_node_name__|local｝選項ip.tcp.bating.enable *
+
+
+
+ a| 
+「ip.tcp.neweno.enable」
+ a| 
+不支援
+
+
+
+ a| 
+「ip.tcp.rfc3390.enable」
+ a| 
+系統節點執行-node_node_name__|local｝選項ip.tcp.rfc3390.enable *
+
+
+
+ a| 
+「ip.tcp.scp.enable」
+ a| 
+系統節點執行-node_node_name__|local｝選項ip.tcp.sak.enable *
+
+
+
+ a| 
+「ip.v6.enable」
+ a| 
+"*網路選項IPv6 modify*
+
+
+
+ a| 
+「ip.v6.ra_enable」
+ a| 
+不支援
+
+
+
+ a| 
+iscsi.auth.radius.enable`
+ a| 
+不支援
+
+
+
+ a| 
+「iSCSI.enable」
+ a| 
+iSCSI start*
+
+
+
+ a| 
+"iSCSI.main_connections_p_site"
+ a| 
+「iSCSI modify -max -conn-per-session*」
+
+
+
+ a| 
+"iSCSI.main_error_recovery層級"
+ a| 
+「iSCSI modify -max-error-recovery level *」（iSCSI修改-max-error-recovery層級*）
+
+|===
+[role="lead"]
+* K*
+
+|===
+| 7-Mode選項 | 叢集Data ONTAP 式的指令 
+
+
+ a| 
+「Kerberos、file_keyta.principe'
+ a| 
+不支援
+
+
+
+ a| 
+「Kerberos、file_keyta.reimipal」
+ a| 
+不支援
+
+|===
+
+
+== O-Q
+
+[role="lead"]
+* L*
+
+|===
+| 7-Mode選項 | 叢集Data ONTAP 式的指令 
+
+
+ a| 
+"LDAP.ADdomain"
+ a| 
+「* vserver服務名稱服務LDAP用戶端修改-ad-domain*」
+
+
+
+ a| 
+"LDAP.base（LDAP基礎）"
+ a| 
+「* vserver服務名稱服務LDAP用戶端修改-base-dn*」
+
+
+
+ a| 
+ldap.base.group`
+ a| 
+「LDAP用戶端修改-group dn LDAP DN group -scoeopr*」
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+ldap.base.netgroup`
+ a| 
+"* LDAP用戶端修改-netgroup DN LDAP DN-netgroup -scoE*
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+"LDAP.base.passwd"
+ a| 
+「* vserver服務LDAP用戶端修改-user-dn*」
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+「LDAP.enable」
+ a| 
+「* vserver服務名稱服務LDAP modify*」
+
+
+
+ a| 
+"LDAP.minimal_bind_level
+ a| 
+「* vserver服務名稱服務LDAP用戶端修改-min-bind-level *」
+
+
+
+ a| 
+ldap.name
+ a| 
+hy*vserver服務名稱服務LDAP用戶端修改-bind-dn*
+
+
+
+ a| 
+"LDAP.nssmap.attribute.gecos"
+ a| 
+"* LDAP用戶端架構修改-gecos-attribute*
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+「LDAP.nssmap.attribute.gidNumber」
+ a| 
+"* LDAP用戶端架構修改-gid-number-attribute*
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+ldap.nssmap.attribute.groupname`
+ a| 
+"* LDAP用戶端架構修改-CN-group屬性*
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+"LDAP.nssap.attribute.homediceDirectory（LDAP.nssap.attribute.homed
+ a| 
+"* LDAP用戶端架構修改-home-directory-attribute*
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+"LDAP.nssmap.attribute.loginShell"
+ a| 
+’* LDAP用戶端架構修改-login-shell屬性*
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+"LDAP.nssmap.attribute.memberNisNetgroup
+ a| 
+’* LDAP用戶端架構修改-member-netgroup屬性*
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+"LDAP.nssmap.attribute.memberUid"
+ a| 
+"* LDAP用戶端架構修改-member-uid-attribute*
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+ldap.nssmap.attribute.netgroupname`
+ a| 
+"* LDAP用戶端架構修改-CN-netgroup屬性*
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+"LDAP.nssmap.attribute.nisNetGroupTriple
+ a| 
+LDAP用戶端架構修改-NIS、netgroup、triple-attributes
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+"LDAP.nssmap.attribute.uid"
+ a| 
+’* LDAP用戶端架構修改-uid-attribute*
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+"LDAP.nssmap.attribute.uidNumber"
+ a| 
+’* LDAP用戶端架構修改-uid-number-attribute*
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+ldap.nssmap.attribute.userPassword`
+ a| 
+"* LDAP用戶端架構修改-user-password-attribute*
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+"LDAP.nssap.objectClass、nisNetgroup
+ a| 
+"* LDAP用戶端架構修改-NIS網路群組物件類別*
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+"LDAP.nssmap.objectClass .posixAccount"
+ a| 
+「LDAP用戶端架構修改-Posix帳戶物件類別*」
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+"LDAP.nssmap.objectClass .posixGroup"
+ a| 
+「LDAP用戶端架構修改-Posix群組物件類別*」
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+"LDAP.passwd"
+ a| 
+「* vserver服務名稱服務LDAP用戶端modify-bind-password*」
+
+
+
+ a| 
+"LDAP.port"
+ a| 
+「* vserver服務名稱服務LDAP用戶端修改-port*」
+
+
+
+ a| 
+ldap.servers`
+ a| 
+「* vserver服務名稱服務LDAP用戶端修改-servers *」
+
+
+
+ a| 
+ldap.servers.preferred`
+ a| 
+「* vserver服務名稱服務LDAP用戶端修改- prefere-ad-servers *」
+
+
+
+ a| 
+「LDAP.SSL-enable」
+ a| 
+不支援
+
+
+
+ a| 
+"LDAP.timeout"
+ a| 
+hy*vserver服務名稱服務LDAP用戶端修改-query-timeout*
+
+
+
+ a| 
+ldap.usermap.attribute.windowsaccount`
+ a| 
+"* LDAP用戶端架構修改-windows-account-attribute*
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+ldap.usermap.base`
+ a| 
+’* LDAP用戶端修改-user-dnap DN-user-scoem*
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+ldap.usermap.enable`
+ a| 
+不支援
+
+
+
+ a| 
+「licensed_feature.fm.enable」
+ a| 
+不支援
+
+
+
+ a| 
+「licensed_feature.flex_clone．enable」
+ a| 
+不支援
+
+
+
+ a| 
+「licensed_feature.FlexCache®nfs.enable」
+ a| 
+不支援
+
+
+
+ a| 
+「licensed_feature.iscs.enable」
+ a| 
+不支援
+
+
+
+ a| 
+「licensed_feature.MultiStore.enable」
+ a| 
+不支援
+
+
+
+ a| 
+「licensed_feature.nearstore_option.enable」
+ a| 
+不支援
+
+
+
+ a| 
+「licensed_feature.VLD.enable」
+ a| 
+不支援
+
+
+
+ a| 
+locking.grace_lease_seconds`
+ a| 
+「* vserver NFS modify -vv4寬限秒*」
+
+
+
+ a| 
+LUN。clone還原
+ a| 
+不支援
+
+
+
+ a| 
+"lun.PARTNER_unreachable.Linux．asc"
+ a| 
+不支援
+
+
+
+ a| 
+lun.PARTNER_unreachable.Linux、ASCQ
+ a| 
+不支援
+
+
+
+ a| 
+lun.partner_unreachable.linux.behavior`
+ a| 
+不支援
+
+
+
+ a| 
+lun.PARTNER_unreachable.Linux。hold時間
+ a| 
+不支援
+
+
+
+ a| 
+「lun.PARTNER_unreachable.Linux、scsi_STATUS」
+ a| 
+不支援
+
+
+
+ a| 
+"lun.PARTNER_unreachable.Linux．skey"
+ a| 
+不支援
+
+
+
+ a| 
+lun.partner_unreachable.vmware.behavior`
+ a| 
+不支援
+
+
+
+ a| 
+lun.PARTNER_unreachable.vmware.hid_time'
+ a| 
+不支援
+
+|===
+[role="lead"]
+*不適用*
+
+|===
+| 7-Mode選項 | 叢集Data ONTAP 式的指令 
+
+
+ a| 
+"ndmpd.abort_on_disk_error"
+ a| 
+"*選項ndmpd.abort_on_disk_error*
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+"ndmpd.access"
+ a| 
+系統服務防火牆原則修改-policy *-service NDMP -allow-list*
+
+
+
+ a| 
+ndmpd.authtype`
+ a| 
+系統服務ndmpd修改-Clear-text*
+
+
+
+ a| 
+"ndmpd.connectlog.enabled"
+ a| 
+不支援
+
+
+
+ a| 
+"ndmpd.data_port_range（ndmpd.data_port_range）"
+ a| 
+不支援
+
+
+
+ a| 
+「ndmpd.enable」
+ a| 
+不支援
+
+
+
+ a| 
+「ndmpd.ignore ctime.enabled'
+ a| 
+不支援
+
+
+
+ a| 
+"ndmpd.maxt版本"
+ a| 
+不支援
+
+
+
+ a| 
+「ndmpd.offset_map.enable」
+ a| 
+不支援
+
+
+
+ a| 
+"ndmpd.password_lid"
+ a| 
+不支援
+
+
+
+ a| 
+"ndmpd.ped_tip_interface"
+ a| 
+不支援
+
+
+
+ a| 
+"ndmpd.tcpnohdelime.enable
+ a| 
+不支援
+
+
+
+ a| 
+"ndmpd.tcpwinsize."
+ a| 
+不支援
+
+
+
+ a| 
+nfs：assist：queue.limit
+ a| 
+不支援
+
+
+
+ a| 
+nfs.authsys.extended_groups_ns.enable`
+ a| 
+Check Alignment of PHs>_vserver NFS modify -auth-sys-extended Groups_
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+"NFs.EXP.allow_imital_access"
+ a| 
+不支援
+
+
+
+ a| 
+nfs.export.auto-update`
+ a| 
+不支援
+
+
+
+ a| 
+「nfs.export.exportfs_Comment_on_DELETE」
+ a| 
+不支援
+
+
+
+ a| 
+"NFS.EXP.Harvest、timeout"
+ a| 
+不支援
+
+
+
+ a| 
+"NFs.EXP.NEg.timeout"
+ a| 
+不支援
+
+
+
+ a| 
+「nfs.Kerberos。啟用」
+ a| 
+‘* vserver NFS Kerberos領域cred*’
+
+
+
+ a| 
+「nfs.Kerberos、file_keyta.enable」
+ a| 
+不支援
+
+
+
+ a| 
+「nfs.Kerberos、file_keyta.principe'
+ a| 
+‘* vserver NFS Kerberos領域cred*’
+
+
+
+ a| 
+「nfs.Kerberos、file_keyta.領域」
+ a| 
+‘* vserver NFS Kerberos領域cred*’
+
+
+
+ a| 
+nfs.max.nm_au_Groups
+ a| 
+「* vserver NFS」\{顯示|修改\}-延伸群組限制*
+
+
+
+ a| 
+nfs.mount_rootonly
+ a| 
+"* vserver NFS modify -mount-rootonly *（* vserver NFS修改-mount-rootonly *）"
+
+
+
+ a| 
+nfs.netgroup.strict`
+ a| 
+不支援
+
+
+
+ a| 
+nfs.nfs_rootonly
+ a| 
+"* vserver NFS modify -nfs－rootonly *（* vserver NFS修改-nfs－rootonly *）
+
+
+
+ a| 
+「nfs.per_client_stats.enable」
+ a| 
+「*統計資料設定修改用戶端統計資料*」
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+「nfs.peder_valid_mapped_uid」
+ a| 
+「* vserver name-mapping cred*」
+
+
+
+ a| 
+"NFs.RESPON.TRACE
+ a| 
+「* vserver NFS modify -trace-enably*」
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+"NFs.RESPON.觸發器"
+ a| 
+‘* vserver NFS modify -觸發器*’
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+「nfs、rpcsec、ctx.high」
+ a| 
+「* NFS modify -rpcsec-ctx-high *」
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+「nfs。rpcsec。ctx.idle」
+ a| 
+「* NFS modify -rpcsec-ctx-idridy*」
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+「nfs、tcp、enable」
+ a| 
+"* vserver NFS modify -tcp*（vserver NFS修改-tcp*）"
+
+
+
+ a| 
+「nfs.ine_prov.ejuke」
+ a| 
+Check Alignment of PHs>"* vserver NFS modify -enable電子點唱機*
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+「nfs、udp、enable」
+ a| 
+"* vserver NFS modify -udd*（vserver NFS修改-udd*）"
+
+
+
+ a| 
+「nfs.udp.xfersize」
+ a| 
+hy*vserver NFS modify -udp-max-xfer-size*
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+nfs.v2.df_2GB_lim
+ a| 
+“不支持
+
+
+
+ a| 
+「nfs、v2、enable」
+ a| 
+“不支持
+
+
+
+ a| 
+「nfs、v3、enable」
+ a| 
+‘* vserver NFS modify -v3*’
+
+
+
+ a| 
+「nfs、v4、acl、enable」
+ a| 
+"* vserver NFS modify -v4.0-ac* l"
+
+
+
+ a| 
+「nfs、v4、enable」
+ a| 
+"* vserver NFS modify -v4.0*（vserver NFS修改-v4.0*）"
+
+
+
+ a| 
+nfs.v4.id.allow_數值
+ a| 
+"* vserver NFS modify -vv4數值-IDS*
+
+
+
+ a| 
+"NFs.v4.id.domain"
+ a| 
+「* vserver NFS modify -v4.x id-domain*」
+
+
+
+ a| 
+nfs.v4.read_委派
+ a| 
+「* vserver NFS modify -v4.0- read-委派*」
+
+
+
+ a| 
+nfs.v4.write委派
+ a| 
+「* vserver NFS modify -vv4.0寫入委派*」
+
+
+
+ a| 
+「nfs、vStorage、enable」
+ a| 
+「* vserver NFS modify -vStorage*」
+
+
+
+ a| 
+「NFS.WebNFS.enable」
+ a| 
+不支援
+
+
+
+ a| 
+"NFS.WebNFS.rootdir"
+ a| 
+不支援
+
+
+
+ a| 
+nfs.webnfs.rootdir.set`
+ a| 
+不支援
+
+
+
+ a| 
+《NIS網域名稱》
+ a| 
+「* vserver服務名稱服務NIS網域修改-domain*」
+
+
+
+ a| 
+「NIS。啟用」
+ a| 
+「* vserver服務名稱服務NIS網域修改-active*」
+
+
+
+ a| 
+nis.group_update.enable`
+ a| 
+不支援
+
+
+
+ a| 
+nis.group_update_schedule`
+ a| 
+不支援
+
+
+
+ a| 
+nis.netgroup.domain_search.enable`
+ a| 
+不支援
+
+
+
+ a| 
+nis.servers`
+ a| 
+「* vserver服務名稱服務NIS網域修改-servers *」
+
+
+
+ a| 
+「NIS、slave.enable」
+ a| 
+不支援
+
+
+
+ a| 
+"NLM.cleanup.timeout"
+ a| 
+不支援
+
+|===
+[role="lead"]
+* P*
+
+|===
+| 7-Mode選項 | 叢集Data ONTAP 式的指令 
+
+
+ a| 
+「PCNFSD.enable」
+ a| 
+不支援
+
+
+
+ a| 
+《PCNFSD.umask》
+ a| 
+不支援
+
+|===
+[role="lead"]
+*問*
+
+|===
+| 7-Mode選項 | 叢集Data ONTAP 式的指令 
+
+
+ a| 
+"qos.分類.count_all_matches
+ a| 
+不支援
+
+|===
+[role="lead"]
+* R*
+
+
+NOTE: 所有RAID選項都有7-Mode相容的節點程式捷徑、格式為「options _option_name_」。
+
+|===
+| 7-Mode選項 | 叢集Data ONTAP 式的指令 
+
+
+ a| 
+《RAID》
+ a| 
+「*儲存RAID選項」\{修改|顯示\}*
+
+
+
+ a| 
+「RAID.background_disk_fw_update.enable」
+ a| 
+’*儲存磁碟選項修改-BKg-韌 體更新*
+
+
+
+ a| 
+raid.disk.copy.auto.enable`
+ a| 
+’*儲存RAID選項可修改-raid.disk.copy.auto.enable*`
+
+
+
+ a| 
+「RAID.disk.timeout.enable」
+ a| 
+系統節點執行節點{_no_name_|local}選項RAID.disk.timeout.enable *
+
+
+
+ a| 
+「RAID.disktype.enable」
+ a| 
+不支援
+
+
+
+ a| 
+「RAID.disktype.enable」
+ a| 
+「* RAID選項修改RAID.Lost_WRITE。啟用*」
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+「RAID.Lost寫入啟用」
+ a| 
+「*儲存RAID選項\｛modify | show \｝-name RAID.media_clime.enable *」
+
+
+
+ a| 
+"RAID.media_capper.RAate"
+ a| 
+「*儲存RAID選項\｛modify | show \-name RAID.media_clime.Rate*」
+
+
+
+ a| 
+《RAID.min_spare統計》
+ a| 
+「*儲存RAID選項\｛modify | show \-name RAID.min_spare備用_count*」
+
+
+
+ a| 
+raid.mix.hdd.disktype.capacity`
+ a| 
+「*儲存RAID選項\｛modify | show \-name raid.mix.hdd.disktype.capacity*`」
+
+
+
+ a| 
+"RAID.mix、HDD.、disktype、效能"
+ a| 
+「*儲存RAID選項」\{修改|顯示\}-name RAID.mix、hds.disktype.formation*
+
+
+
+ a| 
+raid.mix.hdd.rpm.capacity`
+ a| 
+「*儲存RAID選項\｛modify | show \｝-name raid.mix.hdd.rpm.capacity*`」
+
+
+
+ a| 
+"RAID.mix、HDDP.rpm、效能"
+ a| 
+「*儲存RAID選項\｛modify | show \｝-name RAID.mix、hds.rpm.Performance *」
+
+
+
+ a| 
+"RAID.mirror讀取叢_pref"
+ a| 
+「*儲存RAID選項\｛modify | show \-name RAID.mirror read_plex pref*」
+
+
+
+ a| 
+"RAID.reconstronstrime.perf_Impact
+ a| 
+「*儲存RAID選項」\{修改|顯示\}-name RAID.reconstronstrime.perf_Impact *
+
+
+
+ a| 
+"RAID.resize.perf_Impact
+ a| 
+「*儲存RAID選項」\{修改|顯示\}-name RAID.resalize.perf_Impact *
+
+
+
+ a| 
+「RAID.rpm.ata.enable」
+ a| 
+不支援
+
+
+
+ a| 
+「RAID.rpm.FCAL.enable」
+ a| 
+不支援
+
+
+
+ a| 
+《RAID：清理時間》
+ a| 
+「*儲存RAID選項\｛modify | show \-name RAID.clune.dalmation*」
+
+
+
+ a| 
+《RAID.RAUSB.perf_Impact》
+ a| 
+「*儲存RAID選項\｛modify | show \-name RAID.clime.perf_Impact *」
+
+
+
+ a| 
+《RAID：清理、排程》
+ a| 
+「*儲存RAID選項\｛modify | show \-name RAID.clune.schedule*」
+
+
+
+ a| 
+"RAID.timeout"
+ a| 
+「*儲存RAID選項\｛modify | show \-name RAID.timeout*」
+
+
+
+ a| 
+「RAID.VERIF.perf_Impact」
+ a| 
+「*儲存RAID選項\｛modify | show \-name RAID.VERIF.perf_Impact *」
+
+
+
+ a| 
+"plication.logic.reserved_Transfitations"
+ a| 
+SnapMirror組選項-XdP-SOUR-xfer-reserve-PCT *
+
+
+
+ a| 
+「plication.節 流啟用」
+ a| 
+’* SnapMirror修改-調節 節流*
+
+
+
+ a| 
+"plication．volume．reserved_Transfers
+ a| 
+SnapMirror組選項-dP-source-xfer-reserve-pct *
+
+
+
+ a| 
+"REplication.volume.use_auto_resync`
+ a| 
+不支援
+
+
+
+ a| 
+"rpc. mountd．tcp．port"
+ a| 
+"* vserver NFS modify -mountd連接埠*
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+"rpc. mountd．udp．port"
+ a| 
+"* vserver NFS modify -mountd連接埠*
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+rpc.nlm.tcp.port`
+ a| 
+"* vserver NFS modify -NLM-port*（vserver NFS修改-NLM-port*）"
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+rpc.nlm.udp.port`
+ a| 
+"* vserver NFS modify -NLM-port*（vserver NFS修改-NLM-port*）"
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+"rpc. NSM.tcp.port"
+ a| 
+"* vserver NFS modify -NSM-port*（vserver NFS修改-NSM-port*）"
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+"rpc. NSM.udp連接埠"
+ a| 
+"* vserver NFS modify -NSM-port*（vserver NFS修改-NSM-port*）"
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+"rpc. PCNFSD.TCP.port"
+ a| 
+不支援
+
+
+
+ a| 
+"rpc. PCNFSD.udp連接埠"
+ a| 
+不支援
+
+
+
+ a| 
+"rpc.rquotad．udp．port"
+ a| 
+'* vserver NFS modify -rquotad連接埠*
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+「rquotad、enable」
+ a| 
+"* vserver NFS modify -rquota *（vserver NFS修改-rquota *）"
+
+
+
+ a| 
+"rsh.access"
+ a| 
+系統服務防火牆原則建立原則mgmt -service rsh -allow-list*
+
+
+
+ a| 
+「rsh.enable」
+ a| 
+系統服務防火牆原則建立原則mgmt -service rsh -allow-list*
+
+|===
+
+
+== S-Z
+
+[role="lead"]
+* S*
+
+|===
+| 7-Mode選項 | 叢集Data ONTAP 式的指令 
+
+
+ a| 
+ecurity.admin.authentication`
+ a| 
+"*安全登入修改*
+
+
+
+ a| 
+「ecurite.admin.nsswitchgroup」
+ a| 
+"* vserver modify*（虛擬服務器修改*）"
+
+
+
+ a| 
+「ecurite.passwd.firstlogin.enable」
+ a| 
+"*安全登入角色組態修改*
+
+
+
+ a| 
+"ecurite.passwd.Locker.numers"
+ a| 
+"*安全登入角色組態修改*
+
+
+
+ a| 
+「ecurite.passwd.rootaccess.enable」
+ a| 
+不支援
+
+
+
+ a| 
+ecurity.passwd.rules.enable`
+ a| 
+"*安全登入角色組態修改*
+
+
+
+ a| 
+ecurity.passwd.rules.everyone`
+ a| 
+"*安全登入角色組態修改*
+
+
+
+ a| 
+ecurity.passwd.rules.history`
+ a| 
+"*安全登入角色組態修改*
+
+
+
+ a| 
+ecurity.passwd.rules.maximum`
+ a| 
+"*安全登入角色組態修改*
+
+
+
+ a| 
+ecurity.passwd.rules.minimum`
+ a| 
+"*安全登入角色組態修改*
+
+
+
+ a| 
+ecurity.passwd.rules.minimum.alphabetic`
+ a| 
+不支援
+
+
+
+ a| 
+ecurity.passwd.rules.minimum.digit`
+ a| 
+"*安全登入角色組態修改*
+
+
+
+ a| 
+ecurity.passwd.rules.minimum.symbol`
+ a| 
+不支援
+
+
+
+ a| 
+ftp.auth_style`
+ a| 
+不支援
+
+
+
+ a| 
+"ftp/dir_override"
+ a| 
+不支援
+
+
+
+ a| 
+"ftp/dir_inbimize"
+ a| 
+不支援
+
+
+
+ a| 
+「ftp/enable」
+ a| 
+不支援
+
+
+
+ a| 
+"ftp/iding_timeout"
+ a| 
+不支援
+
+
+
+ a| 
+"FTP.上 鎖"
+ a| 
+不支援
+
+
+
+ a| 
+「ftp/log_enable」
+ a| 
+不支援
+
+
+
+ a| 
+"ftp/log_filesize"
+ a| 
+不支援
+
+
+
+ a| 
+"ftp/log_nfiles."
+ a| 
+不支援
+
+
+
+ a| 
+"ftp/ma_connections
+ a| 
+不支援
+
+
+
+ a| 
+"ftP.max.connects_threshold"
+ a| 
+不支援
+
+
+
+ a| 
+"ftp/override_client_less"
+ a| 
+不支援
+
+
+
+ a| 
+"s.max.vFiler_active_ops"
+ a| 
+不支援
+
+
+
+ a| 
+naplock.autocommit_period`
+ a| 
+不支援
+
+
+
+ a| 
+naplock.compliance.write_verify`
+ a| 
+不支援
+
+
+
+ a| 
+naplock.log.default_retention`
+ a| 
+不支援
+
+
+
+ a| 
+"naplock.log.maximal_size"
+ a| 
+不支援
+
+
+
+ a| 
+"napmirror存取"
+ a| 
+SnapMirror cred*
+
+
+
+ a| 
+napmirror.checkip.enable`
+ a| 
+不支援
+
+
+
+ a| 
+"napmirror．cmode.suspend"
+ a| 
+SnapMirror靜止*
+
+
+
+ a| 
+napmirror.delayed_acks.enable`
+ a| 
+不支援
+
+
+
+ a| 
+「napmirror、VSM、volread.smtape、enable」
+ a| 
+不支援
+
+
+
+ a| 
+"napvalidator.version（napvalidator.version）"
+ a| 
+不支援
+
+
+
+ a| 
+"napVault.access"
+ a| 
+‘* vserver對等端點*’
+
+
+
+ a| 
+「napVault.enable」
+ a| 
+不支援
+
+
+
+ a| 
+"napVault.LockVault_log_volume
+ a| 
+不支援
+
+
+
+ a| 
+「napVault.estervesnap」
+ a| 
+' napmirror policy '
+
+
+
+ a| 
+"napVault.snapshot for _dr_backup"
+ a| 
+不支援
+
+
+
+ a| 
+"NMP.access"
+ a| 
+系統服務防火牆原則修改-policy __policy_name__服務SNMP -allow-list*
+
+
+
+ a| 
+「NMP.enable」
+ a| 
+不支援
+
+
+
+ a| 
+"sh.access"
+ a| 
+系統服務防火牆原則修改-policy _policy_name_-service ssh -allow-list*
+
+
+
+ a| 
+「sh.enable」
+ a| 
+系統服務防火牆原則修改-policy __policy_name__服務ssh -allow-list*
+
+
+
+ a| 
+"sh.ididr.timeout"
+ a| 
+不支援
+
+
+
+ a| 
+「sh.passwd_auth.enable」
+ a| 
+「*安全性登入」\{顯示|建立|刪除\}-user-or group名稱_user_name_-applicationssh -authmethod publickey -role _role_name_-vserver _vserver_name_*
+
+
+
+ a| 
+「sh.ppublkey_auth.enable」
+ a| 
+"*安全登錄修改-authmethod publickey*
+
+
+
+ a| 
+「SH1.enable」
+ a| 
+不支援
+
+
+
+ a| 
+「sh2.enable」
+ a| 
+不支援
+
+
+
+ a| 
+SSL。啟用
+ a| 
+「*安全性SSL修改-伺服器啟用*」
+
+
+
+ a| 
+「SL.v2.enable」
+ a| 
+系統服務web modify -SSLv2-enably*
+
+
+
+ a| 
+「SL.v3.enable」
+ a| 
+系統服務web modify -sslv3-enably*
+
+
+
+ a| 
+tats.archive.frequency_config`
+ a| 
+不支援
+
+|===
+[role="lead"]
+*太*
+
+|===
+| 7-Mode選項 | 叢集Data ONTAP 式的指令 
+
+
+ a| 
+《磁帶、保留》
+ a| 
+'選項tape。保留*
+
+
+
+ a| 
+"Telnet.access"
+ a| 
+系統服務防火牆原則建立原則mgmt -service netelnet-list*
+
+
+
+ a| 
+「netel.site.enable」
+ a| 
+不支援
+
+
+
+ a| 
+「Telnet.enable」
+ a| 
+系統服務防火牆原則建立原則mgmt -service netelnet-list*
+
+
+
+ a| 
+「tftpd.enable」
+ a| 
+不支援
+
+
+
+ a| 
+"tftpd.logging"
+ a| 
+不支援
+
+
+
+ a| 
+tftpd.max.connections
+ a| 
+不支援
+
+
+
+ a| 
+"tftpd.rootdir"
+ a| 
+不支援
+
+
+
+ a| 
+「Time.enable」
+ a| 
+系統服務NTP組態修改啟用*
+
+
+
+ a| 
+"Time.log"
+ a| 
+不支援
+
+
+
+ a| 
+「Time.max.sKEW」
+ a| 
+不支援
+
+
+
+ a| 
+「Time.min_sKEW」
+ a| 
+不支援
+
+
+
+ a| 
+timed.proto`
+ a| 
+不支援
+
+
+
+ a| 
+《Time.sched》
+ a| 
+不支援
+
+
+
+ a| 
+timed.servers`
+ a| 
+叢集時間服務NTP伺服器_
+
+
+
+ a| 
+「Time.window.」
+ a| 
+不支援
+
+
+
+ a| 
+《可信賴的主機》
+ a| 
+不支援
+
+|===
+[role="lead"]
+*五*
+
+|===
+| 7-Mode選項 | 叢集Data ONTAP 式的指令 
+
+
+ a| 
+"vol.move.cover.cpu.busy.limit"
+ a| 
+不支援
+
+
+
+ a| 
+"vol.move.cover.disk.busy.limit"
+ a| 
+不支援
+
+
+
+ a| 
+vsm.smtape.concurrent.cascade.support`
+ a| 
+不支援
+
+
+
+ a| 
+ a| 
+
+|===
+[role="lead"]
+* W*
+
+|===
+| 7-Mode選項 | 叢集Data ONTAP 式的指令 
+
+
+ a| 
+wafl.default_nt_user`
+ a| 
+"* vserver NFS modify -default-win-user-*（vserver NFS修改-default-win-user-*）"
+
+
+
+ a| 
+wafl.default_unix_user`
+ a| 
+"* vserver CIFS選項修改-default-UNIX-user*
+
+
+
+ a| 
+wafl.inconsistent.asup_frequency.blks`
+ a| 
+系統節點執行-node{_nnode_name_|local}選項wafl.inconsistent.asup_frequency.blks*`
+
+
+
+ a| 
+wafl.inconsistent.asup_frequency.time`
+ a| 
+系統節點執行-node{_nnode_name_|local}選項wafl.inconsistent.asup_frequency.time*`
+
+
+
+ a| 
+wafl.inconsistent.ems_suppress`
+ a| 
+系統節點執行-node{_nnode_name_|local}選項wafl.inconsistent.ems_suppress*`
+
+
+
+ a| 
+《WAFL.Maxdirsize.》
+ a| 
+‘* vol create -maildir-size*’
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+「WAFL.NT_admin_priv_map_to_root」
+ a| 
+「* vserver name-mapping cred*」
+
+
+
+ a| 
+《WAFL.ROOT_ONOT_CHown》
+ a| 
+"* vserver NFS modify -chown mode *（vserver NFS修改-chown模式*）"
+
+
+NOTE: 可在進階權限層級使用。
+
+
+
+ a| 
+「WAFL.WCC_Minuts_valid」
+ a| 
+不支援
+
+
+
+ a| 
+「WebDAV.enable」
+ a| 
+不支援
+
+|===

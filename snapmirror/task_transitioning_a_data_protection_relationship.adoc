@@ -1,0 +1,31 @@
+---
+permalink: snapmirror/task_transitioning_a_data_protection_relationship.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, transition, snapmirror, staggered, configuration, volumes 
+summary: 您可以在主要磁碟區之前、先轉換次要磁碟區、以轉換7-Mode磁碟區SnapMirror關係、並保留資料保護關係。在這種方法中、您可以在7-Mode主Volume和叢集Data ONTAP 式的二級Volume之間設定交錯的SnapMirror DR關係。 
+---
+= 以交錯式組態轉換Volume SnapMirror關係
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以在主要磁碟區之前、先轉換次要磁碟區、以轉換7-Mode磁碟區SnapMirror關係、並保留資料保護關係。在這種方法中、您可以在7-Mode主Volume和叢集Data ONTAP 式的二級Volume之間設定交錯的SnapMirror DR關係。
+
+* 必須已設定主要和次要叢集及SVM。
+* 若要在轉換Volume SnapMirror關係時建立SVM對等關係、必須符合下列條件：
++
+** 次要叢集的AnSVM名稱不得與主要SVM相同。
+** 主叢集的AnSVM名稱不得與次要SVM相同。
+** 您必須已檢閱準備移轉的相關資訊。
++
+xref:task_preparing_for_transition.adoc[準備轉換]
+
+
+
+
+
+*相關資訊*
+
+xref:task_resuming_a_failed_snapmirror_transfer_transition.adoc[恢復失敗的SnapMirror基礎傳輸]

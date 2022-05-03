@@ -1,0 +1,104 @@
+---
+permalink: copy-free/concept_aggregate_space_considerations_during_transition.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, aggregate, space, requirements 
+summary: 在轉換之前、您必須確保7-Mode Aggregate有足夠的可用空間。7-Mode Transition Tool會根據實體空間、邏輯空間、Snapshot複本佔用空間及空間保證設定、對集合體執行各種空間檢查。您也必須瞭解Flash Pool Aggregate的空間考量。 
+---
+= 用於轉換的Aggregate空間需求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在轉換之前、您必須確保7-Mode Aggregate有足夠的可用空間。7-Mode Transition Tool會根據實體空間、邏輯空間、Snapshot複本佔用空間及空間保證設定、對集合體執行各種空間檢查。您也必須瞭解Flash Pool Aggregate的空間考量。
+
+
+
+== 集合體中的實體空間
+
+如果7-Mode集合體中的可用空間少於實體空間的5%、則會封鎖轉換。最佳實務做法是在7-Mode集合體中至少保留20%的可用空間、然後再進行轉換。
+
+由於下列原因、Aggregate需要額外的空間：
+
+* 在匯出階段為每個7-Mode Aggregate建立Aggregate層級的Snapshot複本
+* 在正式作業前測試階段、使用新資料測試轉換的Aggregate上的工作負載
+
+
+如果您沒有額外的空間、可以在轉換之前將磁碟新增至7-Mode系統。如果新增磁碟是不可行的、或者您可以確保在正式作業前階段、只有有限數量的資料會寫入已轉換的磁碟區、則7-Mode Transition Tool可讓您確認此錯誤並繼續進行轉換。不過、您必須在轉換期間繼續監控集合體空間、並確保集合體不會在正式作業前測試階段增長。
+
+
+
+== 集合體中的邏輯空間
+
+如果7-Mode Aggregate中的邏輯空間已滿97%以上、7-Mode Transition Tool會在預先檢查期間拋出封鎖錯誤。您可以在規劃階段忽略此錯誤、並繼續進行轉換； 不過、您必須先減少此類集合體中的磁碟區大小、或是在集合體中新增更多磁碟、以確保在匯出和停止作業之前所使用的邏輯空間低於97%。您無法在匯出和停止階段忽略此錯誤。
+
+
+
+== 快照過多
+
+如果7-Mode Aggregate中的Snapshot複本所佔用的空間大於已配置用於Snapshot複本保留的空間、則在匯出和停止作業中建立Aggregate層級Snapshot複本可能會失敗。7-Mode Transition Tool會在預先檢查此情況時拋出封鎖錯誤。在此情況下、您必須在規劃階段刪除所有現有的Aggregate層級Snapshot複本。
+
+如果您不想刪除現有的Snapshot複本、可以在規劃階段忽略此錯誤並繼續進行轉換；不過、您必須確保在匯出和停止作業之前、Snapshot複本使用的容量百分比低於100%。
+
+
+
+== 空間保證設定
+
+7-Mode Transition Tool會在預先檢查7-Mode控制器是否有具有下列空間保證設定的磁碟區時、拋出封鎖錯誤：
+
+* 已停用保證的Volume保證磁碟區
+* 檔案保證磁碟區
+* *停用保證的Volume保證磁碟區*
++
+在某些情況下、由於集合體空間不足、因此已停用保證磁碟區的空間保證。
+
++
+您必須在7-Mode Aggregate上建立足夠的可用空間、然後使用下列7-Mode命令、為這類7-Mode磁碟區啟用空間保證：
+
++
+‘* vol選項_volVolume名稱_保證Volume *’
+
++
+如果您不想在7-Mode上執行任何修正動作、可以忽略此錯誤。轉換後、請檢查已停用保證的磁碟區、並使用下列命令手動啟用保證：
+
++
+「* Volume modify -vserver -volume -space-擔保Volume *」
+
+* *檔案保證磁碟區*
++
+不支援ONTAP 檔案保證。
+
++
+如果您有檔案保證的磁碟區、則必須執行下列其中一項動作：
+
++
+** 如果7-Mode磁碟區包含保留空間的LUN或檔案、請使用7-Mode命令+、* vol選項_volVolume名稱_保證Volume *、將磁碟區的空間保證類型變更為Volume
++
+在執行此命令之前、您必須確定7-Mode Aggregate上有足夠的可用空間。
+
+** 如果7-Mode磁碟區未包含任何保留空間的LUN或檔案、請使用下列7-Mode命令將磁碟區的空間保證變更為「無」： +「* vol選項_volvolvole_name_保證無*」如果您不想在7-Mode上執行任何修正動作、您可以忽略此錯誤並繼續進行轉換。
+
+
++
+在轉換期間、如果這些磁碟區包含保留空間的LUN或檔案、則其空間保證會自動轉換為「Volume」（Volume）、但一開始就會停用空間保證。您必須在Aggregate上建立足夠的可用空間、然後使用下列命令手動啟用保證：
+
++
++「* Volume modify -vserver -volume -space-擔保Volume *」
+
++
++如果磁碟區不包含任何保留空間的LUN或檔案、則在轉換期間、它們的空間保證會自動轉換為「無」。
+
+
+
+
+
+== Flash Pool Aggregate的其他考量
+
+如果Flash Pool Aggregate SSD的可用空間少於SSD總磁碟空間的5%、則不支援轉換。您必須停用SSD快取或新增更多SSD、才能繼續進行轉換。
+
+*相關資訊*
+
+xref:reference_ignorable_errors_during_transition.adoc[轉換期間發生可接受的錯誤]
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["磁碟與Aggregate管理"]

@@ -1,0 +1,14 @@
+---
+permalink: san-host/concept_aix_host_remediation.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, aix, host, remediation 
+summary: 如果您使用7-Mode Transition Tool（7-Mode Transition Tool）（7MTT）在Data ONTAP SAN環境中從以7-Mode運作的VMware移轉至叢集Data ONTAP 式VMware、則必須在轉換前後在AIX主機上執行一系列步驟、以避免轉換複雜度。 
+---
+= AIX主機補救
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您使用7-Mode Transition Tool（7MTT）在Data ONTAP SAN環境中從以7-Mode運作的VMware移轉至叢集Data ONTAP 式的VMware、則必須在轉換前後在AIX主機上執行一系列步驟、以避免轉換複雜度。

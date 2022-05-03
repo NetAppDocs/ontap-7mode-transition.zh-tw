@@ -1,0 +1,45 @@
+---
+permalink: snapmirror/reference_7_mode_ontap_version_requirements_for_transitioning_volumes_using_snapmirror.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, version, transition, requirements, data, clustered 
+summary: 您應該注意Data ONTAP 到7-Mode支援轉換至叢集Data ONTAP 式版本的還原8.3或更新版本。 
+---
+= 7-Mode轉換版本需求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您應該注意Data ONTAP 到7-Mode支援轉換至叢集Data ONTAP 式版本的還原8.3或更新版本。
+
+如果7-Mode系統只有64位元集合體和Volume、您可以將磁碟區從執行下列7-Mode版本的系統移轉至叢集Data ONTAP 式版本的更新版本：
+
+* 版本8.0 Data ONTAP
+* 零點8.0.1 Data ONTAP
+* 版本8.0.2 Data ONTAP
+* 零點8.0.3 Data ONTAP
+* 零點8.0.4 Data ONTAP
+* 零點8.0.5 Data ONTAP
+* 解決方法Data ONTAP
+* 版本8.1.2 Data ONTAP
+* 版本8.1.3 Data ONTAP
+* 版本8.1.4 Data ONTAP
+* 版本8.2 Data ONTAP
+* 版本8.2.1 Data ONTAP
+* 版本8.2.2 Data ONTAP
+* 版本8.2.3 Data ONTAP
+* 版本8.2.4 Data ONTAP
+* 版本8.2.5 Data ONTAP
+
+
+如果7-Mode系統執行Data ONTAP 的是32位元Aggregate或Volume搭配32位元Snapshot複本、則必須升級至8.1.4 P4或8.2.1。升級後、您必須將32位元Aggregate擴充至64位元、然後尋找並移除任何32位元資料。
+
+您必須先將下列7-Mode版本升級Data ONTAP 至VMware版、才能轉換至叢集Data ONTAP 式的VMware版本8.3或更新版本：
+
+* 版本7.3.3 Data ONTAP
+* 版本7.3.4 Data ONTAP
+* 版本7.3.5 Data ONTAP
+* 版本7.3.6 Data ONTAP
+* 版本7.3.7 Data ONTAP
+

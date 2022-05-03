@@ -1,0 +1,51 @@
+---
+permalink: copy-based/concept_copy_based_transition_using_7mtt.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, 7, mode, tool 
+summary: 7-Mode Transition Tool可讓您收集資訊並評估7-Mode控制器、主機、交換器及應用程式以進行轉換、藉此執行複本型轉換。然後您可以將資料和組態從7-Mode移轉至ONTAP VMware。 
+---
+= 使用7-Mode Transition Tool進行複本型轉換
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+7-Mode Transition Tool可讓您收集資訊並評估7-Mode控制器、主機、交換器及應用程式以進行轉換、藉此執行複本型轉換。然後您可以將資料和組態從7-Mode移轉至ONTAP VMware。
+
+7-Mode Transition Tool可在Windows或Linux系統上執行。7-Mode Transition Tool提供Web介面和命令列介面、可用來管理轉換作業。
+
+
+
+== 收集並評估ONTAP 各種系統、主機、交換器和應用程式
+
+您可以使用7-Mode Transition Tool執行下列收集與評估工作：
+
+* 收集ONTAP 來自於各種不支援的系統（叢集中的7-Mode控制器和節點）、主機、交換器和主機應用程式的庫存資訊。
+* 產生FC分區計畫、以設定分區、以便將啟動器主機和目標分組。
+* 評估7-Mode系統的特色與功能、並找出這些功能與功能在ONTAP 選定的版本中如何運作、以利轉換。
+
+
+
+
+== 將資料和組態從7-Mode移至ONTAP 不完整
+
+複製型移轉使用SnapMirror技術、將7-Mode磁碟區和組態從Data ONTAP VMware 7G和7-Mode複製到ONTAP VMware。
+
+您可以使用7-Mode Transition Tool執行下列工作、以進行複本型移轉：
+
+* 在Volume SnapMirror關係中、將一組7-Mode獨立磁碟區或一組7-Mode磁碟區、從執行不同7-Mode版本的系統移轉至ONTAP 任何版本、從支援的版本版本版本版本不受支援。
+* 對移轉專案中所含的磁碟區執行預先檢查、以驗證其移轉相容性、並檢視可能的修正行動。
+* 在中斷用戶端存取之前、請先將7-Mode組態套用ONTAP 至VMware、以縮短停機時間。
++
+複製型移轉支援NAS和SAN組態的移轉。
+
++
+
+NOTE: SAN移轉僅支援ONTAP 至支援的版本不支援至支援的版本不支援。
+
+
+
+*相關資訊*
+
+xref:concept_requirements_for_copy_based_transition.adoc[複本型轉換的需求]

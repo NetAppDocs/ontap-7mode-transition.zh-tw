@@ -1,0 +1,22 @@
+---
+permalink: copy-based/concept_managing_snapmirror_transfers_and_schedule.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, manage, snapmirror, transfer, schedule 
+summary: 在資料複製階段、叢集Data ONTAP 式的等量資料會根據資料複製排程、定期更新7-Mode磁碟區的資料。您可以建立、編輯及刪除資料複本排程、以用於SnapMirror基礎複製、更新及重新同步作業。 
+---
+= 管理SnapMirror傳輸與排程
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在資料複製階段、叢集Data ONTAP 式的等量資料會根據資料複製排程、定期更新7-Mode磁碟區的資料。您可以建立、編輯及刪除資料複本排程、以用於SnapMirror基礎複製、更新及重新同步作業。
+
+您可以指定多個資料複製排程來管理所有選取要轉換的磁碟區的複製作業、其中包含詳細資料、例如開始時間、持續時間、更新頻率、在該排程期間執行的並行SnapMirror傳輸數、以及節流限制。
+
+您可以針對不同的時間段提供多個並行傳輸數和節流限制、例如平日、週末、營業時間、非營業時間、 災難恢復排程和非災難恢復排程。
+
+*相關資訊*
+
+xref:task_creating_a_transition_project.adoc[建立轉換專案]

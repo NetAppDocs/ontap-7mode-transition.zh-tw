@@ -1,0 +1,68 @@
+---
+permalink: san-host/task_preparing_for_cutover_when_transitioning_linux_host_file_systems_on_lvm_devices.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, cutover, phase, host, lvm, device 
+summary: 如果您要在邏輯Volume Manager（LVM\）裝置上轉換Linux主機檔案系統、您必須在轉換階段之前執行一些步驟。 
+---
+= 在LVM裝置上轉換Linux主機檔案系統時、準備轉換階段
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您要在邏輯Volume Manager（LVM）裝置上轉換Linux主機檔案系統、您必須在轉換階段之前執行一些步驟。
+
+* 對於FC組態、您必須具備光纖連線能力、並將分區區設為叢集Data ONTAP 式的支援中心控制器。
+* 對於iSCSI組態、您必須探索iSCSI工作階段、並登入叢集Data ONTAP 式的等化控制器。
+* 您必須擁有從_庫存評估工作簿_收集的下列轉換前資訊：
++
+** LVM使用的DMP裝置名稱
+** Volume群組名稱
+** 邏輯Volume名稱
+** 在邏輯Volume裝置上設定的檔案系統
+** 掛載邏輯磁碟區的目錄
+
+
+* 對於複製型轉換、請先執行這些步驟、再在7-Mode Transition Tool（7MTT）中啟動Storage Cutover（儲存設備轉換）作業。
+* 如需無複製轉換、請先執行這些步驟、再在7MTT中啟動「匯出及停止7-Mode」作業。
+
+
+.步驟
+. 停止I/O至左室掛載點。
+. 根據應用程式廠商的建議、關閉存取LUN的應用程式。
+. 卸載lv掛載點：
++
+h.*umount_dir_name_*
+
+. 停用邏輯Volume：
++
+「* vgchange -an _vg_name_*」
+
+. 驗證邏輯磁碟區狀態：
++
+‘* lvdisplay _dir_name_*’
+
++
+左室狀態應顯示「Not Available」（不可用）。
+
+. 匯出Volume群組：
++
+‘* vgexport _vg_name_*’
+
+. 驗證VG狀態：
++
+「* vgdisplay _vg_name_*」
+
++
+VG狀態應顯示「'exported」。
+
+. 清除7-Mode DDMP裝置ID：
++
+`*多重路徑-f _DEVICE名稱_*
+
+
+
+*相關資訊*
+
+xref:task_gathering_pretransition_information_from_inventory_assessment_workbook.adoc[從庫存評估工作簿收集過渡前資訊]

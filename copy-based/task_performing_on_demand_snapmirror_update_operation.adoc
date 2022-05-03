@@ -1,0 +1,45 @@
+---
+permalink: copy-based/task_performing_on_demand_snapmirror_update_operation.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, perform, demand, snapmirror, updates 
+summary: 您可以在轉換作業之前、對所有磁碟區執行SnapMirror遞增更新、以縮短轉換時間。 
+---
+= 執行隨需SnapMirror更新
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以在轉換作業之前、對所有磁碟區執行SnapMirror遞增更新、以縮短轉換時間。
+
+* 當在基準資料複本之後排程遞增資料傳輸、以及在執行預先轉換作業之後、您將無法執行隨需SnapMirror更新。
+* 這是選擇性的工作。
++
+.. 按一下*立即更新*以執行手動SnapMirror更新。
++
+此時會顯示Transition Update（轉換更新）對話方塊、您可在其中選擇自訂此作業的SnapMirror傳輸數和節流限制。
+
+.. 選取*自訂此作業的並行SnapMirror傳輸數和節流限制*核取方塊、以指定SnapMirror資料複製作業數和節流限制。
++
+... 輸入轉換期間要執行的最大並行SnapMirror傳輸數。
+... 輸入工具可用於SnapMirror傳輸的可用串流百分比。
++
+根據預設、此工具會使用可用Volume SnapMirror傳輸的50%。
+
+... 輸入節流限制以使用最大頻寬。
++
+根據預設、此工具會使用最大節流來進行組態轉換。
+
+
+
+.. 按一下 * 繼續 * 。
+
+
+
+
+*相關資訊*
+
+xref:task_starting_baseline_data_copy.adoc[開始基礎資料複本]
+
+xref:task_creating_schedule_for_snapmirror_transfers.adoc[建立SnapMirror傳輸的資料複製排程]

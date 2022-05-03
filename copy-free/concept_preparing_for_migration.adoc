@@ -1,0 +1,20 @@
+---
+permalink: copy-free/concept_preparing_for_migration.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, prepare 
+summary: 在開始無複本轉換之前、您必須先識別要轉換的7-Mode HA配對、瞭解移轉的需求和限制、並準備好7-Mode系統和叢集以進行轉換。您也必須瞭解Data ONTAP 支援且不支援轉換的功能。 
+---
+= 準備無複本轉換
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在開始無複本轉換之前、您必須先識別要轉換的7-Mode HA配對、瞭解移轉的需求和限制、並準備好7-Mode系統和叢集以進行轉換。您也必須瞭解Data ONTAP 支援且不支援轉換的功能。
+
+image::../media/delete_me_cft_preparation_workflow.gif[刪除我CFT準備工作流程]
+
+*相關資訊*
+
+https://mysupport.netapp.com/matrix["NetApp 互通性對照表工具"]

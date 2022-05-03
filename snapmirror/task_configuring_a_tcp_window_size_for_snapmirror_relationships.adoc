@@ -1,0 +1,56 @@
+---
+permalink: snapmirror/task_configuring_a_tcp_window_size_for_snapmirror_relationships.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, configure, tcp, window, size, snapmirror, relationship 
+summary: 您可以設定7-Mode Volume與ONTAP VMware Volume之間SnapMirror關係的TCP視窗大小、以改善SnapMirror傳輸處理量、使複寫作業更快完成。 
+---
+= 設定SnapMirror關係的TCP視窗大小
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以設定7-Mode Volume與ONTAP VMware Volume之間SnapMirror關係的TCP視窗大小、以改善SnapMirror傳輸處理量、使複寫作業更快完成。
+
+SnapMirror原則命令提供了「窗口大小-用於TDP鏡射」選項、可設定7-Mode與ONTAP VMware Volume（TDP）之間SnapMirror關係的TCP視窗大小。使用此選項、您可以設定較高/較低的TCP視窗大小。設定此選項時、您必須注意下列考量事項：
+
+* 只能針對類型為「非同步鏡射」的原則、設定「視窗大小」的TDP-鏡射選項。
+* 「窗口大小」選項可設定為「256 KB」至「7 MB」。否則組態會失敗。
+* "window-size-for TDP鏡射"選項的預設值為"2 MB"。
+
+
+
+NOTE: 隱藏「視窗大小、以TDP-mirror」選項、而標籤完成則無法運作。請務必輸入完整選項以使用。
+
+以下範例顯示如何針對類型為「TDP」的SnapMirror關係、將TCP視窗大小設定為「5 MB」：
+
+.步驟
+. 建立TCP視窗大小為「5 MB」的SnapMirror原則、類型為「非同步鏡射」：
++
+SnapMirror原則cred*
+
++
+[listing]
+----
+cluster01::> snapmirror policy create -vserver vserverA –policy tdp_window_size_policy -window-size-for-tdp-mirror 5MB -type async-mirror
+----
+. 建立類型為「TDP（TDP））的SnapMirror關係、並套用原則：
++
+SnapMirror cred*
+
++
+[listing]
+----
+cluster01::> snapmirror create -source-path filerA:volA -destination-path vserverA:volA -type TDP -policy tdp_window_size_policy
+----
+. 在SnapMirror原則中檢視已設定的視窗大小：
++
+SnapMirror政策展示*
+
++
+[listing]
+----
+cluster01::> snapmirror policy show -vserver vserverA -policy tdp_window_size_policy -fields window-size-for-tdp-mirror
+----
+

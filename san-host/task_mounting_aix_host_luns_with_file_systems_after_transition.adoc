@@ -1,0 +1,51 @@
+---
+permalink: san-host/task_mounting_aix_host_luns_with_file_systems_after_transition.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, mount, aix, host, lun, file, system 
+summary: 將AIX主機資料LUN（檔案系統Data ONTAP ）從以7-Mode運作的支援中心移轉至叢集Data ONTAP 式支援中心之後、您必須掛載LUN。 
+---
+= 在轉換後、將AIX主機資料LUN與檔案系統一起掛載
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+將AIX主機資料LUN（檔案系統Data ONTAP ）從以7-Mode運作的支援中心移轉至叢集Data ONTAP 式支援中心之後、您必須掛載LUN。
+
+LUN移轉之後、邏輯Volume Manager（LVM）屬性（例如邏輯Volume名稱和Volume群組名稱）不會變更。您可以繼續使用轉換前邏輯磁碟區名稱和磁碟區群組名稱來進行轉換後組態。
+
+對於複製型轉換、請在完成7-Mode Transition Tool中的Storage Cutover作業之後、執行這些步驟。AIX主機不支援無複製轉換。
+
+.步驟
+. 探索全新的叢集Data ONTAP 式LUN：
++
+‘* cfgmgr*’
+
+. 確認已Data ONTAP 探索到您的叢集式LUN：
++
+「* sanlun LUN show*」
+
++
+您應該Data ONTAP 列出叢集式的LUN、模式欄中的輸出應從7變更為C
+
+. 匯入Volume群組：
++
+'* importvg -y _vg_name PV_name_*
+
++
+您可以使用Volume群組中的任何實體Volume名稱。
+
+. 確認已匯入Volume群組：
++
+"* lsvg _vg_name_*
+
+. 掛載每個裝置：
++
+「* mount -o log=/dev/logv00 _file_system mount_point_*」
+
+. 驗證掛載點：
++
+‘* df*’
+
+

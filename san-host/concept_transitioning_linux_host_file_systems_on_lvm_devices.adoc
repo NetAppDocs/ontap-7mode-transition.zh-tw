@@ -1,0 +1,20 @@
+---
+permalink: san-host/concept_transitioning_linux_host_file_systems_on_lvm_devices.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, linux, host, file, systems, lvm, devices 
+summary: 當您在邏輯Volume Manager（LVM）上轉換Linux主機檔案系統時、必須執行特定步驟以準備轉換階段、而且必須在轉換後掛載邏輯磁碟區。 
+---
+= 在LVM裝置上轉換Linux主機檔案系統
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+當您在邏輯Volume Manager（LVM）上轉換Linux主機檔案系統時、必須執行特定步驟來準備轉換階段、而且必須在轉換後掛載邏輯磁碟區。
+
+*相關資訊*
+
+xref:task_preparing_for_cutover_when_transitioning_linux_host_file_systems_on_lvm_devices.adoc[在LVM裝置上轉換Linux主機檔案系統時、準備轉換階段]
+
+xref:task_mounting_logical_volumes_on_linux_host_after_transition.adoc[轉換後、將邏輯磁碟區掛載到Linux主機上]

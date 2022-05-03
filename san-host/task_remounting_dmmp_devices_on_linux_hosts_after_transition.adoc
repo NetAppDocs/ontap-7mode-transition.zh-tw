@@ -1,0 +1,94 @@
+---
+permalink: san-host/task_remounting_dmmp_devices_on_linux_hosts_after_transition.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, remount, dmmp, devices, linux, hosts 
+summary: 從以7-Mode運作的功能轉型ONTAP 為叢集Data ONTAP 式功能後、您必須重新掛載適用於RHEL 5和RHEL 6的DMP裝置。在掛載DMP裝置之前、主機無法存取您的7-Mode LUN。 
+---
+= 轉換後、在Linux主機上重新掛載DMP裝置
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+從以7-Mode運作的功能轉型ONTAP 為叢集Data ONTAP 式功能後、您必須重新掛載適用於RHEL 5和RHEL 6的DMP裝置。在掛載DMP裝置之前、主機無法存取您的7-Mode LUN。
+
+如果您執行的是無複製轉換（CFT）、則必須完成vol rehost的程序。請參閱 link:https://docs.netapp.com/us-en/ontap-7mode-transition/copy-free/index.html["7-Mode Transition Tool無複製移轉指南"] 以取得詳細資料。
+
+* 對於複製型轉換、請在完成7-Mode Transition Tool（7MTT）中的Storage轉換作業之後、執行這些步驟。
+* 對於CFT、請在完成7MTT的匯入資料與組態作業之後、執行這些步驟。
+
+
+.步驟
+. 產生7-Mode to ONTAP VMware LUN對應檔案：
++
+** 若要進行複本型轉換、請從安裝7MTT的Linux主機執行下列命令：+`* Transition CBT匯出lunmap -p _project name_-o _file_path_*
++
+例如：
+
++
+「* Transition CBT匯出lunmap -p SanWorkLoad -o c：/Lithraes/7-to-C-lun-mapping．csv*」
+
+** 對於無複製轉換、請從安裝7MTT的系統執行下列命令：+`* Transition CFT匯出lunmap -p _project name_-s Svm-name -o _output-file_*
++
+例如：
+
++
+「* Transition CFT匯出lunmap -p SanWorkLoad -s svml-0 cs/磁帶 庫/Documents/7-to-C-lun-maping-svml.csv*」
+
++
+
+NOTE: 您必須為每個儲存虛擬機器（SVM）執行此命令。
+
+
+
+. 請記下ONTAP LUN對應檔案中的新版「更新的LUN設備處理ID」。
+. 移除針對7-Mode LUN所建立的SCSI裝置：
++
+** 若要移除所有SCSI裝置：+`* rescan-scsi-bus.sh -r*
+** 若要個別移除每個SCSI裝置：+`*回應1>/sys/block/_scsi_ID__/DELETE *
++
+此命令必須在所有7-Mode LUN SCSI裝置上執行。請參閱_庫存評估工作簿_的SAN主機LUN選項卡上的SCSI設備ID列，以識別LUN的SCSI設備ID。
+
+
+
+. 探索全新ONTAP 的功能LUN：
++
+「* resce-scsi-bus.sh*」
+
+. 驗ONTAP 證是否發現了動態LUN：
++
+「* sanlun LUN show*」
+
++
+應在「檔案名稱」欄中列出該LUN的SCSI裝置。ONTAP
+
+. 設定適用於ONTAP LUN的DMP裝置：
++
+‘*多重路徑*’
+
+. 驗證是否存在DMP設備：
++
+"*多重路徑-ll _LUN_SCSI_DEVICE名稱_*
+
++
+在下列範例中、3600a098051764937303f4479515a7451代表DMP裝置處理ID：
+
++
+[listing]
+----
+[root@IBMx3550M3-229-169 ~]#multipath -ll /dev/sdq
+3600a098051764937303f4479515a7451 dm-6 NETAPP,LUN C-Mode
+----
+. 掛載LUN：
++
+h.* mount _device_name mountpoint_`
+
++
+如果在「etc/fstabs」檔案中定義掛載點、您可以執行「mount-As」命令來掛載所有掛載點。
+
+. 驗證掛載點：
++
+* mount*
+
+

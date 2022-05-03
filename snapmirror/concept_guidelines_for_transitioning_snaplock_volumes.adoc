@@ -1,0 +1,34 @@
+---
+permalink: snapmirror/concept_guidelines_for_transitioning_snaplock_volumes.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, transition, guidelines, snaplock, volumes, requirements 
+summary: 您可以將7-Mode SnapLock 的等量資料移轉至SnapLock 以VMware 9.5或更早版本建立的等量資料。ONTAP您必須瞭解有關轉換SnapLock 功能的要求和準則。 
+---
+= 轉換SnapLock 功能指南
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以將7-Mode SnapLock 的等量資料移轉至SnapLock 以VMware 9.5或更早版本建立的等量資料。ONTAP您必須瞭解有關轉換SnapLock 功能的要求和準則。
+
+* 如果包含LUN的不支援轉換7-Mode SnapLock 的支援。SnapLock
+* 您只能在SnapLock VMware 9.5或更早版本中、將7-Mode的「VMware企業版」磁碟區移轉至SnapLock 「VMware企業版」ONTAP 。
+* 您只能將7-Mode SnapLock 的「不符合要求」（Se-Mode）Volume轉換成SnapLock 適用於VMware的「不符合要求」（Se-Mode）ONTAP 。
+* 在轉換7-Mode Volume SnapMirror關係時、您只能使用交錯式轉換（先轉換次要、再轉換主要）來轉換SnapLock VMware Enterprise Volume。
++
+7-Mode主Volume與ONTAP VMware二級Volume之間的SnapMirror災難恢復（DR）關係僅支援SnapLock 使用於VMware Enterprise Volume、SnapLock 不支援使用「不符合法規遵循」Volume。
+
++
+xref:task_transitioning_a_data_protection_relationship.adoc[以交錯式組態轉換Volume SnapMirror關係]
+
+* 您必須SnapLock 平行轉換主要和次要磁碟區、才能在《兼容性》（SnapMirror）磁碟區之間轉換7-Mode Volume SnapMirror關係。
++
+xref:task_transitioning_a_volume_snapmirror_relationship_in_parallel.adoc[並行轉換Volume SnapMirror關係]
+
+
+
+*相關資訊*
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-arch-con/home.html["利用SnapLock NetApp技術歸檔及法規遵循"]

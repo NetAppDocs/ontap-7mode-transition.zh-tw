@@ -1,0 +1,18 @@
+---
+permalink: copy-based/task_consolidating_snapshot_policies_and_cron_schedules_on_transitioned_volumes.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, consolidate, cron, schedules, transitioned, volumes 
+summary: 7-Mode Transition Tool會針對每個轉換的Volume產生獨特的排程。因此、在轉換之後可以建立大量cron排程、因此您需要知道如何在轉換後進行整合。 
+---
+= 整合轉換磁碟區的cron排程
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+7-Mode Transition Tool會針對每個轉換的Volume產生獨特的排程。因此、在轉換之後可以建立大量cron排程、因此您需要知道如何在轉換後進行整合。
+
+.步驟
+. 使用「jobschedule cron」命令、在轉換後整合cron排程。
+

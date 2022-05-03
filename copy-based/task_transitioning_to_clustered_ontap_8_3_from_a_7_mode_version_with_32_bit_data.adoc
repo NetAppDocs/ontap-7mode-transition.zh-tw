@@ -1,0 +1,25 @@
+---
+permalink: copy-based/task_transitioning_to_clustered_ontap_8_3_from_a_7_mode_version_with_32_bit_data.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, prepare, supported, released, 8.3 
+summary: 不支援ONTAP 32位元的Aggregate、Volume和Snapshot複本。因此、您必須將32位元Aggregate擴充至64位元、然後在轉換之前、從7-Mode系統中尋找並移除任何32位元Volume和Snapshot複本。由於所有7-Mode版本都不支援擴充32位元集合體及移除32位元磁碟區和Snapshot複本的功能、因此您可能必須在轉換前升級7-Mode系統。 
+---
+= 準備移轉至ONTAP 支援的版本支援的版本
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+不支援ONTAP 32位元的Aggregate、Volume和Snapshot複本。因此、您必須將32位元Aggregate擴充至64位元、然後在轉換之前、從7-Mode系統中尋找並移除任何32位元Volume和Snapshot複本。由於所有7-Mode版本都不支援擴充32位元集合體及移除32位元磁碟區和Snapshot複本的功能、因此您可能必須在轉換前升級7-Mode系統。
+
+
+NOTE: 叢集Data ONTAP 式的32位元Aggregate、Volume和Snapshot複本。因此、您可以將32位元資料從7-Mode系統移轉至執行Data ONTAP VMware 8.2.x的目標叢集不過、在轉換之後、如果目標叢集必須升級至ONTAP 版本32或更新版本、則必須先將目標叢集上所有現有的32位元資料升級至64位元格式、才能升級ONTAP 目標叢集的版本32。
+
+您應該使用下列工作流程來決定轉換前是否需要升級。
+
+image::../media/32bit_upgrade_path_updated.gif[32位元升級路徑已更新]
+
+*相關資訊*
+
+http://www.netapp.com/us/media/tr-3978.pdf["NetApp技術報告3978：就地擴充32位元Aggregate至64位元概述與最佳實務做法"]

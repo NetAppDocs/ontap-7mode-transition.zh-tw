@@ -1,0 +1,112 @@
+---
+permalink: copy-based/task_generating_an_assessment_report_by_adding_systems_to_7mtt.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, generate, assessment, report, add, system, tool 
+summary: 您可以將系統新增至7-Mode Transition Tool、以收集控制器、主機和FC交換器的庫存資訊。接著您可以建立評估報告、評估這些系統的功能和特性、並找出ONTAP 它們在選定的「更新版本」中的運作方式。 
+---
+= 將系統新增至7-Mode Transition Tool、以產生評估報告
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以將系統新增至7-Mode Transition Tool、以收集控制器、主機和FC交換器的庫存資訊。接著您可以建立評估報告、評估這些系統的功能和特性、並找出ONTAP 它們在選定的「更新版本」中的運作方式。
+
+* 儲存系統和主機的使用者名稱必須具有足夠的權限、才能執行讀我檔案中所列的命令。
++
+該讀我檔案位於「_7-Mode_Transition _Tool_Installed_LOUSE\BIN\ICT」。
+
+* 您必須準備好7-Mode系統、主機和FC交換器、才能進行轉換評估。
+* 若要評估Windows系統、您必須擁有網域使用者帳戶。
+* 如果您要新增多個系統進行評估、則必須建立以Ascii或utf-8格式編碼的文字檔、而且必須以每行一個系統的形式包含系統詳細資料。
++
+每個系統詳細資料必須採用下列格式：
+
++
+[listing]
+----
+(ontap|windows|vmware|linux|cisco|brocade)://[(user|domain_user)[:password]@](host_name|ip)
+----
+* 安裝並執行7-Mode Transition Tool的系統必須能夠存取控制器或主機。
+* 所有功能都必須設定或啟用授權、才能讓工作簿包含這些功能的詳細目錄資訊。
+* 儲存系統的使用者名稱必須具有足夠的管理權限、才能收集庫存資訊。
+* 所有主機名稱和儲存系統組態（例如CIFS共用名稱、使用者名稱和群組名稱）都必須採用utf-8格式。
+
+
+如果重新啟動7-Mode Transition Tool服務或安裝此工具的系統、則新增至工具的系統詳細資料將會遺失、而且系統必須重新新增至工具。
+
+.步驟
+. 如果您想要使用最新的互通性對照表IMT （簡稱「參考資料」）資料進行轉換評估：
++
+.. 從IMT 互通性對照表下載此資料、然後儲存：
++
+... 在「報告」功能表中、按一下*「完成每日匯出」*。
+... 在「完整的每日匯出」對話方塊FAS 中、於搜尋欄位中輸入「還原」。
+... 下載ONTAP 《SAN主機Excel》檔案、然後儲存。https://mysupport.netapp.com/matrix["NetApp 互通性對照表工具"]
+
+
+.. 在CLI IMT 中、使用「Transition IMT from the show」命令匯入資料。
+.. 使用「Transition IMT esfshow」命令來確認匯入是否成功。
++
+*疑難排解：* IMT 如果無法執行還原資料匯入作業、您可以使用「Transition IMT 還原」命令來還原先前的資料。
+
+
+
+. 登入7-Mode Transition Tool、然後按一下「Collect and評估（收集與評估）」區段中的「* Get Started（*入門）」。
+. 按一下「*新增系統*」。
+. 在Add System（新增系統）視窗中、執行下列其中一項動作：
++
+** 新增單一系統：
++
+... 輸入系統的完整網域名稱（FQDN）或IP位址。
+... 輸入指定系統的使用者名稱和密碼。
+... 選取系統類型：
++
+**** 儲存系統Data ONTAP
+**** 主機：Microsoft Windows、Red Hat Linux Enterprise和VMware ESXi
+**** FC交換器：Cisco與Brocade
+
+
+
+
+** 按一下*瀏覽*、然後選取包含多個系統認證的文字檔、即可新增多個系統。
+
+
+. 按一下「 * 新增 * 」。
++
+如果系統的評估狀態為「Ready（就緒）」、則您可以針對該系統執行轉換評估。
+
+. 產生轉換評估報告：
++
+.. 選擇要進行轉換評估的系統。
+.. 按一下「*建立轉換評估報告*」。
+.. 在「Create Transition Assessment Report（建立轉換評估報告）」對話方塊中、選取Data ONTAP 目標叢集的還原版本。
+.. 指定報告檔案名稱的前置詞。
+.. 按一下*產生報告*。
+
+
++
+評估工作簿（報告名稱附有「評估工作簿」）和評估執行摘要（報告名稱附有「評估執行摘要」）報告、以XML格式產生。
+
++
++您可以存取評估工作簿、評估摘要和庫存XML檔案、這些檔案可用來從「...etc/webapp/Transition（轉換）-GUI/MC」資料夾產生評估報告。
+
+. 使用Microsoft Office 2007或更新版本、在Microsoft Excel中檢視評估工作簿、並在Microsoft Word中檢視評估執行摘要。
++
+請參閱評估工作簿中的轉換可行性（CBT）、設定預先檢查摘要、設定預先檢查詳細資料、以及CBT預先檢查摘要索引標籤、以瞭解複本型轉換評估詳細資料。
+
++
+在評估執行摘要中、如需控制器層級評估的詳細資料、請參閱複本型轉換可行性一節。
+
++
+您可能必須在Excel中啟用巨集才能檢視評估工作簿。
+
++
+在評估工作簿的資料收集摘要中、如果系統的存取狀態為「失敗」、則該系統的庫存資訊無效。在評估執行摘要中、此系統部分欄位的值會顯示為「未評估」。
+
+
+
+*相關資訊*
+
+xref:task_collecting_tool_logs.adoc[正在下載轉換記錄檔]

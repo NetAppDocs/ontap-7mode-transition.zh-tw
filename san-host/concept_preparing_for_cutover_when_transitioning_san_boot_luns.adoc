@@ -1,0 +1,20 @@
+---
+permalink: san-host/concept_preparing_for_cutover_when_transitioning_san_boot_luns.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, cutover, phase, san, boot, lun 
+summary: 如果您要將SAN開機LUN從Data ONTAP 以7-Mode運作的還原移轉至叢集Data ONTAP 式的還原、則在進入轉換階段之前、您必須先瞭解某些先決條件。 
+---
+= 準備轉換SAN開機LUN時的轉換階段
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您要將SAN開機LUN從Data ONTAP 以7-Mode運作的還原移轉至叢集Data ONTAP 式的還原、則在進入轉換階段之前、您必須先瞭解某些先決條件。
+
+您必須將光纖連線和分區功能提供給叢集Data ONTAP 式的支援中心控制器、才能進行FC組態。對於iSCSI組態、您必須探索iSCSI工作階段、並登入叢集Data ONTAP 式的等化控制器。您也必須關閉主機。
+
+* 對於複製型轉換、您應該在7-Mode Transition Tool（7MTT）中啟動Storage Cutover（儲存設備轉換）作業之前、先關閉主機。HP-UX主機不支援無複製轉換。
+* 對於無複製轉換、您應該先關閉主機、然後再在7MTT中啟動匯出及停止7-Mode作業。
+

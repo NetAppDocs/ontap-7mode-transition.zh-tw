@@ -1,0 +1,108 @@
+---
+permalink: san-host/task_preparing_to_transition_hp_ux_host_luns_with_file_systems.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, hp, ux, host, lun, file, system 
+summary: 在將檔案系統的HP-UX主機LUN從Data ONTAP 以7-Mode運作的VMware移轉至叢集Data ONTAP 式VMware之前、您必須先收集轉換程序所需的資訊。 
+---
+= 準備使用檔案系統來轉換HP-UX主機LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在將檔案系統的HP-UX主機LUN從Data ONTAP 以7-Mode運作的VMware移轉至叢集Data ONTAP 式VMware之前、您必須先收集轉換程序所需的資訊。
+
+.步驟
+. 顯示LUN以識別要轉換的LUN名稱：
++
+’* LUN show*’
+
+. 找出要轉換的LUN的SCSI裝置名稱、以及SCSI裝置的Agile名稱：
++
+「* sanlun LUN show -p*」
+
++
+在下列範例中、轉換LUN為lun1和LUN3。lun1的SCSI設備名稱包括："/dev/dsk/c14t0d1"、"/dev/dsk/c27t0d1"、"/dev/dsk/c40t0d1"和"/dev/dsk/c31t0d1"。「LUN3」的SCSI裝置名稱為：「/dev/dsk/c14t0d2」、「/dev/dsk/c27t0d2」、「/dev/dsk/c40t0d2」和「dev/c31t0d2」。
+
++
+SCSI設備的Agile名稱是"/dev/dsk/c31t0d1"、名稱是"dev/rdisk/disk11"。
+
++
+[listing]
+----
+        ONTAP Path: f8040-211-185:/vol/vol185_n1/lun3
+               LUN: 1
+          LUN Size: 3g
+       Host Device: /dev/rdisk/disk11
+              Mode: 7
+Multipath Provider: None
+host      vserver   /dev/dsk
+path      path      filename           host     vserver
+state     type      or hardware path   adapter  LIF
+-----     --------- ----------------   -------  -------
+up        secondary /dev/dsk/c14t0d1   fcd0     fc4
+up        primary   /dev/dsk/c27t0d1   fcd0     fc2
+up        primary   /dev/dsk/c40t0d1   fcd1     fc1
+up        secondary /dev/dsk/c31t0d1   fcd1     fc3
+----
++
+[listing]
+----
+        ONTAP Path: f8040-211-183:/vol/vol183_n1/lun1
+               LUN: 3
+          LUN Size: 3g
+       Host Device: /dev/rdisk/disk14
+              Mode: 7
+Multipath Provider: None
+host      vserver   /dev/dsk
+path      path	     filename           host     vserver
+state     type      or hardware path   adapter  LIF
+-----     --------- ----------------   -------  -------
+up        secondary /dev/dsk/c14t0d1   fcd0     fc4
+up        primary   /dev/dsk/c27t0d1   fcd0     fc2
+up        primary   /dev/dsk/c40t0d1   fcd1     fc1
+up        secondary /dev/dsk/c31t0d1   fcd1     fc3
+----
+. 識別主機上LUN的WWID：
++
+scsimgr Get_info -D _Agile名稱_for_scsi_device_*
+
++
+在此範例中、裝置「/dev/rdisk/disk11」的LUN WWID為0x600a09804d537739422445386b7555529：
+
++
+[listing]
+----
+bash-2.05# scsimgr get_info -D /dev/rdisk/disk11 |grep WWID
+World  Wide Identifier (WWID)     = 0x600a09804d537739422445386b755529
+----
+. 列出並記錄您的Volume群組：
++
+「* vgdisplay*」
+
+. 列出並記錄您的磁碟區群組、邏輯磁碟區和實體磁碟區：
++
+「* vgdisplay -v _vg_name_*」
+
+. 將Volume群組的VGID和邏輯磁碟區寫入mapfile：
++
+"* vgexp -p -s -m /tmp/mapfile/vg01 vg01*
+
+. 將「mapfile.vg01」的備份複本複製到外部來源。
+. 列出並記錄掛載點：
++
+《*第二工作日*》
+
++
+以下範例顯示掛載點的顯示方式：
+
++
+[listing]
+----
+bash-2.05# bdf
+Filesystem     kbytes      used        avail   	used   Mounted on
+/dev/vg01/lvol 123592960   1050952   22189796   5%   /mnt/qa/vg01
+/dev/vg01/lvol2 23592960   588480    22645044   3%   /mnt/qa/vg02
+----
+

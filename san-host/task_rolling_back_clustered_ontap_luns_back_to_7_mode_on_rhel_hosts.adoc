@@ -1,0 +1,51 @@
+---
+permalink: san-host/task_rolling_back_clustered_ontap_luns_back_to_7_mode_on_rhel_hosts.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, lun, rhel, roll, back 
+summary: 如果ONTAP 從Data ONTAP 以7-Mode運作的VMware移轉到7-Mode後、您的支援LUN效能不如預期、您可以在ONTAP Red Hat Enterprise Linux（RHEL）5或RHEL 6主機上、從VMware復原至7-Mode LUN。 
+---
+= 在ONTAP RHEL主機上將VMware LUN復原至7-Mode LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果ONTAP 從Data ONTAP 以7-Mode運作的VMware移轉到7-Mode後、您的支援LUN效能不如預期、您可以在ONTAP Red Hat Enterprise Linux（RHEL）5或RHEL 6主機上、從VMware復原至7-Mode LUN。
+
+您的7-Mode LUN必須對應回RHEL 5或RHEL 6主機。
+
+.步驟
+. 探索7-Mode LUN：
++
+「* resce-scsi-bus.sh*」
+
+. 設定7-Mode LUN的DMP裝置：
++
+‘*多重路徑*’
+
+. 驗證您的7-Mode LUN：
++
+「* sanlun LUN show*」
+
+. 確定7-Mode LUN設備的處理ID：
++
+hy*多重路徑-ll _DEVICE®Handle_name_*
+
+. 如果主機已設定使用邏輯Volume Manager（LVM）、請執行下列動作：
++
+.. 匯入Volume群組：+`* vgimport_vg_name_*
+.. 驗證Volume群組狀態：+「* vgdisplay*」
+.. 啟用邏輯磁碟區：+`* vgchange -ay _vg_name_*
+.. 驗證邏輯磁碟區狀態：+「* lvdisplay*」
++
+「低電壓狀態」應顯示為「可用」。
+
+.. 將邏輯磁碟區從ONTAP SURELUN掛載到其各自的掛載點目錄：+ h.* mount _lv名稱mount_point_*
++
+如果在「etc/fstab」檔案中定義掛載點、您也可以使用「mount-A'命令來掛載邏輯磁碟區。
+
+.. 驗證掛載點：+"* mount*（*掛載*）
+
+
+

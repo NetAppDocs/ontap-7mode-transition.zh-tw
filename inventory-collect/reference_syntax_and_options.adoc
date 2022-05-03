@@ -1,0 +1,90 @@
+---
+permalink: inventory-collect/reference_syntax_and_options.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, transition, syntax, option, ict, inventory, collection, tool 
+summary: Inventory Collection Tool（Inventory Collection Tool）（ICT）命令會從命令列介面（CLI）或包含系統詳細資料的文字檔中指定的控制器和主機、收集組態和庫存資訊。您可以將語法和選項搭配ICT命令使用。 
+---
+= 語法和選項
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Inventory Collection Tool（ICT）命令會從命令列介面（CLI）或包含系統詳細資料的文字檔中指定的控制器和主機、收集組態和庫存資訊。您可以將語法和選項搭配ICT命令使用。
+
+
+
+== 語法
+
+* "*ICT --cmd collect [--outl.xml>]<uri>[<uri>...]*
+* 「* ICT - cmd collect（-output-outputs <information.xml）」-輸入<information_file.txt>*
+* hy*ICT --cmd generation-fc-z區域--source-Filers<filer-ip>[,<filer-ip>]--dest-SVM <叢 集名稱：Svm-name>--fc-switches <switch-ip>[:<vSAN-id>][,<switch-ip>[:<vSAN-id>]...] <inventory_xml >[<inventory_xml >...]*
+* hy*ICT --cmd generation-fc-zes --source-Filers<filer-ip>[<filer-ip>]--dest-SVM <叢 集名稱：Svm-name>--fc-switches <switch-ip>[:<vSAN-id>][,<switch-ip>[:<vSAN-id>]...] -fc-switcher-target <switch-ip>[:<vSAN-id>][,<switch-ip>[:<vSAN-id>]...] <inventory_xml >[<inventory_xml >...]*
+* 「* ICT --help*」
+* 「* ICT -版本*」
+
+
+
+
+== 選項
+
+此文字檔必須在不同的行中包含每個系統的系統詳細資料：
+
+* uri1.
+* uri2.
+* uri3/
+
+
+如果密碼是「*」或在CLI或文字檔中省略、則會提示使用者在CLI中輸入密碼。下列選項可用於執行ICT：
+
+* 「-help'」
++
+顯示說明訊息並結束。
+
+* 「-version」
++
+列印工具版本並結束。
+
+* -cmd [collect| generd-fc-zues]
++
+收集：從控制器和主機收集組態和庫存資訊。
+
++
+產生fc-zones：在特定庫存上產生FC區域規劃文件。
+
+* -`-output<檔案名稱[.xml[.gz]>.'
++
+指定產生檔案的位置。如果文件名後加上"`.gz"，則文件將被壓縮。此選項會產生兩個檔案（報告）：庫存報告和庫存報告工作簿。
+
+* -`-INPUT <entions_file.txt>'
++
+指定儲存含有系統認證的檔案位置。此選項不適用於-cmd generd-fc-'區域。
+
++
+
+NOTE: 僅支援使用Ascii編碼的文字檔。
+
+* URI格式（'ontap|windows|VMware|Linux | cisco|Brocade）：//[（<user>|<domain_user>）[:（<密碼>|*）@]（<主機名稱>|<ip>`）
++
+指定控制器或主機的系統類型、IP位址和認證。如果提供的密碼是「*」、或未提供密碼、則會提示使用者在命令列中輸入密碼。
+
+* ——源文件管理器
++
+指定用於產生FC分區計畫的來源控制器之以逗號分隔的IP位址。
+
+* 「dest-SVM」
++
+指定目的地叢集Data ONTAP 式的SVM、格式為「叢集名稱：Svm-name_」、用於產生FC區域計畫。
+
+* 「-fc-switches」
++
+列出必須為其產生FC分區計畫的FC交換器。這是以逗號分隔的交換器識別碼清單。Cisco的FC交換器格式應為「_switch-ip:vSAN-id_」、而Brocade的FC交換器格式應為「_switch-ip_」。例如：10.61.187.62002、10.61.187.71:200（Cisco）或10.61.187.4、10.61.187.5（Brocade）
+
+* 「-fc-switch-target」
++
+指定必須為其產生FC分區計畫的FC交換器（連接至叢集）清單。這是以逗號分隔的目標交換器識別碼清單、其順序與來源FC交換器（-fc-switches）相同。FC分區指令碼會針對新增至fc-switches參數清單的每個來源交換器產生。這是選用參數。
+
+
+
+對於FC Zone Planner、輸入詳細目錄XML會以未命名的引數提供。

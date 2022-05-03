@@ -1,0 +1,26 @@
+---
+permalink: copy-based/task_editing_a_subproject.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, edit, project 
+summary: 您可以編輯專案來新增或移除磁碟區、以及修改轉換組態。 
+---
+= 編輯專案
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以編輯專案來新增或移除磁碟區、以及修改轉換組態。
+
+* 您必須已建立專案。
+* 您不得啟動要編輯的專案。
+
+
+您可以編輯專案、以變更選取要轉換的磁碟區。您也可以編輯專案、以變更SVM對應、磁碟區對應、介面對應、以及資料複製排程。編輯專案時、您無法變更專案類型或vFiler單元。
+
+.步驟
+. 從*儀表板*視窗中、選取您要編輯的專案。
+. 按一下「*編輯專案*」、然後從下拉式清單中選取所需的步驟。
+. 完成精靈以編輯專案。
+

@@ -1,0 +1,32 @@
+---
+permalink: san-host/task_verifying_rhel_6_ddmp_devices_are_ready_for_transition_using_cli.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, rhel, ddmp, devices, cli 
+summary: 在您轉換Red Hat Enterprise Linux（RHEL）6 DMP裝置之前、您必須確認該裝置並非邏輯Volume Manager（LVM）的一部分、而且沒有檔案系統。 
+---
+= 使用CLI驗證RHEL 6 DDMP裝置是否已準備好進行移轉
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在您轉換Red Hat Enterprise Linux（RHEL）6 DMP裝置之前、您必須先確認它不是邏輯Volume Manager（LVM）的一部分、而且它沒有檔案系統。
+
+.步驟
+. 從_庫存評估工作簿_收集預先轉換資訊。
+. 驗證DMMP設備是否存在於"dev/mapper"目錄中：
++
+hes* ls /dev/mapper/_DMMP_DEV_name_*
+
++
+如果未顯示DMP裝置、表示裝置可能使用別名或使用者友好名稱。
+
+. 判斷DMP裝置是否屬於LVM的一部分、以及DMP裝置是否有檔案系統：
++
+《* blKid*》
+
++
+如果DMP裝置不是LVM的一部分、而且沒有檔案系統、則裝置項目不應顯示在blkidoutput.
+
+

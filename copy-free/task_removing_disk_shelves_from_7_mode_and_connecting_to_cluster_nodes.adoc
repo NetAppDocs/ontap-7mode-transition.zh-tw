@@ -1,0 +1,123 @@
+---
+permalink: copy-free/task_removing_disk_shelves_from_7_mode_and_connecting_to_cluster_nodes.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, disconnect, disk, shelves, connect, cluster, node 
+summary: 將7-Mode磁碟櫃連接至目標叢集節點是手動程序。在連接磁碟櫃纜線之後、最好使用Config Advisor 下列方法來驗證纜線。然後、您可以使用7-Mode Transition Tool來驗證纜線。此工具僅執行Config Advisor 由執行的檢查子集。 
+---
+= 從7-Mode系統中斷磁碟櫃連線、並連線至叢集節點
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+將7-Mode磁碟櫃連接至目標叢集節點是手動程序。在連接磁碟櫃纜線之後、最好使用Config Advisor 下列方法來驗證纜線。然後、您可以使用7-Mode Transition Tool來驗證纜線。此工具僅執行Config Advisor 由執行的檢查子集。
+
+您必須記錄有關磁碟櫃連線至7-Mode控制器連接埠的資訊。
+
+您必須注意連接SAS磁碟櫃的一些考量事項：
+
+* 您必須遵循SAS方形和圓形連接埠的佈線規則。
+* IOM6和IOM3磁碟櫃可以混合在同一個堆疊中、但在使用不同IOM類型的磁碟櫃之間、不應只有單一轉換。
++
+例如、IOM6e（控制器）-IOM6（機櫃）-IOM3（機櫃）-IOM3（機櫃）是支援的組態。但是IOM6e（控制器）-IOM3（機櫃）-IOM6（機櫃）-IOM3（機櫃）不是支援的組態。
+
+
+
+.步驟
+. 檢查7-Mode HA配對和目標叢集節點中的磁碟櫃ID：
++
+.. 如果有重複的磁碟櫃ID（如果目標叢集節點中的磁碟櫃使用7-Mode磁碟櫃ID）、請變更磁碟櫃ID。
++
+*** 對於SAS磁碟櫃、有效的機櫃ID為00到99。
+*** SAS機櫃ID必須在HA配對內是唯一的。https://library.netapp.com/ecm/ecm_download_file/ECMP1119629["適用於DS4243、DS2246、DS4486和DS4246的SAS磁碟櫃安裝與服務指南"]
+*** 對於FC磁碟櫃、有效的機櫃ID為1到7。
+*** FC機櫃ID必須在每個FC迴圈內都是唯一的。https://library.netapp.com/ecm/ecm_download_file/ECMP1112854["DS14mk2 FC與DS14mk4 FC硬體服務指南"]
+
+
+.. 重新啟動磁碟櫃、讓新的ID生效。
+
+
+. 關閉7-Mode磁碟櫃。
+. 視目標叢集節點上是否有可用的其他連接埠而定、請選擇下列其中一個選項：
++
+|===
+| 如果... | 然後... 
+
+
+ a| 
+還有其他連接埠可用來連接磁碟櫃
+ a| 
+將新堆疊中的磁碟櫃連接到多重路徑組態中的目標叢集節點。
+
+
+NOTE: 最佳做法是將磁碟櫃連接至個別堆疊。7-Mode Transition Tool會在執行預先檢查時、偵測目標叢集節點上所需連接埠數量的可用度。
+
+
+
+ a| 
+連接埠無法用於連接磁碟櫃
+ a| 
+執行下列其中一項動作：
+
+** 新增擴充卡、並將新堆疊中的磁碟櫃連接至多重路徑組態中的目標叢集節點。
++
+您必須已驗證擴充卡是否在目的地平台上受支援。
+
+** 將磁碟櫃連接到多重路徑組態中的現有堆疊。
+
+
+|===
++
+https://library.netapp.com/ecm/ecm_download_file/ECMP1119629["適用於DS4243、DS2246、DS4486和DS4246的SAS磁碟櫃安裝與服務指南"]
+
++
+https://library.netapp.com/ecm/ecm_download_file/ECMM1280273["《硬體服務指南》中的DiskShelf14mk2"]
+
++
+https://library.netapp.com/ecm/ecm_download_file/ECMP1112854["DS14mk2 FC與DS14mk4 FC硬體服務指南"]
+
+. 開啟磁碟櫃電源。
++
+
+IMPORTANT: 您必須等候至少70秒、才能繼續。
+
+. 使用功能驗證連線。Config Advisor
++
+您必須修正Config Advisor 任何由無法辨識的纜線問題。
+
++
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["NetApp下載Config Advisor"]
+
+. 在7-Mode Transition Tool中、按一下*驗證纜線*。
++
+畫面會顯示一則訊息、列出此作業的重要考量。
+
++
+*疑難排解：*如果集合體中缺少磁碟、則集合體會降級、而且纜線驗證會失敗。如果遺失的磁碟數量在允許的限制內、您可以從7-Mode Transition Tool CLI執行下列命令、繼續使用降級的集合體進行轉換：
+
++
+「* Transition CFT Aggregate degraded－Transition－p _project名稱_－n 7-_mode_host_name__－a _7-mode_gregate名稱_－i Acknowledg*」
+
++
+然後、您可以重新執行纜線驗證作業、並繼續進行轉換。您必須確保目標叢集節點中有足夠的備用磁碟、以便在集合體移轉之後重建這些RAID群組。
+
+. 按一下「*是*」繼續。
+. 請等待作業完成、然後執行下列步驟以儲存作業結果並收集工具記錄：
++
+.. 按一下*「另存為CSV*」、將作業結果儲存在檔案中。
+.. 按一下「*收集工具記錄*」以建立所有轉換記錄檔的備份。
++
+最佳做法是在每次轉換作業之後儲存記錄檔。
+
+.. 按一下 * 關閉 * 。
+
+
++
+如果作業需要很長時間才能完成、您可以按一下*在背景中執行*來結束作業結果視窗。當作業在背景執行時、您不應編輯專案或執行任何其他工作。然後、您可以從「操作歷程記錄」標籤檢視操作結果。
+
+
+
+*相關資訊*
+
+xref:task_gathering_cabling_information_for_transition.adoc[收集纜線資訊以供轉換]

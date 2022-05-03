@@ -1,0 +1,35 @@
+---
+permalink: san-host/task_preparing_to_transition_aix_data_host_luns_with_file_systems.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, transition, aix, host, data, lun, file, system 
+summary: 在您將AIX主機資料LUN與檔案系統從Data ONTAP 以7-Mode運作的VMware移轉至叢集Data ONTAP 式VMware之前、您必須先收集轉換程序所需的資訊。 
+---
+= 準備使用檔案系統來轉換AIX主機資料LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在您將AIX主機資料LUN與檔案系統從Data ONTAP 以7-Mode運作的VMware移轉至叢集Data ONTAP 式VMware之前、您必須先收集轉換程序所需的資訊。
+
+. 在7-Mode控制器上、識別要轉換的LUN名稱：
++
+’* LUN show*’
+
+. 在主機上、找出LUN的SCSI裝置名稱：
++
+「* sanlun LUN show*」
+
++
+SCSI設備名稱位於設備文件名列中。
+
+. 列出並記錄在要轉換的資料LUN中所設定之磁碟區群組所使用的實體磁碟區：
++
+‘* lsvg -p _vg_name_*’
+
+. 列出並記錄Volume群組使用的邏輯磁碟區：
++
+‘* lsvg -l _vg_name_*’
+
+

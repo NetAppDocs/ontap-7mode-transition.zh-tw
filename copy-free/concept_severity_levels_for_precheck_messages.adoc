@@ -1,0 +1,53 @@
+---
+permalink: copy-free/concept_severity_levels_for_precheck_messages.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, severity, levels, precheck, messsages 
+summary: 您可以執行轉換預先檢查作業、確認7-Mode磁碟區是否可以轉換。轉換前檢查會報告所有的轉換問題。根據問題對轉換程序的影響、會指派不同的嚴重性層級來處理轉換問題。 
+---
+= 預先檢查訊息的嚴重性等級
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以執行轉換預先檢查作業、確認7-Mode磁碟區是否可以轉換。轉換前檢查會報告所有的轉換問題。根據問題對轉換程序的影響、會指派不同的嚴重性層級來處理轉換問題。
+
+預先檢查所偵測到的問題分為下列類別：
+
+* *錯誤*
++
+無法轉換的組態。
+
++
+即使有一個錯誤、您也無法繼續進行轉換。以下是導致錯誤的7-Mode系統組態範例：
+
++
+** 傳統磁碟區
+** 資料量SnapLock
+** 離線磁碟區
+
+
+* *警告*
++
+可能在轉換後造成小問題的組態。
+
++
+支援的功能、但不由7-Mode Transition Tool轉換、也會產生警告訊息。ONTAP您可以利用這些警告繼續進行轉換。不過、在轉換之後、您可能會遺失其中的部分組態、或是必須完成一些手動工作、才能在ONTAP 支援的過程中啟用這些組態。
+
++
+以下是7-Mode系統上產生警告的幾個範例組態：
+
++
+** IPv6
+** NFSv2
+** NDMP組態
+** 介面群組和VLAN
+** 路由資訊傳輸協定（RIP）
+
+
+* *資訊*
++
+已成功轉換的組態。
+
+

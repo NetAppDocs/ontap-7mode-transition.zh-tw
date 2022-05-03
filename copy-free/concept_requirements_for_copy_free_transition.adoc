@@ -1,0 +1,83 @@
+---
+permalink: copy-free/concept_requirements_for_copy_free_transition.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, requirements 
+summary: 您應該瞭解7-Mode系統、叢集、ONTAP 版本資訊和磁碟櫃的需求、以便進行無複製轉換。 
+---
+= 無複製轉換的需求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您應該瞭解7-Mode系統、叢集、ONTAP 版本資訊和磁碟櫃的需求、以便進行無複製轉換。
+
+請務必參閱目前的7-Mode Transition Tool _Release Notes_、以取得支援的目標版本和已知問題的最新資訊。
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-72c-rn/home.html["7-Mode Transition Tool版本資訊"]
+
+* *平台機型*
++
+只有中階FAS 和高階版的支援、以及IBM N系列系統才支援無複製轉換。。 https://mysupport.netapp.com/matrix["NetApp 互通性對照表工具"] 擁有7-Mode系統和目標叢集節點所支援平台的最新資訊。
+
+* *在7-Mode來源系統中* Data ONTAP
++
+如需7-Mode Transition Tool支援移轉的7-Mode版本清單、請參閱 https://mysupport.netapp.com/matrix["NetApp 互通性對照表工具"]
+
+* *目標系統* ONTAP
++
+7-Mode Transition Tool版本3.3.1支援ONTAP 使用無複製方法轉換至下列版本：
+
++
+** 更新版本：更新版本ONTAP ONTAP
+** 叢集Data ONTAP 式的S2.8.3.2及更新版本8.x版本*注意：*您無法使用7-Mode轉換工具、ONTAP 使用無複製方法轉換至VMware 9.5或更新版本。若要這麼做、您必須先ONTAP 使用7-Mode Transition Tool 3.3.1移轉至VMware 9.4、然後將叢集升級至ONTAP VMware 9.5或更新版本。7-Mode Transition Tool 3.3.2不支援無複本轉換。
+
+
+* * HA組態*
++
+7-Mode控制器和目標叢集節點必須採用HA組態。HA配對必須健全、且任何節點都無法處於接管模式。不支援獨立式控制器進行無複本轉換。
+
+* *磁碟櫃機型*
++
+支援下列磁碟櫃機型：
+
++
+** DS4486
+** DS4246
+** DS4243
++
+
+NOTE: 不支援ONTAP 使用磁碟櫃型號DS4243的功能、不支援使用4322和ONTAP 59.4。此機型支援ONTAP 所有從ONTAP 版本更新至版本更新至版本更新至版本更新至版本更新至版本更新至版本更新至版本更新ONTAP 。7-Mode Transition Tool 3.3.1支援使用磁碟櫃型號DS4243進行轉換、可將資料從無複本移轉至ONTAP VMware版9.2P1至ONTAP VMware版9.3。
+
+** DS2246
+** DS14mk4 FC（ONTAP 不受支援於支援的版本不支援）
+** DS14mk2位於（ONTAP 不支援於支援更新版本的版本）
+
+
+
+
+
+NOTE: 不支援DS14mk2 FC磁碟櫃機型。
+
+* *磁碟韌體*
++
+您必須在7-Mode系統和目標叢集節點上下載並安裝最新的磁碟鑑定套件、磁碟韌體、磁碟櫃和ACP韌體。
+
++
+https://mysupport.netapp.com/NOW/download/tools/diskqual/["NetApp下載：磁碟認證套件"]
+
++
+https://mysupport.netapp.com/site/downloads/firmware/disk-drive-firmware["NetApp下載：磁碟機韌體"]
+
++
+https://mysupport.netapp.com/site/downloads/firmware/disk-shelf-firmware["NetApp下載：磁碟櫃韌體"]
+
+* *驗證纜線的工具*
++
+在轉換期間、將7-Mode磁碟櫃連接至目標叢集節點之後、您必須使用Config Advisor VMware驗證纜線。
+
++
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["NetApp下載Config Advisor"]
+
+

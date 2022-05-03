@@ -1,0 +1,45 @@
+---
+permalink: copy-free/task_selecting_source_7_mode_systems_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, create, project 
+summary: 規劃移轉專案的第一步、是選取要從中移轉磁碟櫃、集合體、磁碟區和組態的來源7-Mode HA配對、然後建立移轉專案。 
+---
+= 建立無複本轉換專案
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+規劃移轉專案的第一步、是選取要從中移轉磁碟櫃、集合體、磁碟區和組態的來源7-Mode HA配對、然後建立移轉專案。
+
+* HA配對中的7-Mode控制器必須在ONTAP 支援無複本轉換的平台上執行支援的版本。
++
+https://mysupport.netapp.com/matrix["NetApp 互通性對照表工具"]
+
+* HA組態中的兩個控制器都必須正常運作。
++
+.. 從首頁選取*無複製轉換*移轉方法、然後按一下*開始規劃*。
++
+如果未新增新專案所需的控制器和叢集、您可以在「輸入裝置認證」窗格中輸入詳細資料。
+
+.. 選取您要轉換的來源7-Mode HA配對。
+.. 按一下「*建立專案*」。
++
+... 在「專案詳細資料」視窗中、提供專案名稱。
+... 選取要新增專案的專案群組。
++
+您可以建立新專案群組、或將專案新增至預設群組。
+
++
+建立專案群組可讓您群組及監控相關專案。
+
+... 按一下「 * 儲存 * 」。
++
+隨即顯示Select Target Cluster（選取目標叢集）畫面。
+
+
+
+
+
+

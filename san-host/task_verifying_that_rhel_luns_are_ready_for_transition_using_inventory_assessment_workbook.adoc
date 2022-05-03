@@ -1,0 +1,24 @@
+---
+permalink: san-host/task_verifying_that_rhel_luns_are_ready_for_transition_using_inventory_assessment_workbook.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, rhel, lun, inventory, assessment, workbook 
+summary: 如果您的Red Hat Enterprise Linux（RHEL）5或RHEL 6 LUN已設定裝置對應器多重路徑（DMP）、則在將LUN從Data ONTAP 以7-Mode運作的LUN移轉至叢集Data ONTAP 式的VMware之前、應先確認檔案系統尚未設定。 
+---
+= 使用庫存評估工作簿驗證RHEL LUN是否已準備好進行轉換
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您的Red Hat Enterprise Linux（RHEL）5或RHEL 6 LUN已設定裝置對應器多重路徑（DMP）、則在將LUN從Data ONTAP 以7-Mode運作的更新轉換為叢集Data ONTAP 式更新之前、應先確認檔案系統尚未設定。
+
+此程序適用於複本型轉換和無複本轉換。
+
+.步驟
+. 從_庫存評估工作簿_收集預先轉換資訊。
+. 檢查「* SAN主機檔案系統*」標籤下是否有DMP裝置項目。
++
+如果不存在DMP裝置項目、表示未設定檔案系統、您可以移轉LUN。
+
+

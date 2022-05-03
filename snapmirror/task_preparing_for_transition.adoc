@@ -1,0 +1,14 @@
+---
+permalink: snapmirror/task_preparing_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, transition, prepare, storage, system, cluster 
+summary: 在開始轉換之前、您必須先準備7-Mode儲存系統和叢集、然後再將7-Mode Volume移轉至叢集Data ONTAP 式的VMware。您也必須在7-Mode系統與儲存虛擬機器（SVM）之間建立轉換對等關係。 
+---
+= 準備轉換
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在開始轉換之前、您必須先準備7-Mode儲存系統和叢集、然後再將7-Mode Volume移轉至叢集Data ONTAP 式的VMware。您也必須在7-Mode系統和儲存虛擬機器（SVM）之間建立轉換對等關係。

@@ -1,0 +1,48 @@
+---
+permalink: install-admin/task_modifying_default_configuration_settings_of_7mtt.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, install, modify, configuration, options, transition, tool 
+summary: 您可以編輯$install_DIR\etc\...檔案、以修改7-Mode Transition Tool所使用的任何組態選項。此檔案包含工具運作所需的所有可設定選項資訊。 
+---
+= 修改7-Mode Transition Tool的組態選項
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以編輯「$install_DIR\etc\...」檔案、以修改7-Mode Transition Tool所使用的任何組態選項。此檔案包含工具運作所需的所有可設定選項資訊。
+
+檔案包含各種選項；例如、您可以指定工具服務啟動的連接埠、以及工具用來與7-Mode系統或叢集通訊的連接埠。
+
+.步驟
+. 從安裝7-Mode Transition Tool的系統中、從安裝目錄開啟「$install_DIR\etc\conf\Transition工具.conf」檔案、然後加以修改。
++
+7-Mode Transition Tool必須具備連接埠843/ 8088才能與7-Mode系統和叢集通訊。如果連接埠8443或8088無法使用、或您想要使用不同的連接埠、您必須變更「Transition工具.conf」檔案中「工具.https.port」選項所指定的連接埠。如果連接埠8088無法使用、或您想要使用不同的連接埠、您必須變更「Transition工具.conf」檔案中「工具.http：port」選項所指定的連接埠。
+
+. 重新啟動7-Mode Transition Tool服務、讓新值生效：
++
+|===
+| 如果您的系統類型是... | 請執行下列動作... 
+
+
+ a| 
+Windows
+ a| 
+.. 按一下*開始*>*控制台*>*系統與安全*>*系統管理工具*>*服務*。
+.. 在* NetApp 7-Mode Transition Tool*服務上按一下滑鼠右鍵、然後按一下*停止*。
+.. 再次在* NetApp 7-Mode Transition Tool*服務上按一下滑鼠右鍵、然後按一下* Start*。
+
+
+
+
+ a| 
+Linux
+ a| 
+執行下列命令：
+
+「*服務轉換-服務重新啟動*」
+
+|===
+. 重新啟動7-Mode Transition Tool服務之後、請再次新增7-Mode系統和叢集認證。
+

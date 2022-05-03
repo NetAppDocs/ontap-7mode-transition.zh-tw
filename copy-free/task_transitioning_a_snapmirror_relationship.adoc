@@ -1,0 +1,24 @@
+---
+permalink: copy-free/task_transitioning_a_snapmirror_relationship.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, snapmirror, relationship 
+summary: 您可以先移轉次要HA配對、在7-Mode主要Volume與叢集Data ONTAP 式的VMware次要Volume之間建立交錯的SnapMirror關係、然後在稍後移轉主要HA配對。在某些情況下、您必須平行移轉7-Mode SnapMirror關係的二線和一線HA配對。 
+---
+= 轉換SnapMirror關係
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以先移轉次要HA配對、在7-Mode主要Volume與叢集Data ONTAP 式的VMware次要Volume之間建立交錯的SnapMirror關係、然後在稍後移轉主要HA配對。在某些情況下、您必須平行移轉7-Mode SnapMirror關係的二線和一線HA配對。
+
+如果所有的主要磁碟區都屬於一個HA配對、而所有的次要磁碟區都屬於另一個HA配對、您可以使用交錯式方法進行轉換。
+
+如果任一HA配對混合使用主要和次要磁碟區、則必須使用平行方法進行轉換。
+
+在轉換主要和次要HA配對之後、Data ONTAP 您必須在轉換後、在叢集式的SnapMirror中手動設定Volume SnapMirror關係。為了成功重新同步、Data ONTAP SnapMirror關係的主要和次要磁碟區之間必須至少存在一個以Eshot 8.1或更新版本建立的通用Snapshot複本。
+
+*相關資訊*
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.onc-sm-help/GUID-DF04A607-30B0-4B98-99C8-CB065C64E670.html["使用System Manager進行叢集管理"]

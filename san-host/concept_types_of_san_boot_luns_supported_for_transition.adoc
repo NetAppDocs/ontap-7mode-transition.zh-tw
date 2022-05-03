@@ -1,0 +1,22 @@
+---
+permalink: san-host/concept_types_of_san_boot_luns_supported_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, san, boot, lun, supported 
+summary: 只有特定類型的SAN開機LUN可支援從Data ONTAP 以7-Mode運作的VMware移轉至叢集Data ONTAP 式VMware。 
+---
+= 支援移轉的SAN開機LUN類型
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+只有特定類型的SAN開機LUN可支援從Data ONTAP 以7-Mode運作的VMware移轉至叢集Data ONTAP 式VMware。
+
+支援下列SAN開機LUN進行轉換：
+
+* FC或FCoE SAN開機LUN
+* 適用於Red Hat Enterprise Linux（RHEL）6的iSCSI SAN開機LUN
+
+
+不支援移轉RHEL 5.x的iSCSI SAN開機LUN。

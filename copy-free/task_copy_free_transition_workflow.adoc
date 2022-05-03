@@ -1,0 +1,16 @@
+---
+permalink: copy-free/task_copy_free_transition_workflow.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, workflow 
+summary: 無複製轉換工作流程包括準備轉換、執行轉換及完成轉換。其中有些工作必須在7-Mode系統和叢集上手動完成。 
+---
+= 無複製轉換工作流程
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+無複製轉換工作流程包括準備轉換、執行轉換及完成轉換。其中有些工作必須在7-Mode系統和叢集上手動完成。
+
+image::../media/cft_highlevel_workflow.gif[CFT高層級工作流程]

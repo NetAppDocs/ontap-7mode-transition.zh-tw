@@ -1,0 +1,103 @@
+---
+permalink: san-host/task_mounting_logical_volumes_on_linux_host_after_transition.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, mount, logical, volumes, linux, hosts 
+summary: 從以7-Mode運作的VMware移轉到ONTAP 叢集Data ONTAP 式的VMware後、您的邏輯磁碟區就會離線。您必須掛載這些邏輯磁碟區、LUN才能供主機存取。 
+---
+= 轉換後、將邏輯磁碟區掛載到Linux主機上
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+從以7-Mode運作的VMware移轉到ONTAP 叢集Data ONTAP 式的VMware後、您的邏輯磁碟區就會離線。您必須掛載這些邏輯磁碟區、LUN才能供主機存取。
+
+如果您執行的是無複製轉換（CFT）、則必須完成vol rehost的程序。請參閱 link:https://docs.netapp.com/us-en/ontap-7mode-transition/copy-free/index.html["7-Mode Transition Tool無複製移轉指南"] 以取得詳細資料。
+
+* 對於複製型轉換（CBT）、請在完成7-Mode Transition Tool（7MTT）中的Storage Cutover（儲存設備轉換）作業之後、執行這些步驟。
+* 對於CFT、請在7MTT的匯入資料與組態作業之後執行這些步驟。
++
+.. 產生7-Mode至叢集Data ONTAP 式的實體LUN對應檔案：
++
+*** 若要進行複本型轉換、請從安裝7MTT的Linux主機執行下列命令：+`* Transition CBT匯出lunmap -p _project name_-o _file_path_*
++
+例如：
+
++
+「* Transition CBT匯出lunmap -p SanWorkLoad -o c：/Lithraes/7-to-C-lun-mapping．csv*」
+
+*** 如需無複製轉換、請從安裝7MTT的系統執行下列命令：
++
+'轉換CFT匯出lunmap -p p_roject名稱_-s _svm-name_-o _output-file_*
+
++
+例如：
+
++
+「* Transition CFT匯出lunmap -p SanWorkLoad -s svml-0 cs/磁帶 庫/Documents/7-to-C-lun-maping-svml.csv*」
+
++
+
+NOTE: 您必須為每個儲存虛擬機器（SVM）執行此命令。
+
+
+
+.. 移除針對7-Mode LUN所建立的SCSI裝置：
++
+*** 若要移除所有SCSI裝置：+`* rescan-scsi-bus.sh -r*
+*** 若要個別移除每個SCSI裝置：+`*回應1>/sys/block/_scsi_ID__/DELETE *
++
+此命令必須在所有7-Mode LUN SCSI裝置上執行。請參閱_庫存評估工作簿_的SAN主機LUN選項卡上的SCSI設備ID列，以識別LUN的SCSI設備ID。
+
+
+
+.. 探索全新ONTAP 的功能LUN：
++
+「* resce-scsi-bus.sh*」
+
+.. 設定適用於ONTAP LUN的DMP裝置：
++
+‘*多重路徑*’
+
+.. 驗ONTAP 證是否發現了動態LUN：
++
+「* sanlun LUN show*」
+
+.. 判斷新ONTAP 的更新版的LUN裝置處理ID：
++
+hy*多重路徑-ll _Device_Handle_name_*
+
+.. 匯入Volume群組：
++
+‘* vgimport_vg_name_*’
+
+.. 驗證Volume群組狀態：
++
+「* vgdisplay*」
+
+.. 啟用邏輯磁碟區：
++
+‘* vgchange -ay _vg_name_*’
+
+.. 驗證邏輯磁碟區狀態：
++
+「* lvdisplay*」
+
++
+左室狀態應顯示為「可用」。
+
+.. 將邏輯磁碟區從ONTAP LUN掛載到其各自的掛載點目錄：
++
+"列舉_lv名稱emount_point_"
+
++
+如果在「etc/fstab」檔案中定義掛載點、您可以使用「mount-A'命令來掛載邏輯磁碟區。
+
+.. 驗證掛載點：
++
+* mount*
+
+
+
+

@@ -1,0 +1,30 @@
+---
+permalink: copy-based/concept_considerations_for_transitioning_of_7_mode_snaplock_options.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, snaplock, options, 7, mode 
+summary: 7-Mode Transition Tool可支援轉換一些與SnapLock VMware Volume相關的7-Mode選項。 
+---
+= 7-Mode SnapLock 的轉換考量
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+7-Mode Transition Tool可支援轉換一些與SnapLock VMware Volume相關的7-Mode選項。
+
+在7-Mode中運作的支援項目包含下列與VMware磁碟區相關的選項：Data ONTAP SnapLock
+
+* naplock.autocommit_period`
++
+此選項在ONTAP 整個過程中位於整個過程的Volume層級、ONTAP 並在轉換過程中移轉至介紹。
+
+* naplock.compliance.write_verify`
++
+此選項不適用於ONTAP 此功能。
+
+* naplock.log.default_retention`
+* "naplock.log.maximal_size"
+
+
+雖然支援「naplock.log.default_retention`」和「shnaplock.log.maximize_size」選項ONTAP 、但7-Mode Transition Tool不會轉換這些選項中設定的設定。您必須在轉換完成後、為稽核磁碟區手動設定這些選項。

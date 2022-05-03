@@ -1,0 +1,151 @@
+---
+permalink: copy-free/concept_restrictions_during_preproduction_testing.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, preproduction, testing, restrictions 
+summary: 部分作業會遭到封鎖、部分作業不建議在正式作業前測試期間執行。如果您不想提交轉換作業、這些限制會限制您允許回溯至7-Mode。 
+---
+= 正式作業前測試期間的限制
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+部分作業會遭到封鎖、部分作業不建議在正式作業前測試期間執行。如果您不想提交轉換作業、這些限制會限制您允許回溯至7-Mode。
+
+
+
+== 被封鎖的作業
+
+|===
+| 營運 | 說明 
+
+
+ a| 
+自動刪除（自動刪除）Aggregate Snapshot複本
+ a| 
+由於在匯出作業期間建立的7-Mode Aggregate層級Snapshot複本在復原時是必要的、因此當Aggregate中使用的空間增加時、不會自動刪除Snapshot複本。
+
+
+IMPORTANT: 您必須監控集合體中的可用實體空間、並確保集合體在測試期間不會耗盡空間。
+
+
+
+ a| 
+將磁碟區移至其他Aggregate
+ a| 
+* 您無法將磁碟區移至轉換的Aggregate。
+* 您可以將磁碟區從移轉的集合體移至叢集中的集合體。
+
+
+
+
+ a| 
+跨磁碟區複製或移動LUN
+ a| 
+* 您無法將LUN複製或移動到轉換的磁碟區。
+* 您可以將LUN從轉換的磁碟區複製或移動到叢集中的其他磁碟區。
+
+
+
+
+ a| 
+建立Aggregate
+ a| 
+此作業受限於目標叢集HA配對。您可以在叢集中的其他節點上建立集合體。
+
+
+
+ a| 
+銷毀Aggregate
+ a| 
+因為在匯出作業期間建立的7-Mode Aggregate層級Snapshot複本、是復原作業所需的項目、因此轉換後的Aggregate無法銷毀。
+
+
+
+ a| 
+設定轉換的Aggregate做為根Aggregate
+ a| 
+轉換的Aggregate無法選取為根Aggregate。此外、您無法將轉換的Aggregate的HA原則修改為CFO。
+
+
+
+ a| 
+執行檔案複製作業
+ a| 
+* 您無法將檔案（單一檔案隨需複製）移動或複製到轉換的磁碟區。
+* 您可以將檔案從已轉換的磁碟區移動或複製到叢集中的其他磁碟區。
+
+
+
+
+ a| 
+鏡射現有的Aggregate
+ a| 
+叢集中的所有集合體都會封鎖此作業。
+
+
+
+ a| 
+在Data ONTAP 目標叢集節點上升級或還原版本的物件
+ a| 
+在升級或還原目標叢集節點之前、您必須先提交專案。
+
+
+
+ a| 
+新增磁碟
+ a| 
+您無法在管理權限層級中執行「儲存Aggregate add-disks」命令。不過、您可以在進階權限層級執行此命令。
+
+
+IMPORTANT: 您必須確保只新增7-Mode磁碟櫃的備用磁碟、以增加轉換式集合體的空間。您必須使用「-disklists」參數來新增備用磁碟（不得使用「-diskcount'參數）。
+
+
+
+ a| 
+將轉換的Volume指定為SVM根Volume
+ a| 
+您無法在轉換的磁碟區上執行「volume make vsroot」命令。
+
+|===
+
+
+== 不建議的作業
+
+|===
+| 營運 | 復原前的修正行動 
+
+
+ a| 
+重新定位Aggregate
+
+轉換的Aggregate擁有權會變更為HA合作夥伴。
+ a| 
+在復原前交換Aggregate所有權、因為7-Mode Transition Tool會根據儲存在專案中的目標節點對應資訊、將Aggregate對應至7-Mode控制器。
+
+
+
+ a| 
+在轉換的集合體上建立磁碟區
+ a| 
+您必須刪除這些磁碟區或將其移至不同的集合體。
+
+
+
+ a| 
+重新命名Aggregate或Volume
+ a| 
+將集合體或磁碟區重新命名為其原始名稱。
+
+
+
+ a| 
+變更RAID類型
+ a| 
+如果您決定回溯至7-Mode、RAID類型必須符合7-Mode RAID類型。
+
+|===
+*相關資訊*
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-cmpr/GUID-5CB10C70-AC11-41C0-8C16-B4D0DF916E9B.html["指令ONTAP"]

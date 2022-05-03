@@ -1,0 +1,41 @@
+---
+permalink: copy-free/concept_prerequisites_to_transition_nfs_configurations.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, prerequisites, nfs, configurations 
+summary: 只有在7-Mode系統和叢集上符合特定先決條件時、才會使用7-Mode Transition Tool來轉換NFS組態。如果不符合任何條件、則此工具不會轉換組態。 
+---
+= 轉換NFS組態的先決條件
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+只有在7-Mode系統和叢集上符合特定先決條件時、才會使用7-Mode Transition Tool來轉換NFS組態。如果不符合任何條件、則此工具不會轉換組態。
+
+
+
+== 7-Mode必備條件
+
+* NFS必須獲得授權。
+* 如果已授權使用此功能、則必須在所有VFiler裝置上啟用NFS。MultiStore
+* 在轉換期間、NFS服務必須在7-Mode系統上執行。
++
+即使在用戶端存取中斷連線並準備開始匯出階段之後、該服務仍必須在7-Mode系統上執行。
+
+* 如果您想要轉換記憶體內的匯出規則、則必須先將其新增至「/etc/exports」檔案、才能進行轉換。
++
+7-Mode Transition Tool只會轉換在「/etc/exports」檔案中定義的持續匯出規則。
+
+
+
+
+
+== 叢集先決條件
+
+* NFS必須獲得授權。
+
+
+*相關資訊*
+
+http://docs.netapp.com/ontap-9/index.jsp["NetApp文件：ONTAP VMware 9"]

@@ -1,0 +1,66 @@
+---
+permalink: install-admin/task_logging_in_to_tool.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, install, login, transition, tool 
+summary: 您可以使用安裝此工具的Windows系統認證、登入7-Mode Transition Tool（網路介面）。登入程序視您的使用者認證類型而定。 
+---
+= 登入7-Mode Transition Tool
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用安裝此工具的Windows系統認證、登入7-Mode Transition Tool（網路介面）。登入程序視您的使用者認證類型而定。
+
+來賓使用者不允許登入工具。
+
+.步驟
+. 瀏覽至登入頁面：
++
+|===
+| 如果您是... | 然後... 
+
+
+ a| 
+是系統管理員群組成員的使用者、如果您是從安裝工具的伺服器存取工具（Web介面）
+ a| 
+按兩下桌面上的7-Mode Transition Tool圖示。
+
+
+
+ a| 
+是系統管理員群組成員且您尚未安裝此工具的使用者
+ a| 
+使用支援的瀏覽器瀏覽至下列其中一個URL：
+
+** https://_IP_address:port_/transition`
+** 「http://_IP_address:port_/transition`」指的是伺服器的IP位址、而「_port_」指的是843（預設）、「_tool.https.port_」指定的值、或8088、是Transition工具.conf檔案中「_tool.http.port_」參數指定的值。
+
+
+
+
+ a| 
+是系統管理員群組成員的使用者、如果您是從其他電腦存取工具（網路介面）
+ a| 
+使用支援的瀏覽器瀏覽至下列其中一個URL：
+
+** https://_IP_address:port_/transition`
+** 「http://_IP_address:port_/transition`」指的是伺服器的IP位址、連接埠可以是843（預設）、為「_tool.https.port_」指定的值、或是8088、這是在Transition工具.conf檔案中為「_tool.http.port_」參數指定的值。
+
+
+
+
+ a| 
+不是系統管理員群組成員的使用者、如果您是從安裝工具的伺服器或從其他電腦存取工具（Web介面）
+ a| 
+使用支援的瀏覽器瀏覽至下列其中一個URL：
+
+** https://_IP_address:port_/transition`
+** 「http://_IP_address:port_/transition`」指的是伺服器的IP位址、連接埠可以是843（預設）、為「_tool.https.port_」指定的值、或是8088、這是在「_Transition工具.conf」檔案中為「_tool.http.port_」參數指定的值。
+
+
+|===
+. 如果瀏覽器顯示自我簽署SSL憑證的相關訊息、請接受自我簽署的憑證以繼續。
+. 使用安裝此工具的Windows系統認證登入Web介面。
+

@@ -1,0 +1,39 @@
+---
+permalink: copy-free/task_adding_controllers_and_clusters.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, add, controllers, clusters 
+summary: 在開始轉換之前、您必須先新增7-Mode控制器、包括7-Mode HA配對的兩個節點、以及轉換所需的叢集。您應該使用叢集管理介面來新增叢集。 
+---
+= 新增控制器和叢集
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在開始轉換之前、您必須先新增7-Mode控制器、包括7-Mode HA配對的兩個節點、以及轉換所需的叢集。您應該使用叢集管理介面來新增叢集。
+
+* 若要進行無複本轉換、您必須新增叢集、而非移轉目標叢集節點。
+* 您提供的7-Mode控制器和叢集資訊並非持續性的。
++
+如果重新啟動7-Mode Transition Tool服務、則該工具會在專案儀表板中提示取得有關控制器和叢集的資訊、這些控制器和叢集是作用中專案的一部分。
+
+
+
+.步驟
+. 從上方窗格中、按一下*儲存系統*。
+. 在*主機名稱*欄位中、輸入7-Mode控制器或ONTAP 作業系統的FQDN或IP位址。
++
+對於叢集、您可以指定叢集管理介面的IP位址或FQDN。對於7-Mode控制器、您必須指定預設vFiler單元的IP位址、因為不接受個別vFiler單元的IP位址。
+
+. 輸入指定主機的系統管理員認證資料、然後按一下*「Add*（新增*）」。
++
+7-Mode控制器會新增至「7-Mode Controllers」表、叢集會新增至「叢集Data ONTAP 式的VMware系統」表。
+
+. 重複步驟2和3、新增您需要的所有控制器和叢集、以進行轉換。
+. 如果「Status（狀態）」欄指出系統的認證資料遺失、或認證資料與工具中最初輸入的資訊有所不同、請按一下 image:../media/delete_me_edit_schedule.gif[""] 圖示、然後再次輸入認證資料。
+. 單擊 * 下一步 * 。
++
+隨即顯示Select來源系統畫面。
+
+

@@ -1,0 +1,26 @@
+---
+permalink: san-host/concept_post_transition_remediation_for_linux_and_windows_guest_operating_systems.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, remediation, linux, windows, guest, operating, systems 
+summary: 將LUN從Data ONTAP 以7-Mode運作的VMware移轉至叢集Data ONTAP 式VMware後、Linux和Windows客體作業系統可能需要額外的補救措施。 
+---
+= 適用於Linux和Windows客體作業系統的轉換後補救措施
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+將LUN從Data ONTAP 以7-Mode運作的VMware移轉至叢集Data ONTAP 式VMware後、Linux和Windows客體作業系統可能需要額外的補救措施。
+
+對於複製型轉換、請在完成7MTT中的儲存設備轉換作業之後、執行下列步驟。如需無複製轉換、請在7MTT中完成匯入資料與組態作業之後執行下列動作。
+
+* Linux
++
+如果裝入點是在"/etc/stab"文件中定義的，則必須裝入LUN（"mount-a"）。
+
+* Windows
++
+如果VM上已設定容錯移轉叢集、您必須從容錯移轉叢集管理程式將磁碟上線。
+
+

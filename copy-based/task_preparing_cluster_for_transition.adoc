@@ -1,0 +1,172 @@
+---
+permalink: copy-based/task_preparing_cluster_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, prepare, cluster 
+summary: 在轉換之前、您必須確保叢集符合各項需求、例如允許HTTPS、設定叢集間生命量、以及驗證網路連線能力以進行轉換。 
+---
+= 準備叢集以進行移轉
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在轉換之前、您必須確保叢集符合各項需求、例如允許HTTPS、設定叢集間生命量、以及驗證網路連線能力以進行轉換。
+
+* 叢集和SVM必須已設定完成。
++
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-ssg/home.html["軟體設定"]
+
++
+目標SVM不得處於SVM災難恢復關係中。
+
+* 叢集必須健全、且所有節點都必須處於接管模式。
+* 將包含移轉磁碟區的目標集合體必須具有SFO原則。
+* 集合體必須位於尚未達到最大Volume限制的節點上。
+* 如果您想要將磁碟區從7-Mode系統的32位元集合體移轉至Data ONTAP 64位元集合體、則必須在目的地集合體中額外提供5%的空間。
++
+將轉換的磁碟區升級為64位元格式需要額外的空間。
+
++
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["磁碟與Aggregate管理"]
+
+* 若要在轉換Volume SnapMirror關係時建立SVM對等關係、必須符合下列條件：
++
+** 次要叢集的SVM名稱不得與主要SVM相同。
+** 主叢集的SVM名稱不得與次要SVM相同。
+** 來源7-Mode系統的名稱不應與任何已處理的本機SVM或SVM發生衝突。
+
+
+
+
+切勿ONTAP 在轉換期間將叢集升級至不同的版本。
+
+
+NOTE: 如有需要、您可以將叢集升級至相同ONTAP 版本的修補程式版本。
+
+.步驟
+. 從管理主機、使用叢集管理LIF來驗證叢集是否可連線：
++
+h.*ssh _username@cluster管理_ip_*
+
+. 在叢集上啟用SSLv3或FIPS：
++
+|===
+| 如果您要啟用... | 輸入... 
+
+
+ a| 
+SSLv3
+ a| 
+系統服務web modify -SSLv3啟用true*
+
+
+
+ a| 
+符合FIPS 140-2規範
+ a| 
+「*系統服務網路修改-SSL-FIPS啟用的true*」
+
+|===
++
+啟用FIPS 140-2規範時、會停用SSLv3。啟用FIPS 140-2規範時、無法啟用SSLv3。ONTAP如果您啟用FIPS 140-2之後再停用、則SSLv3會維持停用狀態。
+
++
+
+IMPORTANT: 最佳實務做法是啟用FIPS、因為SSLv3中存在安全性弱點。
+
+. 驗證叢集管理LIF是否允許HTTPS：
++
+.. 檢視叢集管理LIF的防火牆原則：
++
+h.*網路介面show -vserver _svm_name_-lif_cluster管理_lif_-Fields firewall-policy*
+
++
+[listing]
+----
+cluster1::> network interface show -vserver cluster1 -lif cluster_mgmt -fields firewall-policy
+vserver lif          firewall-policy
+------- ------------ ---------------
+cluster1  cluster_mgmt mgmt
+----
+.. 確認與叢集管理LIF相關的防火牆原則允許HTTPS存取：
++
+系統服務防火牆原則顯示-policy mgmt*
+
++
+[listing]
+----
+cluster1::> system services firewall policy show -policy mgmt
+Policy           Service    Action IP-List
+---------------- ---------- ------ --------------------
+mgmt
+                 dns        allow  0.0.0.0/0, ::/0
+                 http       allow  0.0.0.0/0, ::/0
+                 https      allow  0.0.0.0/0, ::/0
+                 ndmp       allow  0.0.0.0/0, ::/0
+                 ntp        allow  0.0.0.0/0, ::/0
+                 rsh        deny   0.0.0.0/0, ::/0
+                 snmp       allow  0.0.0.0/0, ::/0
+                 ssh        allow  0.0.0.0/0, ::/0
+                 telnet     deny   0.0.0.0/0, ::/0
+9 entries were displayed.
+----
+
+
++
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["系統管理"]
+
+. 在叢集的每個節點上建立叢集間LIF、以便叢集與7-Mode系統之間進行通訊：
++
+.. hy*網路介面create -vserver _Svm_name_-lif_intercluster _lif_-role inter-cluster -home-node_node_-home-port _home_port_-address_ip_address_-netm _netask_*
++
+[listing]
+----
+cluster1::> network interface create -vserver cluster1-01 -lif intercluster_lif -role intercluster -home-node cluster1-01 -home-port e0c -address 192.0.2.130 -netmask 255.255.255.0
+----
+.. 建立靜態路由。
++
+|===
+| 如果您要轉換至... | 執行此命令... 
+
+
+ a| 
+提供9.5或更早版本或叢集式的版本ONTAP Data ONTAP
+ a| 
+建立網路路由
+
+[listing]
+----
+cluster1::> network route create -vserver vs0 -destination 0.0.0.0/0 -gateway 10.61.208.1
+----
+
+
+ a| 
+叢集Data ONTAP 式8.2 x
+ a| 
+建立網路路由群組路由
+
+[listing]
+----
+cluster1::> network routing-groups route create -vserver cluster1-01 -routing-group i192.0.0.0/18 -destination 0.0.0.0/0 - gateway 192.0.2.129
+----
+|===
+.. 確認您可以使用叢集間LIF來ping 7-Mode系統：
++
+hy*網路ping -lif_intercluster _lif_-vserver _Svm_name_-destination _remente_inetaddress_*
+
++
+[listing]
+----
+cluster1::> network ping -lif intercluster_lif -vserver cluster1 -destination system7mode
+system7mode is alive
+----
++
+對於多重路徑、您必須在每個節點上有兩個叢集間生命體。
+
++
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/home.html["網路與LIF管理"]
+
+
+
+

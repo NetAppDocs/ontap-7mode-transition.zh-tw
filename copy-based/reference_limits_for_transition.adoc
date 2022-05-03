@@ -1,0 +1,80 @@
+---
+permalink: copy-based/reference_limits_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, limits 
+summary: 當您使用7-Mode Transition Tool轉換磁碟區時、應該考量特定的評估限制、例如可同時評估的控制器和主機數量。對於移轉、您應該檢閱專案中的磁碟區數量、以及可同時執行的專案數量。 
+---
+= 移轉限制
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+當您使用7-Mode Transition Tool轉換磁碟區時、應該考量特定的評估限制、例如可同時評估的控制器和主機數量。對於移轉、您應該檢閱專案中的磁碟區數量、以及可同時執行的專案數量。
+
+下表列出可同時評估的控制器和主機數量：
+
+|===
+| 參數 | 上限 
+
+
+ a| 
+控制器數量
+ a| 
+50
+
+
+
+ a| 
+主機數量
+ a| 
+20
+
+
+
+ a| 
+ESXi主機數量
+ a| 
+10.
+
+|===
+
+NOTE: 在單一評估中、7-Mode控制器的最大數量取決於物件數量、例如磁碟區數量、qtree、配額和匯出。
+
+下表列出專案中的磁碟區數量、以及可在移轉期間同時執行的專案數量：
+
+|===
+| 參數 | 上限 
+
+
+ a| 
+專案中的磁碟區數量
+ a| 
+160
+
+
+
+ a| 
+建議限制在任何指定時間內、Web介面中所有作用中專案的磁碟區總數
+ a| 
+240
+
+
+
+ a| 
+任何指定時間的作用中專案數量上限
+ a| 
+50
+
+
+NOTE: 如果您有50個作用中專案、可以從50個7-Mode儲存系統及其相關的SnapMirror目的地複寫資料。
+
+
+
+ a| 
+每個專案的資料複本排程數
+ a| 
+7.
+
+|===

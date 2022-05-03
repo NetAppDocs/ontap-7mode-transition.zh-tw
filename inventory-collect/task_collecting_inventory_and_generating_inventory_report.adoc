@@ -1,0 +1,103 @@
+---
+permalink: inventory-collect/task_collecting_inventory_and_generating_inventory_report.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, collect, inventory, generating, inventory, report, transition 
+summary: 您可以收集Data ONTAP 有關支援系統（叢集的7-Mode系統和節點）、交換器、主機和主機應用程式的資訊。使用此資訊、您可以產生庫存報告、其中包含有關7-Mode系統、主機和主機應用程式的詳細資訊、以供轉換評估之用。 
+---
+= 收集庫存並產生庫存報告
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以收集Data ONTAP 有關支援系統（叢集的7-Mode系統和節點）、交換器、主機和主機應用程式的資訊。使用此資訊、您可以產生庫存報告、其中包含有關7-Mode系統、主機和主機應用程式的詳細資訊、以供轉換評估之用。
+
+* 您必須從NetApp支援網站下載「ICT。exe」檔案。
+* 您必須擁有需要庫存報告的儲存系統和主機的使用者名稱、密碼和IP位址。
+* 儲存系統和主機的使用者名稱必須具有足夠的權限才能執行命令。
+* 如果您要新增多個系統進行庫存收集、則必須建立以Ascii或utf-8格式編碼的文字檔、並包含系統詳細資料、每行一個系統。
++
+每個系統詳細資料必須採用下列格式：
+
++
+（「ONTAP」、「windows」、「VMware」、「Linux」、「Cisco」、「Brocade」）：//[（_domain_user_\_user__）：_[password]@]（host_name|ips__）_
+
++
+如果您提供「*」作為密碼、系統會提示您在命令列輸入密碼。
+
+* 必須設定所有功能、並啟用其授權、才能讓工作簿包含有關功能的詳細目錄資訊。
+* 所有儲存系統組態（例如CIFS共用名稱、使用者名稱及群組名稱）都必須採用utf-8格式。
+* 對於FC區域計畫、7-Mode系統和主機必須連接至交換器。
++
+叢集可連接至7-Mode系統所在的交換器、或連接至同一個Fabric中的新交換器。
+
+
+
+庫存收集工具最多可同時從四個控制器和20個主機收集組態資訊。不過、對於具有配額、qtree、匯出或UNIX使用者和群組的擴充式組態、可能需要更長的時間才能產生庫存報告。
+
+
+NOTE: 您應避免在尖峰時段對作用中儲存控制器執行庫存收集作業。
+
+. 在Windows命令提示字元中、瀏覽至下載Inventory Collect Tool的路徑。
+. 使用系統IP位址和認證資料執行「ICT（ICT）指令、以產生庫存報告：
++
+|===
+| 如果您想提供資訊... | 輸入下列命令... 
+
+
+ a| 
+使用命令列介面、針對每個系統
+ a| 
+「* ICT - cmd collect --output_fileName _」（ontap|windows| VMware| Linux | Cisco| Brocade）：//[（_user_|網域使用者_）[:（_password_|）]@_hostname_）...*
+
+** 「_File_」是您要提供給庫存報告的名稱。
+** 「ONTAP| windows-VMware|Linux」是系統類型。
++
+例如、對於7-Mode儲存系統、系統類型ONTAP 為VMware、而對於Linux主機、系統類型為Linux。
+
+** 「Cisco|Brocade」是支援的FC交換器。
+** 系統認證是指系統認證資料。
++
+如果控制器沒有密碼、您可以輸入字元「\」作為密碼。
+
+** 「主機名稱」是控制器、主機或交換器的IP位址或主機名稱。
+
+
+
+
+ a| 
+適用於文字檔中的多個系統
+ a| 
+「* ICT - cmd collect --output_fileName _--INPUT _INATTRUSE_file.txt_*」
+
+「_informations_file.txt_」是一個文字檔、其中包含多個系統的系統詳細資料和認證資料：
+
+** 僅支援以Ascii格式編碼的文字檔案。
+** 如果您提供「*」作為密碼、系統會提示您在命令列輸入密碼。
+** 如果控制器沒有密碼、您可以輸入「」作為密碼。
+
+
+|===
++
+
+NOTE: 如果您的儲存系統執行Windows 7或更新版本、且您對儲存庫存報告輸出XML檔案的資料夾擁有限制權限、則輸出檔案會自動儲存在「VirtualStore」目錄中、應用程式會如常執行。
+
++
+系統會針對儲存系統和Linux主機建立庫存報告。產生的報告為「collected _data.xml」和「collected _data_inpositoryWorkbook．xml」：
+
++
+[listing]
+----
+ict --cmd collect --output collected_data ontap://root:test123@hostname1 linux://root@hostname2
+----
++
+顯示每個控制器收集庫存資訊所需的預估時間。
+
++
+庫存工作簿和庫存報告會以XML格式產生。
+
+. 使用Microsoft Office 2007或更新版本在Microsoft Excel中檢視庫存工作簿。
+
+
+您已準備好將庫存報告XML匯入7-Mode Transition Tool、以評估7-Mode控制器和主機的功能、並識別在Data ONTAP 所選的叢集式版本中、功能如何運作。

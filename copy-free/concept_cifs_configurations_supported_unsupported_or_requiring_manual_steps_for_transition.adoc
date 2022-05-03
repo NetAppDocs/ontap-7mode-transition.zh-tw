@@ -1,0 +1,108 @@
+---
+permalink: copy-free/concept_cifs_configurations_supported_unsupported_or_requiring_manual_steps_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, supported, unsupported, cifs, configurations 
+summary: 部分CIFS組態並未轉換ONTAP 至支援功能、因為ONTAP 它們可能不受支援、或必須手動轉換。您應該驗證所有預先檢查的錯誤和警告訊息、以評估此類組態對轉換的影響。 
+---
+= 支援且不受支援的CIFS組態、可移轉ONTAP 至支援的不支援
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+部分CIFS組態並未轉換ONTAP 至支援功能、因為ONTAP 它們可能不受支援、或必須手動轉換。您應該驗證所有預先檢查的錯誤和警告訊息、以評估此類組態對轉換的影響。
+
+
+
+== 支援移轉的組態
+
+在較高層級、7-Mode Transition Tool會轉換下列CIFS組態：
+
+* CIFS偏好的DC組態
+* 使用者對應組態：
++
+** /etc/usermap.cfg/'
+** 「_WAFL.NT_admin_priv_map_to _root_」
+
+
+* CIFS本機使用者與群組
+* symlink與widelink組態（`/etc/symlink.譯文）
+* CIFS稽核組態
+* CIFS共用
+* CIFS共用ACL
+* CIFS主目錄組態
+* CIFS選項：
++
+** 「CIFS/GPO。啟用」
+** 「CIFs.smb2.enable」
+** "CIFs.smb2.Signates.required "
+** 《CIFs.wins_servers》
+** cifs.grant_implicit_exe_perms`
+** "CIFs.restry_anoanent"
+
+
+* SMB2連線至外部伺服器、例如網域控制器。下列命令可實作此支援：
++
+** "* CIFS安全性修改-vserver SVM1 -smb2-enable-to-DC-connections *
+
+
+* FPolicy原生檔案封鎖組態
+
+
+如需這些CIFS組態的詳細資訊、請參閱預先檢查結果。
+
+
+
+== 不支援ONTAP 的組態
+
+下列7-Mode組態在ONTAP VMware不支援。因此、這些組態無法轉換。
+
+* NT4和密碼驗證類型
+* SMB1和SMB2簽署的個別選項
+* 每個用戶端的CIFS統計資料
+* 
++
+** 驗證Windows NT之前的用戶端
+
+
+* 稽核本機使用者和群組的帳戶管理事件
+* 使用IP位址、主機名稱、網路名稱或網路名稱的使用者對應項目、其子網路名稱以點分表示法指定
+* CIFS與機器帳戶的存取限制共用
++
+機器帳戶可在轉換後存取所有共享區。
+
+
+
+
+
+== 必須手動轉換的組態
+
+某些CIFS組態在ONTAP VMware支援、但不受7-Mode Transition Tool支援。
+
+下列CIFS組態會在預先檢查中產生警告訊息。您必須在SVM上手動套用這些組態：
+
+* 防毒設定
+* FPolicy組態
++
+7-Mode FPolicy與防毒伺服器無法搭配ONTAP 使用。您必須聯絡伺服器廠商以升級這些伺服器。不過、在您提交轉換之前、不得取消委任7-Mode FPolicy和防毒伺服器。如果您決定回復轉換作業、則必須提供這些功能。
+
+* BranchCache組態
+* 字元對應組態（charmap）
+* CIFS共用的強制群組屬性、以指定的UNIX群組作為擁有群組來建立檔案
+* CIFS共用的Maxuses屬性、可指定允許同時連線至7-Mode CIFS共用的最大數量
+* 儲存層級存取保護（slag）組態
+* 具有UNIX型權限的共用層級ACL
+* 共用UNIX使用者和群組的ACL
+* LAN Manager驗證層級
+* NetBios別名
+* CIFS搜尋網域
+* 部分CIFS選項
++
+如需這些選項的詳細資訊、請參閱預先檢查結果。
+
+
+
+*相關資訊*
+
+xref:task_customizing_configurations_for_transition.adoc[自訂7-Mode組態的轉換]

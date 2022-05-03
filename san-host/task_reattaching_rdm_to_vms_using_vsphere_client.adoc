@@ -1,0 +1,54 @@
+---
+permalink: san-host/task_reattaching_rdm_to_vms_using_vsphere_client.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, rdm, vm, vshpere, client 
+summary: 使用7-Mode Transition Tool（7-Mode Transition Tool）（7MTT）移轉ESXi主機之後、您必須將RDM重新連接至虛擬機器（VMs）。 
+---
+= 使用vSphere Client將RDM重新附加至VM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在使用7-Mode Transition Tool（7MTT）移轉ESXi主機之後、您必須將RDM重新連接至虛擬機器（VM）。
+
+您的過時原始裝置對應（RDM）必須已移除。
+
+.步驟
+. 開啟管理ESXi主機的ESXi主機或vCenter伺服器。
+. 以滑鼠右鍵按一下VM、然後選取*編輯設定*。
++
+此時將打開VM Properties（VM屬性）窗口。
+
+. 按一下「 * 新增 * 」。
++
+「新增硬體」視窗即會開啟。
+
+. 按一下*硬碟*。
+. 單擊*下一步*以選擇該磁碟。
+. 選取*原始裝置對應*。
+. 單擊*下一步*以選擇目標LUN。
+. 使用Data ONTAP 您在7MTT對應檔案中記下的新叢集式FNIA ID來選取LUN。
+. 單擊 * 下一步 * 。
+. 選擇*選擇Datastor*。
+. 選取符合7MTT對應檔案中所記錄之磁碟路徑的資料存放區。
+. 單擊 * 下一步 * 。
+. 選擇*實體*或*虛擬*作為*相容模式*。
++
+選擇刪除過時的RDM時記錄的相容模式。
+
+. 單擊 * 下一步 * 。
+. 選擇*進階選項*。
+. 選擇*虛擬設備節點*。
++
+選取您在移除過時的RDM時所記下的虛擬裝置模式。
+
+. 單擊 * 下一步 * 。
+. 按一下「*完成*」以提交變更。
+. 針對所有已附加RDM的VM重複上述步驟。
+
+
+*相關資訊*
+
+xref:task_removing_stale_rdm_using_vsphere_client.adoc[使用vSphere Client移除過時的RDM]

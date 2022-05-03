@@ -1,0 +1,33 @@
+---
+permalink: copy-free/task_performing_manual_configuration_tasks.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, performing, manual, configuration 
+summary: 您必須手動執行存取轉換磁碟區之工作負載和應用程式所需的部分組態工作。您可以從預先檢查結果取得手動工作清單。 
+---
+= 在轉換後執行手動組態工作
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必須手動執行存取轉換磁碟區之工作負載和應用程式所需的部分組態工作。您可以從預先檢查結果取得手動工作清單。
+
+.步驟
+. 執行預先檢查結果中所列的工作、以設定未由工具轉換或需要為環境自訂的功能。
++
+xref:concept_supported_and_unsupported_name_services_configurations.adoc[名稱服務轉換：支援和不支援的組態、以及必要的手動步驟]
+
++
+xref:concept_nfs_configurations_supported_unsupported_or_requiring_manual_steps_for_transition.adoc[NFS移轉：支援和不支援的組態、以及必要的手動步驟]
+
++
+xref:concept_cifs_configurations_supported_unsupported_or_requiring_manual_steps_for_transition.adoc[支援且不受支援的CIFS組態、可移轉ONTAP 至支援的不支援]
+
++
+xref:concept_san_transition_supported_and_unsupported_configurations_and_required_manual_steps.adoc[SAN移轉：支援和不支援的組態、以及必要的手動步驟]
+
++
+xref:task_transitioning_a_snapmirror_relationship.adoc[轉換SnapMirror關係]
+
+

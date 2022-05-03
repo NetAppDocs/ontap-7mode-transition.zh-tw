@@ -1,0 +1,88 @@
+---
+permalink: copy-free/task_performing_a_transition_rollback.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, roll, back, project 
+summary: 如果您想要在無複製轉換的任何階段還原至7-Mode、則可以復原轉換作業、然後再提交轉換的集合體。復原是一項手動作業。您可以使用7-Mode Transition Tool來產生復原所需執行的手動步驟。 
+---
+= 回復免費複本的轉換專案
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您想要在無複製轉換的任何階段還原至7-Mode、則可以復原轉換作業、然後再提交轉換的集合體。復原是一項手動作業。您可以使用7-Mode Transition Tool來產生復原所需執行的手動步驟。
+
+* 您必須確保叢集上沒有執行任何Volume或Aggregate轉換作業。
++
+您可以使用「jobshow -JobType Transition」命令。
+
+* 不需要提交任何7-Mode Aggregate。
++
+
+NOTE: 即使提交了一個7-Mode Aggregate、也無法執行復原。
+
+* 目標叢集節點不得處於接管模式。
+
+
+.步驟
+. 按一下*復原預先檢查*以確認專案符合復原資格。
++
+如果預先檢查報告有問題、您必須手動修正這些問題、然後重新執行預先檢查作業。例如、如果您在正式作業前測試期間建立了任何新的磁碟區或LUN、則必須手動刪除這些磁碟區或LUN。
+
+. 按一下*產生回溯步驟*、即可產生要成功復原所需執行的手動步驟清單。
+. 按一下*「另存為CSV*」、將手動步驟儲存在檔案中。
++
+您可以從檔案複製回溯命令並加以執行。
+
+. 視您決定回復的轉換階段而定、請執行必要的手動步驟：
++
+** *匯入或正式作業前測試階段*
++
+... 在叢集上執行復原命令、然後按一下*確認*。
+... 將7-Mode磁碟櫃連接至7-Mode控制器、手動驗證纜線、然後按一下* Confirm（確認）*。
+... 在7-Mode控制器上執行復原命令、然後按一下* Confirm（確認）*。
+... 從「Operations History（作業歷程記錄）」索引標籤檢視在SVM上套用的組態。
+... 從SVM手動移除工具套用的所有組態。
+
+
+** *佈線階段*
++
+... 將7-Mode磁碟櫃連接至7-Mode控制器、手動驗證纜線、然後按一下* Confirm（確認）*。
++
+您必須確保7-Mode纜線符合專案開始時的佈線方式。
+
++
+
+NOTE: 您應該使用Config Advisor 資訊功能驗證纜線。
+
+... 在7-Mode控制器上執行復原命令、然後按一下* Confirm（確認）*。
+... 從SVM手動移除工具套用的所有組態。
++
+您可以從「作業歷程記錄」索引標籤檢視在SVM上套用的組態。
+
+
+
+** *匯出階段*
++
+... 在7-Mode控制器上執行復原命令、然後按一下* Confirm（確認）*。
+... 從SVM手動移除工具套用的所有組態。
++
+您可以從「作業歷程記錄」索引標籤檢視在SVM上套用的組態。
+
+
+
+** * SVM資源配置階段*
++
+從SVM手動移除工具套用的所有組態。
+
++
+您可以從「作業歷程記錄」索引標籤檢視在SVM上套用的組態。
+
+
+
++
+xref:task_running_manual_steps_for_rolling_back_transition.adoc[回復轉換的手動步驟]
+
+. 完成所有手動步驟之後、請按一下7-Mode Transition Tool中的* Verify 7-Mode*（驗證7-Mode*）、確認7-Mode控制器已準備好提供資料。
+

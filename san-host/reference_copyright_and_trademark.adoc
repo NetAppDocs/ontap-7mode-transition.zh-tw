@@ -1,0 +1,12 @@
+---
+permalink: san-host/reference_copyright_and_trademark.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, copyright, trademark 
+summary: 《SAN主機移轉與補救指南》的版權與商標資訊。 
+---
+= 版權與商標
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+

@@ -1,0 +1,26 @@
+---
+permalink: copy-based/concept_considerations_for_transitioning_of_snaplock_compliance_volumes.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, snaplock, compliance, volumes 
+summary: 7-Mode Transition Tool支援移轉SnapLock SnapMirror關係中的獨立版《支援》《支援資料》和SnapLock 《支援資料》等冊。 
+---
+= 轉換SnapLock 不符合法規的考量
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+7-Mode Transition Tool支援移轉SnapLock SnapMirror關係中的獨立版《支援》《支援資料》和SnapLock 《支援資料》等冊。
+
+轉換獨立SnapLock 式《不一致》磁碟區的工作流程與轉換FlexVol 《不一致》磁碟區的工作流程相同。
+
+7-Mode Transition Tool並未自動化移轉SnapLock SnapMirror關係至《不符合要求》磁碟區。您必須將主要SnapLock 和次要的《支援不中斷》磁碟區轉換為獨立的磁碟區、然後手動重新同步關係。
+
+您可以在SnapLock 獨立、主要和次要專案中、將「不符合法規遵循」磁碟區（獨立和SnapMirror關係中的磁碟區）納入為獨立的磁碟區。
+
+不支援使用SnapLock 「版本資訊一致性」的專案執行預先轉換讀取/寫入模式。最佳實務做法是針對SnapLock 「不符合要求」磁碟區和「非SnapLock Compliance」磁碟區建立個別專案、因為SnapLock 如果專案中包含「不符合要求」磁碟區、則不支援預先轉換讀寫模式。
+
+在轉換作業期間、如果所選的Volume是SnapLock 一個「不符合要求」Volume、而且它是SnapMirror關係的目的地、則在ONTAP 不執行SnapMirror中斷作業的情況下、會刪除7-Mode Volume與「不符合要求」Volume之間的SnapMirror關係。此動作可讓次要ONTAP SnapLock 的《不符合要求》磁碟區維持唯讀模式。次要ONTAP SnapLock 的《不一致性》磁碟區必須處於唯讀模式、才能在主要SnapLock 和次要的《不一致性》磁碟區之間成功執行重新同步作業。
+
+請參閱 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapMirror/How_to_transition_the_7-Mode_SnapLock_Compliance_volumes_with_SnapMirror_relationship_to_clustered_Data_ONTAP["如何透過SnapLock SnapMirror關係、將7-Mode的《不一致》磁碟區移轉至叢集Data ONTAP 式的《不一致》"]

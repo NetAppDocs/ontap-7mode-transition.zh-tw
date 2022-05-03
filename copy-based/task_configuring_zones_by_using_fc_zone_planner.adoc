@@ -1,0 +1,43 @@
+---
+permalink: copy-based/task_configuring_zones_by_using_fc_zone_planner.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, configure, zone, fc, plan 
+summary: 完成轉換之後、您必須使用FC區域計畫來設定區域、以便將啟動器主機和目標群組、以便從叢集提供資料存取。 
+---
+= 使用FC區域計畫設定區域
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+完成轉換之後、您必須使用FC區域計畫來設定區域、以便將啟動器主機和目標群組、以便從叢集提供資料存取。
+
+* 叢集和啟動器主機必須連接至交換器。
+* FC區域指令碼檔案必須可供存取。
+
+
+.步驟
+. 登入交換器的CLI。
+. 一次複製並執行一個所需的區域命令。
++
+下列範例在交換器上執行區域命令：
+
++
+[listing]
+----
+switch1:admin>config terminal
+# Enable NPIV feature
+feature npiv
+zone name auto_transition_igroup_d31_194bf3 vsan 10
+member pwwn 21:00:00:c0:dd:19:4b:f3
+member pwwn 20:07:00:a0:98:32:99:07
+member pwwn 20:09:00:a0:98:32:99:07
+.......
+.......
+.......
+copy running-config startup-config
+----
+
+
+啟動器主機可從叢集存取資料。

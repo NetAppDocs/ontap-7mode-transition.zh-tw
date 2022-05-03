@@ -1,0 +1,21 @@
+---
+permalink: copy-based/task_deleting_a_project.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, delete, project 
+summary: 如果您不想要專案、可以從儀表板刪除。 
+---
+= 刪除專案
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您不想要專案、可以從儀表板刪除。
+
+. 從「DhashboardProject Groups（子板項目群組）」窗格中、按一下專案所屬的專案群組。
+. 在「群組摘要」窗格中、按一下「*修改*」、然後按一下「*刪除*」。
++
+如果專案在轉換階段失敗、則無法刪除專案。
+
+

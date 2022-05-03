@@ -1,0 +1,69 @@
+---
+permalink: copy-free/concept_supported_and_unsupported_name_services_configurations.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, name, services, required, manual, steps 
+summary: 您必須瞭解7-Mode Transition Tool所轉換的名稱服務組態。部分名稱服務組態並未轉換ONTAP 為僅供參考、因為ONTAP 這些組態可能不受支援、或必須手動轉換。 
+---
+= 名稱服務轉換：支援和不支援的組態、以及必要的手動步驟
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必須瞭解7-Mode Transition Tool所轉換的名稱服務組態。部分名稱服務組態並未轉換ONTAP 為僅供參考、因為ONTAP 這些組態可能不受支援、或必須手動轉換。
+
+您應該驗證所有預先檢查的錯誤和警告訊息、以評估此類組態對轉換的影響。
+
+
+
+== 已轉換的組態
+
+在較高層級、7-Mode Transition Tool會轉換下列名稱服務組態：
+
+* DNS組態（`/etc/resolv.conf）
+* LDAP組態
+* NIS組態
+* 名稱服務交換器組態（`/etc/nsswitch.conf和`/etc/resolv.conf）
+* 主機組態（`/etc/hosts/）
+* UNIX使用者和群組（「/etc/passwd'和「/etc/group」）
+* 網路群組組組態（`/etc/netgroup）
+
+
+如需這些名稱服務組態的詳細資訊、請參閱預先檢查結果。
+
+
+
+== 不支援ONTAP 的組態
+
+* NIS從屬
+* NIS廣播
+* NIS群組快取
+* 動態DNS
+* DNS快取
+* 陰影資料庫
+* 除了檔案或DNS以外的主機資料庫來源
++
+支援僅檔案和DNS進行主機查詢、不支援其他資料庫來源。ONTAP轉換期間、系統會忽略/etc/nsswitch.conf中的主機查詢順序。
+
+
+
+
+
+== 必須手動設定的組態
+
+您必須在SVM上手動設定下列LDAP選項：
+
+* ldap.usermap.attribute.unixaccount`
+* "LDAP.password"
+* ldap.usermap.base`
+* 「LDAP.SSL-enable」
+
+
+*相關資訊*
+
+xref:task_customizing_configurations_for_transition.adoc[自訂7-Mode組態的轉換]
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.cdot-famg-nfs/home.html["NFS管理"]
+
+https://docs.netapp.com/us-en/ontap/networking/index.html["網路與LIF管理"]

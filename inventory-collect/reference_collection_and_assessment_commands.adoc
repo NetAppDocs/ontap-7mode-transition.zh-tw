@@ -1,0 +1,251 @@
+---
+permalink: inventory-collect/reference_collection_and_assessment_commands.html 
+sidebar: sidebar 
+keywords: collection, assessment, commands, transition, 7, mode, inventory, collect, tool, ict 
+summary: 庫存收集工具（ICT）會使用命令清單來產生庫存XML報告、從控制器、主機和FC交換器收集庫存資訊；評估這些系統的功能； 並找出這些功能在所Data ONTAP 選的叢集式版本中如何運作、以便進行轉換。 
+---
+= 收集與評估命令
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+庫存收集工具（ICT）會使用命令清單來產生庫存XML報告、藉此從控制器、主機和FC交換器收集庫存資訊；評估這些系統的功能； 並找出這些功能在所Data ONTAP 選的叢集式版本中如何運作、以便進行轉換。
+
+
+
+== VMware API ONTAP
+
+* 《aggr-list-info'》
+* 「cf-STATUS」
+* 「CIFs-homedir-Paths-Get」
+* 「CIFs-list-config」
+* 《CIF-Nbalias name-Get》
+* 「CIFS/share-acl-list-iter-start」
+* 「CIF-share-list-iter-start」
+* 「CIFS狀態」
+* 「磁碟清單資訊」
+* 「FCP介面卡清單資訊」
+* 「fpolice-list-info」
+* 《igroup-list-info
+* 「isco-interface-list-info」
+* 「iscsi節點- Get-name」
+* 「授權清單資訊」
+* 「license-v2-list-info」
+* 「lun-Get-comment」
+* 「lun-list-info」
+* 「lun-map-list-info」
+* 「net-config-Get-active」
+* 「nfs-exportfs-list-Rules」
+* 「nfs-exportfs-list-Rules 2」
+* 「nfs-exportfs-list-Rules 2」
+* 「NFS狀態」
+* 「選項-取得」
+* 「選項清單資訊」
+* 「qtree清單- iter-start」
+* 「配額清單項目-以先從者開始」
+* 《配額報告啟動》
+* 《清單資訊-開頭》
+* 「狀態」
+* 「napmirror取得狀態」
+* 「napmirror list-schedule」
+* 「napmirror清單同步排程」
+* 「napshot-Get-schedule」
+* 「napshot-list-info」
+* 「napshot-volume資訊」
+* 「napVault-primary關係-狀態- list-iter-start」
+* 「napVault-seconder-nite-STATUS-list-iter-start」
+* 「NMP狀態」
+* 「torage-disk-Get-iter」
+* 「系統可用的複寫傳輸」
+* 「system-Get-info」
+* 「系統版」
+* 「系統版本」
+* 「useradmin-group list」
+* 「使用者名單最少角色名單」
+* 「useradmin-user-list」
+* 「vFiler-Get-allowed傳輸協定」
+* 「vFiler-Get-Status」
+* 「vFiler-list-info」
+* 「Volume - charmap-Get」
+* 「Volume：Get-filer-info」
+* 「Volume：Get語言」
+* 「Volume、list-info-iter-start」
+* 「Volume選項清單資訊」
+
+
+
+
+== 流程7-Mode CLI ONTAP
+
+* 《CIFS共享》
+* 《IC主秀》
+* 「ifconfig-a」
+* "ifconfigvip"
+* 「ifgrp狀態」
+* "ls $Volume_path/metadir/slag/
+* "printflag WAFL_元 數據_Visible
+* "rdfile $root_vol/etc/cifsconfig_share.cf"
+* "rdfile $root_vol/etc/group（rdfile $root_vol/etc/group）"
+* "rdfile $root_vol/etc/hosts"
+* 「rdfile $root_vol/etc/krb5auto.conf」
+* "rdfile $root_vol/etc/mcrc"
+* "rdfile $root_vol/etc/netgroup（rdfile $root_vol/etc/netgroup）"
+* "rdfile $root_vol/etc/nsswitch.conf（rdfile $root_vol/etc/nsswitch.conf）"
+* "rdfile $root_vol/etc/passwd"
+* "rdfile $root_vol/etc/resolv.conf（rdfile $root_vol / etc/resolv.conf）"
+* "rdfile $root_vol/etc/SnapMirror．conf"
+* "rdfile $root_vol/etc/symlink．maggin"
+* "rdfile $root_vol/etc/usermap.cf"
+* "rdfile $vFiler_bins/etc/cifsconfig_share.cfg"
+* 《rdfile $vFiler_rube/etc/group》
+* 《rdfile $vFiler_rube/etc/hosts》
+* 「rdfile $vFiler_rube/etc/krb5auto.conf」
+* 《rdfile $vFiler_rube/etc/mcrc》
+* 《rdfile $vFiler_rube/etc/netgroup》
+* 《rdfile $vFiler_bins/etc/nsswitch.conf》
+* 《rdfile $vFiler_rube/etc/passwd》
+* 《rdfile $vFiler_rube/etc/resolv.conf》
+* 《rdfile $vFiler_rube/etc/SnapMirror®》
+* 《rdfile $vFiler_rube/etc/symlink翻譯》
+* "rdfile $vFiler_bins/etc/usermap.cfg"
+* 「RLM狀態」
+* 「已路由狀態」
+* 《Route -sn》
+* "etflag WAFL_元 數據_Visible 0"
+* "etflag WAFL_元 數據_Visible 1"
+* 「不一樣的狀態- l」SnapVault
+* 「syssconfig -A」
+* 正常運作時間
+* 「VFiler狀態-A」
+* 「VLAN stat」
+
+
+
+
+== NetApp Manageability SDK的7種模式ONTAP
+
+* 「叢集式身分識別取得」
+* 「叢集節點取得者」
+* 「FCP介面卡取得者」
+* 《FCP啟動器-取得者》
+* 「FCP介面獲取者」
+* 「LUN取得者」
+* 「lun-map-Get-iter」
+* 「net-interface-Get-iter」
+* 「system-Get-node-info-iter」
+* 「系統版本」
+* 「Volume：Get iter-iter」
+* 「vserver：Get iter-iter」
+
+
+
+
+== Windows
+
+* 「本地機器」\software\NetApp*
+* 「本地機器\軟體\ Wow6432Node\ Microsoft \ Windows \\CurrentVersion \解除安裝」
+* 「從MPIO登錄的DSM中選擇*」
+* 「從MSCluster_Cluster中選出*」
+* 「從MSCluster_Disk中選出*」
+* 「從MSCluster_Node選擇*」
+* 「從msctluster_NodeToActiveResource中選擇*」
+* 「從MSCluster_Resource中選出*」
+* 「從MSCluster_ResourceDoDisk中選出*」
+* 「從MSFC_FCAdaperHBAAttributes'中選出*」
+* 「從MSFC_Fibre PortHBAAttributes'中選出*」
+* 「從MSiscsi_HBAInformation中選出*」
+* 「從MSiSCSIInitiator選取*方法類」
+* 「從win32_ComputerSystem中選出*」
+* 「從win32_DiskDrive中選出*」
+* 「從win32_operatingSystem中選出*」
+* "Select * from win32_PnPSignedDriver"、其中Device Class ="SCSIADAPTER"
+* 「從win32_Product中選出*」
+
+
+
+
+== Linux CLI
+
+* blKid
+* "CAT /boot/grub /設備.map"
+* "cat /etc/grub．conf"
+* "CAT /etc/iscsi/initatorname.iscsi"
+* "cman_toolnodes（cman_tool節點）"
+* 「cman_tool狀態」
+* "Df -h"
+* "DMidecode -t system"
+* 「fFind /etc/-maxtre深度1 -name *-release -type f -print -exec cat -v｛｝\；」
+* 「檔案位於/sys/block/sd*；請執行回應$｛file/\#\/sys｝；scsi_id -p x80 -g -x -A -s $｛file/#\/sys｝；完成」
+* 針對/sys/class/scsi_host/****中的檔案、執行回應；針對$｛file｝/****中的ent；執行回應編號「$ent：」；如果[-f "${ent}]；如果是[-r "${ent}]；如果是「$」？ ！=「0」；接著是ECECECO；FI；FI；ELSE ECECHO； FI；完成；完成
+* 針對/sys/class/fc_host/****中的檔案、執行回應；針對$｛file｝/****中的ent；執行回應編號「$ent：」；如果[-f "${ent}]；如果是[-r "${ent}]；如果是「$」、則為CAT -v -s ${ent} 2/dev/null；如果是「$？」 ！=「0」；接著是ECECECO；FI；FI；ELSE ECECHO； FI；完成；完成
+* "iscsiadm -m node-"
+* lsb_release -A'
+* 「lvdisplay -m」
+* 《安裝》
+* 「rpm -QA --QF」%｛name｝__%｛sapure}_%｛v廠商｝__%｛PROVIDEVERSion｝\n」
+* 「anlun FCP show介面卡-v」
+* 「anlun LUN show -PV」
+* 「anlun LUN show -v」
+* 《Anlun版本》
+* 「an版本」
+* 《fdisk -us -l》
+* 「不命- A」
+* "vxclusstadm nidmap"
+* "vxclusstadm -v nodestate"
+
+
+
+
+== VMware CLI
+
+* 「esxcfg-info -A -F xml」
+* 「esxcfg/mpath -l」
+* 《esxcfg/scsidevs -A'》
+* 《esxcfg/scsidevs -l》
+* 「esxcli軟體vibGet」
+* 「Find /proc/SCSI -type f | ding read line；do echo $line；cat $line；dut」
+* 「an版本」
+* 《uname -m》
+* 《uname -n'》
+* usr/rib/VMware/vmkmgmt_keyval/vmkmgmt_keyval-a`
+* usr/rib/vm/vm-support/bin/dump-vmdk-rdm-info.sh $vmx_paths
+* 「vim－cmd /vmsvc/getallvms」
+* 「vim-cmd vmsvc/snapshot .Get $vm_ids」
+* 《vmkload_mod-s NMP》
+* 《VMware -l》
+* 《VMware -v》
+
+
+
+
+== Cisco CLI
+
+* 「How fcdomain-list」
+* 「如何FLOGI資料庫」
+* 「如何切換名稱」
+* 《如何版本》
+* 「How vSAN」
+* 「如何連線」
+* 「如何使用區域」
+* 《uname -m》
+* 「nssshow」
+* 「秀秀」
+* 「分度」
+* 「區域」
+* 「vim-cmd vmsvc/snapshot .Get $vm_ids」
+* 《vmkload_mod-s NMP》
+* 《VMware -l》
+* 《VMware -v》
+
+
+
+
+== Brocade CLI
+
+* 「nssshow」
+* 「秀秀」
+* 「分度」
+* 「區域」
+

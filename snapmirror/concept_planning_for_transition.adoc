@@ -1,0 +1,38 @@
+---
+permalink: snapmirror/concept_planning_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, transition, plan, clustered, volumes, snapmirror 
+summary: 在將資料從7-Mode Volume複製到叢集ONTAP 式的等集式資料磁碟區之前、您必須瞭解何時使用SnapMirror執行轉換、並檢閱支援的7-Mode版本和支援的磁碟區的轉換資訊。您也必須瞭解某些轉換考量。 
+---
+= 規劃移轉
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在將資料從7-Mode Volume複製到叢集ONTAP 式的等集式資料磁碟區之前、您必須瞭解何時使用SnapMirror執行轉換、並檢閱支援的7-Mode版本和支援的磁碟區的轉換資訊。您也必須瞭解某些轉換考量。
+
+如果發生任何轉換問題、您應該檢閱移轉目標版本的_Release Notes_。
+
+https://library.netapp.com/ecmdocs/ECMLP2492508/html/frameset.html["發行說明ONTAP"]
+
+下列ONTAP 版本支援7-Mode與叢集式等功能區之間的SnapMirror關係：
+
+* 更新版本ONTAP
+* 更新版本：1.7P2與9.7 ONTAP
+* 發行版9.6 P7及更新版本9.6 ONTAP
+* 從9.0版升級至S59.5版ONTAP ONTAP
+
+
+您可以使用SnapMirror在下列案例中轉換資料：
+
+* 7-Mode Transition Tool不支援您的轉換需求；例如、7-Mode Transition Tool需要Windows或Linux主機、而您的環境可能無法使用該主機。
++
+*建議：*您應該使用7-Mode轉換工具來轉換7-Mode磁碟區、因為此工具提供預先檢查功能、可驗證轉換的可行性、並隨資料一起移轉所有的傳輸協定、網路和服務組態。
+
++
+您可以安裝並使用7-Mode Transition Tool來執行轉換的預先檢查、然後使用SnapMirror命令、從7-Mode磁碟區執行資料移轉至叢集ONTAP 式的等量資料。
+
+* 叢集與儲存虛擬機器（SVM）已設定完成、只有資料必須從7-Mode磁碟區移轉至叢集ONTAP 式的SVM磁碟區。
+

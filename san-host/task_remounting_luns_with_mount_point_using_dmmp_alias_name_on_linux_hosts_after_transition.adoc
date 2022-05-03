@@ -1,0 +1,117 @@
+---
+permalink: san-host/task_remounting_luns_with_mount_point_using_dmmp_alias_name_on_linux_hosts_after_transition.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, remount, lun, points, dmmp, alias, names 
+summary: 從以7-Mode運作的VMware移轉至ONTAP 叢集Data ONTAP 式的VMware後、您必須使用掛載點重新掛載LUN。7-Mode磁碟區已離線、且主機無法存取7-Mode LUN。 
+---
+= 轉換後、在Linux主機上使用DMP別名重新掛載LUN與掛載點
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+從以7-Mode運作的VMware移轉至ONTAP 叢集Data ONTAP 式的VMware後、您必須使用掛載點重新掛載LUN。7-Mode磁碟區已離線、且主機無法存取7-Mode LUN。
+
+如果您正在執行無複製轉換（CFT）、則必須完成「vol rehost」的程序。
+
+請參閱 link:https://docs.netapp.com/us-en/ontap-7mode-transition/copy-free/index.html["7-Mode Transition Tool無複製移轉指南"] 以取得詳細資料。
+
+* 對於複製型轉換（CBT）、請在完成7MTT中的儲存設備轉換作業之後、執行這些步驟。
+* 對於CFT、請在7MTT的匯入資料與組態作業之後執行這些步驟。
++
+.. 產生7-Mode to ONTAP VMware LUN對應檔案：
++
+*** 若要進行複本型轉換、請從安裝7MTT的Linux主機執行下列命令：+`* Transition CBT匯出lunmap -p _project name_-o _file_path_*
++
+例如：
+
++
+「* Transition CBT匯出lunmap -p SanWorkLoad -o c：/Lithraes/7-to-C-lun-mapping．csv*」
+
+*** 對於無複製轉換、請從安裝7MTT的系統執行下列命令：+`* Transition CFT匯出lunmap -p _project name_-s _svm-name_-o _output-file_
++
+例如：
+
++
+「* Transition CFT匯出lunmap -p SanWorkLoad -s svml-0 cs/磁帶 庫/Documents/7-to-C-lun-maping-svml.csv*」
+
++
+
+NOTE: 您必須為每個儲存虛擬機器（SVM）執行此命令。
+
+
+
+.. 記下ONTAP LUN對應檔案中的「無法辨識」裝置處理ID。
+.. 移除針對7-Mode LUN所建立的SCSI裝置：
++
+*** 若要移除所有SCSI裝置：+`* rescan-scsi-bus.sh -r*
+*** 若要個別移除每個SCSI裝置：+`* ECA1>/sys/block/_scsi_ID__/DELETE _
++
+此命令必須在所有7-Mode LUN SCSI裝置上執行。請參閱_庫存評估工作簿_的SAN主機LUN選項卡上的SCSI設備ID列，以識別LUN的SCSI設備ID。
+
+
+
+.. 探索全新ONTAP 的功能LUN：
++
+「* resce-scsi-bus.sh*」
+
+.. 驗ONTAP 證是否發現了動態LUN：
++
+「* sanlun LUN show*」
+
++
+應在「設備檔案名稱」欄中列出該LUN的SCSI裝置。ONTAP
+
++
+SCSI設備名稱的範例為「/dev/SDP」。
+
+.. 在「/etc/multipath.conf」檔案中、將7-Mode裝置的處理ID取代為叢集Data ONTAP 式的VMware LUN裝置的處理ID、使「別名」指向叢集Data ONTAP 式的VMware LUN ID。
++
+您應該更新多重路徑區段、如下所示。以下範例顯示了在取代7-Mode LUN ID之前的「/etc/multipath.conf檔案」。在此範例中、LUN ID「360a9800037534562572b453855496b43」指向「dMMP_FS_LUN」別名。
+
++
+[listing]
+----
+multipaths {
+        multipath {
+             wwid	360a9800037534562572b453855496b43
+             alias		dmmp_fs_lun
+    }
+}
+----
++
+將7-Mode LUN ID替換為ONTAP 「360a9800037534562572b453855496b43」之後、範例檔案如下所示：
+
++
+[listing]
+----
+multipaths {
+        multipath {
+             wwid	3600a098051764937303f4479515a7452
+             alias		dmmp_fs_lun
+    }
+}
+----
+.. 設定適用於ONTAP LUN的DMP裝置：
++
+‘*多重路徑*’
+
+.. 驗證DMP別名是否指向ONTAP 「更新LUN」裝置的處理ID：
++
+‘*多重路徑-ll _DEVICE _Handle_ID_*’
+
+.. 將ONTAP 此實體LUN掛載至其掛載點目錄：
++
+mount_dir_name__*
+
++
+如果在/etc/fstab檔案中定義掛載點、請使用mount -A命令掛載LUN。
+
+.. 確認已掛載DMP裝置：
++
+？
+
+
+
+

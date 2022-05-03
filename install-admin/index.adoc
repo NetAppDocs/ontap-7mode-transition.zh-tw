@@ -1,0 +1,14 @@
+---
+permalink: install-admin/index.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, install, index 
+summary: 說明如何安裝及設定7-Mode Transition Tool、以實現無複本轉換或複本轉換。 
+---
+= 安裝與設定指南
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+本指南說明如何安裝及設定7-Mode Transition Tool、以實現無複本轉換或複本轉換。

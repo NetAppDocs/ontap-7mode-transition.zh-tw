@@ -1,0 +1,14 @@
+---
+permalink: copy-free/task_preparing_7_mode_volumes_and_aggregates_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, aggregates, volumes 
+summary: 在轉換之前、您必須確保7-Mode集合體和磁碟區符合轉換資格、並在轉換之前執行一些手動步驟。例如、某些磁碟區類型無法轉換、而且任何32位元資料都必須先從7-Mode系統移除、才能進行轉換。 
+---
+= 準備7-Mode集合體和磁碟區以進行轉換
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在轉換之前、您必須確保7-Mode集合體和磁碟區符合轉換資格、並在轉換之前執行一些手動步驟。例如、某些磁碟區類型無法轉換、而且任何32位元資料都必須先從7-Mode系統移除、才能進行轉換。

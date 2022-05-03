@@ -1,0 +1,21 @@
+---
+permalink: copy-based/concept_considerations_for_transitioning_of_snaplock_enterprise_volumes.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, snaplock, enterprise, volumes 
+summary: 7-Mode Transition Tool可支援將SnapLock 獨立的VMware Data Volume與SnapLock SnapMirror關係的VMware Data Volume和VMware Volume移轉。 
+---
+= 轉換SnapLock 功能時的考量事項
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+7-Mode Transition Tool可支援將SnapLock 獨立的VMware Data Volume與SnapLock SnapMirror關係的VMware Data Volume和VMware Volume移轉。
+
+轉換SnapLock 《Sfor the Transitioning for the Sfor the Enterprise Volume（《Sfor the Sfor the Sfor the Sfor the Enterprise Volume：FlexVol
+
+SnapMirror關係會在轉換期間保留下來。
+
+
+NOTE: 7-Mode Transition Tool僅支援SnapLock 類似於SnapMirror的移轉作業、以利實現《VMware企業》各卷的SnapMirror關係。也就是來源和目的地Volume都必須SnapLock 是《不支援企業資料的大本手冊（

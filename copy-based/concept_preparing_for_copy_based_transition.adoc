@@ -1,0 +1,33 @@
+---
+permalink: copy-based/concept_preparing_for_copy_based_transition.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, prepare 
+summary: 在從7-Mode開始資料複製作業至ONTAP VMware之前、您必須先瞭解移轉的需求和限制、並完成7-Mode系統和叢集上的特定工作。 
+---
+= 準備複製型轉換
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在從7-Mode開始資料複製作業至ONTAP VMware之前、您必須先瞭解移轉的需求和限制、並完成7-Mode系統和叢集上的特定工作。
+
+在轉換之前、您必須確保符合下列要求：
+
+* 7-Mode和ONTAP VMware系統必須可從安裝此工具的主機存取。
+* 7-Mode系統必須執行支援Data ONTAP 的版本。
+* SnapMirror必須在7-Mode系統上獲得授權。
+* 必要的功能授權（如果在7-Mode系統上存在）必須安裝在叢集上。
+* 必須設定NTP伺服器、且時間必須在7-Mode系統和叢集之間同步。
+* 必須完成7-Mode系統上的所有準備工作。
+* 叢集上的所有準備工作都必須完成。
+
+
+*相關資訊*
+
+xref:reference_transition_preparation_checklist.adoc[轉換準備檢查清單]
+
+https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/7MTT_v2.0%2F%2FTransitioned_Data_ONTAP_features["7MTT v2.0 /轉換Data ONTAP 版的功能"]
+
+link:https://mysupport.netapp.com/matrix/imt.jsp?components=68128;&solution=1&isHWU&src=IMT["NetApp 互通性對照表工具"^]

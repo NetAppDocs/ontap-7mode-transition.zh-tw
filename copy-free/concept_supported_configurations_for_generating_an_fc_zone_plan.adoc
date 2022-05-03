@@ -1,0 +1,24 @@
+---
+permalink: copy-free/concept_supported_configurations_for_generating_an_fc_zone_plan.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, supported, fc, zone, plan, generate 
+summary: 您必須瞭解7-Mode系統、主機、FC交換器和叢集的支援組態、才能產生FC區域計畫。移轉之後、您應該使用該計畫來設定叢集的區域。 
+---
+= 可產生FC區域計畫的支援組態
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必須瞭解7-Mode系統、主機、FC交換器和叢集的支援組態、才能產生FC區域計畫。移轉之後、您應該使用該計畫來設定叢集的區域。
+
+視資料中心需求而定、7-Mode系統（單一控制器或HA配對）、主機和叢集可連接至相同架構中的交換器或不同架構。
+
+下圖說明7-Mode系統、主機和叢集連接至同一網路架構中的交換器的組態：
+
+image::../media/delete_me_fc_zone_config1.gif[下圖說明7-Mode系統的組態,hosts,and cluster are connected to the switches in the same fabric]
+
+下圖說明7-Mode系統和叢集連接至不同架構中的交換器的組態：
+
+image::../media/delete_me_fc_zone_config2.gif[下圖說明7-Mode系統和叢集連接至不同網路中的交換器的組態]

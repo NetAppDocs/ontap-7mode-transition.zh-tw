@@ -1,0 +1,16 @@
+---
+permalink: copy-based/concept_considerations_for_flexclone_volumes.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, flexclone, volume 
+summary: 將FlexClone磁碟區轉換為SVM時、複本會從父磁碟區分割、並以FlexVol 支援功能的形式轉換為目的地叢集。因此、複製階層架構和儲存效率在轉換過程中便會喪失。 
+---
+= FlexClone Volume的考量
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+將FlexClone磁碟區轉換為SVM時、複本會從父磁碟區分割、並以FlexVol 支援功能的形式轉換為目的地叢集。因此、複製階層架構和儲存效率在轉換過程中便會喪失。
+
+如果目標叢集執行Data ONTAP 的是flexe8.3或更早版本、則無法從從7-Mode轉換的Snapshot複本建立FlexClone Volume。您只能從新的Snapshot複本建立FlexClone磁碟區、而這些複本是在磁碟區移轉至ONTAP 效益管理系統之後建立的。從叢集Data ONTAP 式的VMware 8.3.1開始、您可以從從7-Mode轉換的Snapshot複本建立FlexClone Volume。

@@ -1,0 +1,14 @@
+---
+permalink: snapmirror/index.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, snapmirror, transition, index, data 
+summary: 說明ONTAP 如何使用SnapMirror命令、將資料從7-Mode系統移轉至VMware。 
+---
+= 採用SnapMirror®技術的7-Mode資料移轉
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+說明ONTAP 如何使用SnapMirror命令、將資料從7-Mode系統移轉至VMware。

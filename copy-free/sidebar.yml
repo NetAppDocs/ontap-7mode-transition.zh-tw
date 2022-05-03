@@ -1,0 +1,210 @@
+---
+section: copy-free
+title: 無複製轉換
+url: "/copy-free/index.html"
+entries:
+- title: 轉換總覽
+  url: "/copy-free/concept_transition_overview.html"
+  entries:
+  - title: 使用7-Mode Transition Tool進行無複本轉換
+    url: "/copy-free/concept_copy_free_transition_using_7mtt.html"
+  - title: 移轉術語
+    url: "/copy-free/concept_transition_terminology.html"
+- title: 收集和評估庫存資訊
+  url: "/copy-free/concept_collecting_and_assessing_inventory_information.html"
+  entries:
+  - title: 儲存設備、主機和FC交換器版本要求、以利進行轉換評估
+    url: "/copy-free/concept_storage_and_host_version_requirements.html"
+  - title: 準備7-Mode系統和主機以進行轉換評估
+    url: "/copy-free/task_preparing_7_mode_systems_for_inventory_collection.html"
+  - title: 評估控制器和主機
+    url: "/copy-free/task_assessing_controllers_and_hosts.html"
+    entries:
+    - title: 將系統新增至7-Mode Transition Tool、以產生評估報告
+      url: "/copy-free/task_generating_an_assessment_report_by_adding_systems_to_7mtt.html"
+    - title: 匯入庫存報告XML以產生評估報告
+      url: "/copy-free/task_generating_an_assessment_report_by_importing_inventory_report_xml.html"
+  - title: 產生FC區域計畫
+    url: "/copy-free/task_generating_fc_zone_plan.html"
+    entries:
+    - title: 可產生FC區域計畫的支援組態
+      url: "/copy-free/concept_supported_configurations_for_generating_an_fc_zone_plan.html"
+  - title: 如何使用評估執行摘要進行轉換評估
+    url: "/copy-free/concept_how_you_can_use_assessment_executive_summary_for_transition_assessment.html"
+- title: 無複製轉換工作流程
+  url: "/copy-free/task_copy_free_transition_workflow.html"
+  entries:
+  - title: 無複製轉換的階段
+    url: "/copy-free/concept_phases_of_copy_free_transition.html"
+- title: 準備無複本轉換
+  url: "/copy-free/concept_preparing_for_migration.html"
+  entries:
+  - title: 無複製轉換的需求
+    url: "/copy-free/concept_requirements_for_copy_free_transition.html"
+  - title: 無複本轉換所需的工具與文件
+    url: "/copy-free/reference_required_tools_and_documentation.html"
+  - title: 與7-Mode Transition Tool通訊的連接埠需求
+    url: "/copy-free/concept_port_requirements_for_communicating_with_7mtt.html"
+  - title: 準備7-Mode HA配對以進行轉換
+    url: "/copy-free/task_preparing_7_mode_system_for_transition.html"
+  - title: 在7-Mode系統上設定SP或RLM、以進行無複本轉換
+    url: "/copy-free/task_setting_up_sp_or_rlm_for_transition.html"
+  - title: 準備網路進行轉換
+    url: "/copy-free/task_preparing_your_network_for_transition.html"
+    entries:
+    - title: 轉換7-Mode IP位址的考量
+      url: "/copy-free/concept_considerations_for_transitioning_7_mode_ip_addresses.html"
+  - title: 準備叢集以進行移轉
+    url: "/copy-free/task_preparing_cluster_for_transition.html"
+  - title: 收集纜線資訊以供轉換
+    url: "/copy-free/task_gathering_cabling_information_for_transition.html"
+    entries:
+    - title: 無複製轉換佈線工作表
+      url: "/copy-free/reference_copy_free_transition_cabling_worksheet.html"
+  - title: 準備7-Mode集合體和磁碟區以進行轉換
+    url: "/copy-free/task_preparing_7_mode_volumes_and_aggregates_for_transition.html"
+    entries:
+    - title: 限制轉換7-Mode集合體與磁碟區
+      url: "/copy-free/concept_restrictions_for_copy_free_transition.html"
+    - title: 準備使用32位元集合體來轉換7-Mode系統
+      url: "/copy-free/task_transitioning_to_clustered_ontap_8_3_from_a_7_mode_version_with_32_bit_data.html"
+      entries:
+      - title: 將Aggregate擴充為64位元格式
+        url: "/copy-free/task_expanding_an_aggregate_to_64_bit_format_without_adding_storage.html"
+      - title: 尋找及移除32位元磁碟區和Snapshot複本
+        url: "/copy-free/task_finding_and_removing_32_bit_data_from_source_volumes_and_snapshot_copies.html"
+    - title: 用於轉換的Aggregate空間需求
+      url: "/copy-free/concept_aggregate_space_considerations_during_transition.html"
+  - title: 準備轉換名稱服務
+    url: "/copy-free/concept_preparing_for_name_services_transition.html"
+    entries:
+    - title: 名稱服務轉換：支援和不支援的組態、以及必要的手動步驟
+      url: "/copy-free/concept_supported_and_unsupported_name_services_configurations.html"
+    - title: 轉換DNS、NIS和LDAP組態時的考量事項
+      url: "/copy-free/concept_considerations_for_transitioning_dns_and_ldap_configurations.html"
+    - title: 轉換網路群組和UNIX使用者和群組時的考量
+      url: "/copy-free/concept_considerations_for_transitioning_unix_users_and_groups.html"
+  - title: 準備進行NFS轉換
+    url: "/copy-free/concept_preparing_for_nfs_transition.html"
+    entries:
+    - title: 轉換NFS組態的先決條件
+      url: "/copy-free/concept_prerequisites_to_transition_nfs_configurations.html"
+    - title: NFS移轉：支援和不支援的組態、以及必要的手動步驟
+      url: "/copy-free/concept_nfs_configurations_supported_unsupported_or_requiring_manual_steps_for_transition.html"
+    - title: NFS匯出的轉換方式
+      url: "/copy-free/concept_how_nfs_exports_are_transitioned.html"
+  - title: 準備進行SMB/CIFS移轉
+    url: "/copy-free/concept_preparing_for_cifs_transition.html"
+    entries:
+    - title: 轉換CIFS組態的先決條件
+      url: "/copy-free/concept_prerequisites_for_transitioning_cifs_configurations.html"
+    - title: 支援且不受支援的CIFS組態、可移轉ONTAP 至支援的不支援
+      url: "/copy-free/concept_cifs_configurations_supported_unsupported_or_requiring_manual_steps_for_transition.html"
+    - title: 移轉CIFS本機使用者和群組的考量
+      url: "/copy-free/concept_considerations_for_local_users_and_groups_transition.html"
+  - title: 準備進行SAN移轉
+    url: "/copy-free/task_preparing_for_san_transition.html"
+    entries:
+    - title: 在轉換前建立SAN生命期
+      url: "/copy-free/task_creating_san_lifs_before_transition.html"
+    - title: 使用FC區域計畫設定區域
+      url: "/copy-free/task_configuring_zones_by_using_fc_zone_plan.html"
+    - title: 準備SAN主機進行移轉
+      url: "/copy-free/task_preparing_san_hosts_for_transition.html"
+    - title: SAN移轉：支援和不支援的組態、以及必要的手動步驟
+      url: "/copy-free/concept_san_transition_supported_and_unsupported_configurations_and_required_manual_steps.html"
+    - title: 轉換SAN磁碟區時的空間考量
+      url: "/copy-free/concept_considerations_for_space_when_transitioning_san_volumes.html"
+  - title: 準備資料保護功能以進行移轉
+    url: "/copy-free/concept_preparing_data_protection_features_for_transition.html"
+    entries:
+    - title: 準備叢集以轉換Volume SnapMirror關係
+      url: "/copy-free/task_preparing_cluster_for_transitioning_volume_snapmirror_relationships.html"
+    - title: 資料保護移轉：支援及不支援的組態
+      url: "/copy-free/concept_supported_and_unsupported_data_protection_relationships.html"
+- title: 使用無複本轉換來轉換7-Mode Aggregate
+  url: "/copy-free/task_performing_copy_free_transition_of_7_mode_aggregates.html"
+  entries:
+  - title: 規劃無複本轉換專案
+    url: "/copy-free/task_planning_a_copy_free_transition_project.html"
+    entries:
+    - title: 無複製的移轉專案規劃工作表
+      url: "/copy-free/reference_copy_free_transition_project_planning_worksheet.html"
+    - title: 新增控制器和叢集
+      url: "/copy-free/task_adding_controllers_and_clusters.html"
+    - title: 建立無複本轉換專案
+      url: "/copy-free/task_selecting_source_7_mode_systems_for_transition.html"
+    - title: 選取要移轉的目標叢集節點
+      url: "/copy-free/task_selecting_target_cluster_for_transition.html"
+    - title: 對應SVM和Volume
+      url: "/copy-free/task_svm_and_volume_mapping.html"
+    - title: 選擇要轉換的生命期
+      url: "/copy-free/task_selecting_lifs_to_transition.html"
+    - title: 自訂7-Mode組態的轉換
+      url: "/copy-free/task_customizing_configurations_for_transition.html"
+      entries:
+      - title: 整合NFS匯出規則和Snapshot移轉排程的範例
+        url: "/copy-free/reference_example_consolidating_nfs_export_rules_for_transition.html"
+    - title: 執行預先檢查
+      url: "/copy-free/task_running_prechecks.html"
+      entries:
+      - title: 預先檢查訊息的嚴重性等級
+        url: "/copy-free/concept_severity_levels_for_precheck_messages.html"
+  - title: 套用SVM組態
+    url: "/copy-free/task_applying_svm_configurations.html"
+  - title: 驗證7-Mode系統是否已準備好進行轉換
+    url: "/copy-free/task_verifying_readiness_for_cutover.html"
+  - title: 匯出儲存組態並停止7-Mode系統
+    url: "/copy-free/task_exporting_7_mode_system_and_hardware_information.html"
+  - title: 從7-Mode系統中斷磁碟櫃連線、並連線至叢集節點
+    url: "/copy-free/task_removing_disk_shelves_from_7_mode_and_connecting_to_cluster_nodes.html"
+  - title: 將7-Mode資料匯入ONTAP 至VMware
+    url: "/copy-free/task_importing_7_mode_data_to_clustered_ontap.html"
+- title: 完成轉換
+  url: "/copy-free/task_completing_post_transition_tasks_for_a_copy_free_transition.html"
+  entries:
+  - title: 正式作業前測試期間的限制
+    url: "/copy-free/concept_restrictions_during_preproduction_testing.html"
+  - title: 將已轉換的磁碟區重新託管至不同的SVM
+    url: "/copy-free/task_rehosting_volumes_from_different_svms_to_a_single_svm.html"
+  - title: 驗證轉換的組態
+    url: "/copy-free/task_verifying_transition_configurations.html"
+  - title: 在轉換後執行手動組態工作
+    url: "/copy-free/task_performing_manual_configuration_tasks.html"
+  - title: 測試工作負載與應用程式
+    url: "/copy-free/task_testing_workloads_and_applications.html"
+  - title: 提交無複本移轉專案
+    url: "/copy-free/task_committing_7_mode_aggregates_to_clustered_ontap_format.html"
+- title: 轉換SnapMirror關係
+  url: "/copy-free/task_transitioning_a_snapmirror_relationship.html"
+  entries:
+  - title: 在交錯式組態中、以SnapMirror關係轉換HA配對
+    url: "/copy-free/task_transitioning_primary_and_secondary_systems_of_a_snapmirror_relationship_in_staggered_way.html"
+  - title: 以SnapMirror關係並行轉換一線和二線系統
+    url: "/copy-free/task_transitioning_primary_and_secondary_systems_of_a_snapmirror_relationship_in_parallel.html"
+- title: 疑難排解轉換問題
+  url: "/copy-free/concept_troubleshooting_transition_issues.html"
+  entries:
+  - title: 如果發生可接受的錯誤、請繼續進行轉換
+    url: "/copy-free/task_acknowledging_errors_to_continue_with_transition.html"
+    entries:
+    - title: 轉換期間發生可接受的錯誤
+      url: "/copy-free/reference_ignorable_errors_during_transition.html"
+  - title: 正在下載轉換記錄檔
+    url: "/copy-free/task_collecting_tool_logs.html"
+  - title: 7-Mode Transition Tool的記錄檔
+    url: "/copy-free/concept_log_files_for_7mtt.html"
+  - title: 從發生故障的LUN轉換中恢復
+    url: "/copy-free/task_recovering_from_a_failed_lun_transition.html"
+  - title: 無法以維護模式開機7-Mode控制器
+    url: "/copy-free/reference_failed_to_boot_7_mode_controller_in_maintenance_mode.html"
+- title: 執行轉換回溯至7-Mode
+  url: "/copy-free/concept_reverting_a_copy_free_transition_project.html"
+  entries:
+  - title: 何時回復轉換作業、何時致電技術支援
+    url: "/copy-free/concept_when_to_revert_and_when_to_call_technical_support_transition.html"
+  - title: 回復免費複本的轉換專案
+    url: "/copy-free/task_performing_a_transition_rollback.html"
+    entries:
+    - title: 手動回復轉換
+      url: "/copy-free/task_running_manual_steps_for_rolling_back_transition.html"

@@ -1,0 +1,73 @@
+---
+permalink: copy-based/task_expanding_an_aggregate_to_64_bit_format_without_adding_storage.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, expand, aggregate, 64, bit, format 
+summary: 如果您的系統包含32位元Aggregate、您必須先將其擴充至7-Mode系統上的64位元格式、然後再轉換Data ONTAP 至更新版本的版本（因為Data ONTAP 這些版本的不支援32位元格式）。 
+---
+= 將Aggregate擴充為64位元格式
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您的系統包含32位元Aggregate、您必須在7-Mode系統_上將其擴充為64位元格式、才能轉換為Data ONTAP 版本更新為版本8.3、因為Data ONTAP 這些版本的不支援32位元格式。
+
+* 如果Aggregate包含目的地磁碟區、以便與32位元來源磁碟區建立SnapMirror關係、則必須先擴充包含來源磁碟區的Aggregate、再擴充包含目的地磁碟區的Aggregate。
+
+
+對於SnapMirror關係中的磁碟區、目的地磁碟區會繼承來源磁碟區的格式、而鏡射則會完整保留。如果您要擴充的Aggregate包含來源為32位元磁碟區的目的地磁碟區、而您在擴充Aggregate之前先中斷鏡射、則目的地磁碟區會擴充為64位元格式。但是、如果您重新建立鏡射、且來源Volume仍為32位元、則目的地Volume會恢復為32位元格式。因此、如果您想要將集合體中的所有32位元磁碟區擴充為64位元格式、則必須先擴充包含來源磁碟區的集合體、然後再重新建立SnapMirror關係。
+
+.步驟
+. 進入進階權限模式：
++
+「* priv set advanc進 階*」
+
+. 啟動擴充：
++
+「* aggr 64位元升級start _agg_name_*」
+
+. 執行適當的行動：
++
+|===
+| 如果命令... | 然後... 
+
+
+ a| 
+啟動成功
+ a| 
+繼續下一步。
+
+
+
+ a| 
+表示一或多個磁碟區因為空間不足而無法擴充
+ a| 
+重試命令、新增「全部擴充」選項。
+
+
+
+ a| 
+表示由於其他原因而無法完成擴充
+ a| 
+根據錯誤訊息中所述的問題、執行適當的動作。
+
+|===
+. 顯示擴充的狀態：
++
+「* aggr 64bit升級狀態_agggr_name_*」
+
++
+此時會顯示擴充的目前狀態。當訊息指出沒有進行升級時、表示擴充完成。
+
+. 確認Aggregate中的所有磁碟區均為64位元格式：
++
+「* aggr 64bit升級狀態_agggr_name_-all*」
+
+. 返回管理權限模式：
++
+「* priv set admin*」
+
+
+
+Aggregate會擴充為64位元格式。不過、即使所有磁碟區都已擴充、部分32位元Snapshot複本仍可能保留。來源磁碟區中有32位元Snapshot複本、可防止升級或轉換至Data ONTAP 32位元Snapshot 8.3或更新版本。

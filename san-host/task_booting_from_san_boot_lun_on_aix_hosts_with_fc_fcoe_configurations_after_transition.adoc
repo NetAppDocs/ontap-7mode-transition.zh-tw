@@ -1,0 +1,65 @@
+---
+permalink: san-host/task_booting_from_san_boot_lun_on_aix_hosts_with_fc_fcoe_configurations_after_transition.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, booting, san, lun, aix, host, fc, fcoe, configuration 
+summary: 在具有FC或FCoE組態的AIX主機上轉換SAN開機LUN之後、您必須執行特定步驟、從SAN開機LUN開機主機。 
+---
+= 在轉換後、從具有FC/FCoE組態的AIX主機上的SAN開機LUN開機
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在具有FC或FCoE組態的AIX主機上轉換SAN開機LUN之後、您必須執行特定步驟、從SAN開機LUN開機主機。
+
+對於複製型轉換、您必須在完成7-Mode Transition Tool中的Storage Cutover作業之後、執行這些步驟。AIX主機不支援無複製轉換。
+
+. 登入硬體管理主控台（HMC）、然後在SMS功能表中啟動主機。
+. 選取主機。
+. 選擇*作業*>*啟動*>*設定檔*。
+. 按一下「進階」索引標籤。
+. 選取「* SMS*」、然後按一下「*確定*」。
+. 在SMS主功能表中、輸入「* 5 *」以選取「* 5」。選取開機選項*。
+. 輸入「* 1*」以選取「* 1」。選取「安裝/開機裝置*」。
+. 輸入「* 5 *」以選取「* 5」。列出所有裝置*。
+. 輸入ONTAP 您要開機的SAN開機LUN裝置編號。
++
+在下列範例中、所需的LUN為選項5：
+
++
+[listing]
+----
+Select Device
+Device 	Current 	Device
+Number		Position	Name
+1.   -   PCIe2 4-port 1GbE Adapter
+     ( loc=U78CB.001.WZS062Y-P1-C12-T1 )
+2.   -   PCIe2 4-port 1GbE Adapter
+     ( loc=U78CB.001.WZS062Y-P1-C12-T2 )
+3.   -   PCIe2 4-port 1GbE Adapter
+     ( loc=U78CB.001.WZS062Y-P1-C12-T3 )
+4.   -   PCIe2 4-port 1GbE Adapter
+     ( loc=U78CB.001.WZS062Y-P1-C12-T4 )
+5.   -   107 GB		FC Harddisk, part=2 (AIX 7.1.0)
+     ( loc=U78CB.001.WZS062Y-P1-C7-T1-W232200a09830ca3a-L0000000000000000 )
+6.   -   107 GB		FC Harddisk, part=2 (AIX 7.1.0)
+     ( loc=U78CB.001.WZS062Y-P1-C7-T2-W232200a09830ca3a-L0000000000000000 )
+---------------------------------------------------------------
+Navigation keys:
+M = return to Main Menu  N = Next page of list
+ESC key = return to previous screen   X = eXit System Management Services
+---------------------------------------------------------------
+Type menu item number and press Enter or select Navigation keys: 5
+----
+. 輸入「* 2 *」以選取「* 2」。正常模式Boot*。
+. 輸入「* 1*」結束SMS功能表。
+. 等待作業系統開機。
+. 顯示LUN路徑名稱：
++
+「* sanlun LUN show*」
+
++
+模式欄中的輸出應從「7」改為「C」。
+
+

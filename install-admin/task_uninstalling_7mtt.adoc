@@ -1,0 +1,35 @@
+---
+permalink: install-admin/task_uninstalling_7mtt.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, install, uninstall, transition, tool, windows 
+summary: 您可以使用Windows解除安裝程式公用程式來解除安裝7-Mode Transition Tool。 
+---
+= 在Windows系統上解除安裝7-Mode Transition Tool
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用Windows解除安裝程式公用程式來解除安裝7-Mode Transition Tool。
+
+* 您必須已完成所有進行中的轉換。
++
+
+IMPORTANT: 安裝較新版本或重新安裝相同版本的工具、並不允許您存取由解除安裝的執行個體所啟動的轉換作業。
+
+* 如果7-Mode Transition Tool正在執行、則必須將其關閉。
+
+
+Java執行時間環境（JRE）不會在解除安裝時移除。
+
+.步驟
+. 按一下*開始*>*控制台*>*解除安裝程式*。
+. 從程式清單中選取7-Mode Transition Tool、然後按一下「*解除安裝*」。
+. 完成精靈中的步驟以解除安裝7-Mode Transition Tool。
++
+您可以選擇儲存專案詳細資料和記錄、以供疑難排解之用。
+
+
+
+如果您選擇在解除安裝期間保留記錄檔、則必須建立記錄檔的備份。7-Mode Transition Tool安裝程式會將工具安裝到同一個資料夾、並在下次執行時覆寫記錄檔。

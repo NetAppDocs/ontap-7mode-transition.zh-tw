@@ -1,0 +1,46 @@
+---
+permalink: san-host/task_preparing_for_cutover_when_transitioning_aix_data_luns_with_file_systems.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, cutover, phase, aix, data, lun 
+summary: 如果您要將具有檔案系統的AIX主機資料LUN從Data ONTAP 以7-Mode運作的VMware移轉至叢集Data ONTAP 式VMware、則必須先執行特定步驟、才能進入轉換階段。 
+---
+= 準備轉換AIX主機資料LUN與檔案系統時的轉換階段
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您要將具有檔案系統的AIX主機資料LUN從Data ONTAP 以7-Mode運作的VMware移轉至叢集Data ONTAP 式VMware、則必須先執行特定步驟、才能進入轉換階段。
+
+必須Data ONTAP 建立與叢集式支援節點的網路連線和分區。
+
+對於複製型轉換、請在完成7-Mode Transition Tool中的Storage Cutover作業之後、執行這些步驟。AIX主機不支援無複製轉換。
+
+.步驟
+. 停止所有掛載點上的I/O。
+. 根據應用程式廠商的建議、關閉每個存取LUN的應用程式。
+. 卸載所有掛載點：
++
+系統將會顯示* umount_mount_point_*
+
+. 停用Volume群組：
++
+‘* varyoffvq _vg_name_*’
+
+. 匯出Volume群組：
++
+‘* exportvg _vg_name_*’
+
+. 驗證Volume群組狀態：
++
+"* lsvg*
+
++
+輸出中不應列出匯出的Volume群組。
+
+. 如果有任何過時項目、請將其移除：
++
+‘* rmmev -RDL hdisks#*’
+
+

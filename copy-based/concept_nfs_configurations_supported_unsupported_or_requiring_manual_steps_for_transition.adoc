@@ -1,0 +1,110 @@
+---
+permalink: copy-based/concept_nfs_configurations_supported_unsupported_or_requiring_manual_steps_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, nfs, transition, supported, unsupported, required, manual, steps, configuration 
+summary: 有些NFS組態並未轉換ONTAP 為VMware、因為ONTAP 它們在VMware不受支援、7-Mode的功能有差異、或必須手動轉換。您應該驗證所有預先檢查錯誤和警告訊息、以評估此類組態對轉換的影響。 
+---
+= NFS移轉：支援和不支援的組態、以及必要的手動步驟
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+有些NFS組態並未轉換ONTAP 為VMware、因為ONTAP 它們在VMware不受支援、7-Mode的功能有差異、或必須手動轉換。您應該驗證所有預先檢查錯誤和警告訊息、以評估此類組態對轉換的影響。
+
+
+
+== 支援的轉換組態
+
+在較高層級、7-Mode Transition Tool會轉換下列NFS組態：
+
+* NFS選項：
++
+** 「nfs.udp.xfersize」
+** "NFs.v4.id.domain"
+** "NFs.v4.acl.max.aces.aces."
+** 「nfs.tcp.xfersize」
+** 「nfs、rpcsec、ctx.high」
+** 「nfs。rpcsec。ctx.idle」
+** "NFs.RESPON.觸發器"
+** wafl.default_nt_user`
+** nfs.mount_rootonly
+** 「nfs、tcp、enable」
+** 「nfs、udp、enable」
+** "NFs.RESPON.TRACE
+** nfs.v4.read_委派
+** nfs.v4.write委派
+** 「nfs、v4、acl、enable」
+** 「nfs、vStorage、enable」
+** 「nfs、v3、enable」
+** 「nfs、v4、enable」
+
+
+* NFS匯出規則：
++
+如果匯出規則設定為「-actual」（實際）選項、則會忽略匯出路徑（別名路徑）、並使用實際路徑來設定匯出規則。
+
+* 使用Kerberos安全性krb5p匯出規則
+* Kerberos組態
+
+
+如需這些NFS組態的詳細資訊、請參閱預先檢查結果。
+
+
+
+== 不支援ONTAP 的組態
+
+下列NFS組態ONTAP 不受支援：
+
+* 非qtree層級NFS匯出的子Volume NFS匯出
+* WebNFS
+* PC-NFS
+* NFSv2
+* 從一或多個檔案系統路徑隔離NFS用戶端
+* 部分NFS選項
++
+如需不受支援選項的完整清單、請參閱預先檢查警告訊息。
+
+
+
+
+
+== 必須手動轉換的組態
+
+有些NFS組態在ONTAP VMware支援中、但並非由7-Mode Transition Tool所轉換。
+
+下列NFS組態會在預先檢查作業中產生警告訊息、您必須在SVM上手動套用組態：
+
+* NFS稽核組態
+* NFS選項：
++
+** "rpc. NSM.tcp.port"
+** "rpc. NSM.udp連接埠"
+** "rpc. mountd．tcp．port"
+** "rpc. mountd．udp．port"
+** "NFs.EXP.NEg.timeout"
+** "NFs.EXP.pos.timeout"
+** "NFS.EXP.Harvest .timeout"使用「vserver NFS modify」命令來修改NFS型儲存虛擬機器（SVM）的組態。
+
+
+* 使用Kerberos安全性krb5p匯出規則
+
+
+
+
+== 功能不同ONTAP 的組態
+
+下列NFS組態在ONTAP 功能上有所不同：
+
+* NFS匯出規則
+* NFS匯出存取快取
+* NFS診斷命令
+* 支援「show mount」命令
+* NFS Kerberos加密
+* NLM版本支援
+
+
+*相關資訊*
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.cdot-famg-nfs/home.html["NFS管理"]

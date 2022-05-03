@@ -1,0 +1,22 @@
+---
+permalink: san-host/concept_configure_recommended_settings_for_esxi_hosts.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, recommended, settings, esxi, hosts 
+summary: 完成ESXi主機的轉換後補救步驟之後、您應該在Data ONTAP 主機上套用建議的ESXi主機設定以供叢集式的VMware。 
+---
+= 移轉修正後ESXi主機的建議設定
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+完成ESXi主機的轉換後補救步驟之後、您應該在Data ONTAP 主機上套用建議的ESXi主機設定以供叢集式的VMware。
+
+您可以使用虛擬儲存主控台（VSC）來設定ESXi主機設定。VSC是標準的NetApp外掛程式、可讓vSphere vCenter設定Data ONTAP ESXi主機設定以供使用。部署在來源7-Mode系統上的ESXi主機和虛擬機器（VM）應使用VSC進行設定。或者、您也可以使用下列知識庫文章中的資訊、手動設定VM：
+
+* _Guest作業系統調整_
+* _vSphere 5.1_中LUN的工作集完整（QFULL）可調項目
+* _儲存陣列類型外掛選項、適用於VMware vSpher_上的NetApp陣列
+* _ VMware部署所需的硬體加速鎖定設定_
+

@@ -1,0 +1,20 @@
+---
+permalink: san-host/concept_transitioning_luns_with_mount_points_using_dmmp_alias_names.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, lun, mount, points, dmmp, alias, names 
+summary: 當您使用別名來轉換具有掛載點的LUN時、您必須執行特定步驟來準備轉換階段、而且在轉換之後、您必須重新掛載LUN。 
+---
+= 使用DMP別名轉換LUN與掛載點
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+當您使用別名來轉換具有掛載點的LUN時、您必須執行特定步驟來準備轉換階段、而且在轉換之後、您必須重新掛載LUN。
+
+*相關資訊*
+
+xref:task_preparing_for_cutover_when_transitioning_luns_with_mounts_using_dmmp_aliases_on_linux_hosts.adoc[在Linux主機上使用DMP裝置名稱、以掛載點轉換LUN時、準備轉換階段]
+
+xref:task_remounting_luns_with_mount_point_using_dmmp_alias_name_on_linux_hosts_after_transition.adoc[轉換後、在Linux主機上使用DMP別名重新掛載LUN與掛載點]

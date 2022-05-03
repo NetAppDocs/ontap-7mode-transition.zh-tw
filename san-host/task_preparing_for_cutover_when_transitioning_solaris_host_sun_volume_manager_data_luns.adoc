@@ -1,0 +1,53 @@
+---
+permalink: san-host/task_preparing_for_cutover_when_transitioning_solaris_host_sun_volume_manager_data_luns.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, cutover, phase, solaris, host, sun, volume, manager 
+summary: 如果您將使用Sun Volume Manager的Solaris主機資料LUN從Data ONTAP 以7-Mode運作的VMware移轉至叢集Data ONTAP 式VMware、則必須先執行特定步驟、才能進入轉換階段。 
+---
+= 準備轉換Solaris主機Sun Volume Manager資料LUN時的轉換階段
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您將使用Sun Volume Manager的Solaris主機資料LUN從Data ONTAP 以7-Mode運作的VMware移轉至叢集Data ONTAP 式VMware、則必須先執行特定步驟、才能進入轉換階段。
+
+如果您使用FC組態、Data ONTAP 則必須建立與叢集式支援節點的光纖連線和分區。
+
+如果您使用iSCSI組態、則Data ONTAP 必須探索並登入至叢集式支援節點的iSCSI工作階段。
+
+對於複製型轉換、請先執行這些步驟、再在7-Mode Transition Tool（7MTT）中啟動Storage Cutover（儲存設備轉換）作業。
+
+如需無複製轉換、請先執行下列步驟、再在7MTT中啟動匯出及停止7-Mode作業。
+
+. 停止所有掛載點的I/O。
+. 根據應用程式廠商的建議、關閉每個存取LUN的應用程式。
+. 卸載所有掛載點：
++
+系統將會顯示* umount_mount_point_*
+
++
+[listing]
+----
+#umount /d1
+#umount /d2
+----
+. 在metaset上執行下列作業：
++
+「* metaset–s _Set-name_–a disable*」
+
++
+「我的名字–s _Set-name_–r」
+
++
+「* metaset–s _Set-name_–P*」
+
++
+[listing]
+----
+metaset -s n_vg -A disable
+metaset -s n_vg -r
+metaset -s n_vg -P
+----
+

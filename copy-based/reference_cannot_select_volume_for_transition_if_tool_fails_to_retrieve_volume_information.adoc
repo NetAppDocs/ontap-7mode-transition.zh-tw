@@ -1,0 +1,20 @@
+---
+permalink: copy-based/reference_cannot_select_volume_for_transition_if_tool_fails_to_retrieve_volume_information.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, tool, fails, volume, information 
+summary: 當您嘗試選取磁碟區時、Volume Select（磁碟區選擇）窗格會顯示「無法擷取磁碟區資訊」錯誤訊息。如果控制器正忙、通常會發生此錯誤。 
+---
+= 如果工具無法擷取磁碟區資訊、則無法選取要轉換的磁碟區
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+當您嘗試選取磁碟區時、「Volume selection（磁碟區選擇）」窗格會顯示「Failed to retrieve volume information（無法擷取磁碟區資訊）」錯誤訊息。如果控制器正忙、通常會發生此錯誤。
+
+
+
+== 因應措施
+
+等待控制器不忙碌、然後再次選取磁碟區。

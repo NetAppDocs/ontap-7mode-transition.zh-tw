@@ -1,0 +1,25 @@
+---
+permalink: copy-based/reference_compression_fails_to_start_after_transition.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, compression, data, enable, error 
+summary: 如果您將執行Data ONTAP 支援32位元的系統上的32位元Volume轉換成ONTAP 64位元Aggregate的支援、ONTAP 則轉換後不會在支援資料的流通量上啟用壓縮功能。磁碟區必須從32位元升級至64位元、才能啟用壓縮。 
+---
+= 從Data ONTAP e.7.3 x轉換後、壓縮功能無法啟用
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您將執行Data ONTAP 支援32位元的系統上的32位元Volume轉換成ONTAP 64位元Aggregate的支援、ONTAP 則轉換後不會在支援資料的流通量上啟用壓縮功能。磁碟區必須從32位元升級至64位元、才能啟用壓縮。
+
+
+
+== 因應措施
+
+. 等待升級完成。
++
+您可以使用「volume show -功能 變數block-type -volume _vol_name_」命令來驗證磁碟區的區塊類型是否變更為64位元。
+
+. 使用「Volume Eff效率modify」命令來啟用壓縮。
+

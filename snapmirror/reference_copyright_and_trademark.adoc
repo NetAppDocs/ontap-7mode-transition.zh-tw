@@ -1,0 +1,12 @@
+---
+permalink: snapmirror/reference_copyright_and_trademark.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, copyright, trademark, machine, translation 
+summary: 使用SnapMirror技術進行7-Mode資料移轉的版權與商標。 
+---
+= 版權、商標及機器翻譯
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+

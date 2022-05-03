@@ -1,0 +1,60 @@
+---
+permalink: snapmirror/task_recovering_from_a_failed_lun_transition.html 
+sidebar: sidebar 
+keywords: ontap, recover, failed, lun, transition, 7, mode, snapmirror 
+summary: 如果使用LUN的磁碟區移轉失敗、您可以使用LUN Transition 7-mode show命令來檢查哪些LUN未轉換ONTAP 為VMware、然後決定修正行動。 
+---
+= 從發生故障的LUN轉換中恢復
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果使用LUN的磁碟區移轉失敗、您可以使用「LUN Transition 7-mode show」命令來檢查哪些LUN未轉換ONTAP 為VMware、然後決定修正行動。
+
+.步驟
+. 變更為進階權限層級：
++
+「*設定-權限進階*」
+
+. 檢查哪些LUN發生故障：
++
+「LUN移轉7-mode show*」
+
+. 檢閱EMS記錄、並判斷您必須採取的修正行動。
+. 執行EMS訊息中所示的必要步驟、以修正故障。
+. 如果有任何受支援的LUN無法進行轉換、請完成轉換：
++
+’* LUN移轉開始*
+
+. 檢視磁碟區的轉換狀態：
++
+’* LUN移轉顯示*
+
++
+轉換狀態可以是下列其中一個值：
+
++
+** 「主動」：磁碟區處於主動式SnapMirror移轉關係、尚未轉換。
+** 「完整」：此磁碟區的所有受支援LUN均已轉換。
+** 「失敗」：磁碟區的LUN轉換失敗。
+** 「無」：磁碟區未包含從7-Mode系統轉換的LUN。
+
+
++
+[listing]
+----
+cluster1::*> lun transition show
+Vserver              Volume             Transition Status
+-------------------- ------------------ -----------------
+vs1                  vol0               none
+                     vol1               complete
+                     vol2               failed
+                     vol3               active
+----
+
+
+*相關資訊*
+
+xref:concept_considerations_for_space_when_transitioning_san_volumes.adoc[轉換SAN磁碟區時的空間考量]

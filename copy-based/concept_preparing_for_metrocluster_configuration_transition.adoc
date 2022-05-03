@@ -1,0 +1,60 @@
+---
+permalink: copy-based/concept_preparing_for_metrocluster_configuration_transition.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, prepare, metrocluster, configuration 
+summary: 在轉換MetroCluster 至VMware組態之前、您必須瞭解將7-Mode Volume轉換至MetroCluster VMware組態的需求與考量ONTAP 。 
+---
+= 準備MetroCluster 進行組態轉換
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在轉換MetroCluster 至VMware組態之前、您必須瞭解將7-Mode Volume轉換至MetroCluster VMware組態的需求與考量ONTAP 。
+
+
+
+== 先決條件
+
+* 必須已經設定了這個功能中的不必要組態。MetroCluster ONTAP
+* SVM類型必須是「同步來源」。
+* 7-Mode控制器不得處於接管狀態或等待恢復。
+* 不可以切換或等待切換、而在不支援的情況下MetroCluster 、使用支援的支援功能。ONTAP
+
+
+
+
+== 考量
+
+* 如果目標叢集處於某個功能組態、則不SnapLock 支援TransTransitioning（轉換）功能遵循磁碟區MetroCluster 。
+* 您可以將磁碟區從7-Mode控制器、HA組態或MetroCluster VMware組態、轉換成MetroCluster 以獨立磁碟區形式顯示ONTAP 的VMware組態。
+* 如果7-Mode MetroCluster 的內存區配置中的磁碟區與另一個7-Mode控制器中的磁碟區處於磁碟區SnapMirror關係中、您可以將SnapMirror關係轉換為主要和次要關係。
++
+您應該在MetroCluster 每個VMware站台上安裝7-Mode Transition Tool、並從每個站台轉換磁碟區。
+
+* 針對7-Mode Fabric MetroCluster 的組態設定不同的子網路無法在MetroCluster VMware的支援中心組態上進行設定ONTAP 。
+* 在7-Mode Fabric MetroCluster 的組態中設定的慣用連接埠無法針對MetroCluster VMware中的VMware組態進行組態設定ONTAP 。
+* 如果您的7-Mode Fabric MetroCluster 支援組態使用Brocade 6510交換器、您可以使用MetroCluster 更新的VMware組態分享現有的交換器架構ONTAP 。
++
+最好只在轉換期間共用交換器架構。
+
++
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-mcc-inst-cnfg-fabric/home.html["Fabric附加MetroCluster 的安裝與組態、ONTAP 不支援更新版本的功能"]
+
++
+https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html["Fabric附加MetroCluster 的安裝與組態ONTAP 、版本資訊"]
+
+* 在轉換期間建立的cron工作排程不會複寫到遠端站台、因此轉換後交涉的切換作業會失敗。
++
+轉換後、您必須在遠端站台上手動建立cron工作排程。
+
+
+
+*相關資訊*
+
+xref:task_post_transition_task_for_a_metrocluster_configuration.adoc[在轉換MetroCluster 完一套功能表後、在遠端站台上設定cron工作排程]
+
+xref:concept_impact_of_takeover_and_giveback_on_transition.adoc[接管和恢復對轉換的影響]
+
+xref:task_transitioning_a_metrocluster_configuration_if_a_switchover_or_switchback_event_occurs.adoc[轉換MetroCluster 因切換或切換而失敗的部分組態]

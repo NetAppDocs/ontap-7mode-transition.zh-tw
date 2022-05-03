@@ -1,0 +1,69 @@
+---
+permalink: copy-based/concept_how_you_can_use_assessment_executive_summary_for_transition_assessment.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, assessment, executive, summary 
+summary: 移轉執行摘要提供您環境中7-Mode控制器、主機和FC交換器的摘要。本報告提供目前所使用功能的評估報告、並針對儲存環境中的每個磁碟區、建議採用轉換方法。您可以使用摘要來規劃轉換作業。 
+---
+= 如何使用評估執行摘要進行轉換評估
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+移轉執行摘要提供您環境中7-Mode控制器、主機和FC交換器的摘要。本報告提供目前所使用功能的評估報告、並針對儲存環境中的每個磁碟區、建議採用轉換方法。您可以使用摘要來規劃轉換作業。
+
+執行摘要包含下列主要章節：
+
+
+
+== 目標叢集
+
+本節列出ONTAP 您在評估期間選取的目標叢集的版本。
+
+
+
+== 資料收集摘要
+
+您可以檢視已收集資訊的7-Mode控制器、主機和交換器清單。您可以檢視ONTAP 7-Mode控制器的更新版本和機型詳細資料。您也可以檢視主機的OS類型、版本和機型。
+
+
+
+== 移轉可行性及建議的移轉方法
+
+本節提供每個控制器上執行的預先檢查摘要、以及在控制器和磁碟區層級進行轉換的可行性。屬於vFiler裝置的磁碟區處於「最大」或「不一致」狀態、或是離線或受限的磁碟區、則不包含在內以供評估。報告會針對每個控制器顯示預先檢查中報告的錯誤數和警告數。您應該檢閱這些錯誤和警告、並在轉換之前解決任何問題。這些預先檢查的詳細資料可在評估工作簿的Config PreCheck Summary（組態預先檢查摘要）索引標籤中找到。
+
+根據磁碟區和控制器組態以及預先檢查摘要、執行摘要會針對每個評估磁碟區提供最佳轉換方法建議。例如、您無法轉換7-Mode傳統Volume或FlexCache 是不支援ONTAP 這些功能的功能。
+
+對於大部分的組態、建議使用7-Mode Transition Tool進行轉換。不過、有些工作負載無法使用7-Mode Transition Tool進行轉換、而您應該使用應用程式型或主機型移轉方法。
+
+http://www.netapp.com/us/media/tr-4052.pdf["NetApp技術報告4052：成功移轉至叢集Data ONTAP 式的更新版本（Data ONTAP NetApp技術報告4052）"]
+
+
+
+== 儲存設備庫存
+
+本節提供下列資訊：
+
+* 儲存物件：提供有關儲存物件數目的資訊、例如磁碟區、qtree、LUN、vFiler單元、 SnapMirror關係、共享和匯出、每個控制器。
+* 儲存使用率：提供7-Mode控制器所使用空間、可用空間及空間的相關資訊。
+* 授權：提供在每個控制器上啟用的功能授權清單。
+* 傳輸協定組態：提供控制器上設定的傳輸協定詳細資料、例如CIFS、NFS和SAN傳輸協定、以及版本。
+* SnapMirror互通性：提供SnapMirror關係來源或目的地的控制器或磁碟區相關資訊。
++
+您可以使用此資訊來識別SnapMirror與報告中所列控制器之間的關係、但不包括在評估中。
+
+* 互通性：提供控制器、磁碟區或qtree的相關資訊、這些控制器、磁碟區或qtree是與控制器中指定控制器、磁碟區或qtree之間的不關聯來源或目的地。SnapVault SnapVault
+
+
+
+
+== SVM整合考量
+
+如果您考慮將不同vFiler單元或7-Mode控制器的磁碟區整合至單一SVM、您可以使用本節所提供的資訊來識別7-Mode系統是否繫結至不同的Active Directory網域、是否具有不同的NIS組態、 具有相同的Volume名稱或CIFS共用名稱、以及每個控制器中有多少本機使用者和群組。在整合不同的VFiler單元或7-Mode控制器、以及規劃移轉至單一SVM時、這些考量對於找出問題非常重要。
+
+
+
+== 資料收集錯誤
+
+本節詳細說明7-Mode Transition Tool無法收集的控制器和主機資訊、以及故障原因。資料收集錯誤的詳細資料可在評估工作簿的「資料收集錯誤」索引標籤中找到。您可以解決這些錯誤、然後再次評估系統。

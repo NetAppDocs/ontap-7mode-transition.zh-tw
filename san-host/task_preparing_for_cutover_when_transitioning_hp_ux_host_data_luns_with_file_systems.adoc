@@ -1,0 +1,49 @@
+---
+permalink: san-host/task_preparing_for_cutover_when_transitioning_hp_ux_host_data_luns_with_file_systems.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, cutover, phase, hp, ux, host, data, lun, file, system 
+summary: 如果您要將檔案系統的HP主機資料LUN從Data ONTAP 以7-Mode運作的VMware移轉至叢集Data ONTAP 式VMware、則必須先執行特定步驟、才能進入轉換階段。 
+---
+= 準備轉換使用檔案系統的HP-UX主機資料LUN時的轉換階段
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您要將檔案系統的HP主機資料LUN從Data ONTAP 以7-Mode運作的VMware移轉至叢集Data ONTAP 式VMware、則必須先執行特定步驟、才能進入轉換階段。
+
+如果您使用FC組態、Data ONTAP 則必須建立與叢集式支援節點的光纖連線和分區。
+
+如果您使用iSCSI組態、則Data ONTAP 必須探索並登入至叢集式支援節點的iSCSI工作階段。
+
+對於複製型轉換、請在完成7-Mode Transition Tool（7MTT）中的Storage Cutover（儲存設備轉換）作業之後、執行這些步驟。HP-UX主機不支援無複製轉換。
+
+.步驟
+. 停止所有掛載點的I/O。
+. 根據應用程式廠商的建議、關閉每個存取LUN的應用程式。
+. 卸載所有掛載點：
++
+系統將會顯示* umount_mount_point_*
+
+. 匯出Volume群組、並將Volume群組的VGID和邏輯磁碟區寫入mapfile：
++
+"* vgexp -p -s -m /tmp/mapfile.vg01 vg01*
+
+. 將mapfile.vg01檔案的備份複本複製到外部來源。
+. 停用Volume群組：
++
+「* vgchange -A n _vg_name_*」
+
+. 匯出Volume群組：
++
+‘* vgexport _vg_name_*’
+
+. 確認已匯出Volume群組：
++
+「* vgdisplay*」
+
++
+匯出的Volume群組資訊不應顯示在輸出中。
+
+

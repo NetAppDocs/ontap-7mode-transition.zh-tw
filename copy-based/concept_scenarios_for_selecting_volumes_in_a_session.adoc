@@ -1,0 +1,40 @@
+---
+permalink: copy-based/concept_scenarios_for_selecting_volumes_in_a_session.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, scenarios, selecting, volumes, project 
+summary: 規劃專案組成、並決定要在單一轉換作業中轉換哪些7-Mode磁碟區、有助於縮短應用程式的停機時間。瞭解一些範例案例有助於您在環境中建立專案。 
+---
+= 在專案中選取磁碟區的案例
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+規劃專案組成、並決定要在單一轉換作業中轉換哪些7-Mode磁碟區、有助於縮短應用程式的停機時間。瞭解一些範例案例有助於您在環境中建立專案。
+
+
+
+== 雙向SnapMirror關係
+
+若要轉換雙向SnapMirror關係、您必須為每個Volume建立不同的轉換專案。
+
+例如、如下圖所示、請考慮系統1上的vf1:vol1（主要）與系統2上的vf2：vol1（次要）之間存在的Volume SnapMirror關係。同樣地、系統2上的vf2：vol2（主要）與系統1上的vf1：vol2（次要）之間也存在另一個Volume SnapMirror關係。
+
+image::../media/transition_bidirectional.gif[雙向轉換]
+
+您無法在單一轉換專案中合併Volume vf1:vol1和vf1:vol2。同樣地、您也無法將Volume vf2：vol1和vf2：vol2合併到一個轉換專案中。您必須為每個Volume建立個別的移轉專案、才能轉換Volume SnapMirror關係。
+
+
+
+== 具有CIFS組態的磁碟區
+
+您必須將具有CIFS組態的磁碟區群組在一個專案中、以便將所有CIFS相關組態全部轉換成SVM。
+
+例如、如果7-Mode系統或vFiler單元中有10個磁碟區具有相關的CIFS共用、主目錄搜尋路徑及稽核組態、則這10個磁碟區必須在同一個專案中轉換。如此可確保在轉換後、所有的磁碟區和CIFS組態都會完全套用到SVM上。
+
+
+
+== 一級Volume與多個二級Volume之間的SnapMirror關係
+
+如果主要磁碟區與多個次要磁碟區之間存在SnapMirror關係、而且所有次要磁碟區都位於相同的7-Mode控制器上、您可以建立次要專案來將所有次要磁碟區分組、並完成該專案中所有次要磁碟區的移轉作業。然後您可以建立主要專案來轉換主要磁碟區、並完成SnapMirror移轉。

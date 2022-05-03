@@ -1,0 +1,150 @@
+---
+permalink: san-host/task_testing_data_luns_on_solaris_hosts_with_sun_volume_manager_svm_before_cutover.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, testing, data, solaris, sun, volume, manager, cutover, copy, based 
+summary: 如果您使用7-Mode Transition Tool（7MTT\）2.2或更新版本、Data ONTAP 以及更新版本的版本、以轉換Solaris主機的ZFS資料LUN、您可以測試轉換的叢集Data ONTAP 式LUN、以確認您可以在轉換階段之前掛載MPIO裝置。在測試期間、您的來源主機可以繼續執行I/O至來源7-Mode LUN。 
+---
+= 在複製型轉換的轉換階段之前、使用Sun Volume Manager測試Solaris主機上的資料LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您使用7-Mode Transition Tool（7MTT）2.2或更新版本、Data ONTAP 以及更新版本的版本、以轉換Solaris主機的ZFS資料LUN、您可以測試轉換的叢集Data ONTAP 式LUN、以確認您可以在轉換階段之前掛載MPIO裝置。在測試期間、您的來源主機可以繼續執行I/O至來源7-Mode LUN。
+
+在開始測試階段移轉之前、您的來源主機必須離線使用Sun Volume Manager資料LUN。
+
+您的新叢集Data ONTAP 式支援LUN必須對應至測試主機、且LUN必須已準備好進行轉換
+
+您應該維持測試主機與來源主機之間的硬體同位元、而且應該在測試主機上執行下列步驟。
+
+在Data ONTAP 測試期間、叢集式的LUN會處於讀取/寫入模式。當測試完成且您正在準備轉換階段時、它們會轉換成唯讀模式。
+
+.步驟
+. 在正式作業主機上、停用磁碟集：
++
+「* metaset -s SVM -t*」
+
++
+"* metaset -s SVM -A disable*（*元組- s SVM - a disable*）"
+
++
+「* metaset -s SVM -r*」
+
++
+「* metaset -s SVM -P*」
+
++
+《*元集*》
+
+. 完成基礎資料複本之後、請在7MTT使用者介面（UI）中選取*測試模式*。
+. 在7MTT UI中、按一下*套用組態*。
+. 在正式作業主機中、匯入磁碟集：
++
+「* metaimport–s _set-name_*」
+
++
+[listing]
+----
+# metaimport -s svm
+Drives in regular diskset including disk c0t60A98000383035356C2447384D39654Ad0:
+  c0t60A98000383035356C2447384D39654Ad0
+  c0t60A98000383035356C2447384D396548d0
+More info:
+  metaimport -r -v c0t60A98000383035356C2447384D39654Ad0
+
+
+[22] 04:51:29 (root@sunx2-shu04) /
+# metastat -s svm
+svm/d2: Concat/Stripe
+    Size: 10452992 blocks (5.0 GB)
+    Stripe 0:
+        Device                                             Start Block  Dbase   Reloc
+        /dev/dsk/c0t60A98000383035356C2447384D396548d0s0          0     No      Yes
+
+svm/d1: Concat/Stripe
+    Size: 10452992 blocks (5.0 GB)
+    Stripe 0:
+        Device                                             Start Block  Dbase   Reloc
+        /dev/dsk/c0t60A98000383035356C2447384D39654Ad0s0          0     No      Yes
+
+Device Relocation Information:
+Device                                           Reloc  Device ID
+/dev/dsk/c0t60A98000383035356C2447384D396548d0   Yes    id1,sd@n60a98000383035356c2447384d396548
+/dev/dsk/c0t60A98000383035356C2447384D39654Ad0   Yes    id1,sd@n60a98000383035356c2447384d39654a
+----
+. 在測試主機上、重新掃描新的叢集Data ONTAP 式LUN：
++
+.. 識別FC主機連接埠（類型為fc-frap）：+「*」#cfgadm–l*」
+.. 取消配置第一個fc-Fabric連接埠：+`#cfgadm–c unconfigure c1*
+.. 配置第一個fc-Fabric連接埠：+`#cfgadm–c unconfigure c2*
+.. 對其他fc-Fabric連接埠重複上述步驟。
+.. 顯示有關主機連接埠及其附加裝置的資訊：+「*」*「cfgadm–al*」
+.. 重新載入驅動程式：+`*# devfsadm–CV*
++
+’# devfsadm- I iSCSI*
+
+
+
+. 驗證叢集Data ONTAP 式的LUN是否存在：
++
+「* sanlun LUN show*」
+
++
+[listing]
+----
+# sanlun lun show
+controller(7mode)/                    device                                            host                  lun
+vserver(Cmode)       lun-pathname     filename                                          adapter    protocol   size    mode
+--------------------------------------------------------------------------------------------------------------------------
+vs_5           /vol/zfs/zfs2    /dev/rdsk/c5t600A0980383030444D2B466542485935d0s2 scsi_vhci0 FCP        6g      C
+vs_5           /vol/zfs/zfs1    /dev/rdsk/c5t600A0980383030444D2B466542485934d0s2 scsi_vhci0 FCP        6g      C
+vs_5           /vol/ufs/ufs2    /dev/rdsk/c5t600A0980383030444D2B466542485937d0s2 scsi_vhci0 FCP        5g      C
+vs_5           /vol/ufs/ufs1    /dev/rdsk/c5t600A0980383030444D2B466542485936d0s2 scsi_vhci0 FCP        5g      C
+----
+. 確認已規劃要測試的Sun Volume Manager可供匯入：
++
+"* metaimport–r–v*
+
++
+[listing]
+----
+# metaimport -r -v
+Import: metaimport -s <newsetname> c5t600A0980383030444D2B466542485937d0
+Device                                      offset       length replica flags
+c5t600A0980383030444D2B466542485937d0           16         8192      a m     luo
+c5t600A0980383030444D2B466542485936d0           16         8192      a       luo
+----
+. 以新名稱匯入中繼線：
++
+「* metaimport–s _Set-name disk-id_*」
+
++
+disk-id是從"metaimport--r -v"命令獲取的。
+
++
+[listing]
+----
+# metaimport -s svm c5t600A0980383030444D2B466542485937d0
+Drives in regular diskset including disk c5t600A0980383030444D2B466542485937d0:
+  c5t600A0980383030444D2B466542485937d0
+  c5t600A0980383030444D2B466542485936d0
+More info:
+  metaimport -r -v c5t600A0980383030444D2B466542485937d0
+----
+. 檢查中繼線是否可用：
++
+《*元集*》
+
+. 執行檔案系統檢查：
++
+fufs /dev/md/svm/rdsk/d1*
+
+. 使用mount命令手動掛載。
+. 視需要執行測試。
+. 關閉測試主機。
+. 在7MTT UI中、按一下「*完成測試*」。
+
+
+如果您的叢集Data ONTAP 式支援LUN要重新對應至來源主機、您必須準備好來源主機以進行轉換階段。如果您的叢集Data ONTAP 式支援LUN仍要對應至測試主機、則測試主機不需要執行其他步驟。

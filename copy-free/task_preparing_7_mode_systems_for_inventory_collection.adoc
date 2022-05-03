@@ -1,0 +1,102 @@
+---
+permalink: copy-free/task_preparing_7_mode_systems_for_inventory_collection.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, prepare, systems, host, transition, assessment 
+summary: 您必須確保7-Mode系統和主機符合特定的網路和傳輸協定要求、才能成功產生評估報告。 
+---
+= 準備7-Mode系統和主機以進行轉換評估
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必須確保7-Mode系統和主機符合特定的網路和傳輸協定要求、才能成功產生評估報告。
+
+.步驟
+. 在7-Mode系統上啟用HTTPS：
++
+‘*選項httpd.admin.SSL.enable on *’
+
+. 在7-Mode系統上啟用TLS：
++
+「*」選項TLS.enable on *
+
++
+
+IMPORTANT: 最佳實務做法是啟用TLS、因為SSLv3中存在安全性弱點。
+
+. 在7-Mode系統上啟用SSL並停用SSLv2和SSLv3：
++
+.. 設定並啟動SSL：+「* SecureAdmin設定SSL*」
+.. 啟用SSL：
++
+「*」選項SSL.enable on *
+
+.. 停用SSLv2和SSLv3：
++
+「*選項SSL.v2.enable off*」
+
++
+「*選項SSL.v3.enable off*」
+
++
+
+IMPORTANT: 最佳實務做法是停用SSLv2和SSLv3、以避免安全性弱點。
+
+
+
+. 在7-Mode系統上啟用SSH：
++
+.. 在7-Mode系統上設定SSH：+「* SecureAdmin setup -f ssh *」
++
+即使SSH伺服器已設定、f選項仍會強制設定執行。
+
+.. 啟用SSH：
++
+「SecureAdmin啟用SH2*」
+
+.. 在SSH伺服器上啟用密碼驗證：+`*選項ssh。passwd_auth。enable *
+.. 啟用SSH存取主機：
++
+Check Alignment of PHs>"*選項ssh．access*
+
+
+
+. 準備Windows主機系統：
++
+** 啟用WMI.存取。
++
+如需啟用WMI存取的詳細資訊、請參閱主機文件。
+
+** 如果您使用的是Windows Server 2003、請確認您已安裝Microsoft Fibre Channel Information Tool（fcinfo）套件、並在Windows主機系統上執行此工具一次。
++
+此工具可讓您收集主機的HBA組態資訊。
+
+** 如果執行7-Mode Transition Tool的系統不屬於網域、請確認下列事項：
++
+*** 主機系統屬於網域。
+*** 如果主機具有本機使用者、且該使用者的使用者名稱格式如下：
++
+[source, nolinebreak]
+----
+SystemName\Username
+----
+
+
+
+
+. 在Linux或ESXi主機上啟用SSH。
++
+如需啟用SSH的詳細資訊、請參閱主機文件。
+
+. 確認您已為每部主機安裝最新的NetApp主機公用程式軟體。
++
+如需下載及安裝NetApp主機公用程式軟體的相關資訊、請參閱NetApp支援網站。
+
+. 確認執行7-Mode Transition Tool的Windows系統可連線至所有主機和儲存系統。
+
+
+*相關資訊*
+
+http://mysupport.netapp.com/["NetApp支援網站上的文件：mysupport.netapp.com"]

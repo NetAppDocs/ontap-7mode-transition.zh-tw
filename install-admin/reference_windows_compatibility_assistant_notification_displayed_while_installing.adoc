@@ -1,0 +1,16 @@
+---
+permalink: install-admin/reference_windows_compatibility_assistant_notification_displayed_while_installing.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, install, windows, assistant, notification, compatibility 
+summary: 有時候在安裝工具時、您會收到Windows程式相容性小幫手通知、指出該程式可能未正確安裝。此通知不一定表示程式安裝不正確。 
+---
+= 安裝工具時顯示Windows程式相容性小幫手通知
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+有時候在安裝工具時、您會收到Windows程式相容性小幫手通知、指出該程式可能未正確安裝。此通知不一定表示程式安裝不正確。
+
+您可以按一下*此程式已正確安裝*來忽略此通知。

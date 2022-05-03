@@ -1,0 +1,46 @@
+---
+permalink: copy-based/concept_restrictions_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, restrictions 
+summary: 您必須注意某些限制、才能轉換某些7-Mode磁碟區和組態。 
+---
+= 移轉限制
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必須注意某些限制、才能轉換某些7-Mode磁碟區和組態。
+
+* 在同一個專案中的所有磁碟區都已完成基準傳輸之前、同一個專案中的任何磁碟區都無法切換。
+* 如果您想在7-Mode來源和目的地同時執行Data ONTAP VMware 7.3.x或8.1.x時、轉換7-Mode主要和次要Volume、則只有當7-Mode主要磁碟區沒有資料更新時、才必須開始轉換7-Mode次要磁碟區。
++
+您必須確認7-Mode主要Volume至7-Mode次要Volume的資料更新排程、不會與7-Mode次要Volume至ONTAP BIOS次要Volume的排程衝突。
+
+* 當7-Mode系統或叢集上的Aggregate從32位元升級至64位元格式時、您不得啟動轉換；否則轉換會失敗。
+* 7-Mode轉換工具不會轉換qtree為qtree SnapMirror關係目的地的磁碟區。
++
+必須先中斷qtree SnapMirror關係、才能轉換磁碟區。
+
+* 您無法使用7-Mode Transition Tool網路介面、移轉Fanout SnapMirror關係（一種與不同控制器中多個次要磁碟區的SnapMirror關係、主要磁碟區位於SnapMirror關係中）。
++
+若要在扇出組態中轉換SnapMirror關係、您必須使用7-Mode Transition Tool CLI。您應該為每個次要Volume建立個別的專案、完成次要專案的轉換、然後建立並完成主要Volume的轉換。
+
+* 您無法同時將磁碟區從不同的vFiler單元或不同的7-Mode控制器移轉至相同的SVM。
++
+您必須先從特定的VFiler裝置或7-Mode控制器完成磁碟區的移轉、才能從其他VFiler裝置或7-Mode控制器開始移轉磁碟區。
+
+* 7-Mode轉換工具不會將vFiler單元轉換為單一實體。
++
+不過、您可以將vFiler單元中的所有磁碟區選為一或多個專案的一部分、藉此轉換這些磁碟區。
+
+* 如果根磁碟區是以屬於預設vFiler單元的qtree為基礎、則7-Mode轉換工具不會轉換vFiler單元的根磁碟區。
+* 如果磁碟區和qtree是由不同的VFiler單元所擁有、7-Mode轉換工具不會轉換具有qtree的磁碟區。
++
+轉換此類磁碟區會導致qtree無法存取。
+
+* 轉換後的Volume無法轉換為FlexGroup 等量磁碟區。
+
+
+預先檢查作業會顯示部分限制的相關資訊。

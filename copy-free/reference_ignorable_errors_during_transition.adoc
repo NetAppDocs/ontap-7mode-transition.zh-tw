@@ -1,0 +1,245 @@
+---
+permalink: copy-free/reference_ignorable_errors_during_transition.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, ignorable, errors 
+summary: 您可能會在轉換期間遇到一些可忽略的錯誤。這些錯誤可能發生在無複本轉換專案的預先檢查、佈線、匯入或提交作業期間。您必須先確認這些錯誤、才能繼續進行轉換。 
+---
+= 轉換期間發生可接受的錯誤
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可能會在轉換期間遇到一些可忽略的錯誤。這些錯誤可能發生在無複本轉換專案的預先檢查、佈線、匯入或提交作業期間。您必須先確認這些錯誤、才能繼續進行轉換。
+
+當您使用7-Mode Transition Tool CLI將任何可接受的錯誤類別新增至無複本轉換專案時、表示您已瞭解錯誤的影響。您必須在忽略錯誤之後重新執行轉換作業。此時、封鎖錯誤會變更為警告訊息、錯誤會顯示為「已確認」。您可以繼續進行轉換、並顯示警告。
+
+
+
+== 預先檢查作業：可接受的錯誤類別
+
+|===
+| 類別 | 顯示錯誤時 
+
+
+ a| 
+「ignore、source-not、多重路徑」
+ a| 
+7-Mode磁碟櫃不在多重路徑組態中。
+
+
+
+ a| 
+「ignore、target、not、多重路徑」
+ a| 
+目標叢集節點中的磁碟櫃不在多重路徑組態中。
+
+
+
+ a| 
+「ignore、source-storage、fault」
+ a| 
+7-Mode磁碟櫃有一些故障（如「shorage show fault」命令的輸出所示）。
+
+
+
+ a| 
+「ignore、target、storage、fault」
+ a| 
+目標叢集節點中的磁碟櫃有一些故障（如「系統節點執行-node_node_name_-command storage show fault'命令的輸出所示）。
+
+
+
+ a| 
+ignore目標連接埠需求
+ a| 
+目標叢集節點沒有足夠數量的可用連接埠來連接7-Mode磁碟櫃。
+
+
+
+ a| 
+「忽略空間不足5%」
+ a| 
+7-Mode Aggregate空間不足、因為7-Mode Aggregate中的可用空間少於5%的實體空間。
+
+
+
+ a| 
+「ignore、aggr、logical-space-more、ser-97%以上」
+ a| 
+7-Mode Aggregate空間不足、因為Aggregate中的邏輯空間已滿97%以上。
+
+
+
+ a| 
+「忽略快照、溢漏、超過4%」
+ a| 
+7-Mode Aggregate空間不足、因為Snapshot複本所佔用的空間大於分配給Snapshot複本保留的空間。
+
+
+
+ a| 
+「忽略實體空間、超過89%且快照溢漏」
+ a| 
+7-Mode Aggregate空間不足、因為已使用的實體空間總計超過89%、而Snapshot複本所佔用的空間大於分配給Snapshot複本保留的空間。
+
+
+
+ a| 
+「ignore、volume、with file-gurantee」
+ a| 
+7-Mode磁碟區的空間保證設定為「檔案」、ONTAP 這在VMware不受支援。
+
+
+
+ a| 
+「忽略磁碟區、停用者」
+ a| 
+由於磁碟區空間不足、目前已停用磁碟區的空間保證。
+
+
+
+ a| 
+「NFS-qtree匯出」
+ a| 
+qtree匯出規則存在於7-Mode系統中。
+
+確認此錯誤表示您已瞭解Data ONTAP 在7-Mode和ONTAP VMware中操作的故障碼之間、qtree匯出規則的差異。在7-Mode Transition Tool套用NFS匯出規則之後、您可能需要執行一些手動步驟。
+
+https://kb.netapp.com/support/index?page=content&id=8010371["NetApp知識庫文章8010371：7MTT預先檢查10111 -轉換具有qtree層級匯出的7-Mode磁碟區"]
+
+
+
+ a| 
+「ignore、configuration、limits、Check」（忽略組態限制檢查）
+ a| 
+要移轉的物件和組態超過特定限制。儲存設備轉換可能需要很長時間、因此您必須為停機做好準備。
+
+https://kb.netapp.com/support/index?page=content&id=3014882["NetApp知識庫文件編號3014882：在無複製轉換期間縮短儲存轉換時間的考量"]
+
+
+
+ a| 
+「ignore（忽略）- CIF-ad-domain-mismisd」
+ a| 
+即使7-Mode系統的CIFS Active Directory網域與目標SVM的CIFS Active Directory網域不同、7-Mode轉換工具仍會繼續移轉CIFS組態。
+
+您必須確保7-Mode系統和目標SVM的CIFS Active Directory網域是信任的網域。否則、將CIFS組態移轉至目標SVM會失敗。
+
+https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/How_to_transition_CIFS_configurations_when_Active_Directory_Domain_of_CIFS_server_on_7-Mode_and_target_SVM_are_different["當7-Mode上CIFS伺服器的Active Directory網域與目標SVM不同時、如何轉換CIFS組態"]
+
+|===
+
+
+== 纜線驗證作業：可接受的錯誤類別
+
+|===
+| 類別 | 顯示錯誤時 
+
+
+ a| 
+「ignore、missing、spare、disks」
+ a| 
+目標叢集節點未偵測到一或多個7-Mode備用磁碟。
+
+
+
+ a| 
+「ignore、missing、degraded、agg-disks」
+ a| 
+在目標叢集節點上、最多無法從任何7-Mode RAID-DP RAID群組偵測兩個磁碟、或從任何7-Mode RAID-4 RAID群組偵測到一個磁碟。
+
+繼續移轉會使這類集合體在移轉集合體後降級。
+
+|===
+
+
+== 匯入作業：可接受的錯誤類別
+
+如果您在匯入作業期間將可接受的錯誤類別新增至無複本轉換專案、Data ONTAP 除了將封鎖錯誤變更為警告之外、還會對集合體和磁碟區執行一些修正動作。
+
+|===
+| 類別 | 顯示錯誤時 | 如果錯誤已確認、且重新執行匯入作業、則採取修正行動 
+
+
+ a| 
+「ignore、aggreg-with、32bit-snapshot for import」（忽略-集合體、含32位元快照以供匯入
+ a| 
+在7-Mode Aggregate中偵測到32位元Snapshot複本。
+ a| 
+32位元Snapshot複本會從屬於此專案一部分的所有7-Mode Aggregate中刪除。
+
+
+
+ a| 
+「Transition、gregate、during、匯入期間」
+ a| 
+在7-Mode儲存系統上、其中一個轉換式Aggregate並未完全關機。
+ a| 
+所有未完全關機的7-Mode Aggregate都會轉換。這可能會在轉換後導致資料遺失。
+
+
+
+ a| 
+「ignore、gregate、not正處於線上、以供匯入」
+ a| 
+當7-Mode儲存系統暫停時、集合體並未上線。
+ a| 
+所有離線Aggregate都會上線。
+
+
+
+ a| 
+「ignore磁碟區、with 32位元快照、以供匯入」
+ a| 
+在7-Mode Volume中偵測到32位元Snapshot複本。
+ a| 
+32位元Snapshot複本會從屬於此專案一部分的所有7-Mode磁碟區中刪除。
+
+
+
+ a| 
+「ignore、volume、with、file-system-for import」
+ a| 
+其中一個轉換磁碟區並未在7-Mode儲存系統上完全關閉。
+ a| 
+所有未完全關閉的7-Mode磁碟區都會轉換。這可能會在轉換後導致資料遺失。
+
+
+
+ a| 
+「Transition - offline Volume - during匯入」
+ a| 
+7-Mode儲存系統暫停時、磁碟區未連線。
+ a| 
+所有離線磁碟區都會上線。
+
+
+
+ a| 
+「移轉限制磁碟區-匯入期間」
+ a| 
+當7-Mode儲存系統暫停時、磁碟區處於受限狀態。
+ a| 
+所有受限的磁碟區都會上線。
+
+|===
+
+
+== 提交作業：可接受的錯誤類別
+
+如果您在提交作業期間將可接受的錯誤類別新增至無複本轉換專案、ONTAP 除了將封鎖錯誤變更為警告之外、還會對集合體和磁碟區執行一些修正動作。
+
+|===
+| 類別 | 顯示錯誤時 | 如果錯誤已確認、並再次執行提交作業、則採取修正行動 
+
+
+ a| 
+「ignore、commit、offline、aggregate」
+ a| 
+部分轉換的集合體已離線。
+ a| 
+所有離線Aggregate都會上線。
+
+|===

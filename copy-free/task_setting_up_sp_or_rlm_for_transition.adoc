@@ -1,0 +1,148 @@
+---
+permalink: copy-free/task_setting_up_sp_or_rlm_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, sp, rlm, system, set, up 
+summary: 如果7-Mode儲存系統上尚未設定服務處理器（SP）或遠端LAN模組（RLM）、或是您已使用IPv6位址設定SP或RLM、則必須使用IPv4位址來設定SP或RLM。 
+---
+= 在7-Mode系統上設定SP或RLM、以進行無複本轉換
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果在7-Mode儲存系統上尚未設定服務處理器（SP）或遠端LAN模組（RLM）、或者您已使用IPv6位址設定SP或RLM、則必須使用IPv4位址來設定SP或RLM。
+
+* 安裝7-Mode Transition Tool的主機必須支援SSHv2。
+* 您必須擁有SP或RLM「naroot」帳戶的存取權、Data ONTAP 或是擁有「admin」角色認證的駐點管理員帳戶、或具有「login-sp」功能的角色。
+
+
+7-Mode Transition Tool可在系統於轉換期間暫停時、使用可為SP或RLM的遠端管理裝置存取7-Mode系統、以根據平台機型在系統上可用的裝置為準。您必須使用IPV4位址來設定SP或RLM。不支援IPv6組態進行轉換。
+
+.步驟
+* 設定SP並提供SP存取權給安裝7-Mode Transition Tool的主機。
++
+.. 使用IPV4位址+「* sp setup*」來設定及啟用SP網路
++
+[listing]
+----
+system1> sp setup
+   The Service Processor (SP) provides remote management capabilities
+   including console redirection, logging and power control.
+   It also extends autosupport by sending
+   additional system event alerts. Your autosupport settings are use
+   for sending these alerts via email over the SP LAN interface.
+Would you like to configure the SP? y
+Would you like to enable DHCP on the SP LAN interface? n
+Please enter the IP address of the SP []: 192.168.123.98
+Please enter the netmask of the SP []: 255.255.255.0
+Please enter the IP address for the SP gateway []: 192.168.123.1
+Do you want to enable IPv6 on the SP ? n
+Verifying mailhost settings for SP use...
+----
+.. 驗證SP網路組態設定：
++
+「* sp STATUS*」
+
++
+[listing]
+----
+system1> sp status
+        Service Processor      Status: Online
+             Firmware Version:   1.2
+             Mgmt MAC Address:   00:A0:98:01:7D:5B
+             Ethernet Link:      up
+             Using DHCP:         no
+    IPv4 configuration:
+             IP Address:         192.168.123.98
+             Netmask:            255.255.255.0
+             Gateway:            192.168.123.1
+----
+.. 提供SP存取權限給安裝7-Mode Transition Tool的主機：
++
+`*選項sp、ssh、access host=_7mtt_host__*
+
++
+「_7mtt_host_」是安裝7-Mode Transition Tool之主機的主機名稱或IP位址。
+
++
+
+NOTE: 當您設定SP時、預設會授予所有主機存取權。如果您想限制對特定主機的存取、則必須執行此步驟。
+
+.. 在安裝7-Mode Transition Tool的主機上、登入SP:+`* ssh _username@SP_ip_address_*
++
+出現提示時、請輸入使用者名稱的密碼。
+
++
+此時會顯示SP提示字元、表示您可以存取SP CLI。
+
+
+
+* 設定RLM並提供RLM存取權、以存取安裝7-Mode Transition Tool的主機。
++
+.. 使用IPV4位址+「* RLM setup*」來設定RLM網路
++
+在RLM CLI精靈中、您必須輸入RLM的IP位址、網路遮罩和閘道。
+
++
+[listing]
+----
+system> rlm setup
+	  The Remote LAN Module (RLM) provides remote management capabilities
+ 	 including console redirection, logging and power control.
+ 	 It also extends autosupport by sending
+ 	 additional system event alerts. Your autosupport settings are used
+ 	 for sending these alerts via email over the RLM LAN interface.
+Would you like to configure the RLM? y
+Would you like to enable DHCP on the RLM LAN interface? n
+Please enter the IP address for the RLM []:192.168.123.98
+Please enter the netmask for the RLM []:255.255.255.0
+Please enter the IP address for the RLM gateway []:192.168.123.1
+Do you want to enable IPv6 on the RLM ? n
+Verifying mailhost settings for RLM use...
+----
+.. 確認RLM網路組態正確：
++
+「* RLM STATUS*」
+
++
+[listing]
+----
+system> rlm status
+	Remote LAN Module    Status: Online
+		Part Number:        110-00030
+		Revision:           A0
+		Serial Number:      123456
+		Firmware Version:   4.0
+		Mgmt MAC Address:   00:A0:98:01:7D:5B
+		Ethernet Link:      up, 100Mb, full duplex, auto-neg complete
+		Using DHCP:         no
+	IPv4 configuration:
+		IP Address:         192.168.123.98
+		Netmask:            255.255.255.0
+		Gateway:            192.168.123.1
+----
+.. 提供RLM存取權、以存取安裝7-Mode Transition Tool的主機：
++
+Check Alignment of PHs>+選項RLM.ssh。存取host=_7mtt_host__*
+
++
+7mtt_host是安裝7-Mode Transition Tool之主機的主機名稱或IP位址。
+
++
+
+NOTE: 當您設定RLM時、預設會授予所有主機存取權。如果您想限制對特定主機的存取、則必須執行此步驟。
+
+.. 從安裝7-Mode Transition Tool的主機登入RLM：
++
+hy* ssh _username@rlm_ip_address_*
+
++
+系統提示時、您必須輸入使用者名稱的密碼。
+
++
+隨即顯示RLM提示、表示您可以存取RLM CLI。
+
+
+
+

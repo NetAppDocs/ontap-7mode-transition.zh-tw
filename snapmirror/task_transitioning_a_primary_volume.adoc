@@ -1,0 +1,269 @@
+---
+permalink: snapmirror/task_transitioning_a_primary_volume.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, transition, primary, volume, snapmirror 
+summary: 轉換主磁碟區包括將資料從7-Mode主磁碟區複製到叢集Data ONTAP 式的VMware主磁碟區、刪除7-Mode主Data ONTAP 磁碟區和叢集式的VMware還原磁碟區之間的災難恢復關係、以及在叢集Data ONTAP 式的VMware還原主磁碟區和次磁碟區之間建立SnapMirror關係。 
+---
+= 轉換主要Volume
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+轉換主磁碟區包括將資料從7-Mode主磁碟區複製到叢集Data ONTAP 式的VMware主磁碟區、刪除7-Mode主Data ONTAP 磁碟區和叢集式的VMware還原磁碟區之間的災難恢復關係、以及在叢集Data ONTAP 式的VMware還原主磁碟區和次磁碟區之間建立SnapMirror關係。
+
+必須已設定主要叢集和SVM。
+
+.步驟
+. 將資料從7-Mode主Volume複製到叢集Data ONTAP 式的VMware主Volume：
++
+.. 使用關係類型為TDP的「napmirror create」命令、在7-Mode系統和SVM之間建立SnapMirror關係。
++
+[listing]
+----
+pri_cluster::> snapmirror create -source-path src_system:finance -destination-path src_vserver:src_c_vol -type TDP
+Operation succeeded: snapmirror create the relationship with destination src_vserver:src_c_vol.
+----
+.. 使用「napmirror initialize」命令來啟動基礎傳輸。
++
+[listing]
+----
+pri_cluster::> snapmirror  initialize -destination-path src_vserver:src_c_vol
+Operation is queued: snapmirror initialize of destination src_vserver:src_c_vol.
+----
+.. 視您想Data ONTAP 要手動更新叢集式的流通量或設定SnapMirror排程而定、請執行適當的行動：
++
+|===
+| 如果您想要... | 然後... 
+
+
+ a| 
+手動更新傳輸
+ a| 
+... 使用「napmirror update」命令。
++
+[listing]
+----
+pri_cluster::> snapmirror update -destination-path src_vserver:src_c_vol
+----
+... 使用「napmirror show」命令來監控資料複製狀態。
++
+[listing]
+----
+pri_cluster::> snapmirror show -destination-path src_vserver:src_c_vol
+                            Source Path: pri_system:src_7_vol
+                       Destination Path: src_vserver:src_c_vol
+                      Relationship Type: TDP
+                Relationship Group Type: none
+                    SnapMirror Schedule: -
+                 SnapMirror Policy Type: async-mirror
+                      SnapMirror Policy: DPDefault
+                            Tries Limit: -
+                      Throttle (KB/sec): unlimited
+                           Mirror State: Snapmirrored
+ ...
+           Number of Successful Updates: 1
+               Number of Failed Updates: 0
+           Number of Successful Resyncs: 0
+               Number of Failed Resyncs: 0
+            Number of Successful Breaks: 0
+                Number of Failed Breaks: 0
+                   Total Transfer Bytes: 473163808768
+         Total Transfer Time in Seconds: 43405
+----
+... 前往步驟3。
+
+
+
+
+ a| 
+執行排程的更新傳輸
+ a| 
+... 使用「jobschedule cron create」命令來建立更新傳輸的排程。
++
+[listing]
+----
+pri_cluster::> job schedule cron create -name 15_minute_sched -minute 15
+----
+... 使用「napmirror modify」命令、將排程套用至SnapMirror關係。
++
+[listing]
+----
+pri_cluster::> snapmirror modify -destination-path src_vserver:src_c_vol -schedule 15_minute_sched
+----
+... 使用SnapMirror show命令來監控資料複製狀態。
++
+[listing]
+----
+pri_cluster::> snapmirror show -destination-path src_vserver:src_c_vol
+                            Source Path: pri_system:src_7_vol
+                       Destination Path: src_vserver:src_c_vol
+                      Relationship Type: TDP
+                Relationship Group Type: none
+                    SnapMirror Schedule: 15_minute_sched
+                 SnapMirror Policy Type: async-mirror
+                      SnapMirror Policy: DPDefault
+                            Tries Limit: -
+                      Throttle (KB/sec): unlimited
+                           Mirror State: Snapmirrored
+...
+           Number of Successful Updates: 1
+               Number of Failed Updates: 0
+           Number of Successful Resyncs: 0
+               Number of Failed Resyncs: 0
+            Number of Successful Breaks: 0
+                Number of Failed Breaks: 0
+                   Total Transfer Bytes: 473163808768
+         Total Transfer Time in Seconds: 43405
+----
+
+
+|===
+
+
+. 如果您有遞增傳輸的排程、請在準備執行轉換時執行下列步驟：
++
+.. 使用「napmirror quiesce」命令來停用所有未來的更新傳輸。
++
+[listing]
+----
+pri_cluster::> snapmirror quiesce -destination-path src_vserver:src_c_vol
+----
+.. 使用「napmirror modify」命令刪除SnapMirror排程。
++
+[listing]
+----
+pri_cluster::> snapmirror modify -destination-path src_vserver:src_c_vol -schedule ""
+----
+.. 如果您稍早停止SnapMirror傳輸、請使用「napmirror resume」命令來啟用SnapMirror傳輸。
++
+[listing]
+----
+pri_cluster::> snapmirror resume -destination-path src_vserver:src_c_vol
+----
+
+
+. 在叢集Data ONTAP 式的不二級SVM和一級SVM之間建立SVM對等關係。
++
+.. 使用「叢集對等建立」命令建立叢集對等關係。
++
+[listing]
+----
+pri_cluster::> cluster peer create -peer-addrs cluster2-d2, 10.98.234.246 -timeout 60
+
+Notice: Choose a passphrase of 8 or more characters. To ensure the authenticity of the peering relationship, use a phrase or sequence of characters that would be hard to guess.
+
+Enter the passphrase: ********
+Confirm the passphrase: ********
+----
+.. 從來源叢集、使用「vserver對等create」命令來建立叢集Data ONTAP 式的SVM對等關係、使其與叢集式的SVM主磁碟區和次磁碟區建立對等關係。
++
+[listing]
+----
+pri_cluster::> vserver peer create -vserver src_vserver -peervserver src_c_vserver -applications snapmirror -peer-cluster sec_cluster
+----
+.. 從目的地叢集、使用「vserver對等端點接受」命令來接受SVM對等端點要求、並建立SVM對等端點關係。
++
+[listing]
+----
+sec_cluster::> vserver peer accept -vserver dst_vserver -peervserver src_vserver
+----
+
+
+. 從目的地叢集、使用「napmirror quiesce」命令、在設定Data ONTAP 更新傳輸排程的情況下、暫停7-Mode主要Volume與叢集式的二線叢集之間的任何資料傳輸。
++
+[listing]
+----
+sec_cluster::> snapmirror quiesce -destination-path dst_vserver:dst_c_vol
+----
+. 監控資料複製作業並啟動轉換：
++
+.. 等待從7-Mode主Volume到叢集Data ONTAP 式的VMware主和叢集Data ONTAP 式的所有持續傳輸完成、然後中斷用戶端從7-Mode主Volume的存取、以開始轉換。
+.. 使用「napmirror update」命令Data ONTAP 、從7-Mode主Volume執行叢集式VMware主Volume的最終資料更新。
++
+[listing]
+----
+pri_cluster::> snapmirror update -destination-path src_vserver:src_c_vol
+----
+.. 使用「napmirror Break」命令來中斷7-Mode主Volume與叢集Data ONTAP 式VMware Volume之間的SnapMirror關係。
++
+[listing]
+----
+pri_cluster::> snapmirror  break -destination-path src_vserver:src_c_vol
+[Job 1485] Job is queued: snapmirror break for destination src_vserver:src_c_vol.
+----
+.. 如果您的磁碟區已設定LUN、請在進階權限層級使用「LUN Transition 7-mode show」命令來驗證LUN是否已轉換。
++
+您也可以在叢集Data ONTAP 式的支援區上使用「LUN show」命令來檢視所有已成功轉換的LUN。
+
+.. 使用「napmirror DELETE」命令刪除關係。
++
+[listing]
+----
+pri_cluster::> snapmirror  delete -destination-path src_vserver:src_c_vol
+----
+.. 使用「napmirror release」命令、從7-Mode系統移除SnapMirror關係資訊。
++
+[listing]
+----
+system7mode> snapmirror release dataVol20 vs1:dst_vol
+----
+
+
+. 從目的地叢集中、中斷並刪除7-Mode主Volume與叢集Data ONTAP 式VMware次要Volume之間的災難恢復關係。
++
+.. 使用「napmirror Break」命令來中斷7-Mode主Volume與叢集Data ONTAP 式故障恢復次要Volume之間的災難恢復關係。
++
+[listing]
+----
+sec_cluster::> snapmirror  break -destination-path dst_vserver:dst_c_vol
+[Job 1485] Job is queued: snapmirror break for destination dst_vserver:dst_c_vol.
+----
+.. 使用「napmirror DELETE」命令刪除關係。
++
+[listing]
+----
+sec_cluster::> snapmirror  delete -destination-path dst_vserver:dst_c_vol
+----
+.. 使用「napmirror release」命令、從7-Mode系統移除SnapMirror關係資訊。
++
+[listing]
+----
+system7mode> snapmirror release dataVol20 vs1:dst_vol
+----
+
+
+. 從目的地叢集建立叢集Data ONTAP 式的SnapMirror與次要磁碟區之間的關係：
++
+.. 使用「napmirror create」命令、在叢集Data ONTAP 式的等一級磁碟區和二級磁碟區之間建立SnapMirror關係。
++
+[listing]
+----
+sec_cluster::> snapmirror create -source-path src_vserver:src_c_vol -destination-path dst_vserver:dst_c_vol -type DP -schedule 15_minute_sched
+----
+.. 使用「napmirror resSync」命令、重新同步叢集Data ONTAP 式SnapMirror磁碟區之間的SnapMirror關係。
++
+為了成功重新同步、叢集Data ONTAP 式的主磁碟區和次磁碟區之間必須存在一個通用的Snapshot複本。
+
++
+[listing]
+----
+sec_cluster::> snapmirror  resync -destination-path dst_vserver:dst_c_vol
+----
+.. 使用「napmirror show」命令來驗證SnapMirror重新同步的狀態是否顯示為「napmirror ored」。
++
+
+NOTE: 您必須確保SnapMirror重新同步成功、才能Data ONTAP 讓叢集式的SnapMirror次要Volume可供唯讀存取。
+
+
+
+
+
+當7-Mode系統中的所有必要磁碟區都轉換為SVM時、您必須刪除7-Mode系統與SVM之間的SVM對等關係。
+
+*相關資訊*
+
+xref:task_recovering_from_a_failed_lun_transition.adoc[從發生故障的LUN轉換中恢復]
+
+xref:task_configuring_a_tcp_window_size_for_snapmirror_relationships.adoc[設定SnapMirror關係的TCP視窗大小]

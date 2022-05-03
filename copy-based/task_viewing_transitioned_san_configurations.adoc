@@ -1,0 +1,52 @@
+---
+permalink: copy-based/task_viewing_transitioned_san_configurations.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, view, san, configurations 
+summary: SAN磁碟區的LUN序號和LUN ID會在轉換後變更。若要檢視轉換後的SAN組態、您可以使用7-Mode Transition Tool CLI、將舊LUN對應至新的轉換LUN、並將LUN對應資訊匯出至.csv檔案。 
+---
+= 檢視轉換的SAN組態
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SAN磁碟區的LUN序號和LUN ID會在轉換後變更。若要檢視轉換後的SAN組態、您可以使用7-Mode Transition Tool CLI、將舊LUN對應至新的轉換LUN、並將LUN對應資訊匯出至「.csv]檔案。
+
+儲存設備轉換作業必須已成功完成。
+
+.步驟
+. 若要產生LUN對應資訊、請從CLI執行下列命令：
++
+hy* Transition CBT匯出lunmap -p _project名稱_-o _file_path_*
+
++
+[listing]
+----
+C:\Program Files\NetApp\7-Mode Transition Tool>transition cbt export lunmap -s SanWorkLoad -o c:/Libraires/Documents/7-to-C-LUN-MAPPING.csv
+Successfully exported 7 to C LUN mapping for 'SanWorkLoad'
+----
++
+下列範例顯示範例LUN對應檔案：
+
++
+[listing]
+----
+7-Mode Storage System,192.168.43.49,
+vfiler,finance,
+
+cDOT Storage System,192.168.32.97,
+SVM,finance,
+
+LUN#,Source LUN Path,7-Mode Serial Number,Source Igroups,Source mapping LUN ID,Destination LUN Path,Serial Number,Destination Igroup,Destination mapping LUN ID
+LUN#1,/vol/vol_SANdataset_sm_0/lun-inventory,dtY5B4tFAaAF,WinGrp,0,/vol/vol_SANdataset_sm_0/lun-inventory,7SQ8p$DQ12rX,WinGrp,0
+LUN#1,/vol/vol_SANdataset_sm_0/lun-inventory,dtY5B4tFAaAF,WinGrp2,3,/vol/vol_SANdataset_sm_0/lun-inventory,7SQ8p$DQ12rX,WinGrp2,3
+LUN#1,/vol/vol_SANdataset_sm_0/lun-inventory,dtY5B4tFAaAF,WinGrp3,4,/vol/vol_SANdataset_sm_0/lun-inventory,7SQ8p$DQ12rX,WinGrp3,4
+LUN#2,/vol/vol_SANdataset_sm_0/lun-payroll,dtY5B4tFAaAC,LnxGrp1,2,/vol/vol_SANdataset_sm_0/lun-payroll,7SQ8p$DQ12rT,LnxGrp1,4
+LUN#2,/vol/vol_SANdataset_sm_0/lun-payroll,dtY5B4tFAaAC,LnxGrp2,2,/vol/vol_SANdataset_sm_0/lun-payroll,7SQ8p$DQ12rT,LnxGrp2,4
+----
+
+
+您必須先在主機上執行必要的轉換後工作、才能恢復對轉換ONTAP 後的支援功能。
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-7mtt-sanspl/home.html["SAN主機移轉與補救"]

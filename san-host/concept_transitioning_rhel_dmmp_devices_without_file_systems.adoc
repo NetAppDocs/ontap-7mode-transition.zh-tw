@@ -1,0 +1,26 @@
+---
+permalink: san-host/concept_transitioning_rhel_dmmp_devices_without_file_systems.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, rhel, dmmp, device, file, system 
+summary: 在移轉不含檔案系統的Red Hat Enterprise Linux（RHEL）DMP裝置之前、您必須確認DMP裝置沒有檔案系統。您也必須執行特定步驟、以準備轉換階段、轉換後您必須更換WWID。 
+---
+= 無需檔案系統即可轉換RHEL DMP裝置
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在不使用檔案系統的Red Hat Enterprise Linux（RHEL）DMP裝置轉換之前、您必須確認DMP裝置沒有檔案系統。您也必須執行特定步驟、以準備轉換階段、轉換後您必須更換WWID。
+
+*相關資訊*
+
+xref:task_verifying_that_rhel_luns_are_ready_for_transition_using_inventory_assessment_workbook.adoc[使用庫存評估工作簿驗證RHEL LUN是否已準備好進行轉換]
+
+xref:task_verifying_rhel_5_luns_are_ready_for_transition_using_cli.adoc[使用CLI驗證RHEL 5 LUN是否已準備好進行移轉]
+
+xref:task_verifying_rhel_6_ddmp_devices_are_ready_for_transition_using_cli.adoc[使用CLI驗證RHEL 6 DDMP裝置是否已準備好進行移轉]
+
+xref:task_preparing_for_cutover_when_transitioning_linux_host_dmmp_device_without_file_system.adoc[準備在不使用檔案系統的情況下轉換Linux主機DMP裝置時轉換]
+
+xref:task_replacing_7_mode_wwids_on_linux_host_after_transition_of_luns.adoc[在轉換LUN之後、更換Linux主機上的7-Mode LUN WWID]

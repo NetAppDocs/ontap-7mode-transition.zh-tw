@@ -1,0 +1,14 @@
+---
+permalink: snapmirror/reference_troubleshooting.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, troubleshoot, transition, snapmirror, issues, problems 
+summary: 疑難排解資訊可協助您識別及解決使用SnapMirror命令轉換7-Mode資料時發生的問題。 
+---
+= 疑難排解使用SnapMirror時的轉換問題
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+疑難排解資訊可協助您識別及解決使用SnapMirror命令轉換7-Mode資料時發生的問題。

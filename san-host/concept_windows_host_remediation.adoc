@@ -1,0 +1,22 @@
+---
+permalink: san-host/concept_windows_host_remediation.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, windows, host, remediation 
+summary: 如果您使用7-Mode Transition Tool（7-Mode Transition Tool）（7MTT）、從Data ONTAP 以7-Mode運作的VMware移轉至叢集Data ONTAP 式的VMware、則必須執行特定步驟、準備Windows主機進行移轉。您也必須執行特定步驟來準備轉換階段、而且在轉換之後、您必須讓Windows主機上線。 
+---
+= Windows主機補救
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您使用7-Mode Transition Tool（7MTT）從Data ONTAP 以7-Mode運作的VMware移轉至叢集Data ONTAP 式VMware、則必須執行特定步驟、準備Windows主機進行移轉。您也必須執行特定步驟來準備轉換階段、而且在轉換之後、您必須讓Windows主機上線。
+
+*相關資訊*
+
+xref:task_preparing_windows_hosts_for_transition.adoc[準備Windows主機進行移轉]
+
+xref:task_preparing_for_cutover_when_transitioning_windows_hosts.adoc[準備轉換Windows主機時的轉換階段]
+
+xref:task_bringing_windows_hosts_online_after_transition.adoc[轉換後讓Windows主機上線]

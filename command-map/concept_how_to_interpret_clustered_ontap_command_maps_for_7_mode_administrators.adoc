@@ -1,0 +1,106 @@
+---
+permalink: command-map/concept_how_to_interpret_clustered_ontap_command_maps_for_7_mode_administrators.html 
+sidebar: sidebar 
+keywords: ontap, command, map, transition, clustered, commands, options, configuration, file, maps, interpret 
+summary: 如果您要從Data ONTAP 以7-Mode執行的畫面轉到叢集Data ONTAP 式的畫面、您可能會發現參考命令地圖很方便、其中顯示Data ONTAP 了7-Mode命令、選項和組態檔的叢集式等位元資訊。 
+---
+= 如何為Data ONTAP 7-Mode管理員解譯叢集式的效能分析命令、選項和組態檔案對應
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您要從Data ONTAP 以7-Mode執行的畫面轉到叢集Data ONTAP 式的畫面、您可能會發現參考命令地圖很方便、其中顯示Data ONTAP 了7-Mode命令、選項和組態檔的叢集式等位元資訊。
+
+
+
+== 其中包含哪些對應資訊
+
+7-Mode管理員的命令對應包括7-Mode命令、選項和組態檔的下列對應、對應到其叢集Data ONTAP 式的等效項目：
+
+* xref:reference_how_7_mode_commands_map_to_clustered_ontap_commands.adoc[7-Mode命令如何對應至叢集Data ONTAP 式的等位元指令]
+* xref:reference_how_7_mode_options_map_to_clustered_ontap_commands.adoc[7-Mode選項如何對應至叢集Data ONTAP 式的等位元指令]
+* xref:reference_how_7_mode_configuration_files_map_to_clustered_ontap_commands.adoc[7-Mode組態檔如何對應至叢集Data ONTAP 式的等位元指令]
+
+
+
+
+== 如何解譯7-Mode相容的捷徑命令
+
+雖然針對叢集作業、已大幅重組了指令行介面（CLI）、但許多命令都有7-Mode相容的捷徑版本、不需要變更指令碼或其他自動化工作。Data ONTAP這些捷徑版本會列在表格的第一位、並以*粗體*顯示。下表列出與7-Mode不相容的捷徑版本、然後是命令的完整、長版版本：
+
+|===
+| 7-Mode命令 | 叢集Data ONTAP 式的指令 
+
+
+ a| 
+《Aggradd》
+ a| 
+‘* aggr add*’
+
+「Aggr附加磁碟」
+
+「torage Aggregate add-disks」
+
+|===
+如果未列出*粗體*捷徑、則無法使用7-Mode相容的版本。表格中並未顯示所有形式的命令。CLI極具彈性、可提供多種縮寫形式。
+
+
+
+== 瞭解Data ONTAP CLI命令的不同叢集式解決方法
+
+叢集有三種不同的CLI命令Shell：
+
+* _clusterShell是原生Shell、會在您登入叢集時自動啟動。
++
+它提供您設定及管理叢集所需的所有命令。
+
+* _nocesdrou_是一種特殊的Shell、可讓您執行7-Mode命令的子集。
++
+這些命令僅在節點層級生效。您可以從clusterShell切換到nodeslell工作階段、以互動方式執行nodeslell命令、也可以從clusterShell執行單一nodesdell命令。如果命令的形式（長）為「系統節點執行節點節點｛_noidename_| local｝命令名稱」、則可以將其識別為nodeshem命令。
+
+* _systemShell是一種低層Shell、僅用於診斷和疑難排解。
++
+並非用於一般管理目的。只有在技術支援的指引下、才能存取系統Shell。
+
+
+
+
+
+== 切換至無目的地
+
+當您看到與7-Mode相容的nnodesl解除 命令捷徑版本時、會假設您是從nodesdro解除 執行命令。若要切換至節點、請輸入下列命令：
+
+系統節點執行節點{_nodename_|local}*
+
+其他形式的"nodesle"命令必須從clusterShell執行。
+
+
+
+== 如需詳細資訊、請前往何處
+
+|===
+| 如果您想要... | 如需詳細資訊... 
+
+
+ a| 
+使用clusterShell命令
+ a| 
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-cmpr/GUID-5CB10C70-AC11-41C0-8C16-B4D0DF916E9B.html["指令ONTAP"]
+
+
+
+ a| 
+使用nocesdro解除 命令
+ a| 
+https://library.netapp.com/ecm/ecm_download_file/ECMP1511537["版本8：Data ONTAP2命令：7-Mode、Volume 1的手動頁面參考"]
+
+
+
+ a| 
+執行CLI命令、瀏覽CLI命令目錄、在CLI中設定值、以及使用查詢、模式和萬用字元
+ a| 
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["系統管理"]
+
+|===

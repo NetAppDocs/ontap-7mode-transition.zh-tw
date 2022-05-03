@@ -1,0 +1,28 @@
+---
+permalink: san-host/task_rolling_back_clustered_ontap_luns_back_to_7_mode_on_windows_hosts.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, lun, windows, hosts 
+summary: 如果ONTAP 從Data ONTAP 以7-Mode運作的VMware移轉到7-Mode之後、您的支援LUN效能不如預期、您可以在ONTAP Windows主機上從VMware復原到7-Mode LUN。 
+---
+= 在ONTAP Windows主機上、將還原的LUN復原至7-Mode LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果ONTAP 從Data ONTAP 以7-Mode運作的VMware移轉到7-Mode之後、您的支援LUN效能不如預期、您可以在ONTAP Windows主機上從VMware復原到7-Mode LUN。
+
+您的7-Mode LUN必須重新對應至主機。
+
+.步驟
+. 使用Hyper-V Manager關閉LUN上執行的所有虛擬機器（VM）。
+. 使用Windows磁碟管理程式將LUN離線。
+. 使用叢集磁碟管理程式讓叢集磁碟離線。
+. 關閉主機。
+. 回復Data ONTAP 至7-Mode運作的支援。
+. 開機主機。
+. 使用Windows磁碟管理程式將7-Mode LUN上線。
+. 使用叢集磁碟管理程式將叢集磁碟上線。
+. 使用Hyper-V Manager讓VM上線。
+

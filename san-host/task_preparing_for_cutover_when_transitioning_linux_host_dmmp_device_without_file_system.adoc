@@ -1,0 +1,34 @@
+---
+permalink: san-host/task_preparing_for_cutover_when_transitioning_linux_host_dmmp_device_without_file_system.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, cutover, linux, dmmp, device, host 
+summary: 如果您要從Linux主機移轉不含檔案系統的DMP裝置、您必須執行數個步驟、才能進入轉換階段。 
+---
+= 準備在不使用檔案系統的情況下轉換Linux主機DMP裝置時轉換
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您要從Linux主機移轉不含檔案系統的DMP裝置、您必須執行數個步驟、才能進入轉換階段。
+
+對於FC組態、您必須具備光纖連線能力、並將分區區設為叢集Data ONTAP 式的支援中心控制器。
+
+對於iSCSI組態、您必須探索iSCSI工作階段、並登入叢集Data ONTAP 式的等化控制器。
+
+* 對於複製型轉換、請先執行這些步驟、再在7-Mode Transition Tool（7MTT）中啟動Storage Cutover（儲存設備轉換）作業。
+* 如需無複製轉換、請先執行下列步驟、再在7MTT中啟動匯出及停止7-Mode作業。
+
+
+.步驟
+. 停止I/O至掛載點。
+. 根據應用程式廠商的建議、關閉正在存取LUN的應用程式。
+. 清除7-Mode LUN DMP裝置或別名：
++
+`*多重路徑-f _DEVICE名稱_*
+
++
+如有需要、您可以從「_Inventory Assessment Workbook」（_資源清冊評估工作簿_）中「SAN Host LUNs」（SAN主機LUN）索引標籤下的「* OS Device ID*」（*作業系統裝置ID*）欄取得DMP裝置名稱。
+
+

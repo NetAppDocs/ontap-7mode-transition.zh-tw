@@ -1,0 +1,37 @@
+---
+permalink: san-host/task_remounting_vmfs_volumes_after_transition_using_vsphere_client.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, remount, vmfs, volumes, vshpere, client 
+summary: 移轉之後、您必須重新掛載VMFS磁碟區、將資料存放區和虛擬機器（VM\）移至其預先轉換狀態。如果您不熟悉ESXi CLI、或是在環境中比較方便、可以使用vSphere Client重新掛載磁碟區。 
+---
+= 使用vSphere Client在轉換後重新掛載VMFS磁碟區
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+移轉之後、您必須重新掛載VMFS磁碟區、將資料存放區和虛擬機器（VM）移至其預先轉換狀態。如果您不熟悉ESXi CLI、或是在環境中比較方便、可以使用vSphere Client重新掛載磁碟區。
+
+這些步驟適用於磁碟區和跨距磁碟區。
+
+.步驟
+. 登入ESXi主機或管理ESXi主機的vCenter Server。
+. 在*主機與叢集*下、選取ESXi主機。
+. 瀏覽至*組態*>*硬體*>*儲存設備*。
+. 按一下右上角的*新增儲存設備*。
+. 選擇*磁碟/LUN*。
+. 單擊 * 下一步 * 。
+. 在LUN清單中、找到顯示資料存放區名稱的* vmfs_label*欄。
+. 選取LUN以完成重新掛載作業。
++
+如果您要重新掛載跨距VMFS磁碟區、跨距中的第一個LUN會標示為「標頭」。您必須選取「標頭」LUN、才能完成重新掛載作業。
+
+. 單擊 * 下一步 * 。
+. 在Select VMFS Mount Options（選擇VMFS掛載選項）窗口中，選擇*保留現有的簽名*。
+. 完成精靈。
+. 針對顯示VMs_label欄中資料存放區名稱的所有LUN、重複這些步驟。
++
+資料存放區會重新掛載、而VM會處於作用中狀態。
+
+

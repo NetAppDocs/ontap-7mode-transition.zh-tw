@@ -1,0 +1,50 @@
+---
+permalink: copy-based/task_generating_an_assessment_report_by_importing_inventory_report_xml.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, generate, assessment, report, inventory, xml 
+summary: 您可以匯入庫存收集工具所產生的庫存XML報告、以評估主機和控制器的功能。接著ONTAP 您可以建立評估報告、找出這些主機和控制器在選定的版本中的運作方式、以利轉換。 
+---
+= 匯入庫存報告XML以產生評估報告
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以匯入庫存收集工具所產生的庫存XML報告、以評估主機和控制器的功能。接著ONTAP 您可以建立評估報告、找出這些主機和控制器在選定的版本中的運作方式、以利轉換。
+
+* 您必須執行Inventory Collect Tool、並產生庫存報告XML檔案。
++
+
+NOTE: 若要評估主機和控制器以進行複本型轉換、您必須使用Inventory Collect Tool 3.3來收集庫存。
+
+* 您必須準備好7-Mode系統和主機、才能進行轉換評估。
+
+
+匯入庫存報告並執行轉換評估時、您想要評估的系統不需要連線。
+
+.步驟
+. 登入7-Mode Transition Tool、然後按一下首頁中的* Collect and評估*。
+. 按一下*匯入庫存報告XML *。
+. 按一下「*瀏覽*」、然後選取「庫存收集工具」所產生的XML報告。
+. 按一下*匯入*。
++
+系統的評估狀態顯示為「已匯入；就緒」。
+
+. 選取您要執行轉換評估的系統。
+. 按一下「*建立轉換評估報告*」。
+. 在「Create Transition Assessment Report（建立轉換評估報告）」對話方塊中、選取Data ONTAP 目標叢集的還原版本。
+. 指定報告檔案名稱的前置詞。
+. 按一下*產生報告*。
++
+評估工作簿和評估執行摘要報告是以XML格式產生。
+
+. 使用Microsoft Office 2007或更新版本檢視Microsoft Excel中的評估工作簿報告、以及Microsoft Word中的評估執行摘要報告。
++
+若要在Microsoft Excel中檢視評估工作簿報告、您可能必須在Excel中啟用巨集。
+
+
+
+*相關資訊*
+
+xref:task_collecting_tool_logs.adoc[正在下載轉換記錄檔]

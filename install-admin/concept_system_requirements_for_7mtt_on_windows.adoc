@@ -1,0 +1,137 @@
+---
+permalink: install-admin/concept_system_requirements_for_7mtt_on_windows.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, install, system, requirements, windows, transition, tool 
+summary: 您必須確保Windows主機符合安裝及執行7-Mode Transition Tool所需的組態。 
+---
+= 在Windows系統上安裝7-Mode Transition Tool的系統需求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必須確保Windows主機符合安裝及執行7-Mode Transition Tool所需的組態。
+
+請務必參閱目前的7-Mode Transition Tool link:http://docs.netapp.com/us-en/ontap-7mode-transition/releasenotes.html["版本資訊"] 以取得支援主機和已知問題的最新資訊。
+
+
+
+== 硬體需求
+
+* 雙核心x64處理器、1.0 GHz以上
+* 8 GB RAM
+* 40 GB可用磁碟空間
+
+
+
+
+== 軟體需求
+
+* 您的64位元Windows系統必須執行下列其中一個作業系統版本：
++
+** Windows 7企業版
+** Windows 7 Enterprise SP1
+** Windows Server 2008 Standard
+** Windows Server 2008 R2 Standard
+** Windows Server 2008 R2 Enterprise（含SP1）
+** Windows Server 2012 Standard
+** Windows Server 2012 R2 Standard
+** Windows 8.1 Enterprise
+** Windows Server 2012 R2 Datacenter版本
+** 對於7-Mode Transition Tool版本3.3.2P1、您也可以使用下列其中一個作業系統版本：
++
+*** Windows 10企業版
+*** Windows Server 2016 Standard
+*** Windows Server 2016 Datacenter
+*** Windows Server 2019標準版
+*** Windows Server 2019資料中心
+
+
+** 對於7-Mode Transition Tool版本3.3.3、您也可以使用下列其中一個作業系統版本：
++
+*** Windows 10專業版
++
+
+NOTE: 您可以使用符合所需軟體需求和硬體需求的Windows虛擬機器來安裝7-Mode Transition Tool。
+
+
+
+
+
+* 64位元Oracle Java執行時間環境（JRE）1.8更新144
++
+
+NOTE: 如果Windows主機沒有安裝任何JRE或32位元的JRE,則7-Mode Transition Tool安裝程式會自動安裝64位元的JRE1.8 update 144。如果安裝的是舊版64位元的JRE,安裝程式會自動將JRE更新 至JRE1.8 update 144。
+
++
+自動更新JRE時、其他需要舊版JRE的應用程式可能會受到影響。
+
++
+
+NOTE: 若使用1.8版更新46或更新版本（包括JRE1.8更新144）、若要讓7-Mode Transition Tool與Data ONTAP 7-Mode系統和ONTAP BIOS系統中的執行功能進行通訊、Data ONTAP 7-Mode系統和ONTAP BIOS系統中執行的作業系統上的SSL金鑰長度必須至少為1024。
+
++
+https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/7MTT%3A_How_to_resolve_TLS_or_SSL_communication_issue["7MTT：如何解決TLS或SSL通訊問題"]
+
+
+
+
+
+== 伺服器組態需求
+
+若要存取Web介面、必須將安裝此工具的Windows系統設定為：
+
+* 7-Mode Transition Tool伺服器的連接埠8443必須可用。
++
+如果連接埠8443無法使用、或您想要使用不同的連接埠、您必須變更「$install_DIR\etc\conf\Transition工具.conf」檔案中「工具.https：port」參數所指定的連接埠。
+
++
+最佳實務做法是使用HTTPS存取Web介面。不過、如果您想要使用HTTP存取Web介面、則連接埠8088必須可用。若要取代連接埠8088、您必須變更「Transition工具.conf」檔案中「工具.http：port」參數所指定的連接埠。
+
++
+
+NOTE: 變更組態檔中的連接埠之後、您必須重新啟動7-Mode Transition Tool服務。
+
+* 防火牆應關閉或設定為允許用於存取工具之連接埠上的流量。
+
+
+若要轉換網路群組和CIFS本機使用者和群組、必須符合下列需求：
+
+* 7-Mode Transition Tool的連接埠8088必須可用。
++
+若要取代連接埠8088、您必須變更「Transition工具.conf」檔案中「工具.http：port」參數所指定的連接埠、然後重新啟動7-Mode Transition Tool服務。
+
+* 叢集中的每個節點必須至少為目標SVM設定一個資料LIF。
+* 所有SVM資料LIF都必須能夠與7-Mode Transition Tool連接埠8088或「Transition工具.conf」檔案中的「工具.http連接埠」參數所指定的連接埠進行通訊。
++
+
+NOTE: 您必須確保防火牆不會封鎖此流量。
+
+
+
+
+
+== 用戶端（Web介面）需求
+
+存取Web介面的系統必須具備下列項目：
+
+* 下列其中一種網頁瀏覽器：
++
+** Microsoft Internet Explorer 9、10或11
+** Google Chrome 27或更新版本
+** Mozilla Firefox 20或更新版本所有瀏覽器都必須啟用TLS。
+
+
++
+
+NOTE: 如果您使用Microsoft Internet Explorer做為網頁瀏覽器、則必須停用SSLv2。
+
+* 螢幕解析度為1280 x 1024或更高
+
+
+每次安裝新版本的工具時、您都必須按下系統上的Ctrl+F5來清除瀏覽器快取。
+
+*相關資訊*
+
+https://mysupport.netapp.com/NOW/products/interoperability["NetApp互通性"]

@@ -1,0 +1,69 @@
+---
+section: snapmirror
+title: 使用SnapMirror進行7-Mode資料移轉
+url: "/snapmirror/index.html"
+entries:
+- title: 使用SnapMirror移轉7-Mode磁碟區
+  url: "/snapmirror/task_transitioning_7_mode_volumes_using_snapmirror.html"
+  entries:
+  - title: 規劃移轉
+    url: "/snapmirror/concept_planning_for_transition.html"
+    entries:
+    - title: 不支援移轉的功能和磁碟區
+      url: "/snapmirror/concept_features_and_volumes_not_supported_for_transition.html"
+      entries:
+      - title: SAN移轉不支援的功能
+        url: "/snapmirror/concept_unsupported_7_mode_san_functions.html"
+    - title: 7-Mode轉換版本需求
+      url: "/snapmirror/reference_7_mode_ontap_version_requirements_for_transitioning_volumes_using_snapmirror.html"
+    - title: 使用SnapMirror進行移轉時的考量
+      url: "/snapmirror/concept_considerations_for_using_snapmirror_for_transition.html"
+    - title: 轉換SAN磁碟區時的空間考量
+      url: "/snapmirror/concept_considerations_for_space_when_transitioning_san_volumes.html"
+    - title: 轉換SnapLock 功能指南
+      url: "/snapmirror/concept_guidelines_for_transitioning_snaplock_volumes.html"
+  - title: 準備轉換
+    url: "/snapmirror/task_preparing_for_transition.html"
+    entries:
+    - title: 移轉授權需求
+      url: "/snapmirror/concept_licensing_requirements_for_transition.html"
+    - title: 準備7-Mode系統進行轉換
+      url: "/snapmirror/task_preparing_7_mode_system_for_transition.html"
+    - title: 準備叢集以進行移轉
+      url: "/snapmirror/task_preparing_cluster_for_transition.html"
+    - title: 建立轉換對等關係
+      url: "/snapmirror/task_creating_a_transition_peering_relationship.html"
+    - title: 設定SnapMirror關係的TCP視窗大小
+      url: "/snapmirror/task_configuring_a_tcp_window_size_for_snapmirror_relationships.html"
+  - title: 移轉磁碟區
+    url: "/snapmirror/task_transitioning_volumes.html"
+    entries:
+    - title: 轉換獨立Volume
+      url: "/snapmirror/task_transitioning_a_stand_alone_volume.html"
+    - title: 以交錯式組態轉換Volume SnapMirror關係
+      url: "/snapmirror/task_transitioning_a_data_protection_relationship.html"
+      entries:
+      - title: 轉換次要Volume
+        url: "/snapmirror/task_transitioning_secondary_volume.html"
+      - title: 轉換主要Volume
+        url: "/snapmirror/task_transitioning_a_primary_volume.html"
+    - title: 並行轉換Volume SnapMirror關係
+      url: "/snapmirror/task_transitioning_a_volume_snapmirror_relationship_in_parallel.html"
+- title: 在vFiler單元之間轉換災難恢復關係
+  url: "/snapmirror/task_transitioning_disaster_recovery_relationship.html"
+- title: 在轉換期間從7-Mode站台的災難中恢復
+  url: "/snapmirror/task_recovering_from_a_disaster_at_7_mode_site_during_transition.html"
+  entries:
+  - title: 在災難發生後、將用戶端重新導向至叢集Data ONTAP 式的不二級磁碟區
+    url: "/snapmirror/task_redirecting_clients_to_clustered_ontap_secondary_volume.html"
+  - title: 將7-Mode主磁碟區轉換為獨立磁碟區
+    url: "/snapmirror/task_transitioning_7_mode_primary_as_a_standalone_volume.html"
+  - title: 將用戶端重新導向至叢集Data ONTAP 式的功能區
+    url: "/snapmirror/task_redirecting_clients_to_clustered_ontap_primary_volume_after_disaster.html"
+- title: 疑難排解使用SnapMirror時的轉換問題
+  url: "/snapmirror/reference_troubleshooting.html"
+  entries:
+  - title: 恢復失敗的SnapMirror基礎傳輸
+    url: "/snapmirror/task_resuming_a_failed_snapmirror_transfer_transition.html"
+  - title: 從發生故障的LUN轉換中恢復
+    url: "/snapmirror/task_recovering_from_a_failed_lun_transition.html"

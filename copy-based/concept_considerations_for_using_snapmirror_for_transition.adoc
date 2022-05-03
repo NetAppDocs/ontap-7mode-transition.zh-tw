@@ -1,0 +1,59 @@
+---
+permalink: copy-based/concept_considerations_for_using_snapmirror_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, snapmirror 
+summary: 您可以建立資料複製排程、並自訂SnapMirror資料傳輸、以便進行轉換作業、而不會影響現有的7-Mode至7-Mode SnapMirror或SnapVault SnapMirror作業。 
+---
+= 使用SnapMirror進行移轉時的考量
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以建立資料複製排程、並自訂SnapMirror資料傳輸、以便進行轉換作業、而不會影響現有的7-Mode至7-Mode SnapMirror或SnapVault SnapMirror作業。
+
+
+
+== 並行SnapMirror傳輸的最大數量
+
+在轉換期間、7-Mode和ONTAP VMware系統所支援的最大並行SnapMirror傳輸數取決於特定儲存系統機型所允許的Volume SnapMirror複寫作業數。
+
+如需系統機型並行Volume SnapMirror傳輸的最大數量資訊、請參閱 link:https://library.netapp.com/ecm/ecm_get_file/ECMP1635994["《7-Mode資料保護線上備份與恢復指南》Data ONTAP"]。
+
+
+
+== 資料複製排程
+
+* 此工具用於執行SnapMirror作業（基礎、更新或重新同步）的同時SnapMirror傳輸數、是根據您在建立專案時所設定的排程而定。
+* 如果不同的專案正在從相同的7-Mode控制器轉換磁碟區、您必須確保資料複製排程不會在不同的專案之間重疊。
+* 您可以透過下列方式、確保現有的備份與災難恢復（DR）作業不會受到7-Mode Transition Tool轉換作業的影響：
++
+** 您應該為專案建立SnapMirror資料複製排程、使其不會與現有的7-Mode SnapMirror或SnapVault VMware排程重疊。
+** 您應該設定同時執行SnapMirror傳輸的數量、使現有的7-Mode SnapMirror或SnapVault VMware排程不會失敗。
++
+您也可以編輯使用中的排程、並將並行Volume SnapMirror傳輸的最大數量修改為零、以釋出部分傳輸。
+
+
+
+* 您必須確保在整個作業期間內、7-Mode儲存系統上都能使用併發SnapMirror傳輸的數量、以及針對作業所設定的節流（預先轉換、轉換和隨需更新）。
++
+即使專案中的某個磁碟區、最終的遞增更新作業仍失敗時、轉換作業也會失敗。
+
+* 對於次要專案、轉換後、7-Mode主要Volume與ONTAP VMware次要Volume之間SnapMirror關係的增量SnapMirror更新是根據7-Mode到7-Mode SnapMirror關係排程進行。
++
+您必須確保7-Mode主控制器上有足夠的並行SnapMirror傳輸、才能執行這些更新。
+
+
+
+
+
+== 使用多個路徑進行轉換
+
+您可以使用資料複製IP位址和多重路徑IP位址、指定兩個轉換路徑。不過、這兩個路徑都只能用於負載平衡、而不能用於容錯移轉。
+
+*相關資訊*
+
+xref:concept_guidelines_for_creating_a_data_copy_schedule.adoc[建立資料複本排程的考量事項]
+
+xref:task_creating_schedule_for_snapmirror_transfers.adoc[建立SnapMirror傳輸的資料複製排程]

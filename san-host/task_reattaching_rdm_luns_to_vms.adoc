@@ -1,0 +1,38 @@
+---
+permalink: san-host/task_reattaching_rdm_luns_to_vms.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, rdm, lun, vm 
+summary: 若要讓附加至原始裝置對應（RDM）LUN的VM在轉換後正常運作、您必須從VM移除裝載LUN的RDM磁碟。然後、您必須根據7-Mode Transition Tool（7MTT）所提供的LUN序號、將RDM磁碟重新連接至VM。 
+---
+= 將RDM LUN重新附加至VM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+若要讓連接至原始裝置對應（RDM）LUN的VM在轉換後正常運作、您必須從VM移除裝載LUN的RDM磁碟。然後、您必須根據7-Mode Transition Tool（7MTT）提供的LUN序號、將RDM磁碟重新連接至VM。
+
+* 對於複製型轉換、請先執行這些步驟、再在7MTT中啟動儲存設備切換作業。
+* 如需無複製轉換、請在7MTT中啟動匯出及停止7-Mode系統作業之前、先執行下列步驟。
+
+
+.步驟
+. 在_庫存評估工作簿_中、瀏覽至*主機VM磁碟詳細資料*索引標籤。
+. 在「*類型*」欄中、使用PTRDM或NPTRDM識別ESXi主機VM。
+. 記下VM名稱、* Disk *（磁碟*）欄中的磁碟路徑詳細資料、以及* Device Mapped（已對應裝置）*欄中的na* ID。
+. 確認在轉換後產生的7MTT對應檔案中列出了naa ID。
+. 驗證naa ID在對應檔案的「* LUN WWID*」欄位中是否有對應的新naa ID。
++
+這是新的叢集Data ONTAP 式LUN naa ID。
+
+. 使用Data ONTAP * LUN WWID*欄中的叢集式實體LUN naa ID和磁碟路徑詳細資料、將叢集Data ONTAP 式的實體LUN重新連接到VM。
+
+
+*相關資訊*
+
+xref:task_removing_stale_rdm_using_vsphere_client.adoc[使用vSphere Client移除過時的RDM]
+
+xref:task_reattaching_rdm_to_vms_using_vsphere_client.adoc[使用vSphere Client將RDM重新附加至VM]
+
+xref:task_reattaching_rdm_using_esxi_cli_console.adoc[使用ESXi的CLI/Console重新附加RDM]

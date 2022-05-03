@@ -1,0 +1,68 @@
+---
+permalink: install-admin/concept_comparison_of_copy_free_transition_and_copy_based_transition.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, install, copy, free, transition, based 
+summary: 您可以使用7-Mode Transition Tool ONTAP 、使用複製型轉換或無複製轉換、將資料和組態從7-Mode移轉至VMware。在轉換之前、請務必瞭解這兩種方法之間的差異。 
+---
+= 無複本轉換與複本型轉換的比較
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用7-Mode Transition Tool ONTAP 、使用複製型轉換或無複製轉換、將資料和組態從7-Mode移轉至VMware。在轉換之前、請務必瞭解這兩種方法之間的差異。
+
+|===
+| 參數 | 無複製轉換 | 複本型轉換 
+
+
+ a| 
+轉換單元
+ a| 
+HA配對
+ a| 
+磁碟區群組
+
+
+
+ a| 
+硬體需求
+ a| 
+磁碟櫃會重複使用
+ a| 
+新的磁碟機櫃和磁碟來裝載轉換的磁碟區
+
+
+
+ a| 
+平台需求
+ a| 
+僅支援中階和高階平台 https://mysupport.netapp.com/matrix["NetApp 互通性對照表工具"]
+ a| 
+支援所有平台
+
+
+
+ a| 
+轉換期間
+ a| 
+整體而言、轉換時間較短（不需複製資料）
+ a| 
+較長的持續時間（初始基準和更新傳輸時間因工作負載、網路頻寬和移轉的資料容量而異）
+
+
+
+ a| 
+資料存取中斷
+ a| 
+時數範圍內
+
+
+IMPORTANT: 在大多數情況下、儲存設備轉換時間可為3至8小時。轉換時間包括工具執行兩項自動化作業所需的時間（匯出和停止作業、匯入作業）、以及將磁碟櫃手動連接至新控制器所需的時間。匯出和停止作業以及匯入作業可能需要2小時的時間。磁碟櫃的佈線時間從1小時到6小時不等。
+
+這份轉換時間指南不包含必要的正式作業前測試所需的時間、並假設在未發生非預期的故障（例如磁碟故障）的情況下進行無錯誤轉換。
+ a| 
+以分鐘為單位
+
+|===

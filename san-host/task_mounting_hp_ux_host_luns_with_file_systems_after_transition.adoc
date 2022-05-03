@@ -1,0 +1,65 @@
+---
+permalink: san-host/task_mounting_hp_ux_host_luns_with_file_systems_after_transition.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, mount, hp, ux, host, lun, file, system 
+summary: 在將檔案系統的HP-UX主機LUN從Data ONTAP 以7-Mode運作的支援功能移轉至叢集Data ONTAP 式支援功能後、您必須掛載LUN。 
+---
+= 在轉換後、將HP-UX主機LUN與檔案系統一起掛載
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在將檔案系統的HP-UX主機LUN從Data ONTAP 以7-Mode運作的支援功能移轉至叢集Data ONTAP 式支援功能後、您必須掛載LUN。
+
+對於複製型轉換、請在完成7-Mode Transition Tool（7MTT）中的Storage Cutover（儲存設備轉換）作業之後、執行這些步驟。HP-UX主機不支援無複製轉換。
+
+.步驟
+. 探索新的叢集Data ONTAP 式LUN：
++
+"* ioscan -fNC disk*
+
+. 確認已Data ONTAP 探索到叢集式的LUN：
++
+「* sanlun LUN show*」
+
+. 在Data ONTAP 移轉之前、請確認叢集式VMware LUN的「LUN路徑名稱」與7-Mode LUN的「LUN路徑名稱」相同。
+. 驗證模式欄中的輸出是否已從「7」變更為「C」。
+. 使用「mapfile（mapfile）檔來匯入Volume群組：
++
+"* vgimport -s -v -m /tmp/mapfile.vg01 /dev/vg01"*
+
+. 啟動邏輯磁碟區：
++
+'* vgchange -A y _vg_name_*
+
+. 將舊版裝置特殊檔案名稱（DSF）轉換為持續性DSF：
++
+hy*vgdsf -c dev/vg01*
+
+. 確認VG狀態顯示為可用：
++
+「* vgdisplay*」
+
+. 手動掛載每個裝置：
++
+hy* mount -F VxFS -o largefiles _device_name mount_point_*
+
+. 如果系統提示您執行此命令、請執行flext命令。
+. 驗證掛載點：
++
+《*第二工作日*》
+
++
+以下範例顯示掛載點的顯示方式：
+
++
+[listing]
+----
+bash-2.05# bdf
+Filesystem          kbytes     used     avail     used   Mounted on
+/dev/vg01/lvol1   23592960   1050952   22189796    5%   /mnt/qa/vg01
+/dev/vg01/lvol2   23592960    588480   22645044    3%   /mnt/qa/vg02
+----
+

@@ -1,0 +1,65 @@
+---
+permalink: copy-based/task_applying_configurations_to_ontap_volumes.html 
+sidebar: sidebar 
+keywords: apply, configuration, ontap, copy, based, transition 
+summary: 完成基礎資料複本之後、您可以將7-Mode系統（包括傳輸協定和服務組態）的所有NAS組態複製並套用至ONTAP VMware Volume。如果目標叢集執行Data ONTAP 的是32個或更新版本的版本、SAN組態會在此階段轉換。 
+---
+= 將組態套用ONTAP 至功能區
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+完成基礎資料複本之後、您可以將7-Mode系統（包括傳輸協定和服務組態）的所有NAS組態複製並套用至ONTAP VMware Volume。如果目標叢集執行Data ONTAP 的是32個或更新版本的版本、SAN組態會在此階段轉換。
+
+* 這些組態會套用至「預先轉換」階段、此階段有兩種模式：「預先轉換唯讀模式」和「預先轉換讀取/寫入模式」。
+* 專案包含下列項目時、不支援預先轉換讀取/寫入模式：
++
+** SAN Volume和目標叢集執行Data ONTAP 的是不含更新版本的在這種情況下、下列組態不會套用到預先轉換階段、而是會在轉換階段套用：
++
+*** SAN組態
+*** Snapshot排程組態
+
+
+** 符合法規的大量資料。SnapLock
++
+如果專案包含SnapLock 「不符合需求」磁碟區、則「快照排程」組態不會套用到「預先轉換」階段、而是會在轉換階段套用這些組態。
+
++
+請參閱 xref:concept_considerations_for_transitioning_of_snaplock_compliance_volumes.adoc[轉換SnapLock 不符合法規的考量]。
+
+
+
+* 如果目標叢集執行Data ONTAP 的是還原8.3.1或更早版本、則在預先轉換期間、如果專案中的任何磁碟區包含LUN、則不支援讀寫模式。
+* 如果目標叢集執行Data ONTAP 的是EASE8.3.1或更早版本、且專案同時包含SAN和NAS磁碟區、則只有NAS組態會在預先轉換階段進行轉換、而且這些NAS組態只能在唯讀模式下進行測試。
++
+SAN組態只會在儲存設備轉換階段進行轉換。
+
++
+
+NOTE: 未設定SAN LIF。
+
+* 如果目標叢集執行Data ONTAP 的是Eshot 8.3.1或更早版本、且專案包含SAN磁碟區、則在套用組態（預先轉換）階段不會套用Snapshot排程組態。
++
+這些組態會在轉換階段套用。
+
+* 如果目標叢集執行Data ONTAP 的是Eshot 8.3.1或更早版本、且專案包含SAN磁碟區、則在套用組態（預先轉換）階段不會套用Snapshot排程組態。
++
+這些組態會在轉換階段套用。
+
+
+
+.步驟
+* 以唯讀模式執行轉換作業：
++
+'轉換CBT預先轉換-p _project名稱_-m ro_test -c _mast_cap_並行 傳輸_-b _SnapMirror節流_*
+
+* 以讀寫模式執行轉換作業：
++
+.. 將組態套用ONTAP 至下列項目：+`* Transition CBT precutover -p _project名稱_-m rw_test -c _mast_cap_並行 傳輸_-b _SnapMirror節流_*
+.. 手動測試ONTAP 及驗證中的組態。
+.. 開始重新同步作業：+「* Transition CBT resSync -p _project name_*」
+
+
+

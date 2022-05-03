@@ -1,0 +1,14 @@
+---
+permalink: inventory-collect/index.html 
+sidebar: sidebar 
+keywords: 7, mode, ontap, host, storage, information, collection, transition, assessment 
+summary: 說明如何收集ONTAP 有關VMware及7-Mode系統、交換器、主機及主機應用程式的資訊、並產生一份庫存報告、供您搭配7-Mode Transition Tool使用、以評估系統是否已準備好進行轉換。 
+---
+= 主機與儲存資訊收集指南
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+本指南說明如何收集ONTAP 關於下列項目的資訊：功能與7模式系統、交換器、主機和主機應用程式、以及產生一份庫存報告、供您搭配7-Mode Transition Tool使用、以評估系統是否已準備好進行轉換。

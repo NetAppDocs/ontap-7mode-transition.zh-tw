@@ -1,0 +1,108 @@
+---
+permalink: copy-based/task_preparing_7_mode_system_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, prepare, 7, mode 
+summary: 在開始轉換之前、您必須先完成7-Mode系統上的某些工作、例如新增SnapMirror授權、讓7-Mode系統能夠與目標叢集通訊、以及啟用TLS。 
+---
+= 準備7-Mode系統進行轉換
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在開始轉換之前、您必須先完成7-Mode系統上的某些工作、例如新增SnapMirror授權、讓7-Mode系統能夠與目標叢集通訊、以及啟用TLS。
+
+您要轉換的所有7-Mode磁碟區都必須處於線上狀態。
+
+.步驟
+. 在7-Mode系統上新增並啟用SnapMirror授權：
++
+.. 在7-Mode系統上新增SnapMirror授權：
++
+‘*授權新增_license_code_*
+
++
+「_license_code_」是您購買的授權代碼。
+
+.. 啟用SnapMirror功能：+`*選項SnapMirror。啟用on*
+
+
+. 選擇下列其中一個選項、將7-Mode系統和目標叢集設定為彼此通訊：
++
+** 將「napmirror存取」選項設為「ALL」。
+** 將"shnapmirror．access"（快照鏡像存取）選項的值設定為叢集上所有叢集間LIF的IP位址。
+** 如果"shnapmirror．access"選項是"legacy（傳統）"、而"napmirror.checkip.enable`選項是"Off"、請將SVM名稱新增至"/etc/SnapMirror．allow"檔案。
+** 如果"shnapmirror．access"選項是"legacy（傳統）"、而"shapnapmirror.checkip.enable`選項是"on"（開啟）、請將叢集間LIF的IP位址新增至"etc/SnapMirror．allow"檔案。
+
+
+. 如果儲存系統未啟用HTTPS、請啟用HTTPS：
++
+‘*選項httpd.admin.SSL.enable on *’
+
++
+HTTPS預設為啟用。
+
+. 在7-Mode儲存系統上啟用TLS、讓7-Mode Transition Tool能夠與7-Mode系統通訊：
++
+.. 如果儲存系統尚未啟用SSL、請設定並啟動SSL：
++
+「SecureAdmin設定SSL*」
+
++
+預設會為儲存系統設定SSL。如果先前已針對儲存系統設定SSL、系統會詢問您是否要繼續。如果您不想進行任何變更、可以結束SSL設定。
+
+.. 啟用SSL：
++
+「*」選項SSL.enable on *
+
++
+必須啟用此選項、才能允許透過TLS進行通訊。
+
+.. 啟用TLS：
++
+「*」選項TLS.enable on *
+
+.. 在7-Mode系統上停用SSLv2和SSLv3：
++
+「*選項SSL.v2.enable off*」
+
++
+「*選項SSL.v3.enable off*」
+
+
+
++
+7-Mode Transition Tool使用TLS或SSL傳輸協定與7-Mode儲存系統通訊。如果儲存系統上已啟用TLS、則此工具會使用TLS傳輸協定與儲存系統通訊。如果停用TLS、且儲存系統上已啟用SSLv3、則此工具會使用SSLv3與儲存系統通訊。
+
++
++重要：最佳做法是啟用TLS並停用SSLv2和SSLv3、以避免安全性弱點。
+
+. 視7-Mode系統的版本而定Data ONTAP 、請執行下列步驟：
++
+.. 允許所有介面上的SnapMirror流量：
++
+‘*選項interface.blocked.SnapMirror "*
+
+.. 如果您執行Data ONTAP 的是版本7.3.7、8.0.3或8.1、而且使用e0M介面的IP位址做為管理IP位址、以便與7-Mode Transition Tool互動、請允許e0M介面上的資料流量：
++
+‘*選項interface.blocked.mgmt_data_trait off*’
+
+
+
+. 如果您已在磁碟區上設定I2P、讀取分配或NVFIL選項、請執行下列步驟：
++
+.. 如果停用這些選項、請確認其他作業不會受到影響。
+.. 停用選項：
++
+「* vol選項vol_name no_I2P off*」
+
++
+‘* vol選項vol_name read_realloc* off*
+
++
+‘* vol選項vol_name nvfail off*’
+
+
+
+

@@ -1,0 +1,14 @@
+---
+permalink: copy-free/concept_preparing_data_protection_features_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, data, protection, features 
+summary: 您必須執行一些手動步驟來轉換7-Mode SnapMirror關係。您也必須瞭解支援且不支援移轉的資料保護關係。 
+---
+= 準備資料保護功能以進行移轉
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必須執行一些手動步驟來轉換7-Mode SnapMirror關係。您也必須瞭解支援且不支援移轉的資料保護關係。

@@ -1,0 +1,46 @@
+---
+permalink: copy-based/concept_prerequisites_to_transition_nfs_configurations.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, prerequisites, nfs, configurations 
+summary: 只有在7-Mode系統和叢集上符合特定先決條件時、才會使用7-Mode Transition Tool來轉換NFS組態。如果不符合任何條件、則此工具不會轉換組態。 
+---
+= 轉換NFS組態的先決條件
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+只有在7-Mode系統和叢集上符合特定先決條件時、才會使用7-Mode Transition Tool來轉換NFS組態。如果不符合任何條件、則此工具不會轉換組態。
+
+
+
+== 7-Mode必備條件
+
+* NFS必須獲得授權。
+* 如果獲得授權、則必須在擁有轉換磁碟區的VFiler裝置上啟用NFS。MultiStore
+* 若要將Microsoft Active Directory（AD）型Kerberos伺服器轉換成新的SVM、AD網域必須有DNS項目。
++
+
+NOTE: 若要轉換Kerberos組態、至少必須將一個LIF轉換為專案的一部分、且LIF必須可解析為主機名稱。
+
+* 如果您想要轉換記憶體內的匯出規則、則必須先將其新增至「/etc/exports」檔案、才能進行轉換。
++
+7-Mode Transition Tool只會轉換在「/etc/exports」檔案中定義的持續匯出規則。
+
+
+
+
+
+== 叢集先決條件
+
+* NFS必須獲得授權。
+* 若要將Microsoft AD型Kerberos伺服器轉換成已設定DNS的現有SVM、則AD網域必須有DNS項目。
+* Kerberos金鑰發佈中心（Kdc）與ONTAP 該系統之間的時鐘偏移必須小於或等於5分鐘。
+
+
+*相關資訊*
+
+xref:concept_how_nfs_exports_are_transitioned.adoc[NFS匯出的轉換方式]
+
+http://docs.netapp.com/ontap-9/index.jsp["NetApp文件：ONTAP VMware 9"]

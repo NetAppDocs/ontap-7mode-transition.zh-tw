@@ -1,0 +1,25 @@
+---
+permalink: san-host/task_preparing_for_cutover_when_transitioning_aix_hosts_with_fc_fcoe_configurations.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, cutover, phase, aix, host, fc, fcoe, configurations 
+summary: 在進入具有FC或FCoE組態之AIX主機的轉換階段之前、您必須執行特定步驟。 
+---
+= 準備轉換具有FC/FCoE組態的AIX主機時、進行轉換階段的準備工作。
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在進入具有FC或FCoE組態之AIX主機的轉換階段之前、您必須執行特定步驟。
+
+必須Data ONTAP 建立與叢集式支援節點的網路連線和分區。
+
+對於複製型轉換、請在完成7-Mode Transition Tool中的Storage Cutover作業之後、執行這些步驟。AIX主機不支援無複製轉換。
+
+.步驟
+. 關閉主機：
++
+h*關機
+
+

@@ -1,0 +1,48 @@
+---
+permalink: copy-based/task_aborting_a_subproject.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, abort, project 
+summary: 例如、當控制器或叢集的效能受到影響時、您可能會想要中止執行中的專案。您可以從儀表板中止執行中的專案。 
+---
+= 正在中止專案
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+例如、當控制器或叢集的效能受到影響時、您可能會想要中止執行中的專案。您可以從儀表板中止執行中的專案。
+
+您必須先考量下列事項、才能終止使用SnapMirror關係來移轉磁碟區的專案：
+
+* 如果兩個專案都已啟動、則中止一個專案會中止相關的專案。
++
+例如、如果您中止主要專案、次要專案也會中止。
+
+* 如果在目前專案上中止作業失敗、則相關專案不會中止。
+* 如果只有一個作用中專案被中止、則相關專案的啟動作業將會失敗。
+* 當您中止主要專案時、從7-Mode主Volume到ONTAP VMware次要Volume的複製作業不會中止。
++
+只ONTAP 有從7-Mode主Volume到對應的功能區的複製作業會中止。
+
+
+
+
+NOTE: 如果7-Mode專案中止、則唯一的選項是刪除專案。專案中止後、無法繼續或重新啟動專案。
+
+.步驟
+. 從儀表板選取您要中止的專案。
+. 按一下*中止*。
+. 從叢集刪除ONTAP 在轉換過程中建立的等量磁碟區。
+. 從7-Mode系統、將SnapMirror關係發佈至ONTAP VMware Volume。
+. 如果中止Volume SnapMirror關係、您必須執行下列動作：
++
+.. 中斷並刪除7-Mode主要Volume與ONTAP VMware次要Volume之間的SnapMirror關係。
+.. 從主要的7-Mode系統、將SnapMirror關係發佈到ONTAP VMware次要磁碟區。
+
+
+
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-cmpr/GUID-5CB10C70-AC11-41C0-8C16-B4D0DF916E9B.html["指令ONTAP"]
+
+https://library.netapp.com/ecm/ecm_download_file/ECMP1511537["版本8：Data ONTAP2命令：7-Mode、Volume 1的手動頁面參考"]

@@ -1,0 +1,20 @@
+---
+permalink: san-host/concept_hp_ux_host_remediation.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, hp, ux, host, remediation 
+summary: 如果您使用7-Mode Transition Tool（7-Mode Transition Tool）（7MTT）在Data ONTAP SAN環境中從以7-Mode運作的VMware移轉至叢集Data ONTAP 式VMware、則必須在移轉前後在HP-UX主機上執行一系列步驟、以避免轉換複雜度。 
+---
+= HP-UX主機補救
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您使用7-Mode Transition Tool（7MTT）、在Data ONTAP SAN環境中從以7-Mode運作的VMware移轉到叢集Data ONTAP 式的VMware、則必須在移轉前後在HP-UX主機上執行一系列步驟、以避免移轉複雜度。
+
+*相關資訊*
+
+xref:task_making_a_san_boot_lun_primary_for_hp_ux_emulex_hbas_after_transition.adoc[將SAN開機LUN設定為移轉後適用於HP-UX Emulex HBA的主要開機LUN]
+
+xref:task_making_san_boot_lun_primary_boot_lun_for_hp_ux_qlogic_hbas_after_transition.adoc[將SAN開機LUN設定為移轉後適用於HP-UX QLogic HBA的主要開機LUN]

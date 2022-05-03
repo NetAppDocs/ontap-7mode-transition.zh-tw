@@ -1,0 +1,48 @@
+---
+permalink: inventory-collect/task_generating_fc_zone_plan.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, generate, fc, zone, plan, transition 
+summary: 收集Data ONTAP 完有關功能完善的系統、主機和FC交換器的資訊之後、您就可以產生FC區域計畫、以便在移轉後設定叢集中的交換器。 
+---
+= 產生FC區域計畫
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+收集Data ONTAP 完有關功能完善的系統、主機和FC交換器的資訊之後、您就可以產生FC區域計畫、以便在移轉後設定叢集中的交換器。
+
+* 7-Mode系統、主機和叢集必須連接至交換器。
+* 必須收集有關叢集、SVM、FCP LIF和交換器的資訊。
++
+叢集可連接至7-Mode系統所在的交換器、或連接至同一個Fabric中的新交換器。
+
++
+xref:concept_supported_configurations_for_generating_an_fc_zone_plan.adoc[可產生FC區域計畫的支援組態]
+
+
+
+.步驟
+. 在CLI中、瀏覽至ICT目錄。
+. 從CLI產生FC區域計畫：
++
+-cmd generate-fc-區域-source-Filers_7-mode-ip1,7mode-IP2_-dest-SVM叢集名稱：vserver_name_-fc-switches _switch-name:vSAN-ID1、vSAN-ID2_7mode_cDOT-switch_inventory.xml*
+
++
+您必須輸入Cisco交換器的VSAN ID。
+
++
+[listing]
+----
+...bin\ict>ict --cmd generate-fc-zones --source-filers system1,system2 --dest-svm vs1:fc_zone1
+ --fc-switches brocade-1,brocade-2 7mode_cdot_switch_inventory.xml
+----
++
+FC區域計畫包含根據7-Mode系統上的igroup組態所建立的區域。每個區域都包含一個啟動器WWPN和多個SVM目標WWPN。
+
+
+
+在複本型轉換中、您可以使用FC區域計畫、在執行前讀寫模式期間設定區域、使用測試主機來驗證叢集組態、或在轉換階段之後、從叢集提供對啟動器主機的資料存取。
+
+在無複本轉換中、您必須使用FC區域計畫來設定區域、以便在套用組態階段將啟動器主機和目標分組、以便從叢集提供資料存取。

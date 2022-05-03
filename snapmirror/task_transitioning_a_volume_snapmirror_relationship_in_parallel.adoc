@@ -1,0 +1,60 @@
+---
+permalink: snapmirror/task_transitioning_a_volume_snapmirror_relationship_in_parallel.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, transition, snapmirror, volume, relationship, parallel 
+summary: 您可以在同一個轉換窗口中平行轉換7-Mode SnapMirror關係的主要和次要磁碟區。然後、ONTAP 您必須在轉換後、在整個過程中手動設定磁碟區SnapMirror關係。您必須使用這種方法來轉換SnapLock 「不一致性」磁碟區。 
+---
+= 並行轉換Volume SnapMirror關係
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以在同一個轉換窗口中平行轉換7-Mode SnapMirror關係的主要和次要磁碟區。然後、ONTAP 您必須在轉換後、在整個過程中手動設定磁碟區SnapMirror關係。您必須使用這種方法來轉換SnapLock 「不一致性」磁碟區。
+
+* 您必須設定主要和次要叢集及SVM。
+* 若要在轉換Volume SnapMirror關係時建立SVM對等關係、必須符合下列條件：
++
+** 次要叢集的SVM名稱不得與主要SVM相同。
+** 主叢集的SVM名稱不得與次要SVM相同。
+** 您必須已檢閱準備移轉的相關資訊。
++
+xref:task_preparing_for_transition.adoc[準備轉換]
+
+
+
+
+
+由於不支援SnapMirror重新同步處理傳輸資料保護（TDP）與《不符合要求》磁碟區之間的7-Mode SnapMirror關係SnapLock 、因此必須並行轉換《不符合要求》磁碟區。SnapLock因此、您無法在7-Mode主Volume和ONTAP 含有SnapLock 「不符合需求」（VMware Compliance）磁碟區的支援區之間建立SnapMirror災難恢復（DR）關係。
+
+. 依照轉換獨立Volume的步驟、移轉SnapMirror關係的次要和主要磁碟區。
++
+在轉換7-Mode次要磁碟區之前、7-Mode SnapMirror關係無需手動介入。這可確保7-Mode次要Volume可轉換為ONTAP 唯讀Volume至VMware。
+
++
+xref:task_transitioning_a_stand_alone_volume.adoc[轉換獨立Volume]
+
+. 在包含轉換的主要和次要磁碟區的SVM之間建立叢集間SVM對等關係。
++
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["系統管理"]
+
+. 在轉換的主要和次要磁碟區之間建立Volume SnapMirror關係。
++
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-sm-ic-cg/home.html["Volume災難恢復快速準備"]
+
+. 在目的地磁碟區上、重新同步SnapMirror關係的來源磁碟區和目的地磁碟區。
++
+
+IMPORTANT: 來源與目的地磁碟區之間至少必須存在一個通用的Snapshot複本。
+
+. 監控SnapMirror資料傳輸的狀態。
++
+
+IMPORTANT: 在成功完成重新同步之前、您不得在來源與目的地磁碟區上執行任何作業、例如Volume Move或SnapMirror中斷。您必須確保重新同步不會中止並順利完成、否則磁碟區可能會變更為不一致的狀態。
+
+
+
+*相關資訊*
+
+xref:concept_guidelines_for_transitioning_snaplock_volumes.adoc[轉換SnapLock 功能指南]

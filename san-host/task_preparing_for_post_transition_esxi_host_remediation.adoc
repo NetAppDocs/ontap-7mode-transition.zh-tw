@@ -1,0 +1,52 @@
+---
+permalink: san-host/task_preparing_for_post_transition_esxi_host_remediation.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, post, esxi, host, remediation 
+summary: 完成7-Mode Transition Tool（7MTT）轉換之後、您必須執行各種ESXi主機修正工作。您必須先完成幾個步驟、才能執行這些工作。 
+---
+= 準備進行移轉後ESXi主機補救
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+完成7-Mode Transition Tool（7MTT）轉換之後、您必須執行各種ESXi主機修正工作。您必須先完成幾個步驟、才能執行這些工作。
+
+* 對於複製型轉換（CBT）、請先執行這些步驟、再在7MTT中啟動儲存設備切換作業。
+* 如需無複製轉換（CFT）、請先執行這些步驟、再在7MTT中啟動「匯出及停止7-Mode系統」作業。
+
+
+.步驟
+. 產生7-Mode to ONTAP VMware LUN對應檔案：
++
+** 對於CBT、請從安裝7MTT的Linux主機執行下列命令：+`* Transition CBT匯出lunmap -p _project name_-o _file_path_*
++
+例如：
+
++
+「* Transition CBT匯出lunmap -p SanWorkLoad -o c：/Lithraes/7-to-C-lun-mapping．csv*」
+
+** 對於CFT、請從安裝7MTT的系統執行下列命令：+`* Transition CFT匯出lunmap -p _project nam__-s _svm-name_-o _output-file_*
++
+例如：
+
++
+「* Transition CFT匯出lunmap -p SanWorkLoad -s svm1 -o c：/Lithraes/7-to-C-lun-mapping svm1.csv*」
+
++
+
+NOTE: 您必須為每個儲存虛擬機器（SVM）執行此命令。
+
+
+
+. 驗證igroup和啟動器對應是否存在。
++
+7MTT重新建立相同的igroup、其中包含Data ONTAP 在7-Mode中運作的啟動器、並將叢集Data ONTAP 式的LUN重新對應至主機。
+
+. 驗證分區是否適合新的叢集Data ONTAP 式更新目標。
+. 如果您正在執行無複製轉換（CFT）、請執行「volvol rehost」。
++
+請參閱 link:https://docs.netapp.com/us-en/ontap-7mode-transition/copy-free/index.html["7-Mode Transition Tool無複製移轉指南"] 對於"volvol rehost"程序。
+
+

@@ -1,0 +1,40 @@
+---
+permalink: san-host/task_determining_whether_vmfs_volumes_need_to_be_remounted_after_transition.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, vmfs, volumes, remounted 
+summary: 從以7-Mode運作的VMware移轉到Data ONTAP 叢集Data ONTAP 式的VMware後、您可能需要重新掛載VMFS磁碟區、才能將VMFS資料存放區和VM移轉到預先轉換狀態。 
+---
+= 確定在轉換後是否需要重新掛載VMFS磁碟區
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+從以7-Mode運作的VMware移轉到Data ONTAP 叢集Data ONTAP 式的VMware後、您可能需要重新掛載VMFS磁碟區、才能將VMFS資料存放區和VM移轉到預先轉換狀態。
+
+* 對於複製型轉換、請先執行這些步驟、再在7-Mode Transition Tool（7MTT）中啟動Storage Cutover（儲存設備轉換）作業。
+* 如需無複製轉換、請在7MTT中啟動匯出及停止7-Mode系統作業之前、先執行下列步驟。
+
+
+.步驟
+. 開啟由庫存收集工具（ICT）產生的_庫存評估工作簿_。
+. 按一下「* SAN主機檔案系統*」索引標籤。
+. 在轉換之前、請查看主機上掛載的檔案系統和資料存放區**磁碟機/掛載/資料存放區名稱*欄。
+. 記下資料存放區的「* SCSI裝置ID /裝置名稱*」欄中對應的LUN naA ID。
+. 檢查移轉後產生的7MTT對應檔案中是否列出資料存放區的naa ID。
++
+** 如果7MTT對應檔案中沒有任何naa ID、則資料存放區及其基礎LUN不屬於7MTT轉換、因此不需要補救。
+** 如果7MTT對應檔案中只有部分naa ID、表示您的轉換不完整、無法繼續。
+** 如果所有的naa ID都存在、則必須重新掛載VMFS磁碟區。
+
+
+
+
+*相關資訊*
+
+xref:task_remounting_vmfs_volumes_after_transition_using_vsphere_client.adoc[使用vSphere Client在轉換後重新掛載VMFS磁碟區]
+
+xref:task_remounting_vmfs_volumes_after_transition_using_esxi_cli_console.adoc[使用ESXi CLI在轉換後重新掛載VMFS磁碟區]
+
+xref:concept_what_the_inventory_collect_tool_is.adoc[庫存收集工具的功能]

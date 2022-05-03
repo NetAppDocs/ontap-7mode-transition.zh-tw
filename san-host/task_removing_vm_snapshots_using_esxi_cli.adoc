@@ -1,0 +1,26 @@
+---
+permalink: san-host/task_removing_vm_snapshots_using_esxi_cli.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, remove, vm, snapshots, esxi, cli 
+summary: 如果您使用Host Remediation Tool（HRT\）、或偏好使用CLI的靈活度、您可以選擇使用ESXi CLI移除快照。 
+---
+= 使用ESXi CLI移除VM快照
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您使用Host Remediation Tool（HRT）、或偏好靈活使用CLI、您可以選擇使用ESXi CLI來移除快照。
+
+您必須在7-Mode Transition Tool（7MTT）所產生的_庫存評估工作簿_中、從Host VMs（主機VM）標籤取得VMID。
+
+.步驟
+. 使用SSH登入ESXi主控台。
+. 使用適用的VMID移除VM的所有VM快照：
++
+「*# vim - cmd vmsvc/snapshot .removeAll _VMID_*」
+
+
+
+刪除快照之後、您必須重新產生_庫存評估工作簿_、以收集Data ONTAP 在7-Mode和ESXi主機上運作的有關資訊。

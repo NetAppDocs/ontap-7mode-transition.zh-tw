@@ -1,0 +1,81 @@
+---
+permalink: san-host/task_testing_transitioned_luns_and_esxi_host_applications_before_cutover.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, lun, esxi, applications, cutover, phase, copy, based 
+summary: 如果您使用7-Mode Transition Tool（7MTT\）2.2或更新版本、Data ONTAP 以及更新版本的版本、以轉換ESXi主機、您可以測試轉換後的叢集Data ONTAP 式LUN、確認您可以在轉換階段之前將主機和應用程式上線。在測試期間、您的來源主機可以繼續執行I/O至來源7-Mode LUN。 
+---
+= 在複本型轉換轉換的轉換階段之前、先測試轉換的LUN和ESXi主機應用程式
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您使用7-Mode Transition Tool（7MTT）2.2或更新版本、Data ONTAP 以及支援ESXi 8.3.2或更新版本的主機來轉換ESXi主機、您可以測試轉換的叢集Data ONTAP 式LUN、以確認您可以在轉換階段之前將主機和應用程式上線。在測試期間、您的來源主機可以繼續執行I/O至來源7-Mode LUN。
+
+* 新的測試主機必須配置在新的測試環境中。
++
+為了避免IP / MAC或UUID重複或衝突、測試主機必須在私有網路中設定。
+
+* 如果您要轉換從本機硬碟開機的主機、測試主機必須擁有與來源主機相同的ESXi版本和驅動程式。
+* 分區必須在FC或FCoE主機和新的叢集Data ONTAP 式節點之間完成。
+* 來源主機與新叢集Data ONTAP 式的整套主機之間不得存在分區。
++
+如果Data ONTAP 在測試模式期間、來源主機可以看到轉換的叢集式LUN、您可能會在來源主機上遇到非預期的服務中斷。
+
+* 如果您要轉換SAN開機的主機、則必須停用網路介面卡。
+
+
+您必須維持測試主機與來源主機之間的硬體同位元、而且必須在測試主機上執行下列步驟：
+
+在Data ONTAP 測試期間、叢集式的LUN會處於讀取/寫入模式。當測試完成且您正在準備轉換階段時、它們會轉換成唯讀模式。
+
+.步驟
+. 完成基礎資料複本之後、請在7MTT使用者介面（UI）中選取*測試模式*。
+. 在7MTT UI中、按一下*套用組態*。
+. 在Data ONTAP 測試主機上分區叢集式的支援節點。
+. 登入叢集Data ONTAP 式的「資訊節點」、然後在測試階段將新的測試主機啟動器新增至7MTT所建立的igroup。
+. 瀏覽至「C:\Program Files\NetApp\operate in 7-Mode Transition Tool\（使用7-Mode Transition Tool執行程式：C:\Program Files\NetApp\）」。
+. 從Data ONTAP 安裝7MTT的Linux主機產生7-Mode到叢集式的LUN對應檔案：
++
+hy* Transition CBT匯出lunmap -p _project名稱_-o _file_path_*
+
++
+例如：
+
++
+「* Transition CBT匯出lunmap -p SanWorkLoad -o c：/Lithraes/7-to-C-lun-mapping．csv*」
+
+. 使測試主機上線。
++
+** xref:concept_reconfiguration_of_vmware_software_iscsi_initiator.adoc[轉換後重新設定VMware軟體iSCSI啟動器]
+** xref:task_setting_up_esxi_hosts_configured_for_san_boot_after_transition.adoc[設定您的ESXi主機、以便在轉換後進行SAN開機]
+
+
+. 驗證Data ONTAP 是否發現所有轉換的叢集式LUN。
+. 如果您要轉換非SAN開機的主機、請重新登錄您的VM。
++
+xref:task_reregistering_vms_after_transition_on_non_san_boot_esxi_host_using_vsphere_client.adoc[移轉ESXi主機後重新登錄VM。]
+
+. 完成ESXi主機所需的轉換後步驟。
++
+xref:concept_post_transition_requirements_for_esxi_hosts.adoc[ESXi主機的移轉後需求]
+
+. 讓主機和應用程式上線。
+. 視需要執行測試。
+. 關閉測試主機。
+. 在7MTT UI中、按一下*完成測試*。
++
+新的叢集Data ONTAP 式LUN現在為唯讀、來源7-Mode LUN的資料也會重新同步。
+
+. 如果您打算在完成轉換後使用相同的來源、請編輯叢集Data ONTAP 式節點上的igroup、以新增適當的啟動器。
++
+如果您打算將測試主機升級為正式作業、則不需要編輯igroup。
+
+
+
+完成測試後、請規劃時間、以Data ONTAP 關閉連接至以7-Mode運作的控制器的來源主機。當您按一下*完整轉換*時、來源7-Mode磁碟區和LUN會離線、而轉換的叢集Data ONTAP 式VMware LUN會變成讀取/寫入。
+
+*相關資訊*
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-7mtt-dctg/home.html["複本型轉換"]

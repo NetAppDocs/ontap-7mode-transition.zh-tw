@@ -1,0 +1,62 @@
+---
+permalink: copy-free/reference_failed_to_boot_7_mode_controller_in_maintenance_mode.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, failed, boot, controller, maintenance, mode 
+summary: 匯出和停止作業失敗、並顯示錯誤訊息：無法在維護模式下啟動7-Mode控制器。您必須在維護模式下手動停止並啟動控制器、然後重新執行作業。 
+---
+= 無法以維護模式開機7-Mode控制器
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+匯出和停止作業失敗、並顯示錯誤訊息：「無法在維護模式下啟動7-Mode控制器」。您必須在維護模式下手動停止並啟動控制器、然後重新執行作業。
+
+
+
+== 因應措施
+
+. 停止7-Mode儲存系統：
++
+‘* halt -f -t 0*’
+
+. 在加載器提示符下，記錄設置用於'*bootarg.init.console_muted*`和'*bootarg.init.console_level boot*引導參數的值：
++
+’* predenv bootarg.init.console_muted*`
+
++
+’* predenv bootarg.init.console_level*`
+
+. 設定下列開機參數來停用主控台訊息：
++
+'*setenv bootarg.init.console_muted "true"*
+
++
+"* setenv bootarg.init.console_level "-1"*
+
+. 從7-Mode Transition Tool重新執行匯出和停止作業。
+. 在7-Mode儲存系統中、將開機參數設為其原始值、如步驟2所記錄：
++
+|===
+| 如果開機參數是... | 輸入下列命令... 
+
+
+ a| 
+先前未設定任何值（未定義）
+ a| 
+"* unsetenv bootarg.init.console_muted*`
+
+"* unsetenv bootarg.init.console_level*`
+
+
+
+ a| 
+使用先前的值進行設定
+ a| 
+"* unsetenv bootarg.init.console_muted "_ORIGINAL_Value_"*
+
+"* unsetenv bootarg.init.console_level "_ORIGINAL_Value_"*
+
+|===
+

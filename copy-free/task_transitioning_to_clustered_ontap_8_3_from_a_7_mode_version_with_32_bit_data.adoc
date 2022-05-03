@@ -1,0 +1,33 @@
+---
+permalink: copy-free/task_transitioning_to_clustered_ontap_8_3_from_a_7_mode_version_with_32_bit_data.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, prepare, 32, aggregates 
+summary: 不支援ONTAP 32位元的Aggregate、Volume和Snapshot複本。因此、您必須將32位元Aggregate擴充至64位元、然後在轉換之前、從7-Mode系統中尋找並移除任何32位元Volume和Snapshot複本。 
+---
+= 準備使用32位元集合體來轉換7-Mode系統
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+不支援ONTAP 32位元的Aggregate、Volume和Snapshot複本。因此、您必須將32位元Aggregate擴充至64位元、然後在轉換之前、從7-Mode系統中尋找並移除任何32位元Volume和Snapshot複本。
+
+* * 32位元Aggregate *
++
+.. xref:task_expanding_an_aggregate_to_64_bit_format_without_adding_storage.adoc[將Aggregate擴充為64位元格式]
+.. xref:task_finding_and_removing_32_bit_data_from_source_volumes_and_snapshot_copies.adoc[尋找及移除32位元磁碟區和Snapshot複本]
+
+
+* * 32位元磁碟區或Snapshot複本*
++
+即使您只有64位元的集合體和Volume、部分32位元或混合格式FlexVol 的支援區或Snapshot複本仍可能保留。您必須先移除這些磁碟區和Snapshot複本、才能進行轉換。
+
++
+xref:task_finding_and_removing_32_bit_data_from_source_volumes_and_snapshot_copies.adoc[尋找及移除32位元磁碟區和Snapshot複本]
+
+
+
+*相關資訊*
+
+http://www.netapp.com/us/media/tr-3978.pdf["NetApp技術報告3978：就地擴充32位元Aggregate至64位元概述與最佳實務做法"]

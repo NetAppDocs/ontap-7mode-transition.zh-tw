@@ -1,0 +1,42 @@
+---
+permalink: san-host/task_removing_stale_rdm_using_vsphere_client.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, remove, stal, rdm, vsphere, client 
+summary: 從ONTAP 以7-Mode運作的VMware移轉至叢集Data ONTAP 式的VMware時、所有的RDM LUN都會變得過時。轉換之後、必須先移除並重新附加RDM、LUN才能開始服務資料。 
+---
+= 使用vSphere Client移除過時的RDM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+從ONTAP 以7-Mode運作的VMware移轉至叢集Data ONTAP 式的VMware時、所有的RDM LUN都會變得過時。轉換之後、必須先移除並重新附加RDM、LUN才能開始服務資料。
+
+您必須擁有_庫存評估工作簿_中RDM的VM名稱和磁碟路徑。
+
+.步驟
+. 開啟管理ESXi主機的ESXi主機或vCenter Server。
+. 以滑鼠右鍵按一下VM、然後選取*編輯設定*。
++
+此時會顯示VM Properties（VM屬性）窗口。
+
+. 使用_庫存評估工作簿_中的磁碟路徑、從裝置清單中選取硬碟。
+. 從VM Properties（VM屬性）窗口中記下* Virtual Device Nod*（虛擬設備節點）和* Compatibility Mode*（*兼容模式）。
++
+虛擬裝置節點：SCSI 0：2
+
++
+相容模式：實體
+
+. 按一下「*移除*」。
+. 選取*從虛擬機器移除並從磁碟刪除檔案*。
+. 按一下「*確定*」。
++
+此時會出現類似下列的錯誤訊息。您可以忽略此訊息。
+
++
+image::../media/reconfigure_virtual_machine.gif[重新設定虛擬機器]
+
+. 按一下 * 關閉 * 。
+

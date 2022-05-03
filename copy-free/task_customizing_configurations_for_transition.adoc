@@ -1,0 +1,43 @@
+---
+permalink: copy-free/task_customizing_configurations_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, customize, 7, mode 
+summary: 規劃從7-Mode轉換至ONTAP VMware的組態時、您可以使用兩種方式自訂組態轉換。您可以忽略或跳過一或多個組態的轉換。您可以整合7-Mode NFS匯出規則、然後在目標SVM上重複使用現有的NFS匯出原則和Snapshot原則。 
+---
+= 自訂7-Mode組態的轉換
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+規劃從7-Mode轉換至ONTAP VMware的組態時、您可以使用兩種方式自訂組態轉換。您可以忽略或跳過一或多個組態的轉換。您可以整合7-Mode NFS匯出規則、然後在目標SVM上重複使用現有的NFS匯出原則和Snapshot原則。
+
+7-Mode Transition Tool不會針對排除的組態執行預先檢查。
+
+根據預設、所有7-Mode組態都會選取以進行轉換。
+
+最佳做法是先執行所有組態的預先檢查、然後在後續的預先檢查執行中排除一或多個組態。這有助於您瞭解哪些組態會從轉換中排除、以及哪些預先檢查會在後續略過。
+
+.步驟
+. 從「Plan Configuration（規劃組態）」頁面、從「* SVM Configuration（* SVM組態*）」窗格中選取下列選項：
++
+** 若要排除組態的轉換、請清除這些組態的核取方塊。
+** 若要將類似的7-Mode NFS匯出規則整合至ONTAP 位於VMware的單一匯出原則、然後套用至轉換的Volume或qtree、請選取「*整合7-Mode*上的NFS匯出原則」核取方塊。
+** 若要在SVM上重複使用符合工具所建立之匯出原則的現有NFS匯出原則（之後可套用至轉換的磁碟區或qtree）、請選取*重新使用SVM*的匯出原則核取方塊。
+** 若要將類似的7-Mode Snapshot排程整合至ONTAP VMware中的單一Snapshot原則、然後套用至轉換的Volume、請選取*整合7-Mode Snapshot Policies（*整合7-Mode Snapshot Policies）核取方塊。
+** 若要在SVM上重複使用符合此工具所建立之Snapshot原則的現有Snapshot原則（之後可套用至轉換的磁碟區）、請選取*重新使用SVM*的Snapshot原則核取方塊。
+
+
+. 按一下*儲存並移至儀表板*。
+
+
+*相關資訊*
+
+xref:concept_nfs_configurations_supported_unsupported_or_requiring_manual_steps_for_transition.adoc[NFS移轉：支援和不支援的組態、以及必要的手動步驟]
+
+xref:concept_cifs_configurations_supported_unsupported_or_requiring_manual_steps_for_transition.adoc[支援且不受支援的CIFS組態、可移轉ONTAP 至支援的不支援]
+
+xref:concept_supported_and_unsupported_data_protection_relationships.adoc[資料保護移轉：支援及不支援的組態]
+
+xref:concept_supported_and_unsupported_name_services_configurations.adoc[名稱服務轉換：支援和不支援的組態、以及必要的手動步驟]

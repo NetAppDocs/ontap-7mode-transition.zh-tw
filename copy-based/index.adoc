@@ -1,0 +1,14 @@
+---
+permalink: copy-based/index.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, index 
+summary: 說明如何使用ONTAP 7-Mode Transition Tool、評估7-Mode控制器、主機和應用程式的移轉情況、並執行從7-Mode系統到VMware的資料與組態複本式移轉作業。 
+---
+= 複製型移轉指南
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+本指南說明如何使用ONTAP 7-Mode Transition Tool、評估7-Mode控制器、主機和應用程式的轉換、並執行從7-Mode系統到VMware的資料與組態複本式移轉作業。

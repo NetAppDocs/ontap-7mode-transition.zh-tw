@@ -1,0 +1,20 @@
+---
+permalink: copy-based/reference_cannot_proceed_from_volume_mapping_pane_if_selected_svm_has_no_aggregate.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, volume, mapping, pane, svm, aggregate, cannot, error 
+summary: 此工具會顯示錯誤訊息、表示SVM未指派Aggregate。如果所選SVM沒有根節點Aggregate以外的Aggregate、請將某些Aggregate指派給SVM、然後按一下Volume對應窗格上的重新整理按鈕。 
+---
+= 如果選取的SVM沒有Aggregate、則無法從Volume對應窗格繼續
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+此工具會顯示錯誤訊息：「VM未指派Aggregate。如果所選SVM沒有根節點Aggregate以外的Aggregate、請將某些Aggregate指派給SVM、然後按一下「重新整理」按鈕（）。
+
+
+
+== 因應措施
+
+將Aggregate新增至叢集Data ONTAP 式的SVM。

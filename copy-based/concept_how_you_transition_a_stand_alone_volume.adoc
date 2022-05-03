@@ -1,0 +1,260 @@
+---
+permalink: copy-based/concept_how_you_transition_a_stand_alone_volume.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, stand, alone, volume 
+summary: 轉換獨立磁碟區包括不同階段：準備、資料複製、套用組態（預先轉換）、以及儲存轉換。完成轉換之後、您必須先執行一些轉換後步驟、才能恢復用戶端存取。瞭解每個階段發生的情況、有助於有效管理轉換作業。 
+---
+= 如何轉換獨立Volume
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+轉換獨立磁碟區包括不同階段：準備、資料複製、套用組態（預先轉換）、以及儲存轉換。完成轉換之後、您必須先執行一些轉換後步驟、才能恢復用戶端存取。瞭解每個階段發生的情況、有助於有效管理轉換作業。
+
+image::../media/transition_singlevol.gif[下圖說明不同的轉換階段,such as preparation,data copy]
+
+|===
+| 階段 | 步驟 
+
+
+ a| 
+準備
+ a| 
+. 收集資訊
+. 執行預先檢查
+. 建立資料複製排程
+
+
+
+
+ a| 
+資料複本
+ a| 
+. 將ONTAP 此功能建立為唯讀
+. 建立轉換對等關係
+. 建立SnapMirror關係
+. 執行基礎傳輸
+. 執行排程的遞增更新
+
+
+
+
+ a| 
+預先轉換
+ a| 
+. 打破SnapMirror關係
+. 將組態套用至SVM
+. 在SVM上設定資料LIF
+. 測試資料與組態（手動、僅適用於預先轉換的RW）
+. 使用ONTAP 對應的7-Mode Volume重新同步化功能
+
+
+
+
+ a| 
+儲存設備轉換
+ a| 
+. 中斷用戶端存取（手動）
+. 執行最後的SnapMirror更新
+. 打破SnapMirror關係
+. 移除7-Mode IP位址、並將SVM上的資料生命週期設定為up狀態
+. 使來源Volume離線
+
+
+轉換之後、執行轉換後步驟並啟用用戶端存取（手動）
+
+
+
+ a| 
+驗證鏈驗證資料以驗SnapLock 證資料
+ a| 
+. 從7-Mode磁碟區列舉所有WORM檔案
+. 計算7-Mode磁碟區上每個WORM檔案的指紋（上一步列舉）、並計算在轉換ONTAP 後的RESE多少 個問題上對應WORM檔案的指紋
+. 產生報告時、會詳細說明有相符和不相符指紋的檔案數量、以及不相符的原因
+
+
+|===
+
+
+== 準備階段
+
+在此階段會收集7-Mode系統及叢集、磁碟區和IP位址的相關資訊。7-Mode Transition Tool會在此階段執行下列工作：
+
+. 收集並新增7-Mode儲存系統和Volume資訊。
+. 執行轉換前檢查。
+. 收集並新增叢集、SVM和Aggregate資訊。
+. 收集必須在SVM上設定的IP位址：
++
+** 選取7-Mode系統上的IP位址。
+** 指定必須在SVM上設定的新IP位址。附註：此工具不支援iSCSI與FC LIF（SAN）的轉換。您必須在SVM上手動設定SAN LIF、才能進行轉換。
+
+
+. 建立基礎複本和遞增更新的資料複本排程。
+. 如果專案包含SnapLock 的是「數據集」、則會收集有關需要SnapLock 驗證保管鏈的讀寫能力的資訊、ONTAP 以及儲存在保管鏈驗證作業期間所產生指紋資料的《數據集》資料詳細資料。
++
+
+NOTE: 只有檔案名稱僅含Ascii字元的磁碟區才支援監管鏈驗證作業。
+
+. 選擇必須轉換至目標SVM和目標Volume的7-Mode組態、以規劃組態轉換。
+
+
+修正預先檢查期間報告的錯誤和警告之後、您不應修改控制器上的物件（磁碟區、IP位址、系統資訊等）。
+
+
+
+== 資料複製階段
+
+在此階段、7-Mode Volume的資料會複製到ONTAP VMware Volume。7-Mode Transition Tool會在此階段執行下列工作：
+
+. 以ONTAP 唯讀存取方式建立不完整的功能。
+. 在7-Mode系統和SVM之間建立轉換對等關係。
+. 在7-Mode Volume與ONTAP VMware Volume之間建立SnapMirror移轉關係（TDP類型關係）。
+. 根據排程輸入完成基準資料複本傳輸。
+. 對ONTAP 整個過程執行預定的遞增更新。
+
+
+
+
+== 套用組態（預先轉換）階段
+
+最佳做法是在計畫的轉換時間之前、先執行預先轉換作業數天或數週。本練習是驗證是否已正確套用所有組態、以及是否需要任何變更。
+
+在此階段、7-Mode Volume的組態會複製到ONTAP VMware Volume。
+
+套用組態（預先轉換）階段有兩種模式：*預先轉換唯讀*和*預先轉換讀取/寫入*。
+
+專案包含下列項目時、不支援預先轉換讀取/寫入模式：
+
+* SAN Volume和目標叢集執行Data ONTAP 的是不含更新版本的
++
+在此情況下、下列組態不會套用至套用組態（預先轉換）階段。而是在轉換階段套用。
+
++
+** SAN組態
+** Snapshot排程組態
+
+
+* 符合法規的大量資料SnapLock
++
+如果專案包含SnapLock 「不符合需求」磁碟區、則不會在「套用組態（預先轉換）」階段中套用「Snapshot排程」組態。而是會在轉換階段套用這些組態。
+
++
+xref:concept_considerations_for_transitioning_of_snaplock_compliance_volumes.adoc[轉換SnapLock 不符合法規的考量]
+
+
+
+如果目標叢集執行Data ONTAP 的是EAS8.3.1或更早版本、而您想要在NAS磁碟區的讀寫模式下執行套用組態（預先轉換）作業、則必須為NAS磁碟區和SAN磁碟區建立個別的專案。如果專案中有SAN磁碟區、則不支援預先轉換讀取/寫入模式、因此需要執行此動作。
+
+如果專案包含SnapLock 「循環法規遵循」磁碟區、而您想要在非SnapLock Compliance磁碟區的讀寫模式下執行套用組態（預先轉換）作業、則必須針對SnapLock 「循環法規遵循」磁碟區和「非SnapLock Compliance」磁碟區建立個別專案。如果SnapLock 您的專案中有「更新法規遵循」磁碟區、則需要執行此動作、因為不支援預先轉換讀寫模式。
+
+此工具會在*預先轉換唯讀模式*中執行下列步驟：
+
+. 執行從7-Mode Volume到ONTAP VMware Volume的遞增更新。
+. 打破7-Mode Volume與ONTAP 非功能區之間的SnapMirror關係。
++
+
+NOTE: 對於「符合需求」磁碟區、7-Mode磁碟區與VMware磁碟區之間的SnapMirror關係不會中斷。SnapLock ONTAPSnapMirror關係並未中斷、因為ONTAP 《不符合法規》磁碟區不支援7-Mode和《不支援》等磁碟區之間的SnapMirror重新同步作業SnapLock 。
+
+. 從7-Mode磁碟區收集組態、並將組態套用至ONTAP VMware磁碟區和SVM。
+. 設定SVM上的資料生命量：
++
+** 現有的7-Mode IP位址會在SVM上以系統管理停機狀態建立。
+** 新的IP位址會在SVM上以管理啟動狀態建立。
+
+
+. 重新同步7-Mode Volume與ONTAP VMware Volume之間的SnapMirror關係
+
+
+此工具在*預先轉換讀寫模式*中執行下列步驟：
+
+. 執行從7-Mode Volume到ONTAP VMware Volume的遞增更新。
+. 打破7-Mode Volume與ONTAP 非功能區之間的SnapMirror關係。
+. 從7-Mode磁碟區收集組態、並將組態套用至ONTAP VMware磁碟區和SVM。
+. 設定SVM上的資料生命量：
++
+** 現有的7-Mode IP位址會在SVM上以系統管理停機狀態建立。
+** 新的IP位址會在SVM上以管理啟動狀態建立。
+
+
+. 讓ONTAP 這個功能區可供讀取/寫入存取。
++
+套用組態後、ONTAP 即可存取讀寫功能的支援功能、以便在套用組態（預先轉換）測試期間、在這些磁碟區上測試讀寫資料存取。您可以手動驗證ONTAP 組態和資料存取功能。
+
+. 手動觸發「完成測試」作業時、重新同步ONTAP 化功能。
+
+
+
+
+== 儲存設備轉換階段
+
+7-Mode Transition Tool會在此階段執行下列工作：
+
+. 選用：執行隨需SnapMirror更新、以減少轉換後的停機時間。
+. 手動：中斷用戶端與7-Mode系統的存取。
+. 從7-Mode Volume執行最後的SnapMirror更新至ONTAP VMware Volume。
+. 中斷並刪除7-Mode Volume與ONTAP VMware Volume之間的SnapMirror關係、使ONTAP 其能夠讀取/寫入。
++
+如果所選的Volume是SnapLock 一個「符合資訊」Volume、而該Volume是SnapMirror關係的目的地、則在ONTAP 不執行SnapMirror中斷作業的情況下、會刪除7-Mode Volume與「故障」Volume之間的SnapMirror關係。執行此動作可確保次要ONTAP SnapLock 的「不遵守情形」磁碟區仍保持唯讀模式。次要ONTAP SnapLock 的《不一致性》磁碟區必須處於唯讀模式、才能在主要SnapLock 和次要的《不一致性》磁碟區之間成功執行重新同步作業。
+
+. 在下列情況下套用Snapshot排程組態：
++
+** 目標叢集正在執行叢集Data ONTAP 式的ESAN 8.3.0或8.3.1、專案包含SAN Volume。
+** 此專案包含SnapLock 不符合法規的大量資料。
+
+
+. 如果目標叢集執行Data ONTAP 的是E8.3.1或更早版本、則套用SAN組態。
+. 套用配額組態（如果有）。
+. 移除從7-Mode系統轉換所選取的現有7-Mode IP位址、並將SVM上的資料生命週期轉為管理啟動狀態。
++
+
+NOTE: SAN生命週期不會透過7-Mode Transition Tool進行轉換。
+
+. 選用：讓7-Mode磁碟區離線。
+
+
+
+
+== 驗證SnapLock 流程鏈、以利驗證資料
+
+您必須執行監管鏈驗證作業。當開始驗證保管鏈時、此工具會執行下列作業：
+
+. 列舉7-Mode磁碟區的所有WORM檔案。
+. 計算7-Mode磁碟區上每個WORM檔案的指紋（上一步列舉）、並計算在轉換ONTAP 後的各個版本的WORM磁碟區上對應WORM檔案的指紋。
+. 產生一份報告、詳細說明有相符和不相符指紋的檔案數量、以及不相符的原因。
+
+
+[NOTE]
+====
+* 只有SnapLock 檔案名稱只有使用Ascii字元的讀寫能力、才支援監管鏈驗證作業。
+* 根據7-Mode SnapLock 的文件數量、這項作業可能需要相當長的時間。
+
+
+====
+
+
+== 轉換後步驟
+
+儲存設備轉換階段成功完成且轉換完成後、您必須執行一些轉換後的手動工作：
+
+. 執行必要步驟、設定未轉換或部分轉換的功能、如預先檢查報告所列。
++
+例如、IPv6和FPolicy必須在轉換後手動設定。
+
+. 若要進行SAN移轉、請重新設定主機。
++
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-7mtt-sanspl/home.html["SAN主機移轉與補救"]
+
+. 驗證下列項目、確保SVM已準備好提供資料給用戶端：
++
+** SVM上的磁碟區已上線並可讀寫。
+** 可在SVM上存取IP位址。
+
+
+. 將用戶端存取重新導向ONTAP 至功能區。
+
+
+*相關資訊*
+
+xref:task_transitioning_volumes_using_7mtt.adoc[從7-Mode磁碟區移轉資料與組態]

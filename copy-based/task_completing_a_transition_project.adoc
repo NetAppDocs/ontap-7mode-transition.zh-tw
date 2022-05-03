@@ -1,0 +1,62 @@
+---
+permalink: copy-based/task_completing_a_transition_project.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, complete, project 
+summary: 您可以完成個別專案來完成轉換。由於這項作業會造成中斷、因此您應該評估何時執行該作業。在SnapMirror關係中轉換磁碟區時、必須先完成次要專案、才能完成主要專案的移轉作業。 
+---
+= 完成轉換專案
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以完成個別專案來完成轉換。由於這項作業會造成中斷、因此您應該評估何時執行該作業。在SnapMirror關係中轉換磁碟區時、必須先完成次要專案、才能完成主要專案的移轉作業。
+
+儲存設備轉換作業只需幾分鐘即可完成。用戶端重新掛載資料所需的時間各不相同。儲存設備轉換或中斷時間取決於下列因素：
+
+* 最終更新
++
+資料的最終更新取決於上次更新後來源資料的變更量。遞增傳輸可將轉換期間必須傳輸的資料量降至最低。
+
+* 重新連線用戶端
++
+如果每個用戶端都需要更新才能連線至叢集、則必須更新的用戶端數目會決定轉換時間。
+
+
+
+停機僅適用於正在移轉的磁碟區。您不需要關閉整個來源7-Mode儲存系統。來源系統上未移轉的磁碟區仍可保持連線且可供存取。
+
+. 從「移轉儀表板」中、選取您要完成的專案。
+. 手動中斷用戶端存取。
+. 按一下*完整轉換*。
++
+.. 如果您想在轉換後讓7-Mode來源磁碟區保持線上狀態、請清除* Transition後將來源磁碟區離線*核取方塊。
++
+預設會選取此選項、並使來源磁碟區離線。
+
+.. 如果您已選取SnapLock 「鏈託管驗證」的「鏈託管驗證」功能、請勾選「*我瞭解在SnapLock 託管鏈驗證期間、不得將7-Mode的各個環節離線」核取方塊、以在SnapLock 轉換後使「鏈託管驗證」功能保持線上狀態。
+.. 如果您已選擇在執行ONTAP 支援版本不支援的叢集之間轉換SnapMirror關係、請選取*我瞭解我必須手動將SnapMirror關係類型從data_protection轉換為extended _data_protection *核取方塊。
+.. 選取*自訂此作業的並行SnapMirror傳輸數和節流限制*核取方塊、以指定SnapMirror資料複製作業數和節流限制。
+.. 按一下 * 繼續 * 。
+
+
++
+畫面會顯示轉換作業的結果。
+
+
+
+針對轉換所選取的7-Mode IP位址、會從7-Mode儲存系統中取消設定、並將轉換前建立的相關生命週期移至管理啟動狀態。7-Mode磁碟區已離線。
+
+從叢集執行vserver檢查lif-multifliv租賃RUN命令、以使用轉換的lifs來驗證名稱伺服器是否可連線。
+
+
+NOTE: 如果您已建立新的LIF、則在完成所有專案之後、必須使用新的IP位址和連接埠、將已轉換磁碟區的使用者和應用程式重新對應至磁碟機。
+
+如果您已完成SnapMirror關係的移轉、而叢集執行ONTAP 的是支援版本不支援的版本、則必須將SnapMirror關係從DP類型轉換為XDP類型。
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-dap/home.html["資料保護"]
+
+*相關資訊*
+
+xref:concept_guidelines_for_deciding_when_to_cutover.adoc[決定何時執行轉換的準則]

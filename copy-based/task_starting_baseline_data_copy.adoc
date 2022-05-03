@@ -1,0 +1,53 @@
+---
+permalink: copy-based/task_starting_baseline_data_copy.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, start, baseline, copy 
+summary: 建立專案並完成預先檢查作業之後、您必須從7-Mode磁碟區開始複製資料至ONTAP VMware。您可以開始個別專案的比較基準資料複製作業。您應該在資料複製期間停止不必要的系統程序和網路活動。 
+---
+= 開始基礎資料複本
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+建立專案並完成預先檢查作業之後、您必須從7-Mode磁碟區開始複製資料至ONTAP VMware。您可以開始個別專案的比較基準資料複製作業。您應該在資料複製期間停止不必要的系統程序和網路活動。
+
+您必須建立至少一個資料複製排程。
+
+您可以透過執行測試移轉、預估完成基礎傳輸的時間、並評估在環境中進行Volume SnapMirror傳輸所達到的效能。以下是可能影響效能的一些因素：
+
+* 已選取轉換資料複製排程選項
++
+此排程可控制SnapMirror並行傳輸的最大數量、以及傳輸所需的最大頻寬。
+
+* 7-Mode來源控制器支援的最大並行Volume SnapMirror傳輸數
+* 7-Mode來源ONTAP 控制器與目的地控制器之間的網路頻寬
++
+必須將與移轉活動無關的網路流量最小化、以便將處理量最大化、並將來源與目的地系統之間的回應時間最短化。
+
+* 來源與目的地控制器的效能功能
++
+來源和目的地系統應具備最佳的CPU使用率和可用記憶體。
+
+* 資料複製期間發生的7-Mode Volume SnapMirror傳輸數
+
+
+.步驟
+. 從儀表板選取您要開始進行比較基準資料複本的專案。
+. 按一下*開始基準*。
++
+預先檢查會在背景中再次執行、如果未偵測到錯誤、則會根據資料複製排程來啟動基礎傳輸。「作業進度」對話方塊會顯示基準資料複本期間執行的預先檢查作業狀態資訊。
+
+. 按一下「* Volumes *」（*磁碟區*）索引標籤、即可檢視基準傳輸的狀態和進度。
++
+若要檢視每個磁碟區的詳細SnapMirror詳細資料、您可以按一下*檢視轉換詳細資料*。並行SnapMirror傳輸的數量取決於目前使用中排程所提供的輸入。您可以從儀表板的「資料複製排程」索引標籤追蹤使用中的排程。
+
++
+完成基礎資料複製作業之後、遞增式SnapMirror更新會根據建立專案時所提供的排程開始。
+
+
+
+*相關資訊*
+
+xref:task_creating_schedule_for_snapmirror_transfers.adoc[建立SnapMirror傳輸的資料複製排程]

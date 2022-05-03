@@ -1,0 +1,24 @@
+---
+permalink: san-host/index.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, index 
+summary: 說明使用ONTAP 7-Mode Transition Tool將資料和組態轉換為時、VMware ESXi、Red Hat Linux和Windows主機的移轉前及轉換後程序。 
+---
+= 《SAN主機移轉與修正指南》
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您Data ONTAP 使用7-Mode Transition Tool（7MTT）2.2或更新版本、將資料和組態從以7-Mode運作的支援中心移轉至叢集Data ONTAP 式的支援中心8.3或更新版本、則必須在轉換前後執行SAN主機的補救步驟。
+
+_7-Mode Transition Tool SAN Host Transition and Remediation Guide_針對VMware ESXi、Windows、Red Hat Enterprise Linux（RHEL）、HP-UX和AIX主機、提供必要的預先轉換和後移轉步驟。
+
+*相關資訊*
+
+xref:../copy-based/index.html[複本型轉換]
+
+xref:../copy-free/index.html[無複製轉換]
+
+xref:../install-admin/index.html[7-Mode Transition Tool安裝與管理]

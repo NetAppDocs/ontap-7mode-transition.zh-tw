@@ -1,0 +1,48 @@
+---
+permalink: install-admin/concept_system_requirements_for_7_mode_transition_tool_on_linux.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, install, system, requirements, transition, tool, linux 
+summary: 您必須確保Linux主機具備安裝及執行7-Mode Transition Tool所需的組態。 
+---
+= 在Linux上安裝7-Mode Transition Tool的系統需求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必須確保Linux主機具備安裝及執行7-Mode Transition Tool所需的組態。
+
+請務必參閱目前的7-Mode Transition Tool link:http://docs.netapp.com/us-en/ontap-7mode-transition/releasenotes.html["版本資訊"] 以取得支援主機和已知問題的最新資訊。
+
+
+
+== 硬體需求
+
+* 雙核心x64處理器、1.0 GHz以上
+* 8 GB RAM
+* 40 GB可用磁碟空間
+
+
+
+
+== 軟體需求
+
+* 您的Linux系統必須執行下列其中一項：
++
+** Red Hat Enterprise Linux 5.6
+** Red Hat Enterprise Linux 6.0
+** Red Hat Enterprise Linux 7.0（7-Mode Transition Tool版本3.3.2及更新版本）
+** CentOS版本6.4
++
+
+NOTE: 您可以使用符合所需軟體和硬體需求的Linux虛擬機器來安裝7-Mode Transition Tool。
+
+
+
+* 64位元Oracle JRE 1.8更新45
+* 7-Zip公用程式（「rpmfore-版本-0.3.6-1.el5.RF.x86_64。rpm」）
+
+
+
+NOTE: 在設定7-Mode Transition Tool之前、必須先在Linux系統上安裝JRE 1.8和7-Zip公用程式。

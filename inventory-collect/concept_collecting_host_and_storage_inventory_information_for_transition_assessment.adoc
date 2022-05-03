@@ -1,0 +1,27 @@
+---
+permalink: inventory-collect/concept_collecting_host_and_storage_inventory_information_for_transition_assessment.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, transition, collect, storage, host, inventory, information 
+summary: Inventory Collect Tool可讓您收集叢集Data ONTAP 式的VMware及7-Mode系統、交換器、主機及這些主機上執行的應用程式相關資訊、並建立一份庫存報告。然後、您可以將庫存報告匯入7-Mode Transition Tool以進行轉換評估。 
+---
+= 收集儲存設備和主機庫存資訊
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Inventory Collect Tool可讓您收集叢集Data ONTAP 式的VMware及7-Mode系統、交換器、主機及這些主機上執行的應用程式相關資訊、並建立一份庫存報告。然後、您可以將庫存報告匯入7-Mode Transition Tool以進行轉換評估。
+
+此工具會產生一份庫存報告工作簿和一份庫存報告XML檔案、其中包含儲存設備和主機系統的組態詳細資料。
+
+Inventory Collect Tool使用TLS或SSL傳輸協定與7-Mode儲存系統和SSH或WMIs進行通訊、以與主機進行通訊。如果儲存系統上已啟用TLS、則此工具會使用TLS傳輸協定與儲存系統通訊。如果停用TLS、且儲存系統上已啟用SSLv3、則此工具會使用SSLv3與儲存系統通訊。
+
+
+NOTE: 最佳實務做法是在儲存系統上啟用TLS並停用SSLv3、以避免出現SSLv3安全性弱點（CVE-2014-3566）。
+
+如果您因為安全理由而無法在環境中安裝7-Mode Transition Tool、則可將Inventory Collect Tool產生的庫存報告XML檔案匯入7-Mode Transition Tool（安裝於資料中心外）、以產生評估報告。您可以使用評估報告來評估系統的特色與功能、並找出這些功能在Data ONTAP 所選的叢集式版本中如何運作。
+
+Inventory Collect Tool是獨立式公用程式、不需要任何安裝。
+
+請務必參閱目前的7-Mode Transition Tool link:http://docs.netapp.com/us-en/ontap-7mode-transition/releasenotes.html["版本資訊"] 以取得支援的目標版本和已知問題的最新資訊。

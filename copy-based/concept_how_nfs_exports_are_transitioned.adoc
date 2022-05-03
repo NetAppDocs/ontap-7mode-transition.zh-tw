@@ -1,0 +1,168 @@
+---
+permalink: copy-based/concept_how_nfs_exports_are_transitioned.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, nfs, exports 
+summary: 您必須瞭解在轉換後如何在SVM上設定NFS匯出。如果VMware不支援7-Mode匯出組態、您可能需要執行一些手動步驟ONTAP 。 
+---
+= NFS匯出的轉換方式
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必須瞭解在轉換後如何在SVM上設定NFS匯出。如果VMware不支援7-Mode匯出組態、您可能需要執行一些手動步驟ONTAP 。
+
+您必須瞭解NFS匯出轉換的下列考量事項：
+
+* 如果SVM根磁碟區未匯出為允許所有NFS用戶端的唯讀存取、7-Mode Transition Tool會建立新的匯出原則、允許所有NFS用戶端的唯讀存取、並使用新的匯出原則匯出SVM的根磁碟區。
++
+為了確保所有已轉換的磁碟區或qtree均可掛載、SVM的根磁碟區必須允許所有NFS用戶端的唯讀存取權。
+
+* 當7-Mode磁碟區ONTAP 的匯出組態不受支援於VMware支援時、這些磁碟區會匯出、以允許SVM上所有NFS用戶端的唯讀權限。
++
+這些磁碟區的匯出原則必須在轉換後手動設定、以提供所需的存取權限。
+
+* 當7-Mode qtree的匯出組態不受ONTAP 支援於VMware移轉時、它們會繼承父Volume的匯出原則。
++
+這些qtree的匯出原則必須在轉換後手動設定、以提供必要的存取權限。
+
+* 在本例ONTAP 中、NFS用戶端若要掛載qtree、則NFS用戶端必須在所有父連接路徑上、直到SVM根Volume連接路徑（即/）的唯讀權限。
++
+若要讓NFS用戶端掛載qtree、qtree必須屬於具有唯讀權限的磁碟區。如果沒有磁碟區層級的唯讀權限、NFS用戶端就無法掛載qtree。
+
+* 如果在唯讀、讀寫及根存取權限清單的組合中指定相同的主機、則您必須在轉換後評估轉換的匯出規則、以決定主機的適當存取權限。
+
+
+http://www.netapp.com/us/media/tr-4067.pdf["NetApp技術報告4067：NFS最佳實務與實作指南"]
+
+
+
+== 範例：修改磁碟區的匯出原則、以允許存取qtree
+
+請考量在7-Mode儲存系統（192：192：192：192）中設定的下列匯出規則、以允許NFS用戶端192：192：168：10的Volume volstd10和qtree qtre1的讀取/寫入存取權：
+
+[listing]
+----
+/vol/volstd10/qtree1 -sec=sys,rw=192.168.10.10,nosuid
+/vol/volstd10 -sec=sys,rw=192.168.11.11,nosuid
+----
+轉換後ONTAP 、下列顯示的是位於畫面上的Volume volsdt10的匯出原則：
+
+[listing]
+----
+cluster-01::> export-policy rule show -vserver std_22 -policyname std_2226 -instance
+ (vserver export-policy rule show)
+
+                                               Vserver: std_22
+                                           Policy Name: std_2226
+                                            Rule Index: 1
+                                       Access Protocol: any
+Client Match Hostname, IP Address, Netgroup, or Domain: 192.168.11.11
+                                        RO Access Rule: sys
+                                        RW Access Rule: sys
+           User ID To Which Anonymous Users Are Mapped:65534
+                              Superuser Security Types: none
+                          Honor SetUID Bits in SETATTR: false
+                             Allow Creation of Devices: true
+cluster-01::>
+----
+轉換後、ONTAP 下列為流程圖中qtree qtre1的匯出原則：
+
+[listing]
+----
+ cluster-01::> export-policy rule show -vserver std_22 -policyname std_2225 -instance
+  (vserver export-policy rule show)
+
+                                    Vserver: std_22
+                                Policy Name: std_2225
+                                 Rule Index: 1
+                            Access Protocol: any
+Client Match Hostname, IP Address, Netgroup, or Domain: 192.168.10.10
+                             RO Access Rule: sys
+                             RW Access Rule: sys
+User ID To Which Anonymous Users Are Mapped: 65534
+                   Superuser Security Types: none
+               Honor SetUID Bits in SETATTR: false
+                  Allow Creation of Devices: true
+cluster-01::>
+----
+NFS用戶端192.168.1.10若要存取qtree、NFS用戶端192.168.1.10必須擁有對qtree父Volume的唯讀存取權。
+
+下列輸出顯示NFS用戶端在掛載qtree時遭到拒絕存取：
+
+[listing]
+----
+ [root@192.168.10.10 ]# mount 192.168.35.223:/vol/volstd10/qtree1
+transition_volume_qtreemount:192.168.35.223:/vol/volstd10/qtree1 failed, reason
+given by server: Permission denied [root@192.168.10.10 ]#
+----
+您必須手動修改磁碟區的匯出原則、以提供NFS用戶端192.168.10.10的唯讀存取權。
+
+[listing]
+----
+cluster-01::> export-policy rule create -vserver std_22 -policyname std_2226 -clientmatch
+192.168.10.10 -rorule sys -rwrule never -allow-suid false -allow-dev true -superuser none -protocol nfs
+  (vserver export-policy rule create)
+
+cluster-01::> export-policy rule show -vserver std_22 -policyname std_2226 -instance
+  (vserver export-policy rule show)
+
+                                    Vserver: std_22
+                                Policy Name: std_2226
+                                 Rule Index: 1
+                            Access Protocol: any
+Client Match Hostname, IP Address, Netgroup, or Domain: 192.168.11.11
+                             RO Access Rule: sys
+                             RW Access Rule: sys
+User ID To Which Anonymous Users Are Mapped: 65534
+                   Superuser Security Types: none
+               Honor SetUID Bits in SETATTR: false
+                  Allow Creation of Devices: true
+
+**                                    Vserver: std_22
+                                Policy Name: std_2226
+                                 Rule Index: 2
+                            Access Protocol: nfs
+Client Match Hostname, IP Address, Netgroup, or Domain: 192.168.10.10
+                             RO Access Rule: sys
+                             RW Access Rule: never
+User ID To Which Anonymous Users Are Mapped: 65534
+                   Superuser Security Types: none
+               Honor SetUID Bits in SETATTR: false
+                  Allow Creation of Devices: true**
+
+cluster-01::>
+----
+
+
+== 範例：qtree匯出規則在7-Mode和ONTAP VMware中有何不同
+
+在7-Mode儲存系統中、當NFS用戶端透過其父Volume的掛載點存取qtree時、qtree匯出規則會被忽略、其父Volume的匯出規則也會生效。不過ONTAP 、在功能不全的情況下、無論NFS用戶端是直接掛載到qtree、還是透過其父Volume的掛載點存取qtree、都會強制執行qtree匯出規則。此範例特別適用於NFSv4。
+
+以下是7-Mode儲存系統（192.168.1.18）上的匯出規則範例：
+
+[listing]
+----
+/vol/volstd10/qtree1 -sec=sys,ro=192.168.10.10,nosuid
+/vol/volstd10   -sec=sys,rw=192.168.10.10,nosuid
+----
+在7-Mode儲存系統上、NFS用戶端192．168．10僅擁有對qtree的唯讀存取權。但是、當用戶端透過其父Volume的掛載點存取qtree時、用戶端可以寫入qtree、因為用戶端可以讀取/寫入該磁碟區。
+
+[listing]
+----
+[root@192.168.10.10]# mount 192.168.26.18:/vol/volstd10 transition_volume
+[root@192.168.10.10]# cd transition_volume/qtree1
+[root@192.168.10.10]# ls transition_volume/qtree1
+[root@192.168.10.10]# mkdir new_folder
+[root@192.168.10.10]# ls
+new_folder
+[root@192.168.10.10]#
+----
+在鏈接中、當用戶端直接存取qtree或透過qtree父Volume的掛載點存取qtree時、NFS用戶端192．168．10只能以唯讀方式存取qtree qtre1。ONTAP
+
+轉換之後、您必須評估強制執行NFS匯出原則的影響、並視需要將程序修改為在ONTAP 更新中強制執行NFS匯出原則的新方法。
+
+*相關資訊*
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.cdot-famg-nfs/home.html["NFS管理"]

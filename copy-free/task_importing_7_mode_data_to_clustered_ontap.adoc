@@ -1,0 +1,66 @@
+---
+permalink: copy-free/task_importing_7_mode_data_to_clustered_ontap.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, import, data 
+summary: 驗證纜線並解決任何問題之後、您就可以執行匯入作業。在此階段中、磁碟擁有權會指派給對應的叢集節點、而7-Mode集合體、磁碟區和LUN則會轉換成ONTAP VMware格式。也會套用所有Volume層級和LUN層級的組態。 
+---
+= 將7-Mode資料匯入ONTAP 至VMware
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+驗證纜線並解決任何問題之後、您就可以執行匯入作業。在此階段中、磁碟擁有權會指派給對應的叢集節點、而7-Mode集合體、磁碟區和LUN則會轉換成ONTAP VMware格式。也會套用所有Volume層級和LUN層級的組態。
+
+此工具在此階段執行下列作業：
+
+* 7-Mode磁碟會指派給對應的目標叢集節點。
+* 所有7-Mode集合體、磁碟區和LUN都會轉換ONTAP 成VMware格式。
+* 選取進行轉換的7-Mode IP位址會在SVM上設定為管理上線狀態。
+* 套用下列組態：
++
+** NFS匯出規則
+** CIFS共用
+** CIFS ACL組態
+** CIFS主目錄組態
+** CIFS符號連結
+** 配額組態
+** Snapshot複製排程
+** LUN對應和igroup
+
+
+
+
+.步驟
+. 按一下*匯入*。
++
+*疑難排解：*如果集合體中缺少磁碟、則集合體會降級、而且匯入作業會失敗。如果遺失的磁碟數量在允許的限制內、您可以從7-Mode Transition Tool CLI執行下列命令、繼續使用降級的集合體進行轉換：
+
++
+「* Transition CFT Aggregate degraded－Transition－p _project名稱_－n _7-mode－host-name_－a _7-mode－gregate－name_－i Acknowledg*」
+
++
+然後、您可以重新執行纜線驗證作業、並繼續進行轉換。您必須確定目標叢集節點中有足夠的備用磁碟、以便在集合體移轉之後重建這些RAID群組。
+
++
+此時會顯示一則警告訊息、列出此作業的重要考量事項。
+
+. 按一下「*是*」繼續。
++
+隨即顯示操作結果。
+
+. 等待作業完成、然後執行下列動作：
++
+.. 按一下*「另存為CSV*」、將作業結果儲存在檔案中。
+.. 按一下「*收集工具記錄*」、備份所有轉換記錄檔。
++
+最佳做法是在每次轉換作業之後儲存記錄檔。
+
+.. 按一下「*關閉*」以關閉操作結果視窗。
+
+
++
+如果作業需要很長時間才能完成、您可以按一下*在背景中執行*來結束作業結果視窗。當作業在背景執行時、您不應編輯專案或執行任何其他工作。然後、您可以從「操作歷程記錄」標籤檢視操作結果。
+
+

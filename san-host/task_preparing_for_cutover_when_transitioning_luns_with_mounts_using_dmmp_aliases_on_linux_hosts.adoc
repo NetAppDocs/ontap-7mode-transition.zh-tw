@@ -1,0 +1,42 @@
+---
+permalink: san-host/task_preparing_for_cutover_when_transitioning_luns_with_mounts_using_dmmp_aliases_on_linux_hosts.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, cutover, phase, lun, point, dmmp, device, names 
+summary: 如果您要在Linux主機上使用別名來轉換裝載點的LUN、則在進入轉換階段之前、您必須執行幾個步驟。 
+---
+= 在Linux主機上使用DMP裝置名稱、以掛載點轉換LUN時、準備轉換階段
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您要在Linux主機上使用別名來轉換裝載點的LUN、則在進入轉換階段之前、您必須執行幾個步驟。
+
+對於FC組態、您必須具備光纖連線能力、並將分區區設為叢集Data ONTAP 式的支援中心控制器。
+
+對於iSCSI組態、您必須探索iSCSI工作階段、並登入叢集Data ONTAP 式的等化控制器。
+
+* 對於複製型轉換、請先執行這些步驟、再在7-Mode Transition Tool（7MTT）中啟動Storage Cutover（儲存設備轉換）作業。
+* 如需無複製轉換、請在7MTT中啟動匯出及停止7-Mode系統作業之前、先執行下列步驟。
+
+
+.步驟
+. 停止I/O至掛載點。
+. 根據應用程式廠商的建議、關閉正在存取LUN的應用程式。
+. 卸載DMP裝置：
++
+h.*umount_dir_name_*
+
+. 清除7-Mode LUN DMP裝置ID：
++
+`*多重路徑-f _DEVICE名稱_*
+
++
+如有需要、您可以從「_Inventory Assessment Workbook」（_資源管理評估工作簿_）*「SAN Host LUN*」（SAN主機LUN*）索引標籤下的「* OS Device ID*」（* OS裝置ID*）欄取得DDMP裝置名稱。
+
+
+
+*相關資訊*
+
+xref:task_gathering_pretransition_information_from_inventory_assessment_workbook.adoc[從庫存評估工作簿收集過渡前資訊]

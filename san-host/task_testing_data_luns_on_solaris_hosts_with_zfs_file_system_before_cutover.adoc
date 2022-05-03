@@ -1,0 +1,149 @@
+---
+permalink: san-host/task_testing_data_luns_on_solaris_hosts_with_zfs_file_system_before_cutover.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, data, lun, solaris, zfs, cutover, copy, based 
+summary: 如果您使用7-Mode Transition Tool（7MTT\）2.2或更新版本、Data ONTAP 以及更新版本的版本、以轉換Solaris主機的ZFS資料LUN、您可以測試轉換的叢集Data ONTAP 式LUN、以確認您可以在轉換階段之前掛載MPIO裝置。 
+---
+= 在轉換複本型轉換的轉換階段之前、使用ZFS檔案系統測試Solaris主機上的資料LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您使用7-Mode Transition Tool（7MTT）2.2或更新版本、Data ONTAP 以及更新版本的版本、以轉換Solaris主機的ZFS資料LUN、您可以測試轉換的叢集Data ONTAP 式LUN、以確認您可以在轉換階段之前掛載MPIO裝置。
+
+* 在開始測試階段移轉之前、您的來源主機必須離線使用ZFS資料LUN。
++
+如需詳細資訊、請參閱_Oracle文件ID 1316472.1：不支援LUN複製、而ZFS zPool為Online_。
+
+* 您的新叢集Data ONTAP 式支援LUN必須對應至測試主機、且LUN必須已準備好進行轉換。
+* 在正式作業主機上匯出zPool會導致應用程式中斷；所有I/O作業都應在7-Mode LUN之前停止。
+
+
+您應該維持測試主機與來源主機之間的硬體同位元、而且應該在測試主機上執行下列步驟。
+
+在Data ONTAP 測試期間、叢集式的LUN會處於讀取/寫入模式。當測試完成且您正在準備轉換階段時、它們會轉換成唯讀模式。
+
+. 在正式作業（來源）主機上、匯出zPool：
++
+「#zpool匯出_Pool-name_*」
+
++
+[listing]
+----
+# zpool export n_pool
+
+# zpool import
+  pool: n_pool
+    id: 5049703405981005579
+ state: ONLINE
+action: The pool can be imported using its name or numeric identifier.
+config:
+
+        n_pool                                   ONLINE
+          c0t60A98000383035356C2447384D396550d0  ONLINE
+          c0t60A98000383035356C2447384D39654Ed0  ONLINE
+----
+. 完成基礎資料複本之後、請在7MTT使用者介面（UI）中選取*測試模式*。
+. 在7MTT UI中、按一下*套用組態*。
++
+
+NOTE: 完成此步驟之後、您可以將應用程式設回線上、並將I/O作業啟動至7-Mode LUN。後續步驟不會造成任何應用程式中斷。
+
+. 在正式作業主機上、匯入zPool：
++
+「#zpool匯入_Pool-name_*」
+
++
+[listing]
+----
+# zpool import n_pool
+----
+. 在測試主機上、重新掃描新的叢集Data ONTAP 式LUN：
++
+.. 識別FC主機連接埠（類型為fc-frap）：+「*」#cfgadm–l*」
+.. 取消配置第一個fc-Fabric連接埠：+`#cfgadm–c unconfigure c1*
+.. 設定第一個fc-Fabric連接埠：+`#cfgadm–c unconfigure c2*
+.. 對其他fc-Fabric連接埠重複上述步驟。
+.. 顯示有關主機連接埠及其附加裝置的資訊：+「*」*「cfgadm–al*」
+.. 重新載入驅動程式：+`*# devfsadm–CV*
++
+’# devfsadm- I iSCSI*
+
+
+
+. 驗證叢集Data ONTAP 式的LUN是否存在：
++
+「#sanlun LUN show*」
+
++
+[listing]
+----
+# sanlun lun show
+controller(7mode)/                    device                                            host                  lun
+vserver(Cmode)       lun-pathname     filename                                          adapter    protocol   size    mode
+--------------------------------------------------------------------------------------------------------------------------
+vs_5           /vol/zfs/zfs2    /dev/rdsk/c5t600A0980383030444D2B466542485935d0s2 scsi_vhci0 FCP        6g      C
+vs_5           /vol/zfs/zfs1    /dev/rdsk/c5t600A0980383030444D2B466542485934d0s2 scsi_vhci0 FCP        6g      C
+vs_5           /vol/ufs/ufs2    /dev/rdsk/c5t600A0980383030444D2B466542485937d0s2 scsi_vhci0 FCP        5g      C
+vs_5           /vol/ufs/ufs1    /dev/rdsk/c5t600A0980383030444D2B466542485936d0s2 scsi_vhci0 FCP        5g      C
+----
+. 確認已規劃要測試的zPool可供匯入：
++
+‘#zpool import*’
+
++
+[listing]
+----
+# zpool import
+  pool: n_pool
+    id: 5049703405981005579
+ state: ONLINE
+action: The pool can be imported using its name or numeric identifier.
+config:
+
+        n_pool                                   ONLINE
+          c5t600A0980383030444D2B466542485935d0  ONLINE
+          c5t600A0980383030444D2B466542485934d0  ONLINE
+----
+. 使用Pool名稱或Pool ID匯入zPool：
++
+** 「#zpool匯入Pool-name*」
+** 「#zpool匯入Pool-id*」
+
+
++
+[listing]
+----
+#zpool import n_pool
+----
++
++
+
++
+[listing]
+----
+#zpool import 5049703405981005579
+----
+. 驗證是否已掛載ZFS資料集：
++
+** 《* zflist*》
+** ‘* df -ah*’
+
+
++
+[listing]
+----
+# zfs list
+NAME           USED  AVAIL  REFER  MOUNTPOINT
+n_pool        2.67G  9.08G   160K  /n_pool
+n_pool/pool1  1.50G  2.50G  1.50G  /n_pool/pool1
+n_pool/pool2  1.16G  2.84G  1.16G  /n_pool/pool2
+----
+. 視需要執行測試。
+. 關閉測試主機。
+. 在7MTT UI中、按一下「*完成測試*」。
+
+
+如果您的叢集Data ONTAP 式支援LUN要重新對應至來源主機、您必須準備好來源主機以進行轉換階段。如果您的叢集Data ONTAP 式支援LUN仍要對應至測試主機、則測試主機不需要執行其他步驟。

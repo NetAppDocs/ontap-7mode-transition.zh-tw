@@ -1,0 +1,98 @@
+---
+permalink: san-host/task_enabling_caw_on_a_datastore_using_esxi_cli.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, enable, caw, datastore, esxi, cli 
+summary: 如果Data ONTAP 您不支援在7-Mode中操作的比較和寫入（CAW\）、則在轉換至叢集Data ONTAP 式的VMware時、您必須手動啟用CAW支援。叢集Data ONTAP 式支援預設為CAW。 
+---
+= 使用ESXi CLI在資料存放區上啟用CAW
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果Data ONTAP 您在7-Mode中操作時不支援Compare and Write（CAW）（比較與寫入（CAW））、則必須在轉換至叢集Data ONTAP 式VMware時手動啟用CAW支援。叢集Data ONTAP 式支援預設為CAW。
+
+* VMFS資料存放區上必須沒有正在執行的I/O或VM。
+* 如果資料存放區已移轉、則必須重新掛載。
+* 您必須ONTAP 從7-Mode Transition Tool（7MTT）對應檔案取得新的更新的VMware LUN naa ID。
+
+
+只有在VMFS資料存放區上未主動執行I/O或VM時、才必須啟用CAW。
+
+* 只有在VMFS資料存放區上未主動執行I/O或VM時、才必須啟用CAW。
+* 對於複製型轉換、請在完成7MTT中的儲存轉換作業之後、執行這些步驟。
+* 如需無複製轉換、請在7MTT中完成匯入資料與組態作業之後執行這些步驟。
+
+
+.步驟
+. 開啟由庫存收集工具（ICT）產生的_庫存評估工作簿_。
+. 瀏覽至SAN主機檔案系統索引標籤。
+. 驗證資料存放區的CAW狀態。
++
+資料存放區的* ATS / CAW*值應顯示*已停用*、而「檔案系統」欄應顯示* vmfs.x*。
+
+. 請記下「磁碟」欄中的資料存放區名稱
+. 使用SSH登入ESXi主控台。
+. 列出裝置和分割區的詳細資料：
++
+「*~# vmkfstools -ph -v1 _datastore_path_*」
+
++
+datastore_path是「_資源清冊評估工作簿_」的「磁碟」欄中的資料存放區名稱。
+
++
+例如：*# vmkfsools -ph -v1 /vmfs/volumes/datastorename*
+
++
+[listing]
+----
+VMFS-5.60 file system spanning 1 partitions.
+File system label (if any): datastorename
+Mode: public
+Capacity 9.8 GB, 8.2 GB available, file block size 1 MB, max file size 64
+TB
+Volume Creation Time: Mon Dec 9 10:29:18 2013
+Files (max/free): 27408/27394
+Ptr Blocks (max/free): 64512/64495
+Sub Blocks (max/free): 3968/3964
+Secondary Ptr Blocks (max/free): 256/256
+File Blocks (overcommit/used/overcommit %): 0/1593/0
+Ptr Blocks (overcommit/used/overcommit %): 0/17/0
+Sub Blocks (overcommit/used/overcommit %): 0/4/0
+Volume Metadata size: 590675968
+UUID: 52a59b7e-52d2fb6c-11d6-001ec9d631cb
+Partitions spanned (on "lvm"):
+naa.600a098044314c6c442b446d51376749:1
+naa.600a098054314c6c445d446f79716431:1
+naa.600a098054314c6c445d446f79716433:1
+Is Native Snapshot Capable: YES
+----
+. 請記下第一個裝置名稱和分割區編號。
++
+在上述範例中、「naa.600a098044314c6c442b446d51376749:1」是裝置名稱和分割區編號。
+
+. 使用裝置ID和磁碟分割號碼、在資料存放區上啟用CAW：
++
+「*」~# vmkfstools --configATSOnly 1 /vmfs/devices/disks/_device-ID：Partition_*
+
+. 確認VMFS磁碟區已設定為僅使用ATS：
++
+「*# vmkfsools -ph -v1 /vmfs/volumes/vmfs/volume-name*」
+
++
+[listing]
+----
+VMFS-5.54 file system spanning 1 partitions.
+File system label (if any): ats-test-1
+Mode: public ATS-only
+----
+
+
+*相關資訊*
+
+xref:task_remounting_vmfs_volumes_after_transition_using_vsphere_client.adoc[使用vSphere Client在轉換後重新掛載VMFS磁碟區]
+
+xref:task_remounting_vmfs_volumes_after_transition_using_esxi_cli_console.adoc[使用ESXi CLI在轉換後重新掛載VMFS磁碟區]
+
+https://pubs.vmware.com/vsphere-55/index.jsp?topic=/com.vmware.vsphere.storage.doc/GUID-6887003D-2322-49AC-A56C-7AFE7350DB5D.html["VMware文件"]

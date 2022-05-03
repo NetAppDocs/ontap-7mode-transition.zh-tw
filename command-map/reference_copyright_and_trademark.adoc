@@ -1,0 +1,12 @@
+---
+permalink: command-map/reference_copyright_and_trademark.html 
+sidebar: sidebar 
+keywords: ontap, command, map, transition, copyright, trademark 
+summary: 適用於7-Mode管理員指南的Command Map版權與商標。 
+---
+= 版權與商標
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+

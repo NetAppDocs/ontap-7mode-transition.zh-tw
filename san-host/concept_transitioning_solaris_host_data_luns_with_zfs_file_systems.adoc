@@ -1,0 +1,14 @@
+---
+permalink: san-host/concept_transitioning_solaris_host_data_luns_with_zfs_file_systems.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, solaris, host, data, lun, zfs, file, systems 
+summary: 如果您使用ZFS檔案系統將Solaris主機資料LUN從Data ONTAP 以7-Mode運作的VMware移轉至使用Data ONTAP 7-Mode Transition Tool（7MTT\）的叢集式VMware、則必須在轉換前後執行特定步驟、以修正主機上的轉換問題。 
+---
+= 使用ZFS檔案系統轉換Solaris主機資料LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您使用ZFS檔案系統將Solaris主機資料LUN從Data ONTAP 以7-Mode運作的VMware移轉至使用Data ONTAP 7-Mode Transition Tool（7MTT）的叢集式VMware、則必須在轉換前後執行特定步驟、以修正主機上的轉換問題。

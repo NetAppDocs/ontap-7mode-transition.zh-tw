@@ -1,0 +1,18 @@
+---
+permalink: snapmirror/task_recovering_from_a_disaster_at_7_mode_site_during_transition.html 
+sidebar: sidebar 
+keywords: ontap, 7, mode, transition, snapmirror, recover, disaster, site 
+summary: 如果您已在7-Mode主Volume與叢集Data ONTAP 式VMware次要Volume之間建立SnapMirror災難恢復（DR）關係、而且7-Mode主站台發生災難、您可以直接讓用戶端存取叢集Data ONTAP 式的二線資料區。當7-Mode主Volume重新連線後、您必須執行其他步驟、將用戶端重新導向至叢集Data ONTAP 式的VMware主Volume。 
+---
+= 在轉換期間從7-Mode站台的災難中恢復
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您已在7-Mode主Volume與叢集Data ONTAP 式VMware次要Volume之間建立SnapMirror災難恢復（DR）關係、而且7-Mode主站台發生災難、您可以引導用戶端存取叢集Data ONTAP 式的二線實時磁碟區。當7-Mode主Volume重新連線後、您必須執行其他步驟、將用戶端重新導向至叢集Data ONTAP 式的VMware主Volume。
+
+若要保留Data ONTAP 災難後寫入叢集式的任何資料、您必須在7-Mode主磁碟區恢復上線後、才能轉換7-Mode主磁碟區、並在叢集Data ONTAP 式的二線資料磁碟區之間建立SnapMirror關係。然後、您可以將用戶端重新導向至叢集Data ONTAP 式的等化主磁碟區。
+
+SnapMirror不Data ONTAP 支援從叢集式的不同步到7-Mode磁碟區。因此Data ONTAP 、如果您在災難發生後重新建立7-Mode主Volume與叢集式VMware次要Volume之間的DR關係、則任何寫入次要叢集Data ONTAP 式故障恢復的資料都會遺失。

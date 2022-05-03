@@ -1,0 +1,22 @@
+---
+permalink: copy-free/task_performing_copy_free_transition_of_7_mode_aggregates.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, aggregates, transition 
+summary: 無複製移轉工作流程包括規劃專案、將7-Mode組態套用至SVM、匯出7-Mode系統資訊並停止7-Mode系統、手動將磁碟櫃佈線至叢集節點、以及匯入7-Mode資料和組態。 
+---
+= 使用無複本轉換來轉換7-Mode Aggregate
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+無複製移轉工作流程包括規劃專案、將7-Mode組態套用至SVM、匯出7-Mode系統資訊並停止7-Mode系統、手動將磁碟櫃佈線至叢集節點、以及匯入7-Mode資料和組態。
+
+image::../media/perform_cft_phases_workflow.gif[執行CFT階段工作流程]
+
+您必須準備好7-Mode系統和叢集、才能進行無複本轉換。
+
+儲存設備轉換時間可為4-8小時或更短。轉換時間包括工具執行兩項自動化作業所需的時間（匯出、停止及匯入作業）、以及將磁碟櫃手動連接至新控制器所需的時間。
+
+匯出與匯入作業約需2小時或更短時間。佈線可能需要2至6小時或更短的時間。

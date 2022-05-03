@@ -1,0 +1,18 @@
+---
+permalink: san-host/concept_downtime_at_precutover_phase_of_esxi_host_transition.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, downtime, apply, configurations, precutover, phase, esxi, host 
+summary: 在轉換ESXi主機時、您必須在套用組態（預先轉換）階段規劃停機時間。 
+---
+= ESXi主機移轉的套用組態（預先轉換）階段停機
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在轉換ESXi主機時、您必須在套用組態（預先轉換）階段規劃停機時間。
+
+完成ESXi主機轉換的先決條件之後、您可以使用7-Mode Transition Tool（7MTT）、將LUN從Data ONTAP 以7-Mode運作的VMware移轉至ONTAP VMware。ESXi主機、VM和應用程式都可以上線、直到7MTT轉換的套用組態（預先轉換）階段為止。不過、在套用組態（預先轉換）階段、所有應用程式和客體作業系統都必須關機。如果ESXi主機是SAN開機、或是SAN開機的LUN是轉換的一部分、則ESXi主機也必須在套用組態（預先轉換）階段關機。
+
+如果主機未開機SAN、而您需要將服務持續執行至非轉換LUN或非NetApp所製造的陣列LUN、您可以選擇不關閉主機。不過、如果您未將其關閉、可能會遇到「All Paths -down（APD）（全路徑關閉（APD））」的情況。為了避免APD的情況、您可以遮罩Data ONTAP 在7-Mode LUN上運作的功能。請參閱 link:https://kb.vmware.com/s/article/1009449["VMware知識庫ID 1009449"] 以取得更多資訊。

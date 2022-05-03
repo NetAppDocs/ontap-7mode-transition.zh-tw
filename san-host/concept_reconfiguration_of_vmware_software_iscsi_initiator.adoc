@@ -1,0 +1,24 @@
+---
+permalink: san-host/concept_reconfiguration_of_vmware_software_iscsi_initiator.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, reconfiguration, vmware, software, iscsi, initiator 
+summary: 如果您的ESXi主機使用Data ONTAP VMware軟體iSCSI啟動器在7-Mode系統中存取執行的功能、則在從7-Mode移轉至叢集Data ONTAP 式功能後、您必須重新設定ESXi主機上的VMware軟體iSCSI啟動器、並讓它探索新的叢集Data ONTAP 式功能目標。 
+---
+= 轉換後重新設定VMware軟體iSCSI啟動器
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您的ESXi主機使用Data ONTAP VMware軟體iSCSI啟動器在7-Mode系統中存取執行的功能、則在從7-Mode移轉至叢集Data ONTAP 式功能後、您必須重新設定ESXi主機上的VMware軟體iSCSI啟動器、並讓它探索新的叢集Data ONTAP 式功能目標。
+
+若要進行複本型轉換、您必須先重新設定VMware軟體iSCSI啟動器、然後才能在7-Mode Transition Tool（7MTT）中啟動Storage Cutover作業。若要進行無複本轉換、您必須先重新設定VMware軟體iSCSI啟動器、然後再在7MTT中啟動「匯出及停止7-Mode Systems」作業。
+
+在重新設定期間、您必須擷取新叢集Data ONTAP 式更新目標所使用的iSCSI IP和IQN。如果目標IP子網路已變更、則主機iSCSI啟動器連接埠也需要相應的IP子網路變更。
+
+若要變更VMware ESXi主機上的軟體iSCSI啟動器、請參閱《VMware vSphere ESXI5.x儲存指南》。
+
+*相關資訊*
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["系統管理"]

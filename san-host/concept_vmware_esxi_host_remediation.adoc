@@ -1,0 +1,20 @@
+---
+permalink: san-host/concept_vmware_esxi_host_remediation.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, esxi, host, remediation 
+summary: 如果您使用7-Mode Transition Tool（7-Mode Transition Tool）（7MTT）、在Data ONTAP SAN環境中從以7-Mode運作的VMware ESXi移至叢集Data ONTAP 式的VMware ESXi、則必須在Data ONTAP 進行VMware ESXi移轉之前、對VMware ESXi主機執行一系列步驟。您必須先關閉主機的電源、再進行轉換、而且在轉換後必須執行其他一系列步驟、才能開始服務資料。 
+---
+= VMware ESXi主機補救
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您使用7-Mode Transition Tool（7MTT）在Data ONTAP SAN環境中從以7-Mode運作的VMware ESXi移轉至叢集Data ONTAP 式的VMware、則在Data ONTAP 進行VMware ESXi轉換之前、您必須在主機上執行一系列步驟。您必須先關閉主機的電源、再進行轉換、而且在轉換後必須執行其他一系列步驟、才能開始服務資料。
+
+*相關資訊*
+
+xref:task_testing_transitioned_luns_and_esxi_host_applications_before_cutover.adoc[在複本型轉換轉換的轉換階段之前、先測試轉換的LUN和ESXi主機應用程式]
+
+xref:concept_post_transition_requirements_for_esxi_hosts.adoc[ESXi主機的移轉後修正需求]

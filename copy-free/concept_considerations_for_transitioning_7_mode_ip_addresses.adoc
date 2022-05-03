@@ -1,0 +1,24 @@
+---
+permalink: copy-free/concept_considerations_for_transitioning_7_mode_ip_addresses.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, 7, mode, ip, addresses 
+summary: 在ONTAP 將7-Mode IP位址移轉至VMware中的儲存虛擬機器（SVMs）時、您必須注意某些考量。 
+---
+= 轉換7-Mode IP位址的考量
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在ONTAP 將7-Mode IP位址轉換至VMware中的儲存虛擬機器（SVM）時、您必須注意某些考量。
+
+* 您可以使用7-Mode Transition Tool、轉換現有的7-Mode IP位址、或指定要在SVM上設定的新IP位址。
++
+** 現有的7-Mode IP位址會在SVM上建立、並在「套用組態（預先轉換）」階段中處於管理「自有」狀態。
+** 新的IP位址會在SVM上建立、並在「套用組態（預先轉換）」階段的管理「up」狀態下建立。
+
+
+* IPv6位址無法轉換、必須在轉換後手動設定。
+* iSCSI和FC生命期不會移轉、而且必須在轉換後手動設定。
+

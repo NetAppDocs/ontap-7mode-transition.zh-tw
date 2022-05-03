@@ -1,0 +1,14 @@
+---
+permalink: copy-free/index.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, index 
+summary: 說明如何ONTAP 使用7-Mode Transition Tool從7-Mode HA配對轉換至VMware叢集、而無需從磁碟複製資料；現有的磁碟櫃已連接至新叢集。 
+---
+= 無複本移轉指南
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+本指南說明如何ONTAP 使用7-Mode Transition Tool、從7-Mode HA配對移轉至VMware叢集、而無需從磁碟複製資料；現有的磁碟櫃已連接至新叢集。

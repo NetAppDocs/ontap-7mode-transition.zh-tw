@@ -1,0 +1,204 @@
+---
+permalink: copy-based/task_creating_a_transition_session.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, create, project 
+summary: 您可以建立一個轉換專案、識別要轉換的7-Mode物件、以及它們如何對應ONTAP 到這些物件。在建立專案時、7-Mode Transition Tool會收集並儲存有關轉換物件的資訊。您可以使用此專案資訊來分階段執行轉換。 
+---
+= 建立轉換專案
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以建立一個轉換專案、識別要轉換的7-Mode物件、以及它們如何對應ONTAP 到這些物件。在建立專案時、7-Mode Transition Tool會收集並儲存有關轉換物件的資訊。您可以使用此專案資訊來分階段執行轉換。
+
+您必須收集下列資訊：
+
+* 專案類型：可能的值包括獨立、主要或次要
+* 7-Mode儲存系統或預設VFiler裝置的FQDN或IP位址（若MultiStore 已取得使用許可）
+* 7-Mode儲存系統的管理使用者名稱和密碼
+* 7-Mode Volume清單
+* 叢集的FQDN或叢集管理LIF的IP位址
+* SVM名稱
+
+
+.步驟
+. 從* Start*功能表中、按一下*所有程式*>* NetApp 7-Mode Transition Tool*>* NetApp 7-Mode Transition Tool（CLI）3.0*、即可開啟7-Mode Transition Tool命令提示字元。
+. 新增系統的使用者名稱和密碼、這些系統是轉換專案的一部分：
++
+'轉換認證資料加入-h _host_name_-u _user_name_*
+
++
+「主機名稱」是7-Mode系統或叢集的FQDN或IP位址。
+
++
+「_user_name_」是系統的管理使用者名稱。
+
++
+
+NOTE: 您必須針對要新增至轉換專案的每個儲存系統重複此步驟。
+
++
+[listing]
+----
+7-Mode Transition Tool>transition credentials add -h system1.example.com -u root
+Enter password for 'root@system1.example.com':
+----
+. 建立轉換專案：
++
+'轉換CBT建立-p _project名稱_-t _project類型_-n _7-Mode_system_-c _data-copy -ipaddress_[-f _vFiler_name_][-h _cluster _-v _vserver_name_*
+
++
+「專案名稱」是轉換專案的名稱。
+
++
+專案類型為「專案類型」。有效值包括獨立式、次要或主要。
+
++
+「_7-Mode_system_」是7-Mode系統的FQDN或IP位址。
+
++
+「叢集_」是叢集的FQDN或叢集管理LIF的IP位址。
+
++
+
+NOTE: 7-Mode系統和叢集的主機名稱必須與您在建立專案時所提供的主機名稱相同。
+
++
+「_data-copy_ipaddress_」是複製資料的IP位址。
+
++
+「_vFiler_name_」是非預設vFiler單元的名稱。
+
++
+「_vserver_name_」是SVM的名稱。
+
++
+
+NOTE: 對於新的SVM、您必須使用「-g」選項、提供SVM根Volume的Aggregate名稱。
+
++
+[listing]
+----
+7-Mode Transition Tool>transition cbt create -p sample_project -t standalone -n system1.example.com -n 10.238.55.33 -h cluster1.example.com -v vs2
+----
++
+移轉專案移至準備狀態。
+
+. 將7-Mode Volume和ONTAP VMware Volume新增至專案：
++
+hy* Transition CBT volumepair add -p _project名稱_-v _7-Mode_volume_-c _vserver_volume_-g _aggr_name_-t*
+
++
+「_7-Mode_volume」是7-Mode Volume名稱。
+
++
+「_vserver_volume」是ONTAP SVM上的f2 Volume。
+
++
+
+NOTE: 您也可以新增ONTAP 已完成基準傳輸的「聲音量」。在準備階段新增此類磁碟區時、只會在資料複製階段執行遞增傳輸。
+
++
+「_aggreg_name_」是ONTAP 在啟動作業期間建立的循環磁碟區「_vserver_volume」的集合體。
+
++
+當SnapMirror關係中的磁碟區必須轉換為獨立Volume時、會使用「_-t_」。
+
++
+
+NOTE: 當磁碟區轉換為獨立磁碟區時、SnapMirror關係不會在轉換期間保留下來。
+
++
+對於SnapMirror關係中的《不一致性》磁碟區、7-Mode Transition Tool並不會將SnapMirror關係的移轉自動化、SnapLock SnapLockSnapMirror關係中的所有SnapLock 「支援功能」磁碟區都必須在獨立式、主要或次要專案中加入磁碟區、才能轉換為獨立式磁碟區（指定旗標-t）。然後、您必須在轉換之後、在這些磁碟區之間手動執行SnapMirror重新同步作業。
+
++
+請參閱 xref:concept_considerations_for_transitioning_of_snaplock_compliance_volumes.adoc[轉換SnapLock 不符合法規的考量]
+
++
+[listing]
+----
+7-Mode Transition Tool>transition cbt volumepair add -p sample_project -v vol1 -c vol1 -g aggr1
+----
+. 新增要轉換至專案的IP位址：
++
+'轉換CBT LIF add -p _project名稱_-I _ip-address_[-m _netmask_][-g _default-gateway_][-p _home_port_][-n _home_node_]*
+
++
+對於轉換專案、您也可以新增儲存轉換期間尚未設定或從7-Mode系統移除的現有IP位址、以及尚未在7-Mode或ONTAP VMware上設定的新IP位址。
+
++
+
+NOTE: 7-Mode Transition Tool不會移轉FC和iSCSI生命週期。
+
++
+[listing]
+----
+7-Mode Transition Tool>transition cbt lif add -p sample_project -i 192.0.2.250 -m 255.255.255.128 -g 192.40.0.1 -p e0a -n cluster1-01
+----
++
+在ONTAP 套用組態（切換前）作業期間、新的IP位址會在更新狀態的不穩定系統上設定。
+
+. 請遵循下列步驟、將資訊新增至主要和次要專案：
++
+|===
+| 如果您想要新增有關...的資訊 | 輸入... 
+
+
+ a| 
+主要7-Mode系統至次要專案
+ a| 
+'轉換CBT add-primary七模系統-p _project名稱_-h _source-host_-f _management管理-ipaddress_-d _data複製-ipaddress_[-m _多 重路徑-ipaddress_]*
+
+如需詳細資訊、請參閱 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapMirror/CBT_%3A_How_to_provide_all_the_required_primary_7-Mode_details_for_a_given_secondary_project["CBT：如何提供指定次要專案所需的所有主要7-Mode詳細資料"]。
+
+
+
+ a| 
+從叢集或SVM移至主要專案
+ a| 
+h.* Transition CBT add-secondary叢集模式-system -p _project名稱_-h _c-mode host-name_-v _vserver名稱_*
+
+如需詳細資訊、請參閱 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/CBT%3A_How_to_add_the_required_secondary_cluster_details_to_the_primary_project["CBT：如何將必要的次要叢集詳細資料新增至主要專案"]
+
+|===
++
+「專案名稱」是轉換專案的名稱。
+
++
+如次7-Mode系統的「napmirror STATUS」命令輸出所示、「source-host_」是主要的7-Mode儲存系統主機名稱或IP位址。
+
++
+如需提供7-Mode主要系統詳細資料的考量、請參閱手冊頁。
+
++
+「管理-ipaddress_」是來源主機的管理IP位址。
+
++
+「_data-copy_ipaddress_」是複製資料的IP位址。
+
++
+「多重路徑-ipaddress_」是用於資料複製的額外IP位址。
+
++
+「_c-mode-host-name_」是專案中次要磁碟區已移轉至的叢集之FQDN或IP位址。
+
++
+「_vserver_name_」是主控次要磁碟區的SVM名稱。
+
+. 建立資料複製排程：
++
+'轉換CBT排程新增-p _project名稱_-n _schedule_name_-d _days範圍_-b _start-time_-e _detimation_-u _update-frequest_-t _可用 傳輸百分比_-c _max-cap並行傳輸_-x _project SnapMirror、topnest_*
+
++
+下列命令說明如何新增使用100%可用並行SnapMirror傳輸的排程。但是、它不會在任何時間點超過25次並行SnapMirror傳輸。
+
++
+'轉換排程加上-p same_project -n dr_active -d 1-5 -b 2330 -e 03:00 -c 25 x 200 -u 00:30*
+
+. 檢視所建立之移轉專案的詳細資訊：
++
+’* Transition CBT show -p _project name_*（轉換CBT顯示-p _project名稱_*）
+
+

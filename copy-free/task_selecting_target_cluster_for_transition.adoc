@@ -1,0 +1,36 @@
+---
+permalink: copy-free/task_selecting_target_cluster_for_transition.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, select, target, cluster, nodes 
+summary: 您可以選取目標叢集HA配對、並將HA配對中的每個7-Mode控制器對應至對應的目標叢集節點。對應節點會指定必須將磁碟櫃從對應的7-Mode控制器連線至哪個叢集節點。 
+---
+= 選取要移轉的目標叢集節點
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以選取目標叢集HA配對、並將HA配對中的每個7-Mode控制器對應至對應的目標叢集節點。對應節點會指定必須將磁碟櫃從對應的7-Mode控制器連線至哪個叢集節點。
+
+目標叢集必須執行Data ONTAP 不含更新版本的版本。
+
+您可以將7-Mode磁碟櫃轉換成具有預先存在資料集合體和磁碟區的目標HA配對。
+
+對於雙節點叢集、您必須擁有資料Aggregate來裝載目標SVM的根磁碟區。對於具有四個或更多節點的叢集、SVM的根磁碟區可裝載於移轉的目標節點或叢集中的其他節點上。
+
+.步驟
+. 選取必須連接7-Mode磁碟櫃的目標HA配對。
++
+此工具會自動將每個7-Mode儲存系統對應至目標叢集節點。
+
++
+
+NOTE: 在匯入階段、每個7-Mode控制器的磁碟和Aggregate擁有權都會傳輸至對應的對應目標叢集節點。
+
+. 按一下*交換節點對應*以變更來源對目標節點對應的自動指派。
+. 按一下*儲存並繼續*。
++
+此時會顯示SVM and Volume Mapping（SVM與Volume對應）畫面。
+
+

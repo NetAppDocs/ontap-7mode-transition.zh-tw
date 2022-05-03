@@ -1,0 +1,96 @@
+---
+permalink: copy-free/task_running_manual_steps_for_rolling_back_transition.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, manual, roll, back 
+summary: 如果您決定回復轉換作業、則必須在叢集和7-Mode系統上執行一些手動步驟。手動復原步驟清單是由7-Mode Transition Tool所產生。 
+---
+= 手動回復轉換
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您決定回復轉換作業、則必須在叢集和7-Mode系統上執行一些手動步驟。手動復原步驟清單是由7-Mode Transition Tool所產生。
+
+復原步驟視您決定回溯的階段而定。如果您決定在成功匯入作業之後回溯、則必須執行此工作中的所有步驟。如果您決定在較早的階段回溯、則必須執行這些步驟的子集。
+
+.步驟
+. 登入叢集。
+. 如果有任何移轉的磁碟區與SnapMirror關係、請選擇下列其中一項動作：
++
+** 如果已轉換的Volume是SnapMirror關係的目的地、請刪除SnapMirror關係：+「* SnapMirror刪除- destination-path _destination-path_-source-path _source-path_*」
+** 如果移轉的磁碟區是SnapMirror關係的來源、請釋放SnapMirror關係：「* SnapMirror版本- destination-path destination-path -source-path source-path*」
+
+
+. 從叢集驗證下列作業是否未在轉換的磁碟區上執行：
++
+.. Volume Move（Volume移動）操作：+「* Volume Move show*」（Volume移動顯示*）
+.. LUN搬移作業：+「* LUN搬移顯示*」
+.. LUN複製作業：+「* LUN複製show *」
+
+
+. 針對所有7-Mode Aggregate執行復原：
++
+.. 登入診斷權限等級：+「*設定-權限診斷*」
+.. 使用「轉換還原啟動」命令、將集合體還原為7-Mode狀態。
++
+此命令需要其他參數、例如轉換專案ID和Aggregate屬性。您應該使用完整命令搭配7-Mode Transition Tool所產生的參數及其值。
+
+.. 確認所有轉換的集合體都能順利復原：+「*儲存設備轉換回復顯示狀態*」
++
+當復原成功時、Aggregate的「狀態代碼」欄位會顯示為「恢復完成」。
+
+
+
+. 將目標叢集節點的磁碟擁有者重新指派給7-Mode控制器：
++
+.. 將磁碟擁有權指派給7-Mode控制器：+`*磁碟指派–disk _disk_id_–s _system_id_-force true*
+.. 確認磁碟擁有權已指派給7-Mode控制器：
++
+’*儲存磁碟顯示-Fields Oner-id*
+
+
+
+. 從SVM移除7-Mode lifs：
++
+h.*網路介面刪除-vserver _Svm_name_-lif_lif_name_*
+
+. 從診斷權限層級移除目標叢集節點上的無複本移轉限制：
++
+「*儲存設備移轉預先認可端點-工作階段ID _Transition專案_id_*」
+
++
+您也可以在復原作業完成且7-Mode控制器正常運作之後執行此步驟。
+
+. 使用下列診斷權限層級命令刪除目標叢集節點的移轉專案資訊：
++
+「*儲存設備移轉清除資訊-session-id _Transition專案_id_*」
+
++
+您也可以在復原作業完成且7-Mode控制器正常運作之後執行此步驟。
+
+. 如果在匯出和停止作業期間、叢集節點上的磁碟所有權自動指派功能已停用、請啟用：
++
+h.*儲存磁碟指派-autotrue*
+
+. 手動移除此工具已轉換至目標SVM的所有組態。
++
+您可以檢視SVM資源配置和匯入作業的結果、以取得有關此工具所轉換組態的資訊。
+
+. 從目標叢集節點移除磁碟櫃、然後將其重新連接至7-Mode控制器。
++
+
+TIP: 您應該使用Config Advisor 「資訊共享」工具來驗證纜線。
+
+. 如果變更任何7-Mode磁碟櫃ID以解決與目標叢集節點的磁碟櫃ID衝突、請手動將其變更為舊ID、然後重新啟動磁碟櫃、以使新ID生效。
+. 將來源7-Mode控制器開機至正常模式。
+. 從其中一個來源7-Mode控制器啟用接管功能：
++
+「* cfenable *」
+
+. 如果在匯出和停止作業期間停用了自動刪除Aggregate Snapshot複本、請啟用：
++
+hy*選項snap自動刪除_agg_name_ on*
+
+

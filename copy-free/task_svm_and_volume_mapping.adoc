@@ -1,0 +1,78 @@
+---
+permalink: copy-free/task_svm_and_volume_mapping.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, map, svm, volumes 
+summary: 您應該將HA配對中的每個7-Mode控制器對應至目標SVM。如果您有vFiler單元、則應該為每個vFiler單元選取目標SVM。7-Mode控制器或VFiler元件的磁碟區會轉換成對應的SVM。 
+---
+= 對應SVM和Volume
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您應該將HA配對中的每個7-Mode控制器對應至目標SVM。如果您有vFiler單元、則應該為每個vFiler單元選取目標SVM。7-Mode控制器或VFiler元件的磁碟區會轉換成對應的SVM。
+
+您必須在目標叢集上建立SVM。
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.onc-sm-help/GUID-DF04A607-30B0-4B98-99C8-CB065C64E670.html["使用System Manager進行叢集管理"]
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["系統管理"]
+
+vFiler單元只能對應至單一SVM。任何其他7-Mode控制器或vFiler單元的磁碟區都無法轉換為對應的SVM。
+
+.步驟
+. 在SVM and Volume MappingTM（SVM與Volume對應）索引標籤中、選取您要從每個7-Mode控制器或VFiler裝置將磁碟區移轉至哪個目標SVM。
++
+目標SVM可位於預設或非預設IPspace中。
+
+. 根據您是要為所有SVM中的磁碟區套用相同的交會路徑原則、還是為每個SVM中的磁碟區套用不同的交會路徑原則、請選擇下列其中一個動作：
++
+|===
+| 如果您想要... | 然後... 
+
+
+ a| 
+將相同的交會路徑原則套用至所有SVM
+ a| 
+.. 按一下「 * 套用 * 」。
+.. 選取交會路徑原則的選項。
+.. 按一下「*確定*」。
+
+
+
+
+ a| 
+指定每個SVM的交會路徑原則
+ a| 
+從每個目標SVM的下拉式清單中選取交會路徑原則。
+
+|===
++
+交會路徑原則會指定必須Data ONTAP 掛載目標叢集式資料區以供用戶端存取的路徑。您可以為交會路徑原則新增下列其中一個值：
+
++
+** *保留7-Mode掛載路徑*
++
+保留與來源7-Mode磁碟區相同的交會路徑、而且在轉換後、磁碟區會以「/vol/_SOUR資料 來源_volVolume名稱_」的格式、以交會路徑掛載。
+
+** *使用叢集Data ONTAP 式的流通量名稱*
++
+所有目標叢集Data ONTAP 式的IsfVolumes都會在Data ONTAP 轉換後以「_/target Volume名稱_」格式、以叢集式的連接路徑來掛載。
+
+** *使用7-Mode Volume名稱*
++
+所有目標叢集Data ONTAP 式的Sfeted等磁碟區、都會在轉換後以「_/SOUR資料 來源磁碟區名稱_」格式、以7-Mode磁碟區名稱的交會路徑掛載。
+
+
+
+. 按一下 image:../media/delete_me_edit_schedule.gif["編輯圖示"] 可修改目標叢集Data ONTAP 式的等量磁碟區名稱。
++
+根據預設、目標叢集Data ONTAP 式的Sname Volume與7-Mode Volume的名稱相同。如果SVM上已存在名稱與7-Mode磁碟區相同的磁碟區、則會自動為目標磁碟區指派新名稱。
+
+. 針對每個對應的SVM按一下*儲存對應*。
+. 單擊 * 下一步 * 。
++
+隨即顯示Networking（網路）畫面。
+
+

@@ -1,0 +1,62 @@
+---
+permalink: copy-free/task_selecting_lifs_to_transition.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, select, lif 
+summary: 您可以選擇性地指定轉換後要在SVM上設定的生命期。這些LIF可以是7-Mode系統上現有的IP位址、也可以是新的LIF。只有NAS生命里段會移轉。在SVM資源配置階段之前、必須手動設定FC和iSCSI生命期。 
+---
+= 選擇要轉換的生命期
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以選擇性地指定轉換後要在SVM上設定的生命期。這些LIF可以是7-Mode系統上現有的IP位址、也可以是新的LIF。只有NAS生命里段會移轉。在SVM資源配置階段之前、必須手動設定FC和iSCSI生命期。
+
+在SVM資源配置階段中、選取要進行轉換的生命期會以下列方式設定在SVM上：
+
+* 選取要轉換的現有7-Mode IP位址會以系統管理的當機狀態建立。
++
+這些IP位址可繼續以7-Mode提供資料、直到轉換開始為止。在匯入階段、這些IP位址會設定為管理啟動狀態。
+
+* 新的IP位址會在系統管理啟動狀態下建立。
++
+您可以在SVM資源配置階段之後、使用這些LIF來測試SVM與名稱伺服器之間的連線。
+
+
+
+.步驟
+. 在LIF組態索引標籤中、選擇下列其中一個選項：
++
+|===
+| 如果您想要轉換... | 然後... 
+
+
+ a| 
+7-Mode系統上的現有IP位址
+ a| 
+.. 按一下*選取7-Mode LIF*。
+.. 選取您要轉換的IP位址、然後指定目標SVM和其他網路參數。
+.. 按一下「 * 儲存 * 」。
+
+
+
+
+ a| 
+新的IP位址
+ a| 
+.. 按一下「*新增LIF*」。
+.. 指定您要設定的IP位址、目標SVM及其他網路參數。
+.. 按一下「 * 儲存 * 」。
+
+
+|===
++
+
+NOTE: 目標連接埠必須與目標SVM位於相同的IPspace中。
+
+. 單擊 * 下一步 * 。
++
+此時會顯示Plan Configuration（計畫組態）索引標籤。
+
+

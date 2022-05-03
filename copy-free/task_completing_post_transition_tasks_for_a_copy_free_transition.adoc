@@ -1,0 +1,14 @@
+---
+permalink: copy-free/task_completing_post_transition_tasks_for_a_copy_free_transition.html 
+sidebar: sidebar 
+keywords: ontap, transition, copy, free, complete 
+summary: 完成移轉作業時、需要手動驗證移轉的磁碟區和組態、測試工作負載、開始正式作業、然後提交無複本移轉專案。由於提交作業之後不允許復原、因此您應該確認所有工作負載並在短時間內開始正式作業、以評估是否需要復原。 
+---
+= 完成轉換
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+完成移轉作業時、需要手動驗證移轉的磁碟區和組態、測試工作負載、開始正式作業、然後提交無複本移轉專案。由於提交作業之後不允許復原、因此您應該確認所有工作負載並在短時間內開始正式作業、以評估是否需要復原。

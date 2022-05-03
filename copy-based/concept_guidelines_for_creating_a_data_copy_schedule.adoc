@@ -1,0 +1,49 @@
+---
+permalink: copy-based/concept_guidelines_for_creating_a_data_copy_schedule.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, create, data, copy, schedule 
+summary: 7-Mode Transition Tool會執行排程器、每5分鐘檢查一次作用中排程。您必須瞭解啟用資料複製排程的需求。在設定資料複製排程的不同參數時、您可以遵循一些最佳實務做法、有效管理SnapMirror傳輸。 
+---
+= 建立資料複本排程的考量事項
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+7-Mode Transition Tool會執行排程器、每5分鐘檢查一次作用中排程。您必須瞭解啟用資料複製排程的需求。在設定資料複製排程的不同參數時、您可以遵循一些最佳實務做法、有效管理SnapMirror傳輸。
+
+
+
+== 啟用資料複製排程的需求
+
+* 7-Mode Transition Tool服務必須正在執行。
++
+如果重新啟動7-Mode Transition Tool服務、SnapMirror作業將不會執行、直到新增認證資料為止。
+
+* 至少應有一個資料複製排程可供SnapMirror資料複製作業執行。
++
+如果特定時間範圍沒有可用的排程、則SnapMirror資料複製作業不會在該時間執行。
+
+* 如果SnapMirror關係處於靜止狀態、則不會執行資料複製作業。
+* 7-Mode和叢集的系統時間必須同步、才能根據資料複製排程進行遞增傳輸。
++
+如果7-Mode系統時間落後叢集時間、則更新排程頻率會比指定的更新頻率更頻繁。如果7-Mode系統時間早於叢集時間、則更新會延遲至指定的更新頻率。
+
+
+
+
+
+== 資料複製期間的最佳實務做法
+
+為了改善SnapMirror複寫效能、來源和目的地系統應該擁有最佳的CPU使用率和可用的記憶體。此外、與移轉活動無關的網路流量應該最小化、以便將處理量最大化、並將來源與目的地系統之間的延遲降至最低。
+
+
+
+== 資料傳輸的優先順序
+
+排程資料複本作業時、基準或重新同步作業優先於遞增傳輸。
+
+當中止發行SnapMirror傳輸的資料複製作業時、會先中止遞增傳輸、然後中止基礎或重新同步作業。
+
+對於遞增傳輸、系統會根據先前更新所經過的時間、優先處理較落後來源磁碟區的磁碟區。

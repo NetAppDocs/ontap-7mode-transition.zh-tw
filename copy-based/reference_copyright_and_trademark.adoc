@@ -1,0 +1,12 @@
+---
+permalink: copy-based/reference_copyright_and_trademark.html 
+sidebar: sidebar 
+keywords: ontap, copy, based, transition, copyright, trademark 
+summary: 7-Mode Transition Tool複製型移轉指南的版權與商標資訊。 
+---
+= 版權、商標及機器翻譯
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+

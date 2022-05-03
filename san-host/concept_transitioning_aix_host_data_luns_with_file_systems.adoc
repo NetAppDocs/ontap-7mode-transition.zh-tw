@@ -1,0 +1,14 @@
+---
+permalink: san-host/concept_transitioning_aix_host_data_luns_with_file_systems.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, transition, host, aix, data, lun 
+summary: 如果您使用Data ONTAP 7-Mode Transition Tool（7MTT\）將檔案系統的AIX主機資料LUN從以7-Mode運作的VMware移轉至叢集Data ONTAP 式VMware、則必須在轉換前後執行特定步驟、以修正主機上的轉換問題。 
+---
+= 將AIX主機資料LUN轉換為檔案系統
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您使用Data ONTAP 7-Mode Transition Tool（7MTT）將AIX主機資料LUN與檔案系統從以7-Mode運作的VMware移轉至叢集Data ONTAP 式VMware、則必須在轉換前後執行特定步驟、以修正主機上的轉換問題。

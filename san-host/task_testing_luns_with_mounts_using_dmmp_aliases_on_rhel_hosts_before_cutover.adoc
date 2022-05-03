@@ -1,0 +1,81 @@
+---
+permalink: san-host/task_testing_luns_with_mounts_using_dmmp_aliases_on_rhel_hosts_before_cutover.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, mount, pints, dmmp, alias, name, rhel 
+summary: 如果您使用7-Mode Transition Tool（7MTT\）2.2或更新版本、Data ONTAP 以及更新版本的版本號、以執行Red Hat Enterprise Linux（RHEL）主機的複本型移轉、您可以在Data ONTAP 轉換階段之前、使用別名、使用掛載點來測試轉換的叢集式LUN。在測試期間、您的來源主機可以繼續執行I/O至來源7-Mode LUN。 
+---
+= 在轉換複本型轉換的轉換階段之前、使用RHEL主機上的DMP別名來測試LUN與掛載點
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您使用7-Mode Transition Tool（7MTT）2.2或更新版本、Data ONTAP 以及支援以複製方式移轉Red Hat Enterprise Linux（RHEL）主機、則可以在Data ONTAP 轉換階段之前、使用別名來測試已移轉的叢集式LUN、並使用掛載點進行移轉。在測試期間、您的來源主機可以繼續執行I/O至來源7-Mode LUN。
+
+您的新叢集Data ONTAP 式支援LUN必須對應至測試主機、且LUN必須已準備好進行轉換。
+
+您應該維持測試主機與來源主機之間的硬體同位元、並在測試主機上執行下列步驟。
+
+在Data ONTAP 測試期間、叢集式的LUN會處於讀取/寫入模式。當測試完成且您正在準備轉換階段時、它們會轉換成唯讀模式。
+
+.步驟
+. 完成基礎資料複本之後、請在7MTT使用者介面（UI）中選取*測試模式*。
+. 在7MTT UI中、按一下*套用組態*。
+. 取得叢集Data ONTAP 式的更新SCSI裝置名稱：
++
+「* sanlun LUN show*」
+
++
+在下列範例中、「/dev/SDL'」是「LUN_dmmp_raw」LUN的SCSI裝置名稱、而「/dev/SDK」是的SCSI裝置名稱
+
++
+「LUN_dmmp_raw_alias」LUN：
+
++
+[listing]
+----
+[root@ibmx3550-229-108 /]# sanlun lun show
+controller(7mode/E-Series)/
+vserver (cDOT/FlashRay)     lun-pathname               filename
+-----------------------------------------------------------------
+vs_brb     /vol/dmmp_raw_vol/lun_dmmp_raw              /dev/sdl
+vs_brb     /vol/dmmp_raw_alias_vol/lun_dmmp_raw_alias  /dev/sdk
+----
+. 為叢集Data ONTAP 式的各種樣片LUN設定DMP裝置：
++
+‘*多重路徑*’
+
+. 取得叢集Data ONTAP 式Sfor the Clustered Sfor LUN的裝置處理ID：
++
+‘*多重路徑-l*’
+
++
+以下是裝置處理編號的範例：「'3600a09804d532d79565d47617679764d'」
+
+. 檢查來源主機上的「/etc/multipath.conf」檔案中是否定義別名。
+. 手動將別名組態複製到測試主機上的「/etc/multipath.conf」檔案、但將7-Mode裝置處理ID替換為對應的叢集Data ONTAP 式故障碼。
+. 使用「多路徑」命令、為叢集Data ONTAP 式的各種LUN設定DMP裝置。
+. 識別在DMP別名裝置上建立的檔案系統：
++
+hy*blkid _dmmp_DEVICE名稱_*
+
+. 安裝DMP裝置：
++
+* mount*
+
+. 視需要執行測試。
+. 完成測試後、請關閉測試主機：
++
+h-t0 now*
+
+. 在7MTT UI中、按一下*完成測試*。
+
+
+如果您的叢集Data ONTAP 式支援LUN要重新對應至來源主機、您必須準備好來源主機以進行轉換階段。如果您的叢集Data ONTAP 式支援LUN仍要對應至測試主機、則測試主機不需要執行其他步驟。
+
+*相關資訊*
+
+xref:task_gathering_pretransition_information_from_inventory_assessment_workbook.adoc[從庫存評估工作簿收集過渡前資訊]
+
+xref:task_preparing_for_cutover_when_transitioning_luns_with_mounts_using_dmmp_aliases_on_linux_hosts.adoc[在Linux主機上使用DMP裝置名稱、以掛載點轉換LUN時、準備轉換階段]

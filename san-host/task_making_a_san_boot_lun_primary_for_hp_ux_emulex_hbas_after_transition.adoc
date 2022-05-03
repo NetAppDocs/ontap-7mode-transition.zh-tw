@@ -1,0 +1,74 @@
+---
+permalink: san-host/task_making_a_san_boot_lun_primary_for_hp_ux_emulex_hbas_after_transition.html 
+sidebar: sidebar 
+keywords: ontap, san, host, transition, san, boot, lun, primary, hp, ux, emulex, hba 
+summary: 如果Data ONTAP 您在7-Mode HP-UX主機上執行的作業系統是SAN開機、則在移轉至叢集Data ONTAP 式功能後、您必須將SAN開機LUN設定為主要開機LUN。 
+---
+= 將SAN開機LUN設定為移轉後適用於HP-UX Emulex HBA的主要開機LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果Data ONTAP 您在7-Mode HP-UX主機上執行的作業系統是SAN開機、則在移轉至叢集Data ONTAP 式功能後、您必須將SAN開機LUN設定為主要開機LUN。
+
+您的資料移轉必須完成、而且您的開機LUN必須從叢集Data ONTAP 式節點對應至主機。
+
+對於複製型轉換、請在完成7-Mode Transition Tool中的Storage Cutover作業之後、執行這些步驟。HP-UX主機不支援無複製轉換。
+
+.步驟
+. 在Shell提示字元中、列出Emulex HBA：
++
+驅動程式*
+
+. 選取Emulex HBA、然後按Enter。
+. 選擇*設定公用程式*。
+. 選擇*設定開機參數*。
+. 選擇*設定開機裝置*。
+. 從清單中選取任何裝置、然後按Enter。
+. 選擇*掃描目標*。
+. 選取所需開機路徑的LUN、然後按Enter。
+. 選擇*周邊設備開發*作為模式、然後按Enter。
+. 選取*透過WWN*開機此裝置、然後按Enter。
++
+隨即顯示您的開機LUN。
+
+. 按* Esc*鍵直到返回Shell提示字元。
+. 顯示LUN以取得要從中開機的LUN路徑：
++
+’*地圖-r*
+
++
+LUN路徑會列在「Device（裝置）」欄下方。可開機SAN磁碟會顯示在對應表欄下方、並在輸出字串中顯示「'WWN'」和「'Part 1'」。
+
+. 輸入SAN開機LUN的LUN路徑。
++
+LUN路徑的範例為fs0。
+
+. 結束efi Shell：
++
+「* CD EFI*」
+
+. 輸入HPUX目錄：
++
+h.* CD HPUX*
+
+. 將新的叢集Data ONTAP 式SAN開機LUN設為主要開機LUN：
++
+'* bcfg開機新增1個HPUx.efi「HP-UX -主要開機」*
+
+. 在適用於SAN開機LUN的EFi中輸入項目、以手動更新HBA BIOS。
+. 建立替代開機路徑：
++
+hy*bcfg開機新增2個HPUx.efi「HPUX Alternate boot」*
+
+. 建立第三個開機路徑：
++
+bcfg開機新增2個HPUx.efi「HPUX第三次開機」*
+
+. 建立第四個開機路徑：
++
+bcfg開機新增2個HPUx.efi「HPUX第四次開機」*
+
+
