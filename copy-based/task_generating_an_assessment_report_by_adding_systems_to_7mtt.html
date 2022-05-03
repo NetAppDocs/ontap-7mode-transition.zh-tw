@@ -1,0 +1,4621 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+  <head class="at-element-marker">
+  <title>將系統新增至7-Mode Transition Tool、以產生評估報告</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="將系統新增至7-Mode Transition Tool、以產生評估報告" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/zh-tw/ontap-7mode-transition/copy-based/task_generating_an_assessment_report_by_adding_systems_to_7mtt.html" />
+	<meta property="og:description" content="您可以將系統新增至7-Mode Transition Tool、以收集控制器、主機和FC交換器的庫存資訊。接著您可以建立評估報告、評估這些系統的功能和特性、並找出ONTAP 它們在選定的「更新版本」中的運作方式。" />
+  <meta property="og:image" content="https://docs.netapp.com/zh-tw/ontap-7mode-transition/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="您可以將系統新增至7-Mode Transition Tool、以收集控制器、主機和FC交換器的庫存資訊。接著您可以建立評估報告、評估這些系統的功能和特性、並找出ONTAP 它們在選定的「更新版本」中的運作方式。">
+  <meta name="keywords" content=" ontap, copy, based, transition, generate, assessment, report, add, system, tool"><!-- Icons -->
+  <link rel="icon" href="/zh-tw/ontap-7mode-transition/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+  <!-- Elastic Search -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/searchkit/0.10.0/theme.css">
+
+  <!-- Controls AsciiDoctor Admonition Blocks -->
+  <link rel="stylesheet" type="text/css" href="/zh-tw/ontap-7mode-transition/css/font-awesome.min.css">
+
+  <!-- Controls the shadow effect for search dropdown menu -->
+  <link rel="stylesheet" href="/zh-tw/ontap-7mode-transition/css/boxshadowproperties.css">
+
+  <!-- NetApp CSS controls the technical content -->
+  <link rel="stylesheet" type="text/css" href="/zh-tw/ontap-7mode-transition/css/netapp.css">
+
+  <!-- WWW CSS Content -->
+  <link rel="stylesheet" type="text/css" href="/zh-tw/ontap-7mode-transition/css/www-luci-dotcom.min.css">
+  <link rel="stylesheet" type="text/css" href="/zh-tw/ontap-7mode-transition/css/www-netapp-dotcom.css">
+  <link rel="stylesheet" href="/zh-tw/ontap-7mode-transition/css/www-netapp-library-critical.min.css" media="all" >
+  <link rel="stylesheet" href="/zh-tw/ontap-7mode-transition/css/www-netapp-library-non-critical.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="stylesheet" href="/zh-tw/ontap-7mode-transition/css/www-netapp-library-global-header-footer.min.css">
+
+  <!-- NetApp IE Customizations -->
+  <link rel="stylesheet" href='/zh-tw/ontap-7mode-transition/css/na-utility.css' type='text/css'>
+  <link rel="stylesheet" href='/zh-tw/ontap-7mode-transition/css/na-sidebar.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-tw/ontap-7mode-transition/css/clouddocs.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-tw/ontap-7mode-transition/css/custom-dropdown.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-tw/ontap-7mode-transition/css/na-pagenav.css' type='text/css'>
+
+  
+  <link rel="stylesheet" href="/zh-tw/ontap-7mode-transition/css/landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/zh-tw/ontap-7mode-transition/css/tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  <link rel='stylesheet' href='/zh-tw/ontap-7mode-transition/css/na-feature.css' type='text/css'><!-- Top level site integrations --><script>
+    if (document.location.hostname === "docs.netapp.com") {
+      var head = document.getElementsByTagName('head')[0];
+      var onetrustConsent = document.createElement("script");
+      onetrustConsent.type = "text/javascript";
+      onetrustConsent.src = "https://cdn.cookielaw.org/consent/72570c5c-fe30-465f-b0e0-b77f7fb4ae34/OtAutoBlock.js";
+      head.appendChild(onetrustConsent);
+
+      var onetrustScript = document.createElement("script");
+      onetrustScript.type = "text/javascript";
+      onetrustScript.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+      onetrustScript.charset = "UTF-8";
+      onetrustScript.dataset.documentLanguage = "true";
+      onetrustScript.dataset.domainScript = "72570c5c-fe30-465f-b0e0-b77f7fb4ae34";
+      head.appendChild(onetrustScript);
+    }
+
+    function OptanonWrapper() { }
+
+    if (document.location.hostname === "docs.netapp.com") {
+      var adobe = document.createElement("script");
+      adobe.type = "text/plain";
+      adobe.className = "optanon-category-C0002";
+      adobe.src = "//assets.adobedtm.com/60287eadf1ee/c284da483c83/launch-e9ff3acac59f.min.js";
+      head.appendChild(adobe);
+
+      var google = document.createElement("script");
+      google.type = "text/plain";
+      google.className = "optanon-category-C0002";
+      google.src = "https://www.googletagmanager.com/gtag/js?id=UA-81697994-3";
+      head.appendChild(google);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-81697994-3');
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/zh-tw/ontap-7mode-transition/js/na-search.js'></script><script src='/zh-tw/ontap-7mode-transition/js/na-pagenav.js'></script><link rel='stylesheet' href='/zh-tw/ontap-7mode-transition/css/prism.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-tw/ontap-7mode-transition/css/prism-netapp.css' type='text/css'>
+
+
+  <script src='/zh-tw/ontap-7mode-transition/js/na-utility.js'></script>
+  <script src='/zh-tw/ontap-7mode-transition/js/clouddocs.js'></script>
+  <script src='/zh-tw/ontap-7mode-transition/js/jquery.navgoco.min.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src='/zh-tw/ontap-7mode-transition/js/toc.js'></script>
+  <script src='/zh-tw/ontap-7mode-transition/js/customscripts.js'></script><script>
+      $(document).ready(function() {
+          
+          var collapseOnInit = true;
+          
+
+          var navSettings = {
+              "caretHtml": '',
+              "accordion": collapseOnInit,
+              "openClass": 'active', // open
+              "save": false, // leave false or nav highlighting doesn't work right
+              "cookie": {
+                  "name": 'navgoco',
+                  "expires": false,
+                  "path": '/'
+              },
+              "slide": {
+                  "duration": 400,
+                  "easing": 'swing'
+              }
+          };
+
+          // Initialize navgoco with default options
+          $("#mysidebar").navgoco(navSettings);
+          
+
+          $("#collapseAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', false);
+          });
+
+          $("#expandAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', true);
+          });
+
+      });
+
+  </script>
+  <script>
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+  </script>
+  <script src='/zh-tw/ontap-7mode-transition/js/custom-dropdown.js'></script>
+  <script src='/zh-tw/ontap-7mode-transition/js/FileSaver.min.js'></script>
+  <script src='/zh-tw/ontap-7mode-transition/js/jszip-utils.min.js'></script>
+  <script src='/zh-tw/ontap-7mode-transition/js/jszip.min.js'></script>
+  <script src='/zh-tw/ontap-7mode-transition/js/pdf-ux.js'></script>
+</head>
+
+
+  <body class role="document" data-flavor="">
+    <div id="page" class="n-off-canvas-menu">
+      <div class="n-off-canvas-menu__menu"><!--TODO: Add offcanvas code --></div>
+      <div class="n-off-canvas-menu__content-wrap">
+        <header class="site-header" id="banner">
+  
+  <!-- Start Page Toolbar -->
+  
+  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/ontap-7mode-transition/issues/new?body=Page%3A%20[將系統新增至7-Mode Transition Tool、以產生評估報告](https://docs.netapp.com/zh-tw/ontap-7mode-transition/copy-based/task_generating_an_assessment_report_by_adding_systems_to_7mtt.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/ontap-7mode-transition/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/ontap-7mode-transition/blob/main/copy-based/task_generating_an_assessment_report_by_adding_systems_to_7mtt.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/ontap-7mode-transition/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/ontap-7mode-transition/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
+    <div class="page-nav-container">
+      <nav class="page-nav-fixed">
+        <div class="page-nav-title">在此頁面上</div>
+        <div class="page-nav-links">
+          <ul class="page-nav-inner" id="page-menu"></ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  
+  
+  <!-- Start top_hat -->
+  <div class="n-top-hat">
+    <div class="n-container">
+      <div class="n-top-hat__cross-property-nav">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/products-a-z/" class="n-top-hat__link">產品與解決方案</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/support-and-training/netapp-university/" class="n-top-hat__link">支援與訓練</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://cloud.netapp.com" class="n-top-hat__link">Cloud Central</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://community.netapp.com/" class="n-top-hat__link">社群</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://blog.netapp.com/" class="n-top-hat__link">部落格</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://customers.netapp.com/en/" class="n-top-hat__link">客戶成功案例</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">聯絡人</a>
+          </li>
+        </ul>
+      </div>
+      <div class="n-top-hat__utils">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">聯絡人</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End top_hat -->
+
+  <!-- Start property bar -->
+  <style>
+    .n-property-navigation-bar__menus--desktop-experience .n-menu--mega__default-content__heading span {
+    color: #34B0FF;
+    }
+  </style>
+  <div class="n-property-bar " data-ntap-ui="sticky-nav">
+    <div class="n-property-bar__inner-wrap">
+      <div class="n-property-bar__menu-toggle">
+        <a href="#" class="n-property-bar__menu-toggle-link">
+          <span class="n-property-bar__menu-toggle-text">Menu</span>
+          <svg class="n-icon-bars n-property-bar__menu-toggle-icon" aria-labelledby="title">
+            <title>bars</title>
+            <use xlink:href="/zh-tw/ontap-7mode-transition/common/svg/sprite.svg#bars"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="n-property-bar__property-mark ">
+        <a href="https://www.netapp.com" class="n-property-bar__property-link">
+          <div class="n-property-bar__logo">
+            <svg class="n-icon-netapp-mark n-icon-netapp-mark n-property-bar__netapp-mark-icon" aria-labelledby="title">
+              <title>netapp-mark</title>
+              <use xlink:href="/zh-tw/ontap-7mode-transition/common/svg/sprite.svg#netapp-mark"></use>
+            </svg>
+            <svg class="n-icon-netapp-logo n-property-bar__logo-svg" aria-labelledby="title">
+              <title>netapp-logo</title>
+              <use xlink:href="/zh-tw/ontap-7mode-transition/common/svg/sprite.svg#netapp-logo"></use>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      
+      <div class="search-property-bar">
+        <div id="search-demo-container" class="searchbox n-property-bar__search">
+          <div id="react-search" 
+          data-search-html="/zh-tw/ontap-7mode-transition/search.html"
+          data-type="widget" 
+          data-placeholder="搜尋文件" 
+          data-no-results-found="找不到符合 {query} 的相關結果。" 
+          data-did-you-mean="搜尋 {suggestion}。" 
+          data-no-results-found-did-you-mean="找不到符合 {query} 的相關結果。您是否要找的是{suggestion}？" 
+          data-results-found="找到 {hitCount} 筆結果"  
+          data-sk-es-pf-indexes=""
+          data-flavor=""></div>
+          <button class="n-property-bar__search-toggle-button" type="button">
+            <svg class="n-icon-search n-property-bar__search-toggle-button-icon" aria-labelledby="title">
+              <title>search</title>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/zh-tw/ontap-7mode-transition/common/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="n-property-bar__toolbar">
+    <!-- Start Language Selector --><div id="ie-i18n" class="n-property-bar__lang-selector">
+      <div id="ie-i18n-menu">
+      <span class="ie-i18n-lang">繁體中文</span>
+        <button class="ie-i18n-icon-container" type="button">
+          <svg class="n-globe__icon" aria-labelledby="title">
+            <title>globe</title>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/zh-tw/ontap-7mode-transition/common/svg/sprite.svg#globe"></use>
+          </svg>
+        </button>
+      </div>
+      <div id="n-property-navigation-bar__menu--language-selector" class="ie-i18n-results-container n-menu n-menu--v3 n-menu--is-active" style="display: none;">
+        <div class="n-language-selector-menu">
+          <ul class="n-menu__list">
+            <li class="n-menu__list-column">
+              <ul class="n-menu__list"><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/us-en/ontap-7mode-transition/copy-based/task_generating_an_assessment_report_by_adding_systems_to_7mtt.html" class="n-menu__header-text"><span translate="no" class="notranslate">English</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/ja-jp/ontap-7mode-transition/copy-based/task_generating_an_assessment_report_by_adding_systems_to_7mtt.html" class="n-menu__header-text"><span translate="no" class="notranslate">日本語</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/ko-kr/ontap-7mode-transition/copy-based/task_generating_an_assessment_report_by_adding_systems_to_7mtt.html" class="n-menu__header-text"><span translate="no" class="notranslate">한국어</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/zh-cn/ontap-7mode-transition/copy-based/task_generating_an_assessment_report_by_adding_systems_to_7mtt.html" class="n-menu__header-text"><span translate="no" class="notranslate">简体中文</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/zh-tw/ontap-7mode-transition/copy-based/task_generating_an_assessment_report_by_adding_systems_to_7mtt.html" class="n-menu__header-text"><span translate="no" class="notranslate">繁體中文</span></a>
+                </li></ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div><!-- End Language Selector -->
+
+    <div class="n-property-bar__cta"></div>
+  </div>
+  <script>
+    $(function(){
+        var currentLocalization = $('html').attr('lang');
+
+        var localizationsDictionary = {
+            "en-CA" : "https://www.netapp.com/search/index.aspx?for_cr=canada&",
+            "en-IN" : "https://www.netapp.com/search/index.aspx?for_cr=india&",
+            "nl-NL" : "https://www.netapp.com/search/index.aspx?for_cr=netherlands&",
+            "ru-RU" : "https://www.netapp.com/search/index.aspx?for_cr=russia&",
+            "sv-SE" : "https://www.netapp.com/search/index.aspx?for_cr=sweden&",
+            "it-IT" : "https://www.netapp.com/search/index.aspx?for_cr=italy&",
+            "he-IL" : "https://www.netapp.com/search/index.aspx?for_cr=israel&",
+            "ko-KR" : "https://www.netapp.com/search/index.aspx?for_cr=korea&",
+            "zh-TW" : "https://www.netapp.com/search/index.aspx?for_cr=taiwan&",
+            "en-GB" : "https://www.netapp.com/search/index.aspx?for_cr=unitedkingdom&",
+            "en-SG" : "https://www.netapp.com/search/index.aspx?for_cr=asean&",
+            "en-AU" : "https://www.netapp.com/search/index.aspx?for_cr=australia&",
+            "pt-BR" : "https://www.netapp.com/search/index.aspx?for_cr=brasil&",
+            "de-CH" : "https://www.netapp.com/search/index.aspx?for_cr=switzerland&",
+            "es-MX" : "https://www.netapp.com/search/index.aspx?for_cr=mexico&"
+        };
+
+        if($('html').hasClass('ntap-whitelisted') && localizationsDictionary.hasOwnProperty(currentLocalization)) {
+            $('.n-property-bar__property-link').attr('href', '/');
+        }
+    });
+  </script>
+  <!-- End property bar -->
+</header>
+
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+  <!-- Sidebar Column -->
+  
+  <div class="col-md-3" id="sidebar-height">
+      <div class="n-pdf-header">
+  <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+    <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>可用的 PDF<span>
+    </span>
+  </a>
+</div>
+<div class="n-pdf-body-container">
+  <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+        
+        
+        
+        <a target="_blank" href="/zh-tw/ontap-7mode-transition/pdfs/fullsite-sidebar/7_Mode_Transition文檔.pdf" >
+          <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>此文件網站（PDF 格式）</a>
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/適用於7_Mode系統管理員的命令對應.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            適用於7-Mode系統管理員的命令對應
+          </a>
+          
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/7_Mode_Transition_Tool安裝與管理.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            7-Mode Transition Tool安裝與管理
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/使用7_Mode_Transition_Tool移轉至叢集ONTAP_式的VMware.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            使用7-Mode Transition Tool移轉至叢集ONTAP 式的VMware
+          </a>
+          
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/在Windows系統上安裝或解除安裝7_Mode_Transition_Tool.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            在Windows系統上安裝或解除安裝7-Mode Transition Tool
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/在Linux上安裝或解除安裝7_Mode_Transition_Tool_僅限複製型轉換_.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            在Linux上安裝或解除安裝7-Mode Transition Tool（僅限複製型轉換）
+          </a>
+          
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/疑難排解問題.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            疑難排解問題
+          </a>
+          
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/複本型轉換.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            複本型轉換
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/轉換總覽.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            轉換總覽
+          </a>
+          
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/收集和評估庫存資訊.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            收集和評估庫存資訊
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/評估控制器和主機.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            評估控制器和主機
+          </a>
+          
+    <ul class="subfolders" style="display:none;"><li class="active pdf-hide">
+  <a target="_blank" href="/zh-tw/ontap-7mode-transition/pdfs/pages/copy-based/task_generating_an_assessment_report_by_adding_systems_to_7mtt.pdf" >
+    <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+    PDF of this page
+  </a>
+</li>
+
+</ul>
+  
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/產生FC區域計畫.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            產生FC區域計畫
+          </a>
+          
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/資料與組態移轉程序.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            資料與組態移轉程序
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/準備複製型轉換.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            準備複製型轉換
+          </a>
+          
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/準備網路進行轉換.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            準備網路進行轉換
+          </a>
+          
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/準備7_Mode集合體和磁碟區以進行轉換.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            準備7-Mode集合體和磁碟區以進行轉換
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/準備移轉至ONTAP_支援的版本支援的版本.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            準備移轉至ONTAP 支援的版本支援的版本
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/支援轉換SnapLock_功能.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            支援轉換SnapLock 功能
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/準備轉換名稱服務.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            準備轉換名稱服務
+          </a>
+          
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/準備進行NFS轉換.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            準備進行NFS轉換
+          </a>
+          
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/準備進行SMB_CIFS移轉.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            準備進行SMB/CIFS移轉
+          </a>
+          
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/準備進行SAN移轉.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            準備進行SAN移轉
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/準備資料保護功能以進行移轉.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            準備資料保護功能以進行移轉
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/從7_Mode磁碟區移轉資料與組態.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            從7-Mode磁碟區移轉資料與組態
+          </a>
+          
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/執行預先檢查.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            執行預先檢查
+          </a>
+          
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/使用7_Mode_Transition_Tool_CLI轉換磁碟區.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            使用7-Mode Transition Tool CLI轉換磁碟區
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/使用7_Mode_Transition_Tool_CLI轉換磁碟區.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            使用7-Mode Transition Tool CLI轉換磁碟區
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/使用CLI自訂7_Mode組態的轉換.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            使用CLI自訂7-Mode組態的轉換
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/執行手動轉換後工作.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            執行手動轉換後工作
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/管理轉換專案.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            管理轉換專案
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/管理SnapMirror傳輸與排程.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            管理SnapMirror傳輸與排程
+          </a>
+          
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/疑難排解問題.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            疑難排解問題
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/如果發生可接受的錯誤_請繼續進行轉換.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            如果發生可接受的錯誤、請繼續進行轉換
+          </a>
+          
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/無複製轉換.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            無複製轉換
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/轉換總覽.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            轉換總覽
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/收集和評估庫存資訊.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            收集和評估庫存資訊
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/評估控制器和主機.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            評估控制器和主機
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/產生FC區域計畫.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            產生FC區域計畫
+          </a>
+          
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/無複製轉換工作流程.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            無複製轉換工作流程
+          </a>
+          
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/準備無複本轉換.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            準備無複本轉換
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/準備網路進行轉換.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            準備網路進行轉換
+          </a>
+          
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/收集纜線資訊以供轉換.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            收集纜線資訊以供轉換
+          </a>
+          
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/準備7_Mode集合體和磁碟區以進行轉換.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            準備7-Mode集合體和磁碟區以進行轉換
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/準備使用32位元集合體來轉換7_Mode系統.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            準備使用32位元集合體來轉換7-Mode系統
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/準備轉換名稱服務.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            準備轉換名稱服務
+          </a>
+          
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/準備進行NFS轉換.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            準備進行NFS轉換
+          </a>
+          
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/準備進行SMB_CIFS移轉.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            準備進行SMB/CIFS移轉
+          </a>
+          
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/準備進行SAN移轉.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            準備進行SAN移轉
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/準備資料保護功能以進行移轉.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            準備資料保護功能以進行移轉
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/使用無複本轉換來轉換7_Mode_Aggregate.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            使用無複本轉換來轉換7-Mode Aggregate
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/規劃無複本轉換專案.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            規劃無複本轉換專案
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/自訂7_Mode組態的轉換.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            自訂7-Mode組態的轉換
+          </a>
+          
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/執行預先檢查.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            執行預先檢查
+          </a>
+          
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/完成轉換.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            完成轉換
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/轉換SnapMirror關係.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            轉換SnapMirror關係
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/疑難排解轉換問題.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            疑難排解轉換問題
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/如果發生可接受的錯誤_請繼續進行轉換.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            如果發生可接受的錯誤、請繼續進行轉換
+          </a>
+          
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/執行轉換回溯至7_Mode.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            執行轉換回溯至7-Mode
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/回復免費複本的轉換專案.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            回復免費複本的轉換專案
+          </a>
+          
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/主機與儲存資訊收集指南.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            主機與儲存資訊收集指南
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/收集儲存設備和主機庫存資訊.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            收集儲存設備和主機庫存資訊
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/使用SnapMirror進行7_Mode資料移轉.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            使用SnapMirror進行7-Mode資料移轉
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/使用SnapMirror移轉7_Mode磁碟區.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            使用SnapMirror移轉7-Mode磁碟區
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/規劃移轉.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            規劃移轉
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/不支援移轉的功能和磁碟區.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            不支援移轉的功能和磁碟區
+          </a>
+          
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/準備轉換.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            準備轉換
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/移轉磁碟區.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            移轉磁碟區
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/以交錯式組態轉換Volume_SnapMirror關係.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            以交錯式組態轉換Volume SnapMirror關係
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/在轉換期間從7_Mode站台的災難中恢復.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            在轉換期間從7-Mode站台的災難中恢復
+          </a>
+          
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/疑難排解使用SnapMirror時的轉換問題.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            疑難排解使用SnapMirror時的轉換問題
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/SAN主機移轉與補救.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            SAN主機移轉與補救
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/VMware_ESXi主機補救.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            VMware ESXi主機補救
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/準備移轉ESXi主機.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            準備移轉ESXi主機
+          </a>
+          
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/如何識別轉換前必須移除的VM快照.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            如何識別轉換前必須移除的VM快照
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/ESXi主機的移轉後修正需求.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            ESXi主機的移轉後修正需求
+          </a>
+          
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/確定在轉換後是否需要重新掛載VMFS磁碟區.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            確定在轉換後是否需要重新掛載VMFS磁碟區
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/將RDM_LUN重新附加至VM.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            將RDM LUN重新附加至VM
+          </a>
+          
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/RHEL主機補救.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            RHEL主機補救
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/從庫存評估工作簿收集過渡前資訊.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            從庫存評估工作簿收集過渡前資訊
+          </a>
+          
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/無需檔案系統即可轉換RHEL_DMP裝置.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            無需檔案系統即可轉換RHEL DMP裝置
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/使用DMP裝置名稱轉換LUN與掛載點.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            使用DMP裝置名稱轉換LUN與掛載點
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/使用DMP別名轉換LUN與掛載點.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            使用DMP別名轉換LUN與掛載點
+          </a>
+          
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/在LVM裝置上轉換Linux主機檔案系統.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            在LVM裝置上轉換Linux主機檔案系統
+          </a>
+          
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/轉換SAN開機LUN.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            轉換SAN開機LUN
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/Windows主機補救.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            Windows主機補救
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/準備Windows主機進行移轉.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            準備Windows主機進行移轉
+          </a>
+          
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/HP_UX主機補救.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            HP-UX主機補救
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/使用檔案系統轉換HP_UX主機LUN.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            使用檔案系統轉換HP-UX主機LUN
+          </a>
+          
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/轉換採用FC_FCoE組態的HP_UX主機SAN開機LUN.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            轉換採用FC/FCoE組態的HP-UX主機SAN開機LUN
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/AIX主機補救.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            AIX主機補救
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/在具有FC_FCoE組態的AIX主機上轉換SAN開機LUN.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            在具有FC/FCoE組態的AIX主機上轉換SAN開機LUN
+          </a>
+          
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/將AIX主機資料LUN轉換為檔案系統.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            將AIX主機資料LUN轉換為檔案系統
+          </a>
+          
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/Solaris主機補救.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            Solaris主機補救
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/使用ZFS檔案系統轉換Solaris主機資料LUN.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            使用ZFS檔案系統轉換Solaris主機資料LUN
+          </a>
+          
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/使用Sun_Volume_Manager轉換Solaris主機資料LUN.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            使用Sun Volume Manager轉換Solaris主機資料LUN
+          </a>
+          
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/ontap-7mode-transition/pdfs/sidebar/轉換後將LUN復原至7_Mode.pdf" 
+            
+          >
+            <img src="/zh-tw/ontap-7mode-transition/images/pdf.png" width="16" height="16"/>
+            轉換後將LUN復原至7-Mode
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+</li></ul>
+  <div class="zip-pdf-link-container" style="display: none;">   
+    <a href="#" id="zipPdf">
+      <img src="/zh-tw/ontap-7mode-transition/images/pdf-zip.png" width="16" height="16"/>
+      <pre>個別 PDF 文件的集合<span class="zip-size"></span></pre>
+    </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+</div>
+<script>
+  $("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+  $("#toggleButtonPdf").click(function () {
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+  });
+</script><div class="sidebar-nav-container">
+  <ul id="mysidebar" class="nav"><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/index.html">
+        7-Mode轉換
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/releasenotes.html">
+        版本資訊
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/command-map/index.html">
+        <div class="na-navbar-padding"> 適用於7-Mode系統管理員的命令對應</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/command-map/reference_how_7_mode_commands_map_to_clustered_ontap_commands.html">
+        7-Mode命令如何對應ONTAP 至VMware指令
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/command-map/reference_how_7_mode_options_map_to_clustered_ontap_commands.html">
+        7-Mode選項如何對應ONTAP 至VMware指令
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/command-map/reference_how_7_mode_configuration_files_map_to_clustered_ontap_commands.html">
+        7-Mode組態檔如何對應至叢集Data ONTAP 式的等位元指令
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/command-map/concept_how_to_interpret_clustered_ontap_command_maps_for_7_mode_administrators.html">
+        如何為Data ONTAP 7-Mode管理員解譯叢集式的效能分析命令、選項和組態檔案對應
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/install-admin/index.html">
+        <div class="na-navbar-padding"> 7-Mode Transition Tool安裝與管理</div>
+      </a>
+      <ul><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/install-admin/concept_transition_to_clustered_ontap_using_7mtt.html">
+        <div class="na-navbar-padding"> 使用7-Mode Transition Tool移轉至叢集ONTAP 式的VMware</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/install-admin/concept_ontap_target_releases_supported_by_7mtt.html">
+        支援7-Mode Transition Tool的支援目標版本ONTAP
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/install-admin/concept_comparison_of_copy_free_transition_and_copy_based_transition.html">
+        無複本轉換與複本型轉換的比較
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/install-admin/reference_interfaces_and_transition_capabilities_available_on_windows_and_linux.html">
+        可在Windows和Linux上使用的介面和移轉功能
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/install-admin/concept_installing_and_uninstalling_7mtt.html">
+        <div class="na-navbar-padding"> 在Windows系統上安裝或解除安裝7-Mode Transition Tool</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/install-admin/concept_system_requirements_for_7mtt_on_windows.html">
+        在Windows系統上安裝7-Mode Transition Tool的系統需求
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/install-admin/task_installing_7mtt.html">
+        在Windows系統上安裝7-Mode Transition Tool
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/install-admin/task_enabling_login_for_users_not_part_of_administrator_group.html">
+        啟用非系統管理員群組使用者的登入
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/install-admin/task_logging_in_to_tool.html">
+        登入7-Mode Transition Tool
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/install-admin/task_uninstalling_7mtt.html">
+        在Windows系統上解除安裝7-Mode Transition Tool
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/install-admin/concept_installing_and_uninstalling_7mtt_on_linux.html">
+        <div class="na-navbar-padding"> 在Linux上安裝或解除安裝7-Mode Transition Tool（僅限複製型轉換）</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/install-admin/concept_system_requirements_for_7_mode_transition_tool_on_linux.html">
+        在Linux上安裝7-Mode Transition Tool的系統需求
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/install-admin/task_installing_7_mode_transition_tool_on_linux.html">
+        在Linux上安裝7-Mode Transition Tool
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/install-admin/task_uninstalling_7_mode_transition_tool_on_linux.html">
+        在Linux上解除安裝7-Mode Transition Tool
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/install-admin/task_modifying_default_configuration_settings_of_7mtt.html">
+        修改7-Mode Transition Tool的組態選項
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/install-admin/concept_troubleshooting_web_interface_issues.html">
+        <div class="na-navbar-padding"> 疑難排解問題</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/install-admin/reference_tool_installation_fails_with_incompatible_os_error.html">
+        工具安裝失敗、且OS錯誤不相容
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/install-admin/reference_installation_or_uninstallation_of_7mtt_is_blocked.html">
+        已封鎖7-Mode Transition Tool的安裝或解除安裝
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/install-admin/reference_reinstalling_or_upgrading_7mtt_fails_on_windows_system.html">
+        在Windows系統上重新安裝或升級7-Mode Transition Tool失敗
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/install-admin/reference_windows_compatibility_assistant_notification_displayed_while_installing.html">
+        安裝工具時顯示Windows程式相容性小幫手通知
+      </a></li></ul></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/index.html">
+        <div class="na-navbar-padding"> 複本型轉換</div>
+      </a>
+      <ul><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/concept_transition_overview.html">
+        <div class="na-navbar-padding"> 轉換總覽</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_copy_based_transition_using_7mtt.html">
+        使用7-Mode Transition Tool進行複本型轉換
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_transition_terminology.html">
+        移轉術語
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/reference_limits_for_transition.html">
+        移轉限制
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/concept_collecting_and_assessing_inventory_information.html">
+        <div class="na-navbar-padding"> 收集和評估庫存資訊</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_storage_host_fc_switches_version_requirements.html">
+        儲存設備、主機和FC交換器版本要求、以利進行轉換評估
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_preparing_7_mode_systems_for_inventory_collection.html">
+        準備7-Mode系統和主機以進行轉換評估
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/task_assessing_controllers_and_hosts.html">
+        <div class="na-navbar-padding"> 評估控制器和主機</div>
+      </a>
+      <ul><li class="  active "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_generating_an_assessment_report_by_adding_systems_to_7mtt.html">
+        將系統新增至7-Mode Transition Tool、以產生評估報告
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_generating_an_assessment_report_by_importing_inventory_report_xml.html">
+        匯入庫存報告XML以產生評估報告
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/task_generating_fc_zone_plan.html">
+        <div class="na-navbar-padding"> 產生FC區域計畫</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_supported_configurations_for_generating_an_fc_zone_plan.html">
+        可產生FC區域計畫的支援組態
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_how_you_can_use_assessment_executive_summary_for_transition_assessment.html">
+        如何使用評估執行摘要進行轉換評估
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_copy_based_transition_workflow.html">
+        複本型轉換工作流程
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/concept_data_and_configuration_migration_process.html">
+        <div class="na-navbar-padding"> 資料與組態移轉程序</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_how_you_transition_a_stand_alone_volume.html">
+        如何轉換獨立Volume
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_how_you_transition_volumes_in_a_snapmirror_relationship.html">
+        如何在SnapMirror關係中轉換磁碟區
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/concept_preparing_for_copy_based_transition.html">
+        <div class="na-navbar-padding"> 準備複製型轉換</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_requirements_for_copy_based_transition.html">
+        複本型轉換的需求
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_port_requirements_for_communicating_with_7mtt.html">
+        與7-Mode Transition Tool通訊的連接埠需求
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_restrictions_for_transition.html">
+        移轉限制
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_preparing_7_mode_system_for_transition.html">
+        準備7-Mode系統進行轉換
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/task_preparing_network_for_transition.html">
+        <div class="na-navbar-padding"> 準備網路進行轉換</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_considerations_for_transitioning_7_mode_ip_addresses.html">
+        轉換7-Mode IP位址的考量
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_preparing_cluster_for_transition.html">
+        準備叢集以進行移轉
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/task_preparing_7_mode_volumes_and_aggregates_for_transition.html">
+        <div class="na-navbar-padding"> 準備7-Mode集合體和磁碟區以進行轉換</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_restrictions_for_copy_free_transition.html">
+        7-Mode磁碟區的轉換限制
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/task_transitioning_to_clustered_ontap_8_3_from_a_7_mode_version_with_32_bit_data.html">
+        <div class="na-navbar-padding"> 準備移轉至ONTAP 支援的版本支援的版本</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_expanding_an_aggregate_to_64_bit_format_without_adding_storage.html">
+        將Aggregate擴充為64位元格式
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_finding_and_removing_32_bit_data_from_source_volumes_and_snapshot_copies.html">
+        尋找及移除32位元磁碟區和Snapshot複本
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_considerations_for_deduplication_and_compression.html">
+        重複資料刪除與壓縮的考量
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_considerations_for_flexclone_volumes.html">
+        FlexClone Volume的考量
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_considerations_for_quotas.html">
+        配額考量
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/concept_support_for_transitioning_snaplock_volumes.html">
+        <div class="na-navbar-padding"> 支援轉換SnapLock 功能</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_considerations_for_transitioning_of_snaplock_enterprise_volumes.html">
+        轉換SnapLock 功能時的考量事項
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_considerations_for_transitioning_of_snaplock_compliance_volumes.html">
+        轉換SnapLock 不符合法規的考量
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_considerations_for_transitioning_of_snaplock_audit_volumes.html">
+        轉換SnapLock 《E29稽核》磁碟區的考量事項
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_considerations_for_transitioning_of_7_mode_snaplock_options.html">
+        7-Mode SnapLock 的轉換考量
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_considerations_for_chain_of_custody_verification_for_7_mode_snaplock_volumes.html">
+        使用7-Mode SnapLock 的監管鏈驗證功能時的考量事項
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/concept_preparing_for_name_services_transition.html">
+        <div class="na-navbar-padding"> 準備轉換名稱服務</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_supported_and_unsupported_name_services_configurations.html">
+        名稱服務轉換：支援和不支援的組態、以及必要的手動步驟
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_considerations_for_transitioning_dns_and_ldap_configurations.html">
+        轉換DNS、NIS和LDAP組態時的考量事項
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_considerations_for_transitioning_unix_users_and_groups.html">
+        轉換網路群組和UNIX使用者和群組時的考量
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/concept_preparing_for_nfs_transition.html">
+        <div class="na-navbar-padding"> 準備進行NFS轉換</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_prerequisites_to_transition_nfs_configurations.html">
+        轉換NFS組態的先決條件
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_nfs_configurations_supported_unsupported_or_requiring_manual_steps_for_transition.html">
+        NFS移轉：支援和不支援的組態、以及必要的手動步驟
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_how_nfs_exports_are_transitioned.html">
+        NFS匯出的轉換方式
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/concept_preparing_for_smb_cifs_transition.html">
+        <div class="na-navbar-padding"> 準備進行SMB/CIFS移轉</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_prerequisites_for_transitioning_cifs_configurations.html">
+        轉換CIFS組態的先決條件
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_cifs_configurations_supported_unsupported_or_requiring_manual_steps_for_transition.html">
+        支援且不受支援的CIFS組態、可移轉ONTAP 至支援的不支援
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_considerations_for_local_users_and_groups_transition.html">
+        移轉CIFS本機使用者和群組的考量
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_preparing_for_metrocluster_configuration_transition.html">
+        準備MetroCluster 進行組態轉換
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/task_preparing_for_san_transition.html">
+        <div class="na-navbar-padding"> 準備進行SAN移轉</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_preparing_san_hosts_for_transition.html">
+        準備SAN主機進行移轉
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_configuring_zones_by_using_fc_zone_plan.html">
+        使用FC區域計畫設定區域
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_creating_san_lifs_before_transition.html">
+        在轉換前建立SAN生命期
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_san_transition_supported_and_unsupported_configurations_and_required_manual_steps.html">
+        SAN移轉：支援和不支援的組態、以及必要的手動步驟
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_considerations_for_space_when_transitioning_san_volumes.html">
+        轉換SAN磁碟區時的空間考量
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/concept_preparing_data_protection_features_for_transition.html">
+        <div class="na-navbar-padding"> 準備資料保護功能以進行移轉</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_supported_and_unsupported_data_protection_relationships.html">
+        資料保護移轉：支援及不支援的組態
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_considerations_for_using_snapmirror_for_transition.html">
+        使用SnapMirror進行移轉時的考量
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_guidelines_for_deciding_when_to_cutover.html">
+        決定何時執行轉換的準則
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_impact_of_takeover_and_giveback_on_transition.html">
+        接管和恢復對轉換的影響
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/task_transitioning_volumes_using_7mtt.html">
+        <div class="na-navbar-padding"> 從7-Mode磁碟區移轉資料與組態</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/reference_transition_preparation_checklist.html">
+        轉換準備檢查清單
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_adding_controllers_and_clusters.html">
+        新增控制器和叢集
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_creating_a_transition_project.html">
+        建立轉換專案
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_customizing_configurations_for_transition.html">
+        自訂7-Mode組態的轉換
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/task_running_prechecks.html">
+        <div class="na-navbar-padding"> 執行預先檢查</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_severity_levels_for_precheck_messages.html">
+        預先檢查訊息的嚴重性等級
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_starting_baseline_data_copy.html">
+        開始基礎資料複本
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_applying_7_mode_configurations.html">
+        套用7-Mode組態
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_configuring_zones_by_using_fc_zone_plan.html">
+        使用FC區域計畫設定區域
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_performing_on_demand_snapmirror_update_operation.html">
+        執行隨需SnapMirror更新
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_completing_a_transition_project.html">
+        完成轉換專案
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_completing_chain_of_custody_verification.html">
+        完成監管鏈驗證
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/concept_transitioning_volumes_using_7mtt_cli.html">
+        <div class="na-navbar-padding"> 使用7-Mode Transition Tool CLI轉換磁碟區</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_scenarios_for_selecting_volumes_in_a_session.html">
+        在專案中選取磁碟區的案例
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/concept_transitioning_volumes_using_7mtt_cli.html">
+        <div class="na-navbar-padding"> 使用7-Mode Transition Tool CLI轉換磁碟區</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_creating_a_transition_session.html">
+        建立轉換專案
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/task_transitioning_volumes_by_excluding_a_subset_of_configurations.html">
+        <div class="na-navbar-padding"> 使用CLI自訂7-Mode組態的轉換</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/reference_configurations_that_can_be_excluded.html">
+        可從轉換中排除的組態
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/reference_example_consolidating_nfs_export_rules_for_transition.html">
+        整合NFS匯出規則和Snapshot移轉排程的範例
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_running_precheck_on_a_session.html">
+        執行預先檢查
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_starting_data_copy_for_a_transition_session.html">
+        開始執行移轉專案的資料複本
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_applying_configurations_to_ontap_volumes.html">
+        將組態套用ONTAP 至功能區
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_completing_transition_process.html">
+        完成轉換
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/reference_commands_for_managing_transition_sessions.html">
+        管理轉換的命令
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/task_performing_post_transition_tasks.html">
+        <div class="na-navbar-padding"> 執行手動轉換後工作</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_configuring_zones_by_using_fc_zone_planner.html">
+        使用FC區域計畫設定區域
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_recovering_from_a_failed_lun_transition.html">
+        從發生故障的LUN轉換中恢復
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_viewing_transitioned_san_configurations.html">
+        檢視轉換的SAN組態
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_limitations_with_snapshot_copies_and_luns_managed_by_snap_products.html">
+        7模式Snapshot複本的限制、這些複本是由SnapDrive VMware及SnapManager VMware在轉換後所管理的LUN
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_post_transition_task_for_a_metrocluster_configuration.html">
+        在轉換MetroCluster 完一套功能表後、在遠端站台上設定cron工作排程
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_deleting_7_mode_volume_snapshot_copies_from_transitioned_volumes.html">
+        從轉換的磁碟區刪除7-Mode Volume Snapshot複本
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_consolidating_snapshot_policies_and_cron_schedules_on_transitioned_volumes.html">
+        整合轉換磁碟區的cron排程
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/concept_managing_a_transition_project.html">
+        <div class="na-navbar-padding"> 管理轉換專案</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_editing_a_subproject.html">
+        編輯專案
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/concept_managing_snapmirror_transfers_and_schedule.html">
+        <div class="na-navbar-padding"> 管理SnapMirror傳輸與排程</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_creating_schedule_for_snapmirror_transfers.html">
+        建立SnapMirror傳輸的資料複製排程
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_guidelines_for_creating_a_data_copy_schedule.html">
+        建立資料複本排程的考量事項
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_editing_or_deleting_snapmirror_transfer_schedule.html">
+        編輯或刪除SnapMirror傳輸的資料複本排程
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_managing_logical_interfaces.html">
+        管理邏輯介面
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_removing_volumes_from_a_project.html">
+        從專案移除磁碟區
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_pausing_and_resuming_a_subproject.html">
+        暫停及恢復專案
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_aborting_a_subproject.html">
+        正在中止專案
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_deleting_a_project.html">
+        刪除專案
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/concept_troubleshooting_web_interface_issues.html">
+        <div class="na-navbar-padding"> 疑難排解問題</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_collecting_tool_logs.html">
+        正在下載轉換記錄檔
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/concept_log_files_for_7mtt.html">
+        7-Mode Transition Tool的記錄檔
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-based/task_acknowledging_errors_to_continue_with_transition.html">
+        <div class="na-navbar-padding"> 如果發生可接受的錯誤、請繼續進行轉換</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/reference_ignorable_errors_during_transition.html">
+        轉換期間發生可接受的錯誤
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/task_transitioning_a_metrocluster_configuration_if_a_switchover_or_switchback_event_occurs.html">
+        轉換MetroCluster 因切換或切換而失敗的部分組態
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/reference_cannot_select_a_secondary_volume_from_volume_selection_pane.html">
+        無法從Volume選擇窗格中選取次要Volume
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/reference_cannot_select_volume_for_transition_if_tool_fails_to_retrieve_volume_information.html">
+        如果工具無法擷取磁碟區資訊、則無法選取要轉換的磁碟區
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/reference_cannot_proceed_from_volume_mapping_pane_if_selected_svm_has_no_aggregate.html">
+        如果選取的SVM沒有Aggregate、則無法從Volume對應窗格繼續
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-based/reference_compression_fails_to_start_after_transition.html">
+        從Data ONTAP e.7.3 x轉換後、壓縮功能無法啟用
+      </a></li></ul></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/index.html">
+        <div class="na-navbar-padding"> 無複製轉換</div>
+      </a>
+      <ul><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/concept_transition_overview.html">
+        <div class="na-navbar-padding"> 轉換總覽</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_copy_free_transition_using_7mtt.html">
+        使用7-Mode Transition Tool進行無複本轉換
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_transition_terminology.html">
+        移轉術語
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/concept_collecting_and_assessing_inventory_information.html">
+        <div class="na-navbar-padding"> 收集和評估庫存資訊</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_storage_and_host_version_requirements.html">
+        儲存設備、主機和FC交換器版本要求、以利進行轉換評估
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_preparing_7_mode_systems_for_inventory_collection.html">
+        準備7-Mode系統和主機以進行轉換評估
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/task_assessing_controllers_and_hosts.html">
+        <div class="na-navbar-padding"> 評估控制器和主機</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_generating_an_assessment_report_by_adding_systems_to_7mtt.html">
+        將系統新增至7-Mode Transition Tool、以產生評估報告
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_generating_an_assessment_report_by_importing_inventory_report_xml.html">
+        匯入庫存報告XML以產生評估報告
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/task_generating_fc_zone_plan.html">
+        <div class="na-navbar-padding"> 產生FC區域計畫</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_supported_configurations_for_generating_an_fc_zone_plan.html">
+        可產生FC區域計畫的支援組態
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_how_you_can_use_assessment_executive_summary_for_transition_assessment.html">
+        如何使用評估執行摘要進行轉換評估
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/task_copy_free_transition_workflow.html">
+        <div class="na-navbar-padding"> 無複製轉換工作流程</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_phases_of_copy_free_transition.html">
+        無複製轉換的階段
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/concept_preparing_for_migration.html">
+        <div class="na-navbar-padding"> 準備無複本轉換</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_requirements_for_copy_free_transition.html">
+        無複製轉換的需求
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/reference_required_tools_and_documentation.html">
+        無複本轉換所需的工具與文件
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_port_requirements_for_communicating_with_7mtt.html">
+        與7-Mode Transition Tool通訊的連接埠需求
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_preparing_7_mode_system_for_transition.html">
+        準備7-Mode HA配對以進行轉換
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_setting_up_sp_or_rlm_for_transition.html">
+        在7-Mode系統上設定SP或RLM、以進行無複本轉換
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/task_preparing_your_network_for_transition.html">
+        <div class="na-navbar-padding"> 準備網路進行轉換</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_considerations_for_transitioning_7_mode_ip_addresses.html">
+        轉換7-Mode IP位址的考量
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_preparing_cluster_for_transition.html">
+        準備叢集以進行移轉
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/task_gathering_cabling_information_for_transition.html">
+        <div class="na-navbar-padding"> 收集纜線資訊以供轉換</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/reference_copy_free_transition_cabling_worksheet.html">
+        無複製轉換佈線工作表
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/task_preparing_7_mode_volumes_and_aggregates_for_transition.html">
+        <div class="na-navbar-padding"> 準備7-Mode集合體和磁碟區以進行轉換</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_restrictions_for_copy_free_transition.html">
+        限制轉換7-Mode集合體與磁碟區
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/task_transitioning_to_clustered_ontap_8_3_from_a_7_mode_version_with_32_bit_data.html">
+        <div class="na-navbar-padding"> 準備使用32位元集合體來轉換7-Mode系統</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_expanding_an_aggregate_to_64_bit_format_without_adding_storage.html">
+        將Aggregate擴充為64位元格式
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_finding_and_removing_32_bit_data_from_source_volumes_and_snapshot_copies.html">
+        尋找及移除32位元磁碟區和Snapshot複本
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_aggregate_space_considerations_during_transition.html">
+        用於轉換的Aggregate空間需求
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/concept_preparing_for_name_services_transition.html">
+        <div class="na-navbar-padding"> 準備轉換名稱服務</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_supported_and_unsupported_name_services_configurations.html">
+        名稱服務轉換：支援和不支援的組態、以及必要的手動步驟
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_considerations_for_transitioning_dns_and_ldap_configurations.html">
+        轉換DNS、NIS和LDAP組態時的考量事項
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_considerations_for_transitioning_unix_users_and_groups.html">
+        轉換網路群組和UNIX使用者和群組時的考量
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/concept_preparing_for_nfs_transition.html">
+        <div class="na-navbar-padding"> 準備進行NFS轉換</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_prerequisites_to_transition_nfs_configurations.html">
+        轉換NFS組態的先決條件
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_nfs_configurations_supported_unsupported_or_requiring_manual_steps_for_transition.html">
+        NFS移轉：支援和不支援的組態、以及必要的手動步驟
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_how_nfs_exports_are_transitioned.html">
+        NFS匯出的轉換方式
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/concept_preparing_for_cifs_transition.html">
+        <div class="na-navbar-padding"> 準備進行SMB/CIFS移轉</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_prerequisites_for_transitioning_cifs_configurations.html">
+        轉換CIFS組態的先決條件
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_cifs_configurations_supported_unsupported_or_requiring_manual_steps_for_transition.html">
+        支援且不受支援的CIFS組態、可移轉ONTAP 至支援的不支援
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_considerations_for_local_users_and_groups_transition.html">
+        移轉CIFS本機使用者和群組的考量
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/task_preparing_for_san_transition.html">
+        <div class="na-navbar-padding"> 準備進行SAN移轉</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_creating_san_lifs_before_transition.html">
+        在轉換前建立SAN生命期
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_configuring_zones_by_using_fc_zone_plan.html">
+        使用FC區域計畫設定區域
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_preparing_san_hosts_for_transition.html">
+        準備SAN主機進行移轉
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_san_transition_supported_and_unsupported_configurations_and_required_manual_steps.html">
+        SAN移轉：支援和不支援的組態、以及必要的手動步驟
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_considerations_for_space_when_transitioning_san_volumes.html">
+        轉換SAN磁碟區時的空間考量
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/concept_preparing_data_protection_features_for_transition.html">
+        <div class="na-navbar-padding"> 準備資料保護功能以進行移轉</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_preparing_cluster_for_transitioning_volume_snapmirror_relationships.html">
+        準備叢集以轉換Volume SnapMirror關係
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_supported_and_unsupported_data_protection_relationships.html">
+        資料保護移轉：支援及不支援的組態
+      </a></li></ul></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/task_performing_copy_free_transition_of_7_mode_aggregates.html">
+        <div class="na-navbar-padding"> 使用無複本轉換來轉換7-Mode Aggregate</div>
+      </a>
+      <ul><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/task_planning_a_copy_free_transition_project.html">
+        <div class="na-navbar-padding"> 規劃無複本轉換專案</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/reference_copy_free_transition_project_planning_worksheet.html">
+        無複製的移轉專案規劃工作表
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_adding_controllers_and_clusters.html">
+        新增控制器和叢集
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_selecting_source_7_mode_systems_for_transition.html">
+        建立無複本轉換專案
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_selecting_target_cluster_for_transition.html">
+        選取要移轉的目標叢集節點
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_svm_and_volume_mapping.html">
+        對應SVM和Volume
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_selecting_lifs_to_transition.html">
+        選擇要轉換的生命期
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/task_customizing_configurations_for_transition.html">
+        <div class="na-navbar-padding"> 自訂7-Mode組態的轉換</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/reference_example_consolidating_nfs_export_rules_for_transition.html">
+        整合NFS匯出規則和Snapshot移轉排程的範例
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/task_running_prechecks.html">
+        <div class="na-navbar-padding"> 執行預先檢查</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_severity_levels_for_precheck_messages.html">
+        預先檢查訊息的嚴重性等級
+      </a></li></ul></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_applying_svm_configurations.html">
+        套用SVM組態
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_verifying_readiness_for_cutover.html">
+        驗證7-Mode系統是否已準備好進行轉換
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_exporting_7_mode_system_and_hardware_information.html">
+        匯出儲存組態並停止7-Mode系統
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_removing_disk_shelves_from_7_mode_and_connecting_to_cluster_nodes.html">
+        從7-Mode系統中斷磁碟櫃連線、並連線至叢集節點
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_importing_7_mode_data_to_clustered_ontap.html">
+        將7-Mode資料匯入ONTAP 至VMware
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/task_completing_post_transition_tasks_for_a_copy_free_transition.html">
+        <div class="na-navbar-padding"> 完成轉換</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_restrictions_during_preproduction_testing.html">
+        正式作業前測試期間的限制
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_rehosting_volumes_from_different_svms_to_a_single_svm.html">
+        將已轉換的磁碟區重新託管至不同的SVM
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_verifying_transition_configurations.html">
+        驗證轉換的組態
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_performing_manual_configuration_tasks.html">
+        在轉換後執行手動組態工作
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_testing_workloads_and_applications.html">
+        測試工作負載與應用程式
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_committing_7_mode_aggregates_to_clustered_ontap_format.html">
+        提交無複本移轉專案
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/task_transitioning_a_snapmirror_relationship.html">
+        <div class="na-navbar-padding"> 轉換SnapMirror關係</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_transitioning_primary_and_secondary_systems_of_a_snapmirror_relationship_in_staggered_way.html">
+        在交錯式組態中、以SnapMirror關係轉換HA配對
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_transitioning_primary_and_secondary_systems_of_a_snapmirror_relationship_in_parallel.html">
+        以SnapMirror關係並行轉換一線和二線系統
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/concept_troubleshooting_transition_issues.html">
+        <div class="na-navbar-padding"> 疑難排解轉換問題</div>
+      </a>
+      <ul><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/task_acknowledging_errors_to_continue_with_transition.html">
+        <div class="na-navbar-padding"> 如果發生可接受的錯誤、請繼續進行轉換</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/reference_ignorable_errors_during_transition.html">
+        轉換期間發生可接受的錯誤
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_collecting_tool_logs.html">
+        正在下載轉換記錄檔
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_log_files_for_7mtt.html">
+        7-Mode Transition Tool的記錄檔
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_recovering_from_a_failed_lun_transition.html">
+        從發生故障的LUN轉換中恢復
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/reference_failed_to_boot_7_mode_controller_in_maintenance_mode.html">
+        無法以維護模式開機7-Mode控制器
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/concept_reverting_a_copy_free_transition_project.html">
+        <div class="na-navbar-padding"> 執行轉換回溯至7-Mode</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/concept_when_to_revert_and_when_to_call_technical_support_transition.html">
+        何時回復轉換作業、何時致電技術支援
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/copy-free/task_performing_a_transition_rollback.html">
+        <div class="na-navbar-padding"> 回復免費複本的轉換專案</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/copy-free/task_running_manual_steps_for_rolling_back_transition.html">
+        手動回復轉換
+      </a></li></ul></li></ul></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/inventory-collect/index.html">
+        <div class="na-navbar-padding"> 主機與儲存資訊收集指南</div>
+      </a>
+      <ul><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/inventory-collect/concept_collecting_host_and_storage_inventory_information_for_transition_assessment.html">
+        <div class="na-navbar-padding"> 收集儲存設備和主機庫存資訊</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/inventory-collect/concept_ontap_target_releases_supported_by_7mtt.html">
+        支援7-Mode Transition Tool的支援目標版本ONTAP
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/inventory-collect/concept_system_requirements_for_running_ict.html">
+        執行Inventory Collect Tool的系統需求
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/inventory-collect/concept_storage_and_host_version_requirements.html">
+        儲存設備、主機和FC交換器的版本要求、以利進行庫存收集
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/inventory-collect/task_preparing_7_mode_systems_for_inventory_collection.html">
+        準備7-Mode系統和主機進行庫存收集
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/inventory-collect/concept_supported_configurations_for_generating_an_fc_zone_plan.html">
+        可產生FC區域計畫的支援組態
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/inventory-collect/reference_syntax_and_options.html">
+        語法和選項
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/inventory-collect/task_collecting_inventory_and_generating_inventory_report.html">
+        收集庫存並產生庫存報告
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/inventory-collect/task_generating_fc_zone_plan.html">
+        產生FC區域計畫
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/inventory-collect/reference_collection_and_assessment_commands.html">
+        收集與評估命令
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/inventory-collect/concept_where_to_find_information_about_transition_assessment.html">
+        何處可以找到轉換評估的相關資訊
+      </a></li></ul></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/snapmirror/index.html">
+        <div class="na-navbar-padding"> 使用SnapMirror進行7-Mode資料移轉</div>
+      </a>
+      <ul><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/snapmirror/task_transitioning_7_mode_volumes_using_snapmirror.html">
+        <div class="na-navbar-padding"> 使用SnapMirror移轉7-Mode磁碟區</div>
+      </a>
+      <ul><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/snapmirror/concept_planning_for_transition.html">
+        <div class="na-navbar-padding"> 規劃移轉</div>
+      </a>
+      <ul><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/snapmirror/concept_features_and_volumes_not_supported_for_transition.html">
+        <div class="na-navbar-padding"> 不支援移轉的功能和磁碟區</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/snapmirror/concept_unsupported_7_mode_san_functions.html">
+        SAN移轉不支援的功能
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/snapmirror/reference_7_mode_ontap_version_requirements_for_transitioning_volumes_using_snapmirror.html">
+        7-Mode轉換版本需求
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/snapmirror/concept_considerations_for_using_snapmirror_for_transition.html">
+        使用SnapMirror進行移轉時的考量
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/snapmirror/concept_considerations_for_space_when_transitioning_san_volumes.html">
+        轉換SAN磁碟區時的空間考量
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/snapmirror/concept_guidelines_for_transitioning_snaplock_volumes.html">
+        轉換SnapLock 功能指南
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/snapmirror/task_preparing_for_transition.html">
+        <div class="na-navbar-padding"> 準備轉換</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/snapmirror/concept_licensing_requirements_for_transition.html">
+        移轉授權需求
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/snapmirror/task_preparing_7_mode_system_for_transition.html">
+        準備7-Mode系統進行轉換
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/snapmirror/task_preparing_cluster_for_transition.html">
+        準備叢集以進行移轉
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/snapmirror/task_creating_a_transition_peering_relationship.html">
+        建立轉換對等關係
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/snapmirror/task_configuring_a_tcp_window_size_for_snapmirror_relationships.html">
+        設定SnapMirror關係的TCP視窗大小
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/snapmirror/task_transitioning_volumes.html">
+        <div class="na-navbar-padding"> 移轉磁碟區</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/snapmirror/task_transitioning_a_stand_alone_volume.html">
+        轉換獨立Volume
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/snapmirror/task_transitioning_a_data_protection_relationship.html">
+        <div class="na-navbar-padding"> 以交錯式組態轉換Volume SnapMirror關係</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/snapmirror/task_transitioning_secondary_volume.html">
+        轉換次要Volume
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/snapmirror/task_transitioning_a_primary_volume.html">
+        轉換主要Volume
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/snapmirror/task_transitioning_a_volume_snapmirror_relationship_in_parallel.html">
+        並行轉換Volume SnapMirror關係
+      </a></li></ul></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/snapmirror/task_transitioning_disaster_recovery_relationship.html">
+        在vFiler單元之間轉換災難恢復關係
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/snapmirror/task_recovering_from_a_disaster_at_7_mode_site_during_transition.html">
+        <div class="na-navbar-padding"> 在轉換期間從7-Mode站台的災難中恢復</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/snapmirror/task_redirecting_clients_to_clustered_ontap_secondary_volume.html">
+        在災難發生後、將用戶端重新導向至叢集Data ONTAP 式的不二級磁碟區
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/snapmirror/task_transitioning_7_mode_primary_as_a_standalone_volume.html">
+        將7-Mode主磁碟區轉換為獨立磁碟區
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/snapmirror/task_redirecting_clients_to_clustered_ontap_primary_volume_after_disaster.html">
+        將用戶端重新導向至叢集Data ONTAP 式的功能區
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/snapmirror/reference_troubleshooting.html">
+        <div class="na-navbar-padding"> 疑難排解使用SnapMirror時的轉換問題</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/snapmirror/task_resuming_a_failed_snapmirror_transfer_transition.html">
+        恢復失敗的SnapMirror基礎傳輸
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/snapmirror/task_recovering_from_a_failed_lun_transition.html">
+        從發生故障的LUN轉換中恢復
+      </a></li></ul></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/index.html">
+        <div class="na-navbar-padding"> SAN主機移轉與補救</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/concept_ontap_target_releases_supported_by_7mtt.html">
+        支援7-Mode Transition Tool的支援目標版本ONTAP
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/concept_7mtt_transition_phases.html">
+        7-Mode Transition Tool轉換階段
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/concept_vmware_esxi_host_remediation.html">
+        <div class="na-navbar-padding"> VMware ESXi主機補救</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/concept_esxi_versions_and_features_supported_for_san_transitions_using_7mtt.html">
+        使用7MTT進行SAN轉換時、支援的ESXi版本與功能
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/task_preparing_for_transition_of_esxi_hosts.html">
+        <div class="na-navbar-padding"> 準備移轉ESXi主機</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/concept_what_the_inventory_collect_tool_is.html">
+        庫存收集工具的功能
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_preparing_linux_guest_operating_systems_for_transition.html">
+        準備要移轉的Linux客體作業系統
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/concept_preparing_windows_guest_operating_systems_for_transition.html">
+        準備Windows客體作業系統以進行移轉
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/concept_how_to_identify_vm_snapshots_that_must_be_removed_before_transition.html">
+        <div class="na-navbar-padding"> 如何識別轉換前必須移除的VM快照</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_deleting_vm_snapshots_using_vsphere_client.html">
+        使用vSphere Client刪除VM快照複本
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_removing_vm_snapshots_using_esxi_cli.html">
+        使用ESXi CLI移除VM快照
+      </a></li></ul></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_testing_transitioned_luns_and_esxi_host_applications_before_cutover.html">
+        在複本型轉換轉換的轉換階段之前、先測試轉換的LUN和ESXi主機應用程式
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/concept_downtime_at_precutover_phase_of_esxi_host_transition.html">
+        ESXi主機移轉的套用組態（預先轉換）階段停機
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/concept_post_transition_requirements_for_esxi_hosts.html">
+        <div class="na-navbar-padding"> ESXi主機的移轉後修正需求</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_preparing_for_post_transition_esxi_host_remediation.html">
+        準備進行移轉後ESXi主機補救
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_reregistering_vms_after_transition_on_non_san_boot_esxi_host_using_vsphere_client.html">
+        在非SAN上進行移轉之後、使用vSphere Client重新登錄VM
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/concept_reconfiguration_of_vmware_software_iscsi_initiator.html">
+        轉換後重新設定VMware軟體iSCSI啟動器
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_setting_up_esxi_hosts_configured_for_san_boot_after_transition.html">
+        設定ESXi主機、以便在轉換後進行SAN開機
+      </a></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/task_determining_whether_vmfs_volumes_need_to_be_remounted_after_transition.html">
+        <div class="na-navbar-padding"> 確定在轉換後是否需要重新掛載VMFS磁碟區</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_remounting_vmfs_volumes_after_transition_using_vsphere_client.html">
+        使用vSphere Client在轉換後重新掛載VMFS磁碟區
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_remounting_vmfs_volumes_after_transition_using_esxi_cli_console.html">
+        使用ESXi CLI在轉換後重新掛載VMFS磁碟區
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/task_reattaching_rdm_luns_to_vms.html">
+        <div class="na-navbar-padding"> 將RDM LUN重新附加至VM</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_removing_stale_rdm_using_vsphere_client.html">
+        使用vSphere Client移除過時的RDM
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_reattaching_rdm_to_vms_using_vsphere_client.html">
+        使用vSphere Client將RDM重新附加至VM
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_reattaching_rdm_using_esxi_cli_console.html">
+        使用ESXi的CLI/Console重新附加RDM
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/concept_post_transition_remediation_for_linux_and_windows_guest_operating_systems.html">
+        適用於Linux和Windows客體作業系統的轉換後補救措施
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/concept_configure_recommended_settings_for_esxi_hosts.html">
+        移轉修正後ESXi主機的建議設定
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_enabling_caw_on_a_datastore_using_esxi_cli.html">
+        使用ESXi CLI在資料存放區上啟用CAW
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/concept_linux_host_remediation.html">
+        <div class="na-navbar-padding"> RHEL主機補救</div>
+      </a>
+      <ul><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/task_gathering_pretransition_information_from_inventory_assessment_workbook.html">
+        <div class="na-navbar-padding"> 從庫存評估工作簿收集過渡前資訊</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/concept_what_the_inventory_collect_tool_is.html">
+        庫存收集工具的功能
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/concept_transitioning_rhel_dmmp_devices_without_file_systems.html">
+        <div class="na-navbar-padding"> 無需檔案系統即可轉換RHEL DMP裝置</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_verifying_that_rhel_luns_are_ready_for_transition_using_inventory_assessment_workbook.html">
+        使用庫存評估工作簿驗證RHEL LUN是否已準備好進行轉換
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_verifying_rhel_5_luns_are_ready_for_transition_using_cli.html">
+        使用CLI驗證RHEL 5 LUN是否已準備好進行移轉
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_verifying_rhel_6_ddmp_devices_are_ready_for_transition_using_cli.html">
+        使用CLI驗證RHEL 6 DDMP裝置是否已準備好進行移轉
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_testing_dmmp_devices_on_rhel_before_cutover.html">
+        在轉換複本型轉換的轉換階段之前、先在RHEL主機上測試不含檔案系統的DMP裝置
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_preparing_for_cutover_when_transitioning_linux_host_dmmp_device_without_file_system.html">
+        準備在不使用檔案系統的情況下轉換Linux主機DMP裝置時轉換
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_replacing_7_mode_wwids_on_linux_host_after_transition_of_luns.html">
+        在轉換LUN之後、更換Linux主機上的7-Mode LUN WWID
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/concept_transitioning_luns_with_mount_points_using_dmmp_devices_names.html">
+        <div class="na-navbar-padding"> 使用DMP裝置名稱轉換LUN與掛載點</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_preparing_rhel_luns_transition_using_inventory_assessment_workbook.html">
+        使用「庫存評估」工作簿、使用DMP裝置名稱準備RHEL LUN與掛載點以進行轉換
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_preparing_rhel_luns_for_transition_using_the_cli.html">
+        使用CLI準備使用DMP別名的裝載點執行RHEL LUN移轉作業
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_testing_dmmp_devices_with_file_systems_on_rhel_hosts_before_cutover_phase.html">
+        在轉換複本型轉換的轉換階段之前、先在RHEL主機上測試含有檔案系統的DMP裝置
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_preparing_for_cutover_when_transitioning_luns_with_mounts_using_dmmp_aliases_on_linux_hosts.html">
+        在Linux主機上使用DMP裝置名稱、以掛載點轉換LUN時、準備轉換階段
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_remounting_dmmp_devices_on_linux_hosts_after_transition.html">
+        轉換後、在Linux主機上重新掛載DMP裝置
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/concept_transitioning_luns_with_mount_points_using_dmmp_alias_names.html">
+        <div class="na-navbar-padding"> 使用DMP別名轉換LUN與掛載點</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_preparing_rhel_luns_for_transition_using_the_cli.html">
+        使用CLI準備使用DMP別名的裝載點執行RHEL LUN移轉作業
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_testing_luns_with_mounts_using_dmmp_aliases_on_rhel_hosts_before_cutover.html">
+        在轉換複本型轉換的轉換階段之前、使用RHEL主機上的DMP別名來測試LUN與掛載點
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_preparing_for_cutover_when_transitioning_luns_with_mounts_using_dmmp_aliases_on_linux_hosts.html">
+        在Linux主機上使用DMP裝置名稱、以掛載點轉換LUN時、準備轉換階段
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_remounting_luns_with_mount_point_using_dmmp_alias_name_on_linux_hosts_after_transition.html">
+        轉換後、在Linux主機上使用DMP別名重新掛載LUN與掛載點
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/concept_transitioning_linux_host_file_systems_on_lvm_devices.html">
+        <div class="na-navbar-padding"> 在LVM裝置上轉換Linux主機檔案系統</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_testing_luns_with_file_systems_on_lvm_devices_before_cutover_phase.html">
+        在轉換複本型轉換的轉換階段之前、先在LVM裝置上測試LUN與檔案系統
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_preparing_for_cutover_when_transitioning_linux_host_file_systems_on_lvm_devices.html">
+        在LVM裝置上轉換Linux主機檔案系統時、準備轉換階段
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_mounting_logical_volumes_on_linux_host_after_transition.html">
+        轉換後、將邏輯磁碟區掛載到Linux主機上
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/concept_transition_of_san_boot_luns.html">
+        <div class="na-navbar-padding"> 轉換SAN開機LUN</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/concept_types_of_san_boot_luns_supported_for_transition.html">
+        支援移轉的SAN開機LUN類型
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_preparing_for_transition_of_fc_or_fcoe_san_boot_luns.html">
+        準備在RHEL主機上轉換FC或FCoE SAN開機LUN
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_preparing_for_transition_of_iscsi_san_boot_luns.html">
+        準備移轉iSCSI SAN開機LUN
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_testing_san_boot_luns_on_rhel_hosts_before_cutover.html">
+        在轉換複本型轉換之前、先在RHEL主機上測試SAN開機LUN
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/concept_preparing_for_cutover_when_transitioning_san_boot_luns.html">
+        準備轉換SAN開機LUN時的轉換階段
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_discovering_san_boot_luns_after_transition.html">
+        轉換後探索SAN開機LUN
+      </a></li></ul></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/concept_windows_host_remediation.html">
+        <div class="na-navbar-padding"> Windows主機補救</div>
+      </a>
+      <ul><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/task_preparing_windows_hosts_for_transition.html">
+        <div class="na-navbar-padding"> 準備Windows主機進行移轉</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/concept_what_the_inventory_collect_tool_is.html">
+        庫存收集工具的功能
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_testing_transitioned_luns_on_windows_hosts_before_cutover.html">
+        在轉換階段之前、在Windows主機上測試轉換的LUN
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_preparing_for_cutover_when_transitioning_windows_hosts.html">
+        準備轉換Windows主機時的轉換階段
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_bringing_windows_hosts_online_after_transition.html">
+        轉換後讓Windows主機上線
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/concept_exceptions_and_known_issues_when_transitioning_san_hosts_to_clustered_ontap.html">
+        將SAN主機移轉至ONTAP 不支援功能時的例外狀況和已知問題
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/concept_hp_ux_host_remediation.html">
+        <div class="na-navbar-padding"> HP-UX主機補救</div>
+      </a>
+      <ul><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/concept_transitioning_hp_ux_host_luns_with_file_systems.html">
+        <div class="na-navbar-padding"> 使用檔案系統轉換HP-UX主機LUN</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_preparing_to_transition_hp_ux_host_luns_with_file_systems.html">
+        準備使用檔案系統來轉換HP-UX主機LUN
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_testing_data_luns_on_hp_ux_hosts_before_cutover.html">
+        在複製型轉換轉換的轉換階段之前、先在HP-UX主機上測試資料LUN
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_preparing_for_cutover_when_transitioning_hp_ux_host_data_luns_with_file_systems.html">
+        準備轉換使用檔案系統的HP-UX主機資料LUN時的轉換階段
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_mounting_hp_ux_host_luns_with_file_systems_after_transition.html">
+        在轉換後、將HP-UX主機LUN與檔案系統一起掛載
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/concept_transitioning_hp_ux_host_san_boot_luns_with_fc_fcoe_configurations.html">
+        <div class="na-navbar-padding"> 轉換採用FC/FCoE組態的HP-UX主機SAN開機LUN</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_preparing_to_transition_san_boot_luns_on_hp_ux_hosts_with_fc_configurations.html">
+        準備在具有FC組態的HP-UX主機上轉換SAN開機LUN
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_testing_transitioned_san_boot_luns_on_hp_ux_hosts_before_cutover.html">
+        在複製型轉換轉換的轉換階段之前、測試HP-UX主機上的轉換式SAN開機LUN
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/concept_preparing_for_cutover_when_transitioning_san_boot_luns.html">
+        準備轉換SAN開機LUN時的轉換階段
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_making_a_san_boot_lun_primary_for_hp_ux_emulex_hbas_after_transition.html">
+        將SAN開機LUN設定為移轉後適用於HP-UX Emulex HBA的主要開機LUN
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_making_san_boot_lun_primary_boot_lun_for_hp_ux_qlogic_hbas_after_transition.html">
+        將SAN開機LUN設定為移轉後適用於HP-UX QLogic HBA的主要開機LUN
+      </a></li></ul></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/concept_aix_host_remediation.html">
+        <div class="na-navbar-padding"> AIX主機補救</div>
+      </a>
+      <ul><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/concept_transition_of_san_boot_luns_on_aix_hosts_with_fc_fcoe_configurations.html">
+        <div class="na-navbar-padding"> 在具有FC/FCoE組態的AIX主機上轉換SAN開機LUN</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_preparing_to_transition_san_boot_luns_on_aix_hosts_with_fc_fcoe_configurations.html">
+        準備在具有FC/FCoE組態的AIX主機上轉換SAN開機LUN
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_testing_transitioned_san_boot_luns_on_aix_hosts_before_cutover.html">
+        在轉換複本型轉換的轉換階段之前、測試AIX主機上轉換後的SAN開機LUN
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_preparing_for_cutover_when_transitioning_aix_hosts_with_fc_fcoe_configurations.html">
+        準備轉換具有FC/FCoE組態的AIX主機時、進行轉換階段的準備工作。
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_booting_from_san_boot_lun_on_aix_hosts_with_fc_fcoe_configurations_after_transition.html">
+        在轉換後、從具有FC/FCoE組態的AIX主機上的SAN開機LUN開機
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/concept_transitioning_aix_host_data_luns_with_file_systems.html">
+        <div class="na-navbar-padding"> 將AIX主機資料LUN轉換為檔案系統</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_preparing_to_transition_aix_data_host_luns_with_file_systems.html">
+        準備使用檔案系統來轉換AIX主機資料LUN
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_testing_transitioned_luns_on_aix_hosts_before_cutover.html">
+        在轉換複本型轉換的轉換階段之前、在AIX主機上測試轉換的LUN
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_preparing_for_cutover_when_transitioning_aix_data_luns_with_file_systems.html">
+        準備轉換AIX主機資料LUN與檔案系統時的轉換階段
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_mounting_aix_host_luns_with_file_systems_after_transition.html">
+        在轉換後、將AIX主機資料LUN與檔案系統一起掛載
+      </a></li></ul></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/concept_solaris_host_remediation.html">
+        <div class="na-navbar-padding"> Solaris主機補救</div>
+      </a>
+      <ul><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/concept_transitioning_solaris_host_data_luns_with_zfs_file_systems.html">
+        <div class="na-navbar-padding"> 使用ZFS檔案系統轉換Solaris主機資料LUN</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_preparing_to_transition_solaris_host_data_luns_with_zfs_file_system.html">
+        準備使用ZFS檔案系統來轉換Solaris主機資料LUN
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_testing_data_luns_on_solaris_hosts_with_zfs_file_system_before_cutover.html">
+        在轉換複本型轉換的轉換階段之前、使用ZFS檔案系統測試Solaris主機上的資料LUN
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_preparing_for_cutover_when_transitioning_solaris_host_data_luns_with_zfs_file_systems.html">
+        在使用ZFS檔案系統轉換Solaris主機資料LUN時、準備轉換階段
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_mounting_solaris_host_luns_with_zfs_file_systems_after_transition.html">
+        在轉換後、使用ZFS檔案系統掛載Solaris主機LUN
+      </a></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/concept_transitioning_solaris_host_data_luns_with_sun_volume_manager.html">
+        <div class="na-navbar-padding"> 使用Sun Volume Manager轉換Solaris主機資料LUN</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_preparing_to_transition_solaris_host_data_luns_with_sun_volume_manager.html">
+        準備使用Sun Volume Manager移轉Solaris主機LUN
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_testing_data_luns_on_solaris_hosts_with_sun_volume_manager_svm_before_cutover.html">
+        在複製型轉換的轉換階段之前、使用Sun Volume Manager測試Solaris主機上的資料LUN
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_preparing_for_cutover_when_transitioning_solaris_host_sun_volume_manager_data_luns.html">
+        準備轉換Solaris主機Sun Volume Manager資料LUN時的轉換階段
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_mounting_solaris_host_luns_with_sun_volume_manager_after_transition.html">
+        轉換後使用Solaris Volume Manager掛載Solaris主機LUN
+      </a></li></ul></li></ul></li><li class="subfolders "><a href="/zh-tw/ontap-7mode-transition/san-host/concept_rolling_back_luns_to_7_mode_after_transition.html">
+        <div class="na-navbar-padding"> 轉換後將LUN復原至7-Mode</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_rolling_back_clustered_ontap_luns_back_to_7_mode_on_rhel_hosts.html">
+        在ONTAP RHEL主機上將VMware LUN復原至7-Mode LUN
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/san-host/task_rolling_back_clustered_ontap_luns_back_to_7_mode_on_windows_hosts.html">
+        在ONTAP Windows主機上、將還原的LUN復原至7-Mode LUN
+      </a></li></ul></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/ontap-7mode-transition/reference_legal_notices.html">
+        法律聲明
+      </a></li></ul>
+</div>
+<script>
+  window.onscroll = () => {
+    const value = -40 - (document.body.scrollHeight - (window.innerHeight + document.scrollingElement.scrollTop));
+    
+    document.getElementById("sidebar-height").style.bottom = Math.max(0,value) + "px";
+};
+</script>
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+
+  </div>
+  
+
+  <div class="ie-content-pane n-doc__component-detail-content n-doc__component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content">
+      <div class="ie-utility">
+  <div class="ie-menu">
+    <div class="n-breadcrumb">
+      <ul class="n-breadcrumb__list">
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com">docs.netapp.com</a>
+        </li>
+        
+
+        
+
+        <li class="n-breadcrumb__list-item">
+          <a href="/zh-tw/ontap-7mode-transition/">ONTAP&nbsp;7-Mode&nbsp;Transition</a>
+        </li>
+
+      </ul>
+    </div>
+    <div style="clear: both"></div><!-- Main needs to have height -->
+  </div>
+</div>
+
+      <div class="ie-nmt-disclaimer">
+  <span>
+    <div class="ie-nmt-disclaimer-container">
+      <div class="ie-nmt-disclaimer-icon">
+        <svg class="luci-icon" aria-hidden="true">
+          <use xlink:href="/zh-tw/ontap-7mode-transition/common/svg/sprite.svg#circle-info">
+        </svg>
+      </div>
+      <div class="ie-nmt-disclaimer-content">
+        <span> 本繁體中文版使用機器翻譯，譯文僅供參考，若與英文版本牴觸，應以英文版本為準。 </span>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  </span>
+</div><div class="n-doc__component-detail-heading-wrap">
+  <h1 class="n-doc__component-detail-heading">將系統新增至7-Mode Transition Tool、以產生評估報告</h1>
+</div>
+
+
+<p class="page-details">
+  
+    
+    <time datetime="2022-05-03 11:04:24 +0000">05/03/2022</time>
+    
+  
+
+
+</p>
+
+<div class="paragraph lead">
+<p>您可以將系統新增至7-Mode Transition Tool、以收集控制器、主機和FC交換器的庫存資訊。接著您可以建立評估報告、評估這些系統的功能和特性、並找出ONTAP 它們在選定的「更新版本」中的運作方式。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>儲存系統和主機的使用者名稱必須具有足夠的權限、才能執行讀我檔案中所列的命令。</p>
+<div class="paragraph">
+<p>該讀我檔案位於「_7-Mode_Transition _Tool_Installed_LOUSE\BIN\ICT」。</p>
+</div>
+</li>
+<li>
+<p>您必須準備好7-Mode系統、主機和FC交換器、才能進行轉換評估。</p>
+</li>
+<li>
+<p>若要評估Windows系統、您必須擁有網域使用者帳戶。</p>
+</li>
+<li>
+<p>如果您要新增多個系統進行評估、則必須建立以Ascii或utf-8格式編碼的文字檔、而且必須以每行一個系統的形式包含系統詳細資料。</p>
+<div class="paragraph">
+<p>每個系統詳細資料必須採用下列格式：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>(ontap|windows|vmware|linux|cisco|brocade)://[(user|domain_user)[:password]@](host_name|ip)</pre>
+</div>
+</div>
+</li>
+<li>
+<p>安裝並執行7-Mode Transition Tool的系統必須能夠存取控制器或主機。</p>
+</li>
+<li>
+<p>所有功能都必須設定或啟用授權、才能讓工作簿包含這些功能的詳細目錄資訊。</p>
+</li>
+<li>
+<p>儲存系統的使用者名稱必須具有足夠的管理權限、才能收集庫存資訊。</p>
+</li>
+<li>
+<p>所有主機名稱和儲存系統組態（例如CIFS共用名稱、使用者名稱和群組名稱）都必須採用utf-8格式。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>如果重新啟動7-Mode Transition Tool服務或安裝此工具的系統、則新增至工具的系統詳細資料將會遺失、而且系統必須重新新增至工具。</p>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>如果您想要使用最新的互通性對照表IMT （簡稱「參考資料」）資料進行轉換評估：</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>從IMT 互通性對照表下載此資料、然後儲存：</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>在「報告」功能表中、按一下*「完成每日匯出」*。</p>
+</li>
+<li>
+<p>在「完整的每日匯出」對話方塊FAS 中、於搜尋欄位中輸入「還原」。</p>
+</li>
+<li>
+<p>下載ONTAP 《SAN主機Excel》檔案、然後儲存。https://mysupport.netapp.com/matrix["NetApp 互通性對照表工具"]</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>在CLI IMT 中、使用「Transition IMT from the show」命令匯入資料。</p>
+</li>
+<li>
+<p>使用「Transition IMT esfshow」命令來確認匯入是否成功。</p>
+<div class="paragraph">
+<p><strong>疑難排解：</strong> IMT 如果無法執行還原資料匯入作業、您可以使用「Transition IMT 還原」命令來還原先前的資料。</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>登入7-Mode Transition Tool、然後按一下「Collect and評估（收集與評估）」區段中的「* Get Started（*入門）」。</p>
+</li>
+<li>
+<p>按一下「<strong>新增系統</strong>」。</p>
+</li>
+<li>
+<p>在Add System（新增系統）視窗中、執行下列其中一項動作：</p>
+<div class="ulist">
+<ul>
+<li>
+<p>新增單一系統：</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>輸入系統的完整網域名稱（FQDN）或IP位址。</p>
+</li>
+<li>
+<p>輸入指定系統的使用者名稱和密碼。</p>
+</li>
+<li>
+<p>選取系統類型：</p>
+<div class="ulist">
+<ul>
+<li>
+<p>儲存系統Data ONTAP</p>
+</li>
+<li>
+<p>主機：Microsoft Windows、Red Hat Linux Enterprise和VMware ESXi</p>
+</li>
+<li>
+<p>FC交換器：Cisco與Brocade</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>按一下*瀏覽*、然後選取包含多個系統認證的文字檔、即可新增多個系統。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>按一下「 * 新增 * 」。</p>
+<div class="paragraph">
+<p>如果系統的評估狀態為「Ready（就緒）」、則您可以針對該系統執行轉換評估。</p>
+</div>
+</li>
+<li>
+<p>產生轉換評估報告：</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>選擇要進行轉換評估的系統。</p>
+</li>
+<li>
+<p>按一下「<strong>建立轉換評估報告</strong>」。</p>
+</li>
+<li>
+<p>在「Create Transition Assessment Report（建立轉換評估報告）」對話方塊中、選取Data ONTAP 目標叢集的還原版本。</p>
+</li>
+<li>
+<p>指定報告檔案名稱的前置詞。</p>
+</li>
+<li>
+<p>按一下*產生報告*。</p>
+<div class="paragraph">
+<p>評估工作簿（報告名稱附有「評估工作簿」）和評估執行摘要（報告名稱附有「評估執行摘要」）報告、以XML格式產生。</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>+您可以存取評估工作簿、評估摘要和庫存XML檔案、這些檔案可用來從「&#8230;&#8203;etc/webapp/Transition（轉換）-GUI/MC」資料夾產生評估報告。</p>
+</div>
+</li>
+<li>
+<p>使用Microsoft Office 2007或更新版本、在Microsoft Excel中檢視評估工作簿、並在Microsoft Word中檢視評估執行摘要。</p>
+<div class="paragraph">
+<p>請參閱評估工作簿中的轉換可行性（CBT）、設定預先檢查摘要、設定預先檢查詳細資料、以及CBT預先檢查摘要索引標籤、以瞭解複本型轉換評估詳細資料。</p>
+</div>
+<div class="paragraph">
+<p>在評估執行摘要中、如需控制器層級評估的詳細資料、請參閱複本型轉換可行性一節。</p>
+</div>
+<div class="paragraph">
+<p>您可能必須在Excel中啟用巨集才能檢視評估工作簿。</p>
+</div>
+<div class="paragraph">
+<p>在評估工作簿的資料收集摘要中、如果系統的存取狀態為「失敗」、則該系統的庫存資訊無效。在評估執行摘要中、此系統部分欄位的值會顯示為「未評估」。</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>相關資訊</strong></p>
+</div>
+<div class="paragraph">
+<p><a href="task_collecting_tool_logs.html">正在下載轉換記錄檔</a></p>
+</div>
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+      <div class="n-footer__bottom-left">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/us/legal/copyright.aspx">© 2022 NetApp, Inc.</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">legal-terms</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">legal-privacy</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">legal-cookies</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">cookie-settings</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="n-footer__bottom-right">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <span class="n-footer__fine-print">對我們的網站有任何意見或要求？</span>
+              <a target="_self" href="javascript:netapp_mailto()">請與我們聯絡</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://docs.netapp.com/zh-tw/announcements/">公告</a>
+            </li>
+          </ul>
+        </div>
+        <div class="n-footer__social-links">
+          <ul class="n-footer__social-link-list">
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-blog" href="https://blog.netapp.com"
+                target="_blank" title="blog" alt="blog">
+                <span class="n-footer__social-link-text">blog</span>
+                <svg class="n-icon-blog n-footer__social-link-icon" aria-labelledby="title">
+                  <title>blog@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/ontap-7mode-transition/common/svg/sprite.svg#blog"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-community" href="https://community.netapp.com/"
+                target="_blank" title="community" alt="community">
+                <span class="n-footer__social-link-text">community</span>
+                <svg class="n-icon-community n-footer__social-link-icon" aria-labelledby="title">
+                  <title>community@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/ontap-7mode-transition/common/svg/sprite.svg#comments"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-twitter" href="https://twitter.com/netapp"
+                target="_blank" title="twitter" alt="twitter">
+                <span class="n-footer__social-link-text">twitter</span>
+                <svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
+                  <title>twitter@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/ontap-7mode-transition/common/svg/sprite.svg#twitter"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-facebook" href="https://www.facebook.com/NetApp"
+                target="_blank" title="facebook" alt="facebook">
+                <span class="n-footer__social-link-text">facebook</span>
+                <svg class="n-icon-facebook n-footer__social-link-icon" aria-labelledby="title">
+                  <title>facebook@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/ontap-7mode-transition/common/svg/sprite.svg#facebook"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-linkedin"
+                href="https://www.linkedin.com/company/netapp" target="_blank" title="linkedin" alt="linkedin">
+                <span class="n-footer__social-link-text">linkedin</span>
+                <svg class="n-icon-linkedin n-footer__social-link-icon" aria-labelledby="title">
+                  <title>linkedin@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/ontap-7mode-transition/common/svg/sprite.svg#linkedin"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-youtube"
+                href="https://www.youtube.com/user/NetAppTV" target="_blank" title="youtube" alt="youtube">
+                <span class="n-footer__social-link-text">youtube</span>
+                <svg class="n-icon-youtube n-footer__social-link-icon" aria-labelledby="title">
+                  <title>youtube@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/ontap-7mode-transition/common/svg/sprite.svg#youtube"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-slideshare"
+                href="https://www.slideshare.net/NetApp" target="_blank" title="slideshare" alt="slideshare">
+                <span class="n-footer__social-link-text">slideshare</span>
+                <svg class="n-icon-slideshare n-footer__social-link-icon" aria-labelledby="title">
+                  <title>slideshare@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/ontap-7mode-transition/common/svg/sprite.svg#slideshare"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/zh-tw/ontap-7mode-transition/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/zh-tw/ontap-7mode-transition/js/prism.js'></script>
+      <script type="text/javascript" src='/zh-tw/ontap-7mode-transition/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/zh-tw/ontap-7mode-transition/js/www-ntap.js'></script>
+    <script src='/zh-tw/ontap-7mode-transition/js/tabbed-blocks.js'></script>
+  </body></html>
