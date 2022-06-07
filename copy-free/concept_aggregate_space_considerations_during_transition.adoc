@@ -1,7 +1,7 @@
 ---
 permalink: copy-free/concept_aggregate_space_considerations_during_transition.html 
 sidebar: sidebar 
-keywords: ontap, transition, copy, free, aggregate, space, requirements 
+keywords: transition, copy, free, aggregate, space, requirements 
 summary: 在轉換之前、您必須確保7-Mode Aggregate有足夠的可用空間。7-Mode Transition Tool會根據實體空間、邏輯空間、Snapshot複本佔用空間及空間保證設定、對集合體執行各種空間檢查。您也必須瞭解Flash Pool Aggregate的空間考量。 
 ---
 = 用於轉換的Aggregate空間需求
