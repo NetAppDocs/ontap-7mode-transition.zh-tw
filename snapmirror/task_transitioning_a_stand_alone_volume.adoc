@@ -20,6 +20,14 @@ xref:task_preparing_for_transition.adoc[準備轉換]
 
 
 
+NetApp建議您配置目的地ONTAP 的供應區、以符合7-mode來源Volume的屬性。要比對的部分屬性包括：
+
+* Volume大小：ONTAP 無法使用的資料區必須至少是7-Mode Volume的大小。
+* 語言：ONTAP 「聲音量」設定應符合7-Mode Volume的設定。
+
+
+7-Mode Transition Tool會自動將ONTAP 包含7-Mode Volume屬性的功能配置為使用。
+
 .步驟
 . 將資料從7-Mode磁碟區複製到叢集Data ONTAP 式的功能集區：
 +

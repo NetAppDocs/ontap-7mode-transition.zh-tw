@@ -6067,7 +6067,6 @@
   <block id="902c0c6711149dc80ee1ec798672da2a" category="list-text">如果根磁碟區是以屬於預設vFiler單元的qtree為基礎、則7-Mode轉換工具不會轉換vFiler單元的根磁碟區。</block>
   <block id="aec68d7de9088eaf3f88f305dc20a67f" category="list-text">如果磁碟區和qtree是由不同的VFiler單元所擁有、7-Mode轉換工具不會轉換具有qtree的磁碟區。</block>
   <block id="d8b6ec5a952cdc2d6a3524903a90fa21" category="paragraph">轉換此類磁碟區會導致qtree無法存取。</block>
-  <block id="04d39dfeb5faffda762cf1acdae0cc20" category="list-text">轉換後的Volume無法轉換為FlexGroup 等量磁碟區。</block>
   <block id="ec95dc299bb96af52039f89734b543eb" category="paragraph">預先檢查作業會顯示部分限制的相關資訊。</block>
   <block id="b34984187f1b7f7a8fd7a81b303d2c60" category="paragraph">叢集需要下列連接埠、才能與7-Mode系統進行SnapMirror複寫：</block>
   <block id="d29717d8ecf8604c4f9a1eccb1bcf661" category="paragraph">7-Mode系統需要下列連接埠、才能與叢集進行SnapMirror複寫通訊：</block>
@@ -7388,4 +7387,8 @@
   <block id="80a4be74705a612be3887e601f338c11" category="sidebar">瞭解Red Hat Enterprise Linux主機的轉換前與轉換後需求</block>
   <block id="624868dc01678d5268f2ce0a2b5e6de8" category="sidebar">瞭解Microsoft Windows主機的轉換前與轉換後步驟</block>
   <block id="84a6933c212881ac1351cccc03b06c5a" category="sidebar">適用於7-Mode系統管理員的命令對應</block>
+  <block id="182051b066ceb3730c91bc37bf2ef32d" category="paragraph">NetApp建議您配置目的地ONTAP 的供應區、以符合7-mode來源Volume的屬性。要比對的部分屬性包括：</block>
+  <block id="6a76182840bc8cb17fc284d39d33bc7b" category="list-text">Volume大小：ONTAP 無法使用的資料區必須至少是7-Mode Volume的大小。</block>
+  <block id="9d4d145a5064a246d799bd034370a277" category="list-text">語言：ONTAP 「聲音量」設定應符合7-Mode Volume的設定。</block>
+  <block id="a3ffa67a8aa91c98ab4a9e9dc74a21a3" category="paragraph">7-Mode Transition Tool會自動將ONTAP 包含7-Mode Volume屬性的功能配置為使用。</block>
 </blocks>
