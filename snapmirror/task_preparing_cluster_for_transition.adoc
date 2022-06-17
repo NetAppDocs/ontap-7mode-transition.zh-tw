@@ -44,7 +44,7 @@ hy*網路介面create -vserver _Svm_name_-lif_intercluster _lif_-role inter-clus
 +
 [listing]
 ----
-cluster1::> network interface create -vserver cluster1-01 -lif intercluster_lif -role intercluster -home-node cluster1-01 -home-port e0c -address 192.0.2.130 -netmask 255.255.255.0
+cluster1::> network interface create -vserver cluster1 -lif intercluster_lif -role intercluster -home-node cluster1-01 -home-port e0c -address 192.0.2.130 -netmask 255.255.255.0
 ----
 .. 為叢集間LIF建立靜態路由：
 +
@@ -72,8 +72,6 @@ system7mode is alive
 對於多重路徑、您必須在每個節點上有兩個叢集間生命體。
 
 https://docs.netapp.com/us-en/ontap/networking/index.html["網路與LIF管理"]
-
-*相關資訊*
 
 xref:task_creating_a_transition_peering_relationship.adoc[建立轉換對等關係]
 
