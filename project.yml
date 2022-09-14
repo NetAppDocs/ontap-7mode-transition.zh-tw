@@ -69,3 +69,7 @@ homepage:
     - title: Windows
       summary: 瞭解Microsoft Windows主機的轉換前與轉換後步驟
       url: "/san-host/concept_windows_host_remediation.html"
+product-family:
+  name: ONTAP
+  repo: ontap-family
+  sidebar_label: All ONTAP product documentation
