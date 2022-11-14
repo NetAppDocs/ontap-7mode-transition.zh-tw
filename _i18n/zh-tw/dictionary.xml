@@ -470,7 +470,6 @@
   <block id="073bb844ce96de466c497c49182ec95c" category="doc">無複製轉換的需求</block>
   <block id="58143149af2cdbe2c82e8d361e18c6e7" category="paragraph">請務必參閱目前的7-Mode Transition Tool _Release Notes_、以取得支援的目標版本和已知問題的最新資訊。</block>
   <block id="d9cb34065793d4c41d4eed4cf48b349d" category="inline-link">7-Mode Transition Tool版本資訊</block>
-  <block id="b39e432a1f354787452d348ec8ccfc4d" category="paragraph"><block ref="b39e432a1f354787452d348ec8ccfc4d" category="inline-link-rx"></block></block>
   <block id="cbeed5953d12aa26561b627080a4f3b2" category="list-text">*平台機型*</block>
   <block id="ee8dffd6f42ed6aaddd3ceb34f416a24" category="paragraph">只有中階FAS 和高階版的支援、以及IBM N系列系統才支援無複製轉換。。<block ref="ae0acc7a1cf35a69eb7b42685c902841" category="inline-link-rx"></block> 擁有7-Mode系統和目標叢集節點所支援平台的最新資訊。</block>
   <block id="bda5dca34b28efd1af01bf48bafb4c83" category="list-text">*在7-Mode來源系統中* Data ONTAP</block>
@@ -1905,7 +1904,6 @@
   <block id="131e9b8d3a798ca3a1852855df0e2cc0" category="summary">您可以匯入庫存收集工具所產生的庫存XML報告、以評估主機和控制器的功能。接著ONTAP 您可以建立評估報告、找出這些主機和控制器在選定的版本中的運作方式、以利轉換。</block>
   <block id="06f1d2907de5fe7df56c9c6d4072e652" category="doc">匯入庫存報告XML以產生評估報告</block>
   <block id="c0b68145cbea485df9388bdd01a0b654" category="list-text">您必須執行Inventory Collect Tool、並產生庫存報告XML檔案。</block>
-  <block id="f478f948e7ee04a9bd3244ae1fdefb7f" category="admonition">若要評估主機和控制器以進行無複本轉換、您必須使用Inventory Collect Tool 3.3來收集庫存。</block>
   <block id="c269fa7234ee8d416801cf11c20af5c4" category="list-text">您必須準備好7-Mode系統和主機、才能進行轉換評估。</block>
   <block id="66899ad742e4cbe1103d341a5562c166" category="paragraph">匯入庫存報告並執行轉換評估時、您想要評估的系統不需要連線。</block>
   <block id="9ae61d1fcd905049eb75091abd221291" category="list-text">登入7-Mode Transition Tool、然後按一下首頁中的* Collect and評估*。</block>
@@ -2546,7 +2544,6 @@
   <block id="bbca1db376aa7cd5111a99ebe9c696cf" category="list-text">主叢集的AnSVM名稱不得與次要SVM相同。</block>
   <block id="a3100bf3334206028c894a5568ddcf09" category="summary">說明新功能、升級附註、修正問題、已知限制及已知問題。</block>
   <block id="a36356967ba019ce3f720deb36e80a91" category="inline-link-macro">7-Mode Transition版本說明</block>
-  <block id="0b5140d2bd87babd5325d2c620f67458" category="paragraph">。 <block ref="e11c70138711c8e98b53b976fc9ee495" category="inline-link-macro-rx"></block> 說明新功能、升級附註、修正問題、已知限制及已知問題。</block>
   <block id="dbd469acdcbd52648cb242bcfda6add3" category="paragraph">您必須登入NetApp支援網站、才能存取版本資訊。</block>
   <block id="8a52f6d367851504b3395077e5edf825" category="summary">在7-Mode中運作時、您可以執行options命令來設定可設定的儲存系統軟體選項。Data ONTAP在這個選項中、您可以使用命令參數來設定這些選項。ONTAP您可以使用所提供的表格來檢視7-Mode命令如何對應ONTAP 至VMware指令。</block>
   <block id="559fd76dec7836bc7f1ab99c454b9ffb" category="doc">7-Mode選項如何對應ONTAP 至VMware指令</block>
@@ -4434,10 +4431,7 @@
   <block id="d54a88e6102488b4686f328a0f54c5a8" category="list-text">對於7-Mode Transition Tool版本3.3.3、您也可以使用下列其中一個作業系統版本：</block>
   <block id="85114c48e2a0154779b7fda0b396bfb0" category="list-text">Windows 10專業版</block>
   <block id="b65ad8a600c099620c7449bd7ce9f7ac" category="admonition">您可以使用符合所需軟體需求和硬體需求的Windows虛擬機器來安裝7-Mode Transition Tool。</block>
-  <block id="c230fdb80b8da757746cad17d0846f23" category="list-text">64位元Oracle Java執行時間環境（JRE）1.8更新144</block>
-  <block id="6f4734ae41213296dedbb453ce6b4fc8" category="admonition">如果Windows主機沒有安裝任何JRE或32位元的JRE,則7-Mode Transition Tool安裝程式會自動安裝64位元的JRE1.8 update 144。如果安裝的是舊版64位元的JRE,安裝程式會自動將JRE更新 至JRE1.8 update 144。</block>
   <block id="9db8379d081443245f4a410ecbcac0cb" category="paragraph">自動更新JRE時、其他需要舊版JRE的應用程式可能會受到影響。</block>
-  <block id="5a61241aaacfbb3eb5c7b5535936e03f" category="admonition">若使用1.8版更新46或更新版本（包括JRE1.8更新144）、若要讓7-Mode Transition Tool與Data ONTAP 7-Mode系統和ONTAP BIOS系統中的執行功能進行通訊、Data ONTAP 7-Mode系統和ONTAP BIOS系統中執行的作業系統上的SSL金鑰長度必須至少為1024。</block>
   <block id="0e093531365c0bba31e2b45abf2bc1c3" category="inline-link">7MTT：如何解決TLS或SSL通訊問題</block>
   <block id="91615dc67083d816145f87b6060ace0b" category="paragraph"><block ref="91615dc67083d816145f87b6060ace0b" category="inline-link-rx"></block></block>
   <block id="ad5a4b432b50a54689ad10768c2c0b54" category="section-title">伺服器組態需求</block>
@@ -4504,7 +4498,6 @@
   <block id="bef0ecaff88f9e1fe834c31db5e173a0" category="list-text">Red Hat Enterprise Linux 7.0（7-Mode Transition Tool版本3.3.2及更新版本）</block>
   <block id="275d22b5a45e39f77f0883aa64f3a396" category="list-text">CentOS版本6.4</block>
   <block id="e175ac66c6d8ee1c08565e54a926608d" category="admonition">您可以使用符合所需軟體和硬體需求的Linux虛擬機器來安裝7-Mode Transition Tool。</block>
-  <block id="cd1e0efe07681923a24b966e9a1b6626" category="list-text">64位元Oracle JRE 1.8更新45</block>
   <block id="7dcffacdfc39b07e76761b6019697a9b" category="list-text">7-Zip公用程式（「rpmfore-版本-0.3.6-1.el5.RF.x86_64。rpm」）</block>
   <block id="3f372cd6b37fbd4ee876989cc8704622" category="admonition">在設定7-Mode Transition Tool之前、必須先在Linux系統上安裝JRE 1.8和7-Zip公用程式。</block>
   <block id="70a5d35cd397c319e921e017112c26ed" category="summary">您必須瞭解7-Mode Transition Tool的一些常見問題、以及解決這些問題的步驟。</block>
@@ -4620,9 +4613,7 @@
   <block id="47ecfe2afebaae46448260262833a179" category="paragraph">以分鐘為單位</block>
   <block id="fd00b11ac62d48083e1c4fad16747fc0" category="summary">您可以使用標準精靈型安裝程式、在Windows系統上下載並安裝7-Mode Transition Tool。不過、如果您有先前安裝的7-Mode Transition Tool版本、則在執行此操作之前、必須先瞭解某些先決條件。</block>
   <block id="0dde23a3f51b9430f58ea2e62f0d1056" category="doc">在Windows系統上安裝或解除安裝7-Mode Transition Tool</block>
-  <block id="9ea0f21dd3ae9719b3998e259c4c948a" category="list-text">如果您的系統安裝的7-Mode Transition Tool版本早於3.0、則在安裝7-Mode Transition Tool 3.3之前、您必須先解除安裝7-Mode Transition Tool。</block>
   <block id="c9c4393484646c8d4d10a30fc46c0024" category="paragraph">如果您選擇在解除安裝期間保留記錄檔、則必須建立記錄檔的備份。7-Mode Transition Tool安裝程式會將工具安裝到同一個資料夾、並在下次執行時覆寫記錄檔。</block>
-  <block id="af8fd495d2564f954308446d06867289" category="list-text">如果您的系統安裝了7-Mode Transition Tool 3.0或更新版本、則在安裝7-Mode Transition Tool 3.3之前、必須符合下列條件：</block>
   <block id="ea3c03fc1e8cc41bfa7761c8673cf886" category="list-text">所有現有的複製型轉換專案都必須完成或中止。</block>
   <block id="c289e5fe5901e5b311647e928a94d2fb" category="list-text">所有現有的無複製移轉專案都必須完成或復原完成。</block>
   <block id="79e11abd90c124d8064bf4f69bddc246" category="summary">您可以使用Windows解除安裝程式公用程式來解除安裝7-Mode Transition Tool。</block>
@@ -7391,4 +7382,17 @@
   <block id="6a76182840bc8cb17fc284d39d33bc7b" category="list-text">Volume大小：ONTAP 無法使用的資料區必須至少是7-Mode Volume的大小。</block>
   <block id="9d4d145a5064a246d799bd034370a277" category="list-text">語言：ONTAP 「聲音量」設定應符合7-Mode Volume的設定。</block>
   <block id="a3ffa67a8aa91c98ab4a9e9dc74a21a3" category="paragraph">7-Mode Transition Tool會自動將ONTAP 包含7-Mode Volume屬性的功能配置為使用。</block>
+  <block id="49640ebd1f7f02a38a79638aca90ba3f" category="paragraph">支援的更新版本包括ONTAP ONTAP</block>
+  <block id="c45454a225fb911ddb8f9c192a897fdd" category="paragraph">3.5.0</block>
+  <block id="9e5847802a04b3aeaaf3d2904bc221ba" category="paragraph">。 <block ref="f69448c82034041cb590913655249707" category="inline-link-macro-rx"></block> 說明新功能、升級附註、修正問題、已知限制及已知問題。</block>
+  <block id="8d8bb27db49aa4f6be45f0dc1c08177f" category="list-text">64位元Oracle Java執行時間環境（JRE）1.8 update 331</block>
+  <block id="f36838ca59d078d785b9d63c0606a383" category="admonition">如果Windows主機沒有安裝任何JRE或32位元的JRE,則7-Mode Transition Tool安裝程式會自動安裝64位元的JRE1.8 update 331。如果安裝的是舊版64位元的JRE,安裝程式會自動將JRE1.8更新331更新。</block>
+  <block id="d6bf1e6c9be2cb497bd73e626210075f" category="admonition">若使用1.8版更新46或更新版本（包括JRE1.8更新331）、若要讓7-Mode Transition Tool與Data ONTAP 7-Mode系統和ONTAP BIOS系統中的執行功能進行通訊、Data ONTAP 7-Mode系統和ONTAP BIOS系統中執行的作業系統上的SSL金鑰長度必須至少為1024。</block>
+  <block id="e10a550ac8477468a5588480882bda67" category="list-text">64位元Oracle JRE 1.8更新331</block>
+  <block id="ea31ac5ad2e06c3fe9cb8195db5adf51" category="list-text">如果您的系統安裝早於3.0的7-Mode Transition Tool版本、則必須先解除安裝該版本、才能安裝最新版本。</block>
+  <block id="29e1a4e919eb5c025fe148e0b575ffaa" category="list-text">如果您的系統已安裝7-Mode Transition Tool 3.0或更新版本、則在安裝最新版本的7-Mode Transition Tool之前、必須符合下列條件：</block>
+  <block id="6f6819dd21dbd8a646ea9df4c166c414" category="admonition">若要評估主機和控制器是否可進行無複本轉換、您必須使用最新版本的Inventory Collect Tool來收集庫存。</block>
+  <block id="c56554efd1f85bba5b98f6ca401f2fda" category="paragraph"><block ref="c56554efd1f85bba5b98f6ca401f2fda" category="inline-link-macro-rx"></block></block>
+  <block id="2926f2591b66c0122ef9f741a49d26aa" category="paragraph">在這兩種情況下、您都必須使用最新版本的Inventory Collect Tool來收集庫存。</block>
+  <block id="d1b92a4930d50c6ed1038655db0d2684" category="sidebar">所有ONTAP 產品文件</block>
 </blocks>

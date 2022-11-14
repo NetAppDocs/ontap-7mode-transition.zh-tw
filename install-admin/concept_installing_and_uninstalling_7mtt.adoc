@@ -13,11 +13,11 @@ summary: 您可以使用標準精靈型安裝程式、在Windows系統上下載�
 [role="lead"]
 您可以使用標準精靈型安裝程式、在Windows系統上下載並安裝7-Mode Transition Tool。不過、如果您有先前安裝的7-Mode Transition Tool版本、則在執行此操作之前、必須先瞭解某些先決條件。
 
-* 如果您的系統安裝的7-Mode Transition Tool版本早於3.0、則在安裝7-Mode Transition Tool 3.3之前、您必須先解除安裝7-Mode Transition Tool。
+* 如果您的系統安裝早於3.0的7-Mode Transition Tool版本、則必須先解除安裝該版本、才能安裝最新版本。
 +
 如果您選擇在解除安裝期間保留記錄檔、則必須建立記錄檔的備份。7-Mode Transition Tool安裝程式會將工具安裝到同一個資料夾、並在下次執行時覆寫記錄檔。
 
-* 如果您的系統安裝了7-Mode Transition Tool 3.0或更新版本、則在安裝7-Mode Transition Tool 3.3之前、必須符合下列條件：
+* 如果您的系統已安裝7-Mode Transition Tool 3.0或更新版本、則在安裝最新版本的7-Mode Transition Tool之前、必須符合下列條件：
 +
 ** 所有現有的複製型轉換專案都必須完成或中止。
 ** 所有現有的無複製移轉專案都必須完成或復原完成。

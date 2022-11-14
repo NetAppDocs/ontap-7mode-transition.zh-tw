@@ -40,7 +40,7 @@ NOTE: 您可以使用符合所需軟體和硬體需求的Linux虛擬機器來安
 
 
 
-* 64位元Oracle JRE 1.8更新45
+* 64位元Oracle JRE 1.8更新331
 * 7-Zip公用程式（「rpmfore-版本-0.3.6-1.el5.RF.x86_64。rpm」）
 
 

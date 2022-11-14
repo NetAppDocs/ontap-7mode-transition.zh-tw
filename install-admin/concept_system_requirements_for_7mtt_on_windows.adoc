@@ -59,17 +59,17 @@ NOTE: 您可以使用符合所需軟體需求和硬體需求的Windows虛擬機�
 
 
 
-* 64位元Oracle Java執行時間環境（JRE）1.8更新144
+* 64位元Oracle Java執行時間環境（JRE）1.8 update 331
 +
 
-NOTE: 如果Windows主機沒有安裝任何JRE或32位元的JRE,則7-Mode Transition Tool安裝程式會自動安裝64位元的JRE1.8 update 144。如果安裝的是舊版64位元的JRE,安裝程式會自動將JRE更新 至JRE1.8 update 144。
+NOTE: 如果Windows主機沒有安裝任何JRE或32位元的JRE,則7-Mode Transition Tool安裝程式會自動安裝64位元的JRE1.8 update 331。如果安裝的是舊版64位元的JRE,安裝程式會自動將JRE1.8更新331更新。
 
 +
 自動更新JRE時、其他需要舊版JRE的應用程式可能會受到影響。
 
 +
 
-NOTE: 若使用1.8版更新46或更新版本（包括JRE1.8更新144）、若要讓7-Mode Transition Tool與Data ONTAP 7-Mode系統和ONTAP BIOS系統中的執行功能進行通訊、Data ONTAP 7-Mode系統和ONTAP BIOS系統中執行的作業系統上的SSL金鑰長度必須至少為1024。
+NOTE: 若使用1.8版更新46或更新版本（包括JRE1.8更新331）、若要讓7-Mode Transition Tool與Data ONTAP 7-Mode系統和ONTAP BIOS系統中的執行功能進行通訊、Data ONTAP 7-Mode系統和ONTAP BIOS系統中執行的作業系統上的SSL金鑰長度必須至少為1024。
 
 +
 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/7MTT%3A_How_to_resolve_TLS_or_SSL_communication_issue["7MTT：如何解決TLS或SSL通訊問題"]

@@ -16,7 +16,7 @@ summary: 您可以匯入庫存收集工具所產生的庫存XML報告、以評�
 * 您必須執行Inventory Collect Tool、並產生庫存報告XML檔案。
 +
 
-NOTE: 若要評估主機和控制器以進行無複本轉換、您必須使用Inventory Collect Tool 3.3來收集庫存。
+NOTE: 若要評估主機和控制器是否可進行無複本轉換、您必須使用最新版本的Inventory Collect Tool來收集庫存。
 
 * 您必須準備好7-Mode系統和主機、才能進行轉換評估。
 

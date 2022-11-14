@@ -15,7 +15,7 @@ summary: 您應該瞭解7-Mode系統、叢集、ONTAP 版本資訊和磁碟櫃�
 
 請務必參閱目前的7-Mode Transition Tool _Release Notes_、以取得支援的目標版本和已知問題的最新資訊。
 
-http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-72c-rn/home.html["7-Mode Transition Tool版本資訊"]
+link:https://docs.netapp.com/us-en/ontap-7mode-transition/releasenotes.html["7-Mode Transition Tool版本資訊"]
 
 * *平台機型*
 +
