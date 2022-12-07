@@ -11,14 +11,28 @@ summary: 您Data ONTAP 可以使用叢集Data ONTAP 式的SnapMirror命令、將
 
 
 [role="lead"]
-您Data ONTAP 可以使用叢集Data ONTAP 式的SnapMirror命令、將NAS和SAN環境中的7-Mode Volume移轉至叢集式的SnapMirror Volume。然後、您必須在轉換完成後、在叢集上設定傳輸協定、服務及其他組態。
+從VMware版9.12.1開始ONTAP 、您將無法再使用SnapMirror技術來移轉7-Mode磁碟區。
 
-*建議：*您應該使用7-Mode Transition Tool來複製轉換至7-Mode磁碟區、因為此工具提供預先檢查功能、可在移轉程序的每個步驟中驗證7-Mode和叢集、有助於避免許多潛在問題。此工具可大幅簡化所有傳輸協定、網路和服務組態的移轉、以及資料移轉作業。
+不過ONTAP 、對於VMware版本的版本、您可以Data ONTAP 使用叢集Data ONTAP 式的SnapMirror命令、將NAS和SAN環境中的7-Mode Volume移轉至叢集式的VMware Volume。然後、您必須在轉換完成後、在叢集上設定傳輸協定、服務及其他組態。
+
+*建議：*您應該使用7-Mode Transition Tool、將7-Mode磁碟區的複本轉換為ONTAP 適用於VMware 9.11.1及更早版本的轉換7-Mode磁碟區、因為此工具提供預先檢查功能、可在移轉程序的每個步驟中驗證7-Mode和叢集、有助於避免許多潛在問題。此工具可大幅簡化所有傳輸協定、網路和服務組態的移轉、以及資料移轉作業。
 
 http://docs.netapp.com/us-en/ontap-7mode-transition/releasenotes.html["7-Mode Transition Tool版本資訊"]
 
 此程序提供使用SnapMirror進行轉換時所需執行的高層工作。
 
+[NOTE]
+====
+在升級ONTAP 至版本更新至版本更新9.12.1之前、您必須執行下列步驟：
+
+.步驟
+. 執行下列命令、使SnapMirror目的地Volume可寫入：
+`snapmirror break`
+. 執行下列命令以刪除所有TDP SnapMirror關係：
+`snapmirror delete`
+
+
+====
 . xref:concept_planning_for_transition.adoc[確認您打算移轉的磁碟區是否支援移轉]。
 . xref:task_preparing_7_mode_system_for_transition.adoc[準備7-Mode系統進行轉換]。
 . xref:task_preparing_cluster_for_transition.adoc[為叢集做好移轉準備]。

@@ -2313,8 +2313,6 @@
   <block id="6996df02222c96f9c370bd57d689c2be" category="list-text">Volume Move作業</block>
   <block id="65284087916121cb594421ecdfda6fc6" category="summary">您Data ONTAP 可以使用叢集Data ONTAP 式的SnapMirror命令、將NAS和SAN環境中的7-Mode Volume移轉至叢集式的SnapMirror Volume。然後、您必須在轉換完成後、在叢集上設定傳輸協定、服務及其他組態</block>
   <block id="22321f18678f51239e376a4c83a88257" category="doc">使用SnapMirror移轉7-Mode磁碟區</block>
-  <block id="6f6cb4af2eb1b076999ea1532d35d8e3" category="paragraph">您Data ONTAP 可以使用叢集Data ONTAP 式的SnapMirror命令、將NAS和SAN環境中的7-Mode Volume移轉至叢集式的SnapMirror Volume。然後、您必須在轉換完成後、在叢集上設定傳輸協定、服務及其他組態。</block>
-  <block id="fb3ffdd10cec6d7e61d4b3dd65641115" category="paragraph">*建議：*您應該使用7-Mode Transition Tool來複製轉換至7-Mode磁碟區、因為此工具提供預先檢查功能、可在移轉程序的每個步驟中驗證7-Mode和叢集、有助於避免許多潛在問題。此工具可大幅簡化所有傳輸協定、網路和服務組態的移轉、以及資料移轉作業。</block>
   <block id="ef0aacbe84b0de1c18e96c1b40bf48ea" category="paragraph"><block ref="ef0aacbe84b0de1c18e96c1b40bf48ea" category="inline-link-rx"></block></block>
   <block id="52057f98c26897911c78305e0b84e401" category="paragraph">此程序提供使用SnapMirror進行轉換時所需執行的高層工作。</block>
   <block id="e04ed1f16192e374fd421e70ec48fbe3" category="inline-xref-macro">確認您打算移轉的磁碟區是否支援移轉</block>
@@ -7395,4 +7393,11 @@
   <block id="c56554efd1f85bba5b98f6ca401f2fda" category="paragraph"><block ref="c56554efd1f85bba5b98f6ca401f2fda" category="inline-link-macro-rx"></block></block>
   <block id="2926f2591b66c0122ef9f741a49d26aa" category="paragraph">在這兩種情況下、您都必須使用最新版本的Inventory Collect Tool來收集庫存。</block>
   <block id="d1b92a4930d50c6ed1038655db0d2684" category="sidebar">所有ONTAP 產品文件</block>
+  <block id="83e14c89cceb4cee82c0bcea3943ea26" category="paragraph">從VMware版9.12.1開始ONTAP 、您將無法再使用SnapMirror技術來移轉7-Mode磁碟區。</block>
+  <block id="8d73bc8fd1f6fe79df1b2f9f4cb47d7a" category="paragraph">不過ONTAP 、對於VMware版本的版本、您可以Data ONTAP 使用叢集Data ONTAP 式的SnapMirror命令、將NAS和SAN環境中的7-Mode Volume移轉至叢集式的VMware Volume。然後、您必須在轉換完成後、在叢集上設定傳輸協定、服務及其他組態。</block>
+  <block id="8f2de78b174393b6f012a8a48075011a" category="paragraph">*建議：*您應該使用7-Mode Transition Tool、將7-Mode磁碟區的複本轉換為ONTAP 適用於VMware 9.11.1及更早版本的轉換7-Mode磁碟區、因為此工具提供預先檢查功能、可在移轉程序的每個步驟中驗證7-Mode和叢集、有助於避免許多潛在問題。此工具可大幅簡化所有傳輸協定、網路和服務組態的移轉、以及資料移轉作業。</block>
+  <block id="14503597a83a9a659ac01dfe5d92fc94" category="paragraph">在升級ONTAP 至版本更新至版本更新9.12.1之前、您必須執行下列步驟：</block>
+  <block id="4becad62808b60a7ce0cf207dc1d59a2" category="list-text">執行下列命令、使SnapMirror目的地Volume可寫入：<block ref="e1d39aa448c4c7cc75f1a16830613e32" prefix=" " category="inline-code"></block></block>
+  <block id="896a1e49f55fa67da657cb7cf7f5fc24" category="list-text">執行下列命令以刪除所有TDP SnapMirror關係：<block ref="730d187801768a4d84de4567732a6c18" prefix=" " category="inline-code"></block></block>
+  <block id="30f60d67f457bb040dffde52197a54da" category="paragraph-title">相關資訊</block>
 </blocks>

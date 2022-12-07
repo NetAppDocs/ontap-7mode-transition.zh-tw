@@ -20,5 +20,5 @@ summary: 在轉換期間建立的cron工作排程不會複寫到遠端站台、�
 +
 image::../media/mcc_cron_jobs.gif[MCC cron工作]
 
-. 從遠端站台的叢集CLI中、執行中記錄的「工作排程cron create」命令 ,步驟1.。
+. 從遠端站台的叢集CLI中、執行中記錄的「工作排程cron create」命令 <<STEP_F72D5FA759564336A365328A3414D57A,步驟1.>>。
 
