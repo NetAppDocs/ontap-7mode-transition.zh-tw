@@ -7400,4 +7400,6 @@
   <block id="4becad62808b60a7ce0cf207dc1d59a2" category="list-text">執行下列命令、使SnapMirror目的地Volume可寫入：<block ref="e1d39aa448c4c7cc75f1a16830613e32" prefix=" " category="inline-code"></block></block>
   <block id="896a1e49f55fa67da657cb7cf7f5fc24" category="list-text">執行下列命令以刪除所有TDP SnapMirror關係：<block ref="730d187801768a4d84de4567732a6c18" prefix=" " category="inline-code"></block></block>
   <block id="30f60d67f457bb040dffde52197a54da" category="paragraph-title">相關資訊</block>
+  <block id="bcb3bf3e1c3ba469a7b1637a41c81602" category="list-text">更新版本ONTAP</block>
+  <block id="3b6e2da5c7b4f7bde13de4a566801528" category="list-text">更新版本ONTAP</block>
 </blocks>

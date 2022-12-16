@@ -23,7 +23,11 @@ https://library.netapp.com/ecmdocs/ECMLP2492508/html/frameset.html["發行說明
 * 更新版本：1.7P2與9.7 ONTAP
 * 發行版9.6 P7及更新版本9.6 ONTAP
 * 從9.0版升級至S59.5版ONTAP ONTAP
+* 更新版本ONTAP
+* 更新版本ONTAP
 
+
+從VMware版9.12.1開始ONTAP 、您將無法再使用SnapMirror技術來移轉7-Mode磁碟區。
 
 您可以使用SnapMirror在下列案例中轉換資料：
 
