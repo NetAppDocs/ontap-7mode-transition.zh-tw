@@ -2526,16 +2526,11 @@
   <block id="71a502b4e4c50c19aa31956d4ef54803" category="list-text">使用「snapmirror resSync」命令、從來源SVM重新同步目的地SVM。</block>
   <block id="9ab93b9801d24dd493ae9317fa868d24" category="summary">您可以將7-Mode SnapLock 的等量資料移轉至SnapLock 以VMware 9.5或更早版本建立的等量資料。ONTAP您必須瞭解有關轉換SnapLock 功能的要求和準則。</block>
   <block id="9775f07e175b548ab2bd419f19070f93" category="list-text">如果包含LUN的不支援轉換7-Mode SnapLock 的支援。SnapLock</block>
-  <block id="cf4fd90637510c596991d81db7107f4e" category="list-text">您只能在SnapLock VMware 9.5或更早版本中、將7-Mode的「VMware企業版」磁碟區移轉至SnapLock 「VMware企業版」ONTAP 。</block>
-  <block id="0c8ef814c009d3861680ce164fba0dec" category="list-text">您只能將7-Mode SnapLock 的「不符合要求」（Se-Mode）Volume轉換成SnapLock 適用於VMware的「不符合要求」（Se-Mode）ONTAP 。</block>
   <block id="8a7eb801e6d32d53d8569ffc29d3b3b4" category="list-text">在轉換7-Mode Volume SnapMirror關係時、您只能使用交錯式轉換（先轉換次要、再轉換主要）來轉換SnapLock VMware Enterprise Volume。</block>
   <block id="f49c7c11d30827c5826315411d6e270b" category="paragraph">7-Mode主Volume與ONTAP VMware二級Volume之間的SnapMirror災難恢復（DR）關係僅支援SnapLock 使用於VMware Enterprise Volume、SnapLock 不支援使用「不符合法規遵循」Volume。</block>
   <block id="e66bfbd1a867ce9b8450d9c27fc293c5" category="inline-xref-macro">以交錯式組態轉換Volume SnapMirror關係</block>
-  <block id="1cde198e883c2df917f6d51bae4a77b1" category="paragraph"><block ref="1cde198e883c2df917f6d51bae4a77b1" category="inline-xref-macro-rx"></block></block>
   <block id="49b288fe4fe7fdfa9bacf0edfbf42dd0" category="list-text">您必須SnapLock 平行轉換主要和次要磁碟區、才能在《兼容性》（SnapMirror）磁碟區之間轉換7-Mode Volume SnapMirror關係。</block>
-  <block id="bbdb7841fc38b8d7be1d2a2b7d6c3514" category="paragraph"><block ref="bbdb7841fc38b8d7be1d2a2b7d6c3514" category="inline-xref-macro-rx"></block></block>
   <block id="0fa5978d853b9b8f9a804a9ddf7dacd7" category="inline-link">利用SnapLock NetApp技術歸檔及法規遵循</block>
-  <block id="acd084e701650a06feecd55f2315ff07" category="paragraph"><block ref="acd084e701650a06feecd55f2315ff07" category="inline-link-rx"></block></block>
   <block id="80deb537dc3cde81b0a1ed141e04bc3a" category="summary">您可以在主要磁碟區之前、先轉換次要磁碟區、以轉換7-Mode磁碟區SnapMirror關係、並保留資料保護關係。在這種方法中、您可以在7-Mode主Volume和叢集Data ONTAP 式的二級Volume之間設定交錯的SnapMirror DR關係。</block>
   <block id="2b04981a88e67e335a6cbb96c17ee353" category="list-text">必須已設定主要和次要叢集及SVM。</block>
   <block id="46264f84f1742b03486c002a071a10d1" category="list-text">次要叢集的AnSVM名稱不得與主要SVM相同。</block>
@@ -7402,4 +7397,15 @@
   <block id="30f60d67f457bb040dffde52197a54da" category="paragraph-title">相關資訊</block>
   <block id="bcb3bf3e1c3ba469a7b1637a41c81602" category="list-text">更新版本ONTAP</block>
   <block id="3b6e2da5c7b4f7bde13de4a566801528" category="list-text">更新版本ONTAP</block>
+  <block id="02c0afc6dc57e30e77048bd78577f569" category="paragraph">若要將 7-Mode SnapLock 磁碟區移轉至 ONTAP 9 、您必須瞭解這些要求和準則。</block>
+  <block id="3c6e2b20b81b258a6d07d897dcbc8837" category="list-text">除了 ONTAP 9.6 以外、您可以在任何 ONTAP 9 版本中、將 7-Mode SnapLock Enterprise Volume 轉換為 SnapLock Enterprise Volume 。</block>
+  <block id="608d66a1ffc83b62ff9b96b7a6066895" category="list-text">除了 ONTAP 9.6 以外、您可以在任何 ONTAP 9 版本中、將 7-Mode SnapLock Compliance Volume 移轉至 SnapLock Compliance Volume 。</block>
+  <block id="d36c067563923a380ef9881a94cc42b6" category="inline-xref-macro">以交錯式組態轉換 Volume SnapMirror 關係 ^</block>
+  <block id="0cd6f41df3c2d79cbd91a1447c9355fe" category="paragraph"><block ref="0cd6f41df3c2d79cbd91a1447c9355fe" category="inline-xref-macro-rx"></block></block>
+  <block id="17fe715938ef8ba6b00ab8211c5adc65" category="inline-xref-macro">平行轉換 Volume SnapMirror 關係 ^</block>
+  <block id="99697f507574bc1c8485cdace03a71af" category="paragraph"><block ref="99697f507574bc1c8485cdace03a71af" category="inline-xref-macro-rx"></block></block>
+  <block id="c905bec502c0652d10ba29c85c9c376b" category="list-text">從 ONTAP 9.10.1 開始、 SnapLock 和非 SnapLock 磁碟區可以建立在同一個集合體中。</block>
+  <block id="856bd2e5c36198b1a4a96c3c36174ff1" category="paragraph">若要將 7-Mode SnapLock 磁碟區移轉至 ONTAP 9.10.1 或更新版本、您必須使用手動建立 ONTAP 磁碟區<block ref="9febb3295321c7fd9a2154b2dd4fe68c" prefix=" " category="inline-code"></block> 旗標。手動建立磁碟區之後、請使用 7-Mode Transition Tool 來管理轉換作業。</block>
+  <block id="a0067b25c6979c2f6c86fb81b30b1b94" category="paragraph">如果您使用 7-Mode Transition Tool 在 ONTAP 9.10.1 或更新版本中建立 Volume 、則該 Volume 不會建立為 SnapLock Volume 、這會導致 SnapMirror 基準失敗。</block>
+  <block id="b5d693096cb7f86384fa4012d1d2a0cb" category="paragraph"><block ref="b5d693096cb7f86384fa4012d1d2a0cb" category="inline-link-rx"></block></block>
 </blocks>
