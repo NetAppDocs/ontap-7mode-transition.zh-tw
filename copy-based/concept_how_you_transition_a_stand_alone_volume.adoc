@@ -244,7 +244,7 @@ NOTE: SAN生命週期不會透過7-Mode Transition Tool進行轉換。
 
 . 若要進行SAN移轉、請重新設定主機。
 +
-http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-7mtt-sanspl/home.html["SAN主機移轉與補救"]
+http://["SAN主機移轉與補救"]
 
 . 驗證下列項目、確保SVM已準備好提供資料給用戶端：
 +

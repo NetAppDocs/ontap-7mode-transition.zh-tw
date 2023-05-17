@@ -1505,12 +1505,8 @@
   <block id="8ae059d9bff343ae95c1978f2ddd21c9" category="paragraph">「NFS-qtree匯出」</block>
   <block id="37cbd8ae933eaccbe38fb27aa9624b57" category="paragraph">qtree匯出規則存在於7-Mode系統中。</block>
   <block id="0529ad04c3bacd18bc088e405c872bc9" category="paragraph">確認此錯誤表示您已瞭解Data ONTAP 在7-Mode和ONTAP VMware中操作的故障碼之間、qtree匯出規則的差異。在7-Mode Transition Tool套用NFS匯出規則之後、您可能需要執行一些手動步驟。</block>
-  <block id="635d884e298b628bc86c8dfa3beaa43b" category="inline-link">NetApp知識庫文章8010371：7MTT預先檢查10111 -轉換具有qtree層級匯出的7-Mode磁碟區</block>
-  <block id="b7d9c1c9dc21f73a9710e128f255e3de" category="paragraph"><block ref="76cc089251289f20d272d580a0cb7fad" category="inline-link-rx"></block></block>
   <block id="4da33d6ae1172c9ef1869d21be9be5ca" category="paragraph">「ignore、configuration、limits、Check」（忽略組態限制檢查）</block>
   <block id="5124096f4b11e70bfd162b28f23501b0" category="paragraph">要移轉的物件和組態超過特定限制。儲存設備轉換可能需要很長時間、因此您必須為停機做好準備。</block>
-  <block id="55aa226e76142230ea3e2e60c3300d1c" category="inline-link">NetApp知識庫文件編號3014882：在無複製轉換期間縮短儲存轉換時間的考量</block>
-  <block id="f5620ac4f331783f990692b9f2078fe8" category="paragraph"><block ref="a86b9e1b927d9778e699c72d1d375399" category="inline-link-rx"></block></block>
   <block id="f32078fa91541ea0fbf14756a7b78973" category="paragraph">「ignore（忽略）- CIF-ad-domain-mismisd」</block>
   <block id="c75b197507e2d158f2e5b19e24d219f3" category="paragraph">即使7-Mode系統的CIFS Active Directory網域與目標SVM的CIFS Active Directory網域不同、7-Mode轉換工具仍會繼續移轉CIFS組態。</block>
   <block id="41c2904cfced31e323718ea98cede375" category="paragraph">您必須確保7-Mode系統和目標SVM的CIFS Active Directory網域是信任的網域。否則、將CIFS組態移轉至目標SVM會失敗。</block>
@@ -1917,8 +1913,6 @@
   <block id="3d8681c4860ac3a57d1d2f7bc8baa5bb" category="summary">您應該將HA配對中的每個7-Mode控制器對應至目標SVM。如果您有vFiler單元、則應該為每個vFiler單元選取目標SVM。7-Mode控制器或VFiler元件的磁碟區會轉換成對應的SVM。</block>
   <block id="e355b11e2eaa9d7eea05fa53b25548c5" category="doc">對應SVM和Volume</block>
   <block id="e864ae7abd9c7cc9f36d51906c0d8eda" category="paragraph">您必須在目標叢集上建立SVM。</block>
-  <block id="c7e90c4bd08c796e50d8af0c6b346a93" category="inline-link">使用System Manager進行叢集管理</block>
-  <block id="e68762e2e9b4dde18fd46ef04bf3d83f" category="paragraph"><block ref="e68762e2e9b4dde18fd46ef04bf3d83f" category="inline-link-rx"></block></block>
   <block id="5e182e8774fba8b1f9c1b6c53951c7e8" category="paragraph">vFiler單元只能對應至單一SVM。任何其他7-Mode控制器或vFiler單元的磁碟區都無法轉換為對應的SVM。</block>
   <block id="3d70219dc8889e33c3d610573ae98ff5" category="list-text">在SVM and Volume MappingTM（SVM與Volume對應）索引標籤中、選取您要從每個7-Mode控制器或VFiler裝置將磁碟區移轉至哪個目標SVM。</block>
   <block id="ef57257a0f8fb5ef6b194bfb4db960a2" category="paragraph">目標SVM可位於預設或非預設IPspace中。</block>
@@ -6287,10 +6281,6 @@
   <block id="b57da5ae242eea6d7030e0fe5b7ae8e0" category="paragraph"><block ref="b57da5ae242eea6d7030e0fe5b7ae8e0" category="inline-xref-macro-rx"></block></block>
   <block id="c1bacb9165e47693e437a8851ebd410b" category="list-text">LUN的「ostype-」參數值為「VLD」、「image」或任何使用者定義字串</block>
   <block id="fbac4b24637ca6cf837e260897259278" category="paragraph">您必須變更此類LUN的「ostype-」參數值、或是在轉換之前刪除LUN。</block>
-  <block id="344245ffd5e989ae89c20e32c008fa81" category="inline-link">網路與LIF管理/ONTAP 9.7及更早版本</block>
-  <block id="deacabb337a4e4593417f763b7ee9cdd" category="paragraph"><block ref="deacabb337a4e4593417f763b7ee9cdd" category="inline-link-rx"></block></block>
-  <block id="1d3cfe94d22cd88aa57d3292be16ce6a" category="inline-link">網路與LIF管理/ONTAP 9.8及更新版本</block>
-  <block id="7c2408d034a81cd431503102ae3cf257" category="paragraph"><block ref="7c2408d034a81cd431503102ae3cf257" category="inline-link-rx"></block></block>
   <block id="c7beb5c3ace8581f08634238c4649cd7" category="summary">7-Mode Transition Tool複製型移轉指南的版權與商標資訊。</block>
   <block id="500f0d3fa1697e11f665fca9ed2270ec" category="summary">由於7-Mode Volume Snapshot複本不會自動從轉換的Volume中刪除、因此您必須在完成轉換作業之後、手動刪除這些Snapshot複本。</block>
   <block id="3de882c46002d42547f4fa4cf292cdfc" category="doc">從轉換的磁碟區刪除7-Mode Volume Snapshot複本</block>
@@ -6912,7 +6902,6 @@
   <block id="a8a3d08e5993ddae6871e22d9d14adec" category="paragraph"><block ref="a8a3d08e5993ddae6871e22d9d14adec" category="inline-xref-macro-rx"></block></block>
   <block id="2625a81ecb6b7cfc573bd3bb2d526a91" category="paragraph"><block ref="2625a81ecb6b7cfc573bd3bb2d526a91" category="inline-xref-macro-rx"></block></block>
   <block id="18d5bafe749fdbb35b135186ad9f2c41" category="paragraph"><block ref="18d5bafe749fdbb35b135186ad9f2c41" category="inline-xref-macro-rx"></block></block>
-  <block id="bc3d619cb2db28a4bb6fdf98a10e1f1f" category="paragraph"><block ref="bc3d619cb2db28a4bb6fdf98a10e1f1f" category="inline-link-rx"></block></block>
   <block id="ce880ba734b917477f593d4232a80008" category="summary">您應該瞭解使用7-Mode SnapLock 餐廳監管鏈驗證的考量事項。</block>
   <block id="e3cb25a2db71bbca2563b3a464ab23cc" category="doc">使用7-Mode SnapLock 的監管鏈驗證功能時的考量事項</block>
   <block id="2dab6369a059a26558b838f104ca9e27" category="list-text">只有在需要轉換完本產品時、才能執行驗證鏈驗證功能。SnapLock SnapLock</block>
@@ -7408,4 +7397,10 @@
   <block id="856bd2e5c36198b1a4a96c3c36174ff1" category="paragraph">若要將 7-Mode SnapLock 磁碟區移轉至 ONTAP 9.10.1 或更新版本、您必須使用手動建立 ONTAP 磁碟區<block ref="9febb3295321c7fd9a2154b2dd4fe68c" prefix=" " category="inline-code"></block> 旗標。手動建立磁碟區之後、請使用 7-Mode Transition Tool 來管理轉換作業。</block>
   <block id="a0067b25c6979c2f6c86fb81b30b1b94" category="paragraph">如果您使用 7-Mode Transition Tool 在 ONTAP 9.10.1 或更新版本中建立 Volume 、則該 Volume 不會建立為 SnapLock Volume 、這會導致 SnapMirror 基準失敗。</block>
   <block id="b5d693096cb7f86384fa4012d1d2a0cb" category="paragraph"><block ref="b5d693096cb7f86384fa4012d1d2a0cb" category="inline-link-rx"></block></block>
+  <block id="62862e43a259c6f657835385994bd50d" category="inline-link">7MTT 預先檢查 10111 - 轉換具有 qtree 層級匯出的 7-Mode 磁碟區</block>
+  <block id="57c8efcc3c67cc0cf40f5ccea4480938" category="paragraph"><block ref="57c8efcc3c67cc0cf40f5ccea4480938" category="inline-link-rx"></block></block>
+  <block id="fe4c4243327571d5d4dfbb7d050df34d" category="inline-link">在「無複製」轉換期間縮短儲存轉換時間的考量事項</block>
+  <block id="6705b8d93729b2ab59445f3c547fe952" category="paragraph"><block ref="6705b8d93729b2ab59445f3c547fe952" category="inline-link-rx"></block></block>
+  <block id="53b500e941f815e0da37832bbbb3f265" category="inline-link">使用System Manager進行叢集管理</block>
+  <block id="54875b6362e405aeb3f3e1f1b65a3cc7" category="paragraph"><block ref="54875b6362e405aeb3f3e1f1b65a3cc7" category="inline-link-rx"></block></block>
 </blocks>

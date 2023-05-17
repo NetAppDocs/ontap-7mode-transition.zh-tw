@@ -27,7 +27,7 @@ xref:concept_system_requirements_for_7mtt_on_windows.adoc[Windows上7-Mode Trans
 .步驟
 . 請從NetApp支援網站下載軟體。
 +
-http://mysupport.netapp.com/NOW/cgi-bin/software["NetApp下載：軟體"]
+http://["NetApp下載：軟體"]
 
 . 執行「NetApp_7ModeTransitionTool_Setup．exe」檔案。
 . 在7-Mode Transition Tool Setup歡迎畫面中、按一下* Next*。

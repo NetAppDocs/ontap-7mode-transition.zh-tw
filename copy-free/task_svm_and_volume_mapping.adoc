@@ -15,9 +15,9 @@ summary: 您應該將HA配對中的每個7-Mode控制器對應至目標SVM。如
 
 您必須在目標叢集上建立SVM。
 
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.onc-sm-help/GUID-DF04A607-30B0-4B98-99C8-CB065C64E670.html["使用System Manager進行叢集管理"]
+https://["使用System Manager進行叢集管理"]
 
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["系統管理"]
+https://["系統管理"]
 
 vFiler單元只能對應至單一SVM。任何其他7-Mode控制器或vFiler單元的磁碟區都無法轉換為對應的SVM。
 

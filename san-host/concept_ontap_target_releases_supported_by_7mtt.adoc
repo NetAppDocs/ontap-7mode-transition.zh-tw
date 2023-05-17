@@ -15,7 +15,7 @@ summary: 發行支援ONTAP 的版本取決於您要使用的轉換方法、複�
 
 請務必參閱目前的7-Mode Transition Tool _Release Notes_、以取得支援的目標版本和已知問題的最新資訊。
 
-https://docs.netapp.com/us-en/ontap-7mode-transition/releasenotes.html["7-Mode Transition Tool版本資訊"]
+https://["7-Mode Transition Tool版本資訊"]
 
 這些ONTAP 版本支援複製型轉換。
 

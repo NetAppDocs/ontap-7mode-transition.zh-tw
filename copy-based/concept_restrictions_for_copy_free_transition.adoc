@@ -24,7 +24,7 @@ summary: 您必須瞭解轉換7-Mode Volume的特定限制。部分限制是ONTA
 您可以使用主機型轉換方法來轉換傳統磁碟區。
 
 +
-http://www.netapp.com/us/media/tr-4052.pdf["NetApp技術報告4052：成功移轉至叢集Data ONTAP 式的更新版本（Data ONTAP NetApp技術報告4052）"]
+http://["NetApp技術報告4052：成功移轉至叢集Data ONTAP 式的更新版本（Data ONTAP NetApp技術報告4052）"]
 
 * 資料量FlexCache
 

@@ -30,7 +30,7 @@ xref:task_transitioning_a_snapmirror_relationship.adoc[轉換SnapMirror關係]
 可以移轉來源為「支援」關係的磁碟區SnapVault 、但SnapVault 不轉換「支援」關係。只SnapVault 有SnapVault 在停止執行還原備份之後、才能移轉做為「還原」關係目的地的Volume。
 
 +
-http://www.netapp.com/us/media/tr-4052.pdf["NetApp技術報告4052：成功移轉至叢集Data ONTAP 式的更新版本（Data ONTAP NetApp技術報告4052）"]
+http://["NetApp技術報告4052：成功移轉至叢集Data ONTAP 式的更新版本（Data ONTAP NetApp技術報告4052）"]
 
 * qtree SnapMirror關係
 +
@@ -45,7 +45,7 @@ http://www.netapp.com/us/media/tr-4052.pdf["NetApp技術報告4052：成功移�
 完成轉換後、您必須手動設定ONTAP 更新後的備份原則、以利在支援更新的資料區。
 
 +
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-ptbrg/home.html["使用磁帶備份來保護資料"]
+https://["使用磁帶備份來保護資料"]
 
 * 同步SnapMirror關係
 +

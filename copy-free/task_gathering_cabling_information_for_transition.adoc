@@ -61,7 +61,7 @@ host1> sysconfig 3
 如果目標平台和ONTAP 版本支援7-Mode系統、您可以規劃將擴充卡從7-Mode系統中搬移。如有需要、您也可以規劃PAM卡。
 
 +
-https://hwu.netapp.com["NetApp Hardware Universe"]
+https://["NetApp Hardware Universe"]
 
 .. 規劃要用於磁碟櫃佈線的目的地連接埠。
 +
@@ -96,8 +96,8 @@ https://hwu.netapp.com["NetApp Hardware Universe"]
 
 *相關資訊*
 
-https://library.netapp.com/ecm/ecm_download_file/ECMP1119629["適用於DS4243、DS2246、DS4486和DS4246的SAS磁碟櫃安裝與服務指南"]
+https://["適用於DS4243、DS2246、DS4486和DS4246的SAS磁碟櫃安裝與服務指南"]
 
-https://library.netapp.com/ecm/ecm_download_file/ECMM1280273["《硬體服務指南》中的DiskShelf14mk2"]
+https://["《硬體服務指南》中的DiskShelf14mk2"]
 
-https://library.netapp.com/ecm/ecm_download_file/ECMP1112854["DS14mk2 FC與DS14mk4 FC硬體服務指南"]
+https://["DS14mk2 FC與DS14mk4 FC硬體服務指南"]

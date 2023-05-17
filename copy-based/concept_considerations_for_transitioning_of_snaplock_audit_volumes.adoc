@@ -19,4 +19,4 @@ summary: 7-Mode Transition Tool可支援SnapLock 移轉至《支援不支援的�
 
 《不符合要求》（《不符合要求》）是一種「不符合要求」的Volume。SnapLock SnapLock如果目標叢集採用支援的是功能性組態、則不支援移轉SnapLock 功能。MetroCluster
 
-請參閱 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/How_to_configure_audit_volume_in_clustered_Data_ONTAP_for_the_transitioned_SnapLock_volumes["如何在叢集Data ONTAP 式的支援區中設定稽核磁碟區、以供轉換SnapLock 的支援區使用"]
+請參閱 https://["如何在叢集Data ONTAP 式的支援區中設定稽核磁碟區、以供轉換SnapLock 的支援區使用"]

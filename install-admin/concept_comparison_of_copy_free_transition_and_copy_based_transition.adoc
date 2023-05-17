@@ -38,7 +38,7 @@ HA配對
  a| 
 平台需求
  a| 
-僅支援中階和高階平台 https://mysupport.netapp.com/matrix["NetApp 互通性對照表工具"]
+僅支援中階和高階平台 https://["NetApp 互通性對照表工具"]
  a| 
 支援所有平台
 

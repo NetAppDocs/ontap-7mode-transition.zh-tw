@@ -15,7 +15,7 @@ summary: 在轉換7-Mode系統之前、您必須先設定叢集、並確保叢�
 
 * 叢集和SVM必須已設定完成。
 +
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-ssg/home.html["軟體設定"]
+https://["軟體設定"]
 
 +
 目標SVM不得處於SVM災難恢復關係中。
@@ -71,9 +71,9 @@ system7mode is alive
 
 對於多重路徑、您必須在每個節點上有兩個叢集間生命體。
 
-https://docs.netapp.com/us-en/ontap/networking/index.html["網路與LIF管理"]
+https://["網路與LIF管理"]
 
 .相關資訊
 xref:task_creating_a_transition_peering_relationship.adoc[建立轉換對等關係]
 
-https://mysupport.netapp.com/site/docs-and-kb["NetApp文件：產品庫A-Z"]
+https://["NetApp文件：產品庫A-Z"]

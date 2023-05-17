@@ -17,7 +17,7 @@ summary: 您可以使用SnapMirror技術、移轉與資料保護關係（位於V
 
 如果您轉換獨立磁碟區或與LUN的Volume SnapMirror關係、則必須建立igroup並對應LUN。接著、您必須在主機上執行必要的轉換後工作、才能設定對轉換的叢集Data ONTAP 式功能區的存取權限。
 
-http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-7mtt-sanspl/home.html["SAN主機移轉與補救"]
+http://["SAN主機移轉與補救"]
 
 *相關資訊*
 

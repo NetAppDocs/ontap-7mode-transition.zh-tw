@@ -24,7 +24,7 @@ summary: 儲存設備轉換成功完成並完成轉換之後、您必須先執�
 
 . SAN移轉：手動重新設定主機。
 +
-http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-7mtt-sanspl/home.html["SAN主機移轉與補救"]
+http://["SAN主機移轉與補救"]
 
 . 驗證下列項目、確保SVM已準備好提供資料給用戶端：
 +
@@ -37,4 +37,4 @@ http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-7mtt-sanspl/home.html["S
 
 *相關資訊*
 
-http://docs.netapp.com/ontap-9/index.jsp["NetApp文件：ONTAP VMware 9"]
+http://["NetApp文件：ONTAP VMware 9"]

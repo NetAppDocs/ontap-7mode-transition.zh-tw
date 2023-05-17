@@ -101,4 +101,4 @@ summary: 在轉換之前、您必須確保7-Mode Aggregate有足夠的可用空�
 
 xref:reference_ignorable_errors_during_transition.adoc[轉換期間發生可接受的錯誤]
 
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["磁碟與Aggregate管理"]
+https://["磁碟與Aggregate管理"]

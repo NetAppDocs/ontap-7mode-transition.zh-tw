@@ -23,4 +23,4 @@ summary: 在轉換期間、您必須確保磁碟區有足夠的可用空間。�
 
 xref:task_recovering_from_a_failed_lun_transition.adoc[從發生故障的LUN轉換中恢復]
 
-http://docs.netapp.com/ontap-9/index.jsp["NetApp文件：ONTAP VMware 9"]
+http://["NetApp文件：ONTAP VMware 9"]

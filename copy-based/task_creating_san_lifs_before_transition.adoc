@@ -34,4 +34,4 @@ summary: 由於FC和iSCSI生命週期並未由7-Mode Transition Tool轉換、因
 
 *相關資訊*
 
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sanag/home.html["SAN管理"]
+https://["SAN管理"]

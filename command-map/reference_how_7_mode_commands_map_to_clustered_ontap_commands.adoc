@@ -859,7 +859,7 @@ DU -vserver _vservernam__-path _pathname_-uvolume file show-disk-usage -vserver 
  a| 
 不支援您必須依照磁帶備份文件中的說明、使用NDMP來啟動備份。若要執行傾印至null的功能、您必須設定NDMP環境變數dump to _null。
 
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-ptbrg/home.html["使用磁帶備份來保護資料"]
+https://["使用磁帶備份來保護資料"]
 
 |===
 [role="lead"]
@@ -2500,7 +2500,7 @@ rdfile
 
 您必須依照磁帶備份文件中的說明、使用NDMP來啟動還原。
 
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-ptbrg/home.html["使用磁帶備份來保護資料"]
+https://["使用磁帶備份來保護資料"]
 
 
 
@@ -4053,7 +4053,7 @@ Volume複本
 * 使用SnapMirror複寫原始磁碟區、然後中斷SnapMirror關係以建立讀寫磁碟區複本。
 
 
-http://docs.netapp.com/ontap-9/index.jsp?topic=%2Fcom.netapp.doc.dot-cm-vsmg%2FGUID-5578BA46-5522-4BA6-B354-5C924B8207B1.html["邏輯儲存管理指南"]
+http://["邏輯儲存管理指南"]
 
 
 

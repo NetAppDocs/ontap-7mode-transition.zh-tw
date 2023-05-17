@@ -78,7 +78,7 @@ h.* Volume rehost -vserver _svm_-volume _vol_name_-destination-vserver _detal_sv
 
 
 +
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.cdot-famg-nfs/home.html["NFS管理"]
+https://["NFS管理"]
 
 * *移轉CIFS磁碟區*
 +
@@ -93,7 +93,7 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.cdot-famg-nfs/home.html["NF
 
 
 +
-http://docs.netapp.com/ontap-9/topic/com.netapp.doc.cdot-famg-cifs/home.html["SMB/CIFS管理"]
+http://["SMB/CIFS管理"]
 
 * *在SnapMirror關係中重新託管磁碟區*
 +
@@ -118,7 +118,7 @@ IMPORTANT: 您不得中斷SnapMirror關係；否則、目的地Volume的資料�
 
 
 +
-http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-dap/home.html["資料保護"]
+http://["資料保護"]
 
 
 
@@ -141,4 +141,4 @@ NOTE: 如果重新託管作業失敗、您可能需要重新設定來源Volume�
 
 *相關資訊*
 
-http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-cmpr/GUID-5CB10C70-AC11-41C0-8C16-B4D0DF916E9B.html["指令ONTAP"]
+http://["指令ONTAP"]

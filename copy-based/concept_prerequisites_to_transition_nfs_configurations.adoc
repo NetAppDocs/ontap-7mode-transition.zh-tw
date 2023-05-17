@@ -43,4 +43,4 @@ NOTE: 若要轉換Kerberos組態、至少必須將一個LIF轉換為專案的一
 
 xref:concept_how_nfs_exports_are_transitioned.adoc[NFS匯出的轉換方式]
 
-http://docs.netapp.com/ontap-9/index.jsp["NetApp文件：ONTAP VMware 9"]
+http://["NetApp文件：ONTAP VMware 9"]

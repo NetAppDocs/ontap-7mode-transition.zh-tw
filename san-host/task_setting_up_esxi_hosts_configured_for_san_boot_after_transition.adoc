@@ -34,4 +34,4 @@ xref:task_remounting_vmfs_volumes_after_transition_using_vsphere_client.adoc[使
 
 xref:task_remounting_vmfs_volumes_after_transition_using_esxi_cli_console.adoc[使用ESXi CLI在轉換後重新掛載VMFS磁碟區]
 
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sanag/home.html["SAN管理"]
+https://["SAN管理"]

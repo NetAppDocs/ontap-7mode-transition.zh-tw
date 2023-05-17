@@ -17,7 +17,7 @@ summary: 您Data ONTAP 可以使用叢集Data ONTAP 式的SnapMirror命令、將
 
 *建議：*您應該使用7-Mode Transition Tool、將7-Mode磁碟區的複本轉換為ONTAP 適用於VMware 9.11.1及更早版本的轉換7-Mode磁碟區、因為此工具提供預先檢查功能、可在移轉程序的每個步驟中驗證7-Mode和叢集、有助於避免許多潛在問題。此工具可大幅簡化所有傳輸協定、網路和服務組態的移轉、以及資料移轉作業。
 
-http://docs.netapp.com/us-en/ontap-7mode-transition/releasenotes.html["7-Mode Transition Tool版本資訊"]
+http://["7-Mode Transition Tool版本資訊"]
 
 此程序提供使用SnapMirror進行轉換時所需執行的高層工作。
 
@@ -44,23 +44,23 @@ http://docs.netapp.com/us-en/ontap-7mode-transition/releasenotes.html["7-Mode Tr
 
 * 選用：在SVM上建立資料LIF、以啟用用戶端存取。
 +
-https://docs.netapp.com/us-en/ontap/networking/index.html["網路與LIF管理"]。
+https://["網路與LIF管理"]。
 
 * 在SVM上設定傳輸協定、網路和服務。
 +
-** https://docs.netapp.com/us-en/ontap/networking/index.html["網路與LIF管理"]。
-** http://docs.netapp.com/ontap-9/topic/com.netapp.doc.cdot-famg-cifs/home.html["SMB/CIFS管理"]
-** https://docs.netapp.com/ontap-9/topic/com.netapp.doc.cdot-famg-nfs/home.html["NFS管理"]
+** https://["網路與LIF管理"]。
+** http://["SMB/CIFS管理"]
+** https://["NFS管理"]
 
 
 * 建立igroup並對應LUN
 +
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sanag/home.html["SAN管理"]
+https://["SAN管理"]
 
 * 如果您使用LUN來轉換磁碟區、則必須先在主機上執行必要的轉換後工作、才能還原對轉換的叢集Data ONTAP 式恢復磁碟區的存取權。
 +
-http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-7mtt-sanspl/home.html["SAN主機移轉與補救"]
+http://["SAN主機移轉與補救"]
 
 
 
-https://mysupport.netapp.com/site/global/dashboard["NetApp支援"]
+https://["NetApp支援"]

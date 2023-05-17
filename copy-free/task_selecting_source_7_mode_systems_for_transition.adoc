@@ -15,7 +15,7 @@ summary: 規劃移轉專案的第一步、是選取要從中移轉磁碟櫃、�
 
 * HA配對中的7-Mode控制器必須在ONTAP 支援無複本轉換的平台上執行支援的版本。
 +
-https://mysupport.netapp.com/matrix["NetApp 互通性對照表工具"]
+https://["NetApp 互通性對照表工具"]
 
 * HA組態中的兩個控制器都必須正常運作。
 +

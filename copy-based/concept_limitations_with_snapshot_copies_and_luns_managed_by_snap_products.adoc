@@ -43,18 +43,18 @@ NOTE: 在SnapDrive 叢集式的任何新建立的Snapshot複本中、均支援�
 
 最佳實務做法是在7-Mode Snapshot複本過期之前、保留7-Mode系統。
 
-http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=30034["NetApp文件：SnapManager Microsoft Exchange Server的參考資料"]
+http://["NetApp文件：SnapManager Microsoft Exchange Server的參考資料"]
 
-http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=30055["NetApp文件：SnapManager 適用於Hyper-V的解決方案"]
+http://["NetApp文件：SnapManager 適用於Hyper-V的解決方案"]
 
-http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=30037["NetApp文件：SnapManager 適用於SAP的"]
+http://["NetApp文件：SnapManager 適用於SAP的"]
 
-http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=30040["NetApp文件：SnapManager Oracle的支援"]
+http://["NetApp文件：SnapManager Oracle的支援"]
 
-http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=30050["NetApp文件：SnapDrive 適用於UNIX的解決方案"]
+http://["NetApp文件：SnapDrive 適用於UNIX的解決方案"]
 
-http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=30049["NetApp文件：SnapDrive 適用於Windows（目前版本）"]
+http://["NetApp文件：SnapDrive 適用於Windows（目前版本）"]
 
-http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=30041["NetApp文件：SnapManager Microsoft SQL Server的支援"]
+http://["NetApp文件：SnapManager Microsoft SQL Server的支援"]
 
-http://mysupport.netapp.com/documentation/productlibrary/index.html?productID=30036["NetApp文件：SnapManager Microsoft SharePoint的參考資料"]
+http://["NetApp文件：SnapManager Microsoft SharePoint的參考資料"]

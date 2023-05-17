@@ -78,4 +78,4 @@ xref:concept_post_transition_requirements_for_esxi_hosts.adoc[ESXi主機的移�
 
 *相關資訊*
 
-http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-7mtt-dctg/home.html["複本型轉換"]
+http://["複本型轉換"]

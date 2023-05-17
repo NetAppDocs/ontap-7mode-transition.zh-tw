@@ -46,4 +46,4 @@ Extent name: naa.600a098054314c6c445d446f79716475:1 range: 0 - 409599
 
 *相關資訊*
 
-http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1011387["VMware KB：vSphere處理偵測為快照LUN的LUN"]
+http://["VMware KB：vSphere處理偵測為快照LUN的LUN"]

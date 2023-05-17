@@ -35,4 +35,4 @@ summary: 只有當7-Mode /etc/netgroup檔案大小小於5 MB時、才會轉換Ne
 
 *相關資訊*
 
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.cdot-famg-nfs/home.html["NFS管理"]
+https://["NFS管理"]

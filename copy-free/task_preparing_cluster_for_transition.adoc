@@ -15,7 +15,7 @@ summary: 在轉換之前、您必須先準備叢集以與7-Mode Transition Tool�
 
 * 叢集必須已設定完成、且目標叢集節點必須加入叢集。
 +
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-ssg/home.html["軟體設定"]
+https://["軟體設定"]
 
 * 必須建立SVM並指派給IPspace。
 * 您可以將7-Mode磁碟櫃轉換成具有預先存在資料集合體和磁碟區的目標HA配對。
@@ -92,6 +92,6 @@ mgmt
 
 
 +
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["系統管理"]
+https://["系統管理"]
 
 

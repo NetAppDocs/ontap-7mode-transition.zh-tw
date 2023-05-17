@@ -38,4 +38,4 @@ xref:task_transitioning_a_volume_snapmirror_relationship_in_parallel.adoc[平行
 
 *相關資訊*
 
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-arch-con/home.html["利用SnapLock NetApp技術歸檔及法規遵循"^]
+https://["利用SnapLock NetApp技術歸檔及法規遵循"^]

@@ -22,7 +22,7 @@ summary: 若要轉換7-Mode Volume SnapMirror關係、您必須將SnapMirror授�
 
 . 從每個叢集建立叢集對等關係。
 +
-http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-clus-peer/home.html["叢集與SVM對等化快速組態"]
+http://["叢集與SVM對等化快速組態"]
 
 . 在次要SVM上建立符合7-Mode次要系統排程的排程：
 +
@@ -32,4 +32,4 @@ http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-clus-peer/home.html["叢
 
 *相關資訊*
 
-http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-cmpr/GUID-5CB10C70-AC11-41C0-8C16-B4D0DF916E9B.html["指令ONTAP"]
+http://["指令ONTAP"]

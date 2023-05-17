@@ -72,7 +72,7 @@ NOTE: 如果Windows主機沒有安裝任何JRE或32位元的JRE,則7-Mode Transi
 NOTE: 若使用1.8版更新46或更新版本（包括JRE1.8更新331）、若要讓7-Mode Transition Tool與Data ONTAP 7-Mode系統和ONTAP BIOS系統中的執行功能進行通訊、Data ONTAP 7-Mode系統和ONTAP BIOS系統中執行的作業系統上的SSL金鑰長度必須至少為1024。
 
 +
-https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/7MTT%3A_How_to_resolve_TLS_or_SSL_communication_issue["7MTT：如何解決TLS或SSL通訊問題"]
+https://["7MTT：如何解決TLS或SSL通訊問題"]
 
 
 
@@ -134,4 +134,4 @@ NOTE: 如果您使用Microsoft Internet Explorer做為網頁瀏覽器、則必�
 
 *相關資訊*
 
-https://mysupport.netapp.com/NOW/products/interoperability["NetApp互通性"]
+https://["NetApp互通性"]

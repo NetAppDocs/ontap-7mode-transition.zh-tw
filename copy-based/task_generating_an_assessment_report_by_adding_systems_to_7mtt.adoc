@@ -43,7 +43,7 @@ summary: 您可以將系統新增至7-Mode Transition Tool、以收集控制器�
 +
 ... 在「報告」功能表中、按一下*「完成每日匯出」*。
 ... 在「完整的每日匯出」對話方塊FAS 中、於搜尋欄位中輸入「還原」。
-... 下載ONTAP 《SAN主機Excel》檔案、然後儲存。https://mysupport.netapp.com/matrix["NetApp 互通性對照表工具"]
+... 下載ONTAP 《SAN主機Excel》檔案、然後儲存。https://["NetApp 互通性對照表工具"]
 
 
 .. 在CLI IMT 中、使用「Transition IMT from the show」命令匯入資料。

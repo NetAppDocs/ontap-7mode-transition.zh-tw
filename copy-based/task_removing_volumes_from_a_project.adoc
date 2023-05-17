@@ -29,7 +29,7 @@ summary: 您可以在轉換程序期間從專案移除故障磁碟區、並中�
 
 . 從叢集刪除ONTAP 在轉換過程中建立的等量磁碟區。
 +
-http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-cmpr/GUID-5CB10C70-AC11-41C0-8C16-B4D0DF916E9B.html["指令ONTAP"]
+http://["指令ONTAP"]
 
 . 從7-Mode系統、將SnapMirror關係發佈至ONTAP VMware Volume。
 . 如果中止Volume SnapMirror關係、請執行下列步驟：
@@ -40,4 +40,4 @@ http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-cmpr/GUID-5CB10C70-AC
 
 
 
-https://library.netapp.com/ecm/ecm_get_file/ECMP1610200["適用於7-Mode系統管理員的叢集Data ONTAP 式VMware®8.3命令對應表"]
+https://["適用於7-Mode系統管理員的叢集Data ONTAP 式VMware®8.3命令對應表"]
