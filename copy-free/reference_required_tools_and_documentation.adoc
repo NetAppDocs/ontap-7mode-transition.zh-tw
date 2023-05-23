@@ -19,7 +19,7 @@ summary: 不需複製的轉換作業需要使用此功能。Config Advisor您應
 
 在7-Mode磁碟櫃連接至目標叢集節點之後、您應該使用Config Advisor VMware Data架構中的「Transition」執行設定檔來驗證纜線。
 
-https://["NetApp下載Config Advisor"]
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["NetApp下載Config Advisor"]
 
 
 
@@ -27,4 +27,4 @@ https://["NetApp下載Config Advisor"]
 
 說明使用無複本轉換進行轉換時、SAN主機必須執行的轉換前和轉換後步驟。
 
-http://["SAN主機移轉與補救"]
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-7mtt-sanspl/home.html["SAN主機移轉與補救"]

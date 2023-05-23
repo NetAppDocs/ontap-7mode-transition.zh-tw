@@ -47,6 +47,6 @@ summary: 從Data ONTAP VMware移轉ESXi主機之前必須完成的工作
 
 *相關資訊*
 
-http://["停用vSphere Web Client中的VMware DRS叢集時、保留資源集區"]
+http://kb.vmware.com/kb/2032893["停用vSphere Web Client中的VMware DRS叢集時、保留資源集區"]
 
-http://["停用VMware High Availability（HA）"]
+http://kb.vmware.com/kb/1008025["停用VMware High Availability（HA）"]

@@ -21,4 +21,4 @@ summary: 您可以先移轉次要HA配對、在7-Mode主要Volume與叢集Data O
 
 *相關資訊*
 
-https://["使用System Manager進行叢集管理"]
+https://docs.netapp.com/us-en/ontap/concept_administration_overview.html["使用System Manager進行叢集管理"]

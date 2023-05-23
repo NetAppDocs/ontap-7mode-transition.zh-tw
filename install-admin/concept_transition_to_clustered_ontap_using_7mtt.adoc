@@ -15,4 +15,4 @@ summary: 7-Mode Transition Tool可讓您收集7-Mode控制器、主機、交換�
 
 請務必參閱目前的7-Mode Transition Tool _Release Notes_、以取得支援的目標版本和已知問題的最新資訊。
 
-http://["7-Mode Transition Tool版本資訊"]
+http://docs.netapp.com/us-en/ontap-7mode-transition/releasenotes.html["7-Mode Transition Tool版本資訊"]

@@ -151,7 +151,7 @@ NOTE: 7-Mode Transition Tool不會移轉FC和iSCSI生命週期。
  a| 
 '轉換CBT add-primary七模系統-p _project名稱_-h _source-host_-f _management管理-ipaddress_-d _data複製-ipaddress_[-m _多 重路徑-ipaddress_]*
 
-如需詳細資訊、請參閱 https://["CBT：如何提供指定次要專案所需的所有主要7-Mode詳細資料"]。
+如需詳細資訊、請參閱 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapMirror/CBT_%3A_How_to_provide_all_the_required_primary_7-Mode_details_for_a_given_secondary_project["CBT：如何提供指定次要專案所需的所有主要7-Mode詳細資料"]。
 
 
 
@@ -160,7 +160,7 @@ NOTE: 7-Mode Transition Tool不會移轉FC和iSCSI生命週期。
  a| 
 h.* Transition CBT add-secondary叢集模式-system -p _project名稱_-h _c-mode host-name_-v _vserver名稱_*
 
-如需詳細資訊、請參閱 https://["CBT：如何將必要的次要叢集詳細資料新增至主要專案"]
+如需詳細資訊、請參閱 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/CBT%3A_How_to_add_the_required_secondary_cluster_details_to_the_primary_project["CBT：如何將必要的次要叢集詳細資料新增至主要專案"]
 
 |===
 +

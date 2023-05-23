@@ -51,4 +51,4 @@ NOTE: 您必須確認防火牆不會封鎖此流量。
 
 *相關資訊*
 
-http://["7-Mode Transition Tool安裝與管理"]
+http://docs.netapp.com/us-en/ontap-7mode-transition/install-admin/index.html["7-Mode Transition Tool安裝與管理"]

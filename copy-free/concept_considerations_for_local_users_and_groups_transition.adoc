@@ -41,10 +41,10 @@ SVM必須只有BUILTINCIFS本機使用者和群組才能進行轉換。
 如果您在預先檢查階段看到此錯誤、則必須手動移除對應至7-Mode系統上單一網域使用者或群組的其他SID。然後、您必須重新執行預先檢查作業、只將單一SID對應至網域使用者或群組。
 
 +
-https://["疑難排解工作流程：CIFS：附加至系統的裝置無法運作"]
+https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/Troubleshooting_Workflow%3A_CIFS%3A_Device_attached_to_the_system_is_not_functioning["疑難排解工作流程：CIFS：附加至系統的裝置無法運作"]
 
 
 
 *相關資訊*
 
-http://["SMB/CIFS管理"]
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.cdot-famg-cifs/home.html["SMB/CIFS管理"]

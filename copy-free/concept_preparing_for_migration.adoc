@@ -17,4 +17,4 @@ image::../media/delete_me_cft_preparation_workflow.gif[刪除我CFT準備工作�
 
 *相關資訊*
 
-https://["NetApp 互通性對照表工具"]
+https://mysupport.netapp.com/matrix["NetApp 互通性對照表工具"]

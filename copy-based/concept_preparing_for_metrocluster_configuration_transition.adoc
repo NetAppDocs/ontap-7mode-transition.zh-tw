@@ -40,10 +40,10 @@ summary: 在轉換MetroCluster 至VMware組態之前、您必須瞭解將7-Mode 
 最好只在轉換期間共用交換器架構。
 
 +
-https://["Fabric附加MetroCluster 的安裝與組態、ONTAP 不支援更新版本的功能"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-mcc-inst-cnfg-fabric/home.html["Fabric附加MetroCluster 的安裝與組態、ONTAP 不支援更新版本的功能"]
 
 +
-https://["Fabric附加MetroCluster 的安裝與組態ONTAP 、版本資訊"]
+https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html["Fabric附加MetroCluster 的安裝與組態ONTAP 、版本資訊"]
 
 * 在轉換期間建立的cron工作排程不會複寫到遠端站台、因此轉換後交涉的切換作業會失敗。
 +

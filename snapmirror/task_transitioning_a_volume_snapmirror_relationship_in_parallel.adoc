@@ -37,11 +37,11 @@ xref:task_transitioning_a_stand_alone_volume.adoc[轉換獨立Volume]
 
 . 在包含轉換的主要和次要磁碟區的SVM之間建立叢集間SVM對等關係。
 +
-https://["系統管理"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["系統管理"]
 
 . 在轉換的主要和次要磁碟區之間建立Volume SnapMirror關係。
 +
-https://["Volume災難恢復快速準備"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-sm-ic-cg/home.html["Volume災難恢復快速準備"]
 
 . 在目的地磁碟區上、重新同步SnapMirror關係的來源磁碟區和目的地磁碟區。
 +

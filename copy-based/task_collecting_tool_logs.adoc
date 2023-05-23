@@ -23,4 +23,4 @@ summary: 7-Mode Transition Tool會建立記錄檔、提供系統上執行之轉�
 
 *相關資訊*
 
-https://["如何將檔案上傳至NetApp"]
+https://kb.netapp.com/Advice_and_Troubleshooting/Miscellaneous/How_to_upload_a_file_to_NetApp["如何將檔案上傳至NetApp"]

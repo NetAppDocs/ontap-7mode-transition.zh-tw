@@ -15,7 +15,7 @@ summary: 您必須瞭解ONTAP 以複本為基礎的轉換作業的版本需求�
 
 * *《*》7-Mode來源系統* Data ONTAP
 +
-如需7-Mode Transition Tool支援移轉的7-Mode版本清單、請參閱 https://["NetApp 互通性對照表工具"]。
+如需7-Mode Transition Tool支援移轉的7-Mode版本清單、請參閱 https://mysupport.netapp.com/matrix["NetApp 互通性對照表工具"]。
 
 * *目標系統* ONTAP
 +
@@ -93,6 +93,6 @@ SnapMirror必須在7-Mode儲存系統上獲得授權。如果7-Mode系統沒有S
 
 * *移轉評估的儲存設備、主機和FC交換器版本需求*
 +
-如需7-Mode Transition Tool所支援評估的7-Mode版本、主機和FC交換器清單、請參閱 https://["NetApp 互通性對照表工具"]。
+如需7-Mode Transition Tool所支援評估的7-Mode版本、主機和FC交換器清單、請參閱 https://mysupport.netapp.com/matrix["NetApp 互通性對照表工具"]。
 
 

@@ -38,4 +38,4 @@ summary: 只有在7-Mode系統和叢集上符合特定先決條件時、才會�
 
 *相關資訊*
 
-http://["NetApp文件：ONTAP VMware 9"]
+http://docs.netapp.com/ontap-9/index.jsp["NetApp文件：ONTAP VMware 9"]

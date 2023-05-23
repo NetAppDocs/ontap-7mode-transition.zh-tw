@@ -25,4 +25,4 @@ link:https://docs.netapp.com/us-en/ontap-7mode-transition/releasenotes.html["7-M
 
 *相關資訊*
 
-http://["NetApp文件：ONTAP VMware 9"]
+http://docs.netapp.com/ontap-9/index.jsp["NetApp文件：ONTAP VMware 9"]

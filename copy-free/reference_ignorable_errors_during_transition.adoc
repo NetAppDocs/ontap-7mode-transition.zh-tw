@@ -107,7 +107,7 @@ qtree匯出規則存在於7-Mode系統中。
 
 確認此錯誤表示您已瞭解Data ONTAP 在7-Mode和ONTAP VMware中操作的故障碼之間、qtree匯出規則的差異。在7-Mode Transition Tool套用NFS匯出規則之後、您可能需要執行一些手動步驟。
 
-https://["7MTT 預先檢查 10111 - 轉換具有 qtree 層級匯出的 7-Mode 磁碟區"]
+https://kb.netapp.com/onprem/ontap/da/NAS/7MTT_Precheck_10111_-_How_to_transition_7-Mode_volumes_that_have_qtree_level_exports["7MTT 預先檢查 10111 - 轉換具有 qtree 層級匯出的 7-Mode 磁碟區"]
 
 
 
@@ -116,7 +116,7 @@ https://["7MTT 預先檢查 10111 - 轉換具有 qtree 層級匯出的 7-Mode �
  a| 
 要移轉的物件和組態超過特定限制。儲存設備轉換可能需要很長時間、因此您必須為停機做好準備。
 
-https://["在「無複製」轉換期間縮短儲存轉換時間的考量事項"]
+https://kb.netapp.com/onprem/ontap/os/Storage_cutover_time_considerations_for_Copy-Free_Transition["在「無複製」轉換期間縮短儲存轉換時間的考量事項"]
 
 
 
@@ -127,7 +127,7 @@ https://["在「無複製」轉換期間縮短儲存轉換時間的考量事項"
 
 您必須確保7-Mode系統和目標SVM的CIFS Active Directory網域是信任的網域。否則、將CIFS組態移轉至目標SVM會失敗。
 
-https://["當7-Mode上CIFS伺服器的Active Directory網域與目標SVM不同時、如何轉換CIFS組態"]
+https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/How_to_transition_CIFS_configurations_when_Active_Directory_Domain_of_CIFS_server_on_7-Mode_and_target_SVM_are_different["當7-Mode上CIFS伺服器的Active Directory網域與目標SVM不同時、如何轉換CIFS組態"]
 
 |===
 

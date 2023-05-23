@@ -62,6 +62,6 @@ summary: 您必須瞭解7-Mode Transition Tool所轉換的名稱服務組態。�
 
 *相關資訊*
 
-https://["NFS管理"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.cdot-famg-nfs/home.html["NFS管理"]
 
-https://["網路與LIF管理"]
+https://docs.netapp.com/us-en/ontap/networking/index.html["網路與LIF管理"]

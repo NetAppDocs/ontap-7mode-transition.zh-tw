@@ -55,7 +55,7 @@ NOTE: 如果您已建立新的LIF、則在完成所有專案之後、必須使�
 
 如果您已完成SnapMirror關係的移轉、而叢集執行ONTAP 的是支援版本不支援的版本、則必須將SnapMirror關係從DP類型轉換為XDP類型。
 
-http://["資料保護"]
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-dap/home.html["資料保護"]
 
 *相關資訊*
 

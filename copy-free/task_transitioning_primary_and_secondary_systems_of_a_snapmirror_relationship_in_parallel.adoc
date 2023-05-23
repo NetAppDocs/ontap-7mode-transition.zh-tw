@@ -29,11 +29,11 @@ xref:task_performing_copy_free_transition_of_7_mode_aggregates.adoc[使用無複
 
 . 在包含轉換的主要和次要磁碟區的SVM之間建立叢集間SVM對等關係。
 +
-https://["系統管理"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["系統管理"]
 
 . 在轉換的主要和次要磁碟區之間建立Volume SnapMirror關係。
 +
-https://["Volume災難恢復快速準備"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-sm-ic-cg/home.html["Volume災難恢復快速準備"]
 
 . 在目的地磁碟區上、重新同步SnapMirror關係的來源磁碟區和目的地磁碟區：
 +
@@ -62,6 +62,6 @@ xref:task_committing_7_mode_aggregates_to_clustered_ontap_format.adoc[提交無�
 
 *相關資訊*
 
-http://["指令ONTAP"]
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-cmpr/GUID-5CB10C70-AC11-41C0-8C16-B4D0DF916E9B.html["指令ONTAP"]
 
-https://["系統管理員"]
+https://docs.netapp.com/us-en/ontap/["系統管理員"]

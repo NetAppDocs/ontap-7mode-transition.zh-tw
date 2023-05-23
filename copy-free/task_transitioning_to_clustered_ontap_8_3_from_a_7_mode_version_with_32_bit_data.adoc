@@ -30,4 +30,4 @@ xref:task_finding_and_removing_32_bit_data_from_source_volumes_and_snapshot_copi
 
 *相關資訊*
 
-http://["NetApp技術報告3978：就地擴充32位元Aggregate至64位元概述與最佳實務做法"]
+http://www.netapp.com/us/media/tr-3978.pdf["NetApp技術報告3978：就地擴充32位元Aggregate至64位元概述與最佳實務做法"]

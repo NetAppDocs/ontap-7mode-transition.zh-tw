@@ -36,4 +36,4 @@ NOTE: 如果您使用的是Windows 2003、則必須升級至Windows 2008。Windo
 
 *相關資訊*
 
-https://["SAN組態"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sanconf/home.html["SAN組態"]

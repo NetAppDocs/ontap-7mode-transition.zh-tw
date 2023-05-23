@@ -144,7 +144,7 @@ summary: 您可以使用Transition CBT命令來管理功能、例如建立、修
  a| 
 《Transition CBT add-primer-7-mode-system》
 
-https://["CBT：如何提供指定次要專案所需的所有主要7-Mode詳細資料"]
+https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapMirror/CBT_%3A_How_to_provide_all_the_required_primary_7-Mode_details_for_a_given_secondary_project["CBT：如何提供指定次要專案所需的所有主要7-Mode詳細資料"]
 
 
 
@@ -153,7 +153,7 @@ https://["CBT：如何提供指定次要專案所需的所有主要7-Mode詳細�
  a| 
 「Transition CBT add-secondary叢集模式系統」
 
-https://["CBT：如何將必要的次要叢集詳細資料新增至主要專案"]
+https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/CBT%3A_How_to_add_the_required_secondary_cluster_details_to_the_primary_project["CBT：如何將必要的次要叢集詳細資料新增至主要專案"]
 
 
 

@@ -20,7 +20,7 @@ summary: 如果您使用7-Mode Transition Tool（7-Mode Transition Tool）（7MT
 您可以執行Solaris主機公用程式並使用FC傳輸協定、設定SAN開機LUN在Veritas動態多重路徑（DMP）環境或Solaris MPxIO環境中運作。您用來設定SAN開機LUN的方法可能有所不同、視磁碟區管理程式和檔案系統而定。
 
 +
-https://["《Solaris Host Utilities 6.2安裝與設定指南》"]
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2748974["《Solaris Host Utilities 6.2安裝與設定指南》"]
 
 * Solaris主機叢集移轉
 * Veritas組態

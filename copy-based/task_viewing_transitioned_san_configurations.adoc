@@ -49,4 +49,4 @@ LUN#2,/vol/vol_SANdataset_sm_0/lun-payroll,dtY5B4tFAaAC,LnxGrp2,2,/vol/vol_SANda
 
 您必須先在主機上執行必要的轉換後工作、才能恢復對轉換ONTAP 後的支援功能。
 
-http://["SAN主機移轉與補救"]
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-7mtt-sanspl/home.html["SAN主機移轉與補救"]

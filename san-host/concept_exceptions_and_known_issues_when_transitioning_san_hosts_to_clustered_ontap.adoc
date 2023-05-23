@@ -19,6 +19,6 @@ summary: 當將SAN主機從Data ONTAP 以7-Mode運作的VMware移轉至ONTAP 更
 
 * 如果您在7-Mode控制器的兩個節點上使用相同的igroup名稱、則轉換工具可能無法解決igroup衝突。
 +
-錯誤ID https://["769715"]。
+錯誤ID https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=769715["769715"]。
 
 

@@ -36,21 +36,21 @@ summary: 您可能會在轉換期間遇到一些可忽略的錯誤。您必須�
  a| 
 「NFS-qtree匯出」
  a| 
-確認此錯誤表示您已瞭解執行qtree匯出規則的差異、即Data ONTAP 在7-Mode和ONTAP VMware中操作的VMware。這也表示您已瞭解在7-Mode Transition Tool套用NFS匯出規則之後、可能需要的手動步驟。 https://["7MTT預先檢查10111 -如何轉換具有qtree層級匯出的7-Mode磁碟區"]
+確認此錯誤表示您已瞭解執行qtree匯出規則的差異、即Data ONTAP 在7-Mode和ONTAP VMware中操作的VMware。這也表示您已瞭解在7-Mode Transition Tool套用NFS匯出規則之後、可能需要的手動步驟。 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/7MTT_Precheck_10111_-_How_to_transition_7-Mode_volumes_that_have_qtree_level_exports["7MTT預先檢查10111 -如何轉換具有qtree層級匯出的7-Mode磁碟區"]
 
 
 
  a| 
 「ignore（忽略）- CIF-ad-domain-mismisd」
  a| 
-如果您確認此錯誤、即使7-Mode系統的CIFS Active Directory（AD）網域與目標SVM的CIFS AD網域不同、7-Mode Transition Tool仍會繼續移轉CIFS組態。您必須確保7-Mode系統和目標SVM的CIFS AD網域是信任的網域。否則、將CIFS組態移轉至目標SVM會失敗。 https://["當7-Mode上CIFS伺服器的Active Directory網域與目標SVM不同時、如何轉換CIFS組態"]
+如果您確認此錯誤、即使7-Mode系統的CIFS Active Directory（AD）網域與目標SVM的CIFS AD網域不同、7-Mode Transition Tool仍會繼續移轉CIFS組態。您必須確保7-Mode系統和目標SVM的CIFS AD網域是信任的網域。否則、將CIFS組態移轉至目標SVM會失敗。 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/How_to_transition_CIFS_configurations_when_Active_Directory_Domain_of_CIFS_server_on_7-Mode_and_target_SVM_are_different["當7-Mode上CIFS伺服器的Active Directory網域與目標SVM不同時、如何轉換CIFS組態"]
 
 
 
  a| 
 「ignore、ping、check、from、ic、lifs-to、7mode」
  a| 
-在專案中新增此可接受的錯誤之後、7-Mode Transition Tool不會執行檢查、從目標叢集間叢集生命週期ping 7-Mode儲存系統。https://["7MTT複製型移轉：如何處理無法從目標叢集內部叢集生命週期存取7-Mode資料複製IP位址的情況"]
+在專案中新增此可接受的錯誤之後、7-Mode Transition Tool不會執行檢查、從目標叢集間叢集生命週期ping 7-Mode儲存系統。https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/7MTT_cbt_-_How_to_handle_the_scenario_where_7-Mode_data-copy_IP_address["7MTT複製型移轉：如何處理無法從目標叢集內部叢集生命週期存取7-Mode資料複製IP位址的情況"]
 
 
 
@@ -64,7 +64,7 @@ summary: 您可能會在轉換期間遇到一些可忽略的錯誤。您必須�
  a| 
 「ignore、configuration、limits、Check」（忽略組態限制檢查）
  a| 
-您可以使用此選項確認組態限制（預先檢查錯誤）、然後繼續進行轉換。您瞭解到這個錯誤之後、儲存設備轉換時間預期將超過3到8小時、包括匯出、停止和匯入作業（自動化作業）的時間、以及將磁碟櫃連接至新控制器的時間。 https://["無複製轉換的儲存設備轉換時間考量"]
+您可以使用此選項確認組態限制（預先檢查錯誤）、然後繼續進行轉換。您瞭解到這個錯誤之後、儲存設備轉換時間預期將超過3到8小時、包括匯出、停止和匯入作業（自動化作業）的時間、以及將磁碟櫃連接至新控制器的時間。 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/Storage_cutover_time_considerations_for_Copy-Free_Transition["無複製轉換的儲存設備轉換時間考量"]
 
 
 

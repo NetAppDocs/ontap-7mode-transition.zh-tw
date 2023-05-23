@@ -99,4 +99,4 @@ SystemName\Username
 
 *相關資訊*
 
-http://["NetApp支援網站上的文件：mysupport.netapp.com"]
+http://mysupport.netapp.com/["NetApp支援網站上的文件：mysupport.netapp.com"]

@@ -24,7 +24,7 @@ IMPORTANT: 在沒有技術支援協助的情況下、您不應嘗試回復正式
 * 移轉程序會完成部分但並非所有的資料和組態、您決定要回復移轉作業。
 * 您在轉換程序上遇到問題、無法解決7-Mode Transition Tool（7-Mode Transition Tool）、Data ONTAP EEMS事件訊息和NetApp知識庫中的錯誤回應訊息問題。
 +
-https://["NetApp知識庫"]
+https://kb.netapp.com/["NetApp知識庫"]
 
 
 

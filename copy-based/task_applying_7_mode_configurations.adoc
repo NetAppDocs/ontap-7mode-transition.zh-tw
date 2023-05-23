@@ -123,4 +123,4 @@ xref:task_managing_logical_interfaces.adoc[管理邏輯介面]
 
 xref:concept_considerations_for_quotas.adoc[配額考量]
 
-https://["7MTT v2.0 /轉換Data ONTAP 版的功能"]
+https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/7MTT_v2.0%2F%2FTransitioned_Data_ONTAP_features["7MTT v2.0 /轉換Data ONTAP 版的功能"]

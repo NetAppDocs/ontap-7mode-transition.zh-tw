@@ -107,4 +107,4 @@ summary: 有些NFS組態並未轉換ONTAP 為VMware、因為ONTAP 它們在VMwar
 
 *相關資訊*
 
-https://["NFS管理"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.cdot-famg-nfs/home.html["NFS管理"]

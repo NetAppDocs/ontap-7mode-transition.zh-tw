@@ -134,4 +134,4 @@ IMPORTANT: 由於在測試期間執行的Aggregate Snapshot複本和寫入作業
 
 *相關資訊*
 
-https://["NetApp下載Config Advisor"]
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["NetApp下載Config Advisor"]

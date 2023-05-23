@@ -15,7 +15,7 @@ summary: 在轉換之前、您必須確保叢集符合各項需求、例如允�
 
 * 叢集和SVM必須已設定完成。
 +
-https://["軟體設定"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-ssg/home.html["軟體設定"]
 
 +
 目標SVM不得處於SVM災難恢復關係中。
@@ -28,7 +28,7 @@ https://["軟體設定"]
 將轉換的磁碟區升級為64位元格式需要額外的空間。
 
 +
-https://["磁碟與Aggregate管理"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["磁碟與Aggregate管理"]
 
 * 若要在轉換Volume SnapMirror關係時建立SVM對等關係、必須符合下列條件：
 +
@@ -114,7 +114,7 @@ mgmt
 
 
 +
-https://["系統管理"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["系統管理"]
 
 . 在叢集的每個節點上建立叢集間LIF、以便叢集與7-Mode系統之間進行通訊：
 +
@@ -165,7 +165,7 @@ system7mode is alive
 對於多重路徑、您必須在每個節點上有兩個叢集間生命體。
 
 +
-https://["網路與LIF管理"]
+https://docs.netapp.com/us-en/ontap/networking/index.html["網路與LIF管理"]
 
 
 

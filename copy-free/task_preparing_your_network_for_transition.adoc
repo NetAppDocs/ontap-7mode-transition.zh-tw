@@ -44,4 +44,4 @@ NOTE: IPv6位址無法轉換、必須在轉換後手動設定。
 
 *相關資訊*
 
-https://["網路與LIF管理"]
+https://docs.netapp.com/us-en/ontap/networking/index.html["網路與LIF管理"]

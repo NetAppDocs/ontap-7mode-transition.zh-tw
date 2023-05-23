@@ -15,7 +15,7 @@ summary: 在將資料從7-Mode Volume複製到叢集ONTAP 式的等集式資料�
 
 如果發生任何轉換問題、您應該檢閱移轉目標版本的_Release Notes_。
 
-https://["發行說明ONTAP"]
+https://library.netapp.com/ecmdocs/ECMLP2492508/html/frameset.html["發行說明ONTAP"]
 
 下列ONTAP 版本支援7-Mode與叢集式等功能區之間的SnapMirror關係：
 

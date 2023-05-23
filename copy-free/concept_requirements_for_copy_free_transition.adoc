@@ -19,11 +19,11 @@ link:https://docs.netapp.com/us-en/ontap-7mode-transition/releasenotes.html["7-M
 
 * *平台機型*
 +
-只有中階FAS 和高階版的支援、以及IBM N系列系統才支援無複製轉換。。 https://["NetApp 互通性對照表工具"] 擁有7-Mode系統和目標叢集節點所支援平台的最新資訊。
+只有中階FAS 和高階版的支援、以及IBM N系列系統才支援無複製轉換。。 https://mysupport.netapp.com/matrix["NetApp 互通性對照表工具"] 擁有7-Mode系統和目標叢集節點所支援平台的最新資訊。
 
 * *在7-Mode來源系統中* Data ONTAP
 +
-如需7-Mode Transition Tool支援移轉的7-Mode版本清單、請參閱 https://["NetApp 互通性對照表工具"]
+如需7-Mode Transition Tool支援移轉的7-Mode版本清單、請參閱 https://mysupport.netapp.com/matrix["NetApp 互通性對照表工具"]
 
 * *目標系統* ONTAP
 +
@@ -65,19 +65,19 @@ NOTE: 不支援DS14mk2 FC磁碟櫃機型。
 您必須在7-Mode系統和目標叢集節點上下載並安裝最新的磁碟鑑定套件、磁碟韌體、磁碟櫃和ACP韌體。
 
 +
-https://["NetApp下載：磁碟認證套件"]
+https://mysupport.netapp.com/NOW/download/tools/diskqual/["NetApp下載：磁碟認證套件"]
 
 +
-https://["NetApp下載：磁碟機韌體"]
+https://mysupport.netapp.com/site/downloads/firmware/disk-drive-firmware["NetApp下載：磁碟機韌體"]
 
 +
-https://["NetApp下載：磁碟櫃韌體"]
+https://mysupport.netapp.com/site/downloads/firmware/disk-shelf-firmware["NetApp下載：磁碟櫃韌體"]
 
 * *驗證纜線的工具*
 +
 在轉換期間、將7-Mode磁碟櫃連接至目標叢集節點之後、您必須使用Config Advisor VMware驗證纜線。
 
 +
-https://["NetApp下載Config Advisor"]
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["NetApp下載Config Advisor"]
 
 

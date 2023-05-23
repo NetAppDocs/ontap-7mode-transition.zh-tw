@@ -22,7 +22,7 @@ summary: 在開始轉換之前、您應確認已滿足轉換的所有先決條�
 
 
  a| 
-支援的7-Mode版本 https://["NetApp 互通性對照表工具"]
+支援的7-Mode版本 https://mysupport.netapp.com/matrix["NetApp 互通性對照表工具"]
  a| 
 
 
