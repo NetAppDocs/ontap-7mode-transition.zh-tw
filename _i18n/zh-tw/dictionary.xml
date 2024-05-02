@@ -7339,26 +7339,14 @@
   <block id="9653cf98bd0bafa030e219a7067934ce" category="sidebar">7-Mode轉換</block>
   <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">開始使用</block>
   <block id="33871b6190a8d5adbe8b15282054766c" category="sidebar">新增功能</block>
-  <block id="d176f598177def951b765d49b8a1ad4d" category="sidebar">瞭解最新版7-Mode Transition Tool的新功能</block>
   <block id="35895df246ab4fab18a15ad7203002a7" category="sidebar">安裝7-Mode Transition Tool</block>
-  <block id="7ea7bcc99dddaa8df76f592001954899" category="sidebar">瞭解如何在Microsoft Windows或Linux上安裝此工具</block>
   <block id="35f0393a0f809b8834f1e94cf9aeb75d" category="sidebar">收集轉換所需的資料</block>
-  <block id="f8d6780cf027291bb431321789717f05" category="sidebar">瞭解如何收集轉換過程中不可或缺的資訊</block>
   <block id="9715d735daefe53c846d6422d269ba9c" category="sidebar">適用於7-mode系統管理員的命令對應</block>
-  <block id="347239ff36e364d3f29f508ab66f7e5b" category="sidebar">尋找ONTAP 7-Mode命令的等效功能</block>
-  <block id="2d0b993704b5291e3d8c9104cd1eb3f4" category="sidebar">瞭解7-Mode選項如何對應ONTAP 至指令參數</block>
   <block id="d1cb91eced95c7ff33565c2ab700e6eb" category="sidebar">7-Mode組態檔如何對應ONTAP 至各種指令</block>
-  <block id="a04ffe42a976aa7c8eb5782495546115" category="sidebar">瞭解7-Mode組態檔如何對應ONTAP 至各種組態命令</block>
   <block id="dc8134f825a7c1a45f8329a7db06ba5a" category="sidebar">轉換方法</block>
-  <block id="95f77135b69a05aefa342ac301235f29" category="sidebar">使用工具執行從7-Mode到ONTAP VMware的複本轉換</block>
-  <block id="a3fa8f36cd3178033ace1b35c238f00d" category="sidebar">使用工具執行從7-Mode到ONTAP VMware的無複本轉換</block>
   <block id="606f512fc14158269146a632e3444e35" category="sidebar">使用SnapMirror移轉資料</block>
-  <block id="5d2368c109186f55545b33483e97e8d0" category="sidebar">瞭解如何ONTAP 使用SnapMirror命令、將資料從7-Mode移轉至VMware</block>
   <block id="f7eea647714641318ee86fedbbed4691" category="sidebar">VMware ESXi</block>
-  <block id="689c2aa583e8cf3395af25aaa2ef63f5" category="sidebar">瞭解VMware ESXi主機的移轉前後需求</block>
   <block id="c73bbd3786350b0a8d3577d82afdf489" category="sidebar">Red Hat Enterprise Linux</block>
-  <block id="80a4be74705a612be3887e601f338c11" category="sidebar">瞭解Red Hat Enterprise Linux主機的轉換前與轉換後需求</block>
-  <block id="624868dc01678d5268f2ce0a2b5e6de8" category="sidebar">瞭解Microsoft Windows主機的轉換前與轉換後步驟</block>
   <block id="84a6933c212881ac1351cccc03b06c5a" category="sidebar">適用於7-Mode系統管理員的命令對應</block>
   <block id="182051b066ceb3730c91bc37bf2ef32d" category="paragraph">NetApp建議您配置目的地ONTAP 的供應區、以符合7-mode來源Volume的屬性。要比對的部分屬性包括：</block>
   <block id="6a76182840bc8cb17fc284d39d33bc7b" category="list-text">Volume大小：ONTAP 無法使用的資料區必須至少是7-Mode Volume的大小。</block>
@@ -7376,7 +7364,6 @@
   <block id="6f6819dd21dbd8a646ea9df4c166c414" category="admonition">若要評估主機和控制器是否可進行無複本轉換、您必須使用最新版本的Inventory Collect Tool來收集庫存。</block>
   <block id="c56554efd1f85bba5b98f6ca401f2fda" category="paragraph"><block ref="c56554efd1f85bba5b98f6ca401f2fda" category="inline-link-macro-rx"></block></block>
   <block id="2926f2591b66c0122ef9f741a49d26aa" category="paragraph">在這兩種情況下、您都必須使用最新版本的Inventory Collect Tool來收集庫存。</block>
-  <block id="d1b92a4930d50c6ed1038655db0d2684" category="sidebar">所有ONTAP 產品文件</block>
   <block id="83e14c89cceb4cee82c0bcea3943ea26" category="paragraph">從VMware版9.12.1開始ONTAP 、您將無法再使用SnapMirror技術來移轉7-Mode磁碟區。</block>
   <block id="8d73bc8fd1f6fe79df1b2f9f4cb47d7a" category="paragraph">不過ONTAP 、對於VMware版本的版本、您可以Data ONTAP 使用叢集Data ONTAP 式的SnapMirror命令、將NAS和SAN環境中的7-Mode Volume移轉至叢集式的VMware Volume。然後、您必須在轉換完成後、在叢集上設定傳輸協定、服務及其他組態。</block>
   <block id="8f2de78b174393b6f012a8a48075011a" category="paragraph">*建議：*您應該使用7-Mode Transition Tool、將7-Mode磁碟區的複本轉換為ONTAP 適用於VMware 9.11.1及更早版本的轉換7-Mode磁碟區、因為此工具提供預先檢查功能、可在移轉程序的每個步驟中驗證7-Mode和叢集、有助於避免許多潛在問題。此工具可大幅簡化所有傳輸協定、網路和服務組態的移轉、以及資料移轉作業。</block>
@@ -7403,4 +7390,5 @@
   <block id="6705b8d93729b2ab59445f3c547fe952" category="paragraph"><block ref="6705b8d93729b2ab59445f3c547fe952" category="inline-link-rx"></block></block>
   <block id="53b500e941f815e0da37832bbbb3f265" category="inline-link">使用System Manager進行叢集管理</block>
   <block id="54875b6362e405aeb3f3e1f1b65a3cc7" category="paragraph"><block ref="54875b6362e405aeb3f3e1f1b65a3cc7" category="inline-link-rx"></block></block>
+  <block id="e8fb469abd5e30926d4d1c7fc20519c2" category="sidebar">7-Mode 轉換文件包含的資訊可協助您安裝及設定 7-Mode 轉換工具、使用 SnapMirror 命令轉換資料、執行複製基礎或無複製轉換、收集轉換資訊、以及完成 SAN 主機的移轉前後程序。</block>
 </blocks>

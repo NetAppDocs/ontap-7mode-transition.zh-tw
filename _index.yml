@@ -1,0 +1,40 @@
+---
+indexpage:
+  title: 7-Mode Transition文檔
+  summary: 7-Mode移轉文件包含的資訊可協助您安裝及設定7-Mode移轉工具、使用SnapMirror命令移轉資料、執行複製型或無複製的移轉、收集移轉資訊、以及完成SAN主機的移轉前/移轉後程序。
+  keywords: transition, copy, free, 7-mode transition
+  lead: 7-Mode 轉換文件包含的資訊可協助您安裝及設定 7-Mode 轉換工具、使用 SnapMirror 命令轉換資料、執行複製基礎或無複製轉換、收集轉換資訊、以及完成
+    SAN 主機的移轉前後程序。
+  tiles:
+  - title: 開始使用
+    links:
+    - title: 新增功能
+      url: releasenotes.html
+    - title: 安裝7-Mode Transition Tool
+      url: "/install-admin/concept_transition_to_clustered_ontap_using_7mtt.html"
+    - title: 收集轉換所需的資料
+      url: "/inventory-collect/concept_collecting_host_and_storage_inventory_information_for_transition_assessment.html"
+  - title: 適用於7-mode系統管理員的命令對應
+    links:
+    - title: 7-Mode命令如何對應ONTAP 至VMware指令
+      url: "/command-map/reference_how_7_mode_commands_map_to_clustered_ontap_commands.html"
+    - title: 7-Mode選項如何對應ONTAP 至VMware指令
+      url: "/command-map/reference_how_7_mode_options_map_to_clustered_ontap_commands.html"
+    - title: 7-Mode組態檔如何對應ONTAP 至各種指令
+      url: "/command-map/reference_how_7_mode_configuration_files_map_to_clustered_ontap_commands.html"
+  - title: 轉換方法
+    links:
+    - title: 複本型轉換
+      url: "/copy-based/concept_copy_based_transition_workflow.html"
+    - title: 無複製轉換
+      url: "/copy-free/task_copy_free_transition_workflow.html"
+    - title: 使用SnapMirror移轉資料
+      url: "/snapmirror/task_transitioning_7_mode_volumes_using_snapmirror.html"
+  - title: SAN主機移轉與補救
+    links:
+    - title: VMware ESXi
+      url: "/san-host/concept_vmware_esxi_host_remediation.html"
+    - title: Red Hat Enterprise Linux
+      url: "/san-host/concept_linux_host_remediation.html"
+    - title: Windows
+      url: "/san-host/concept_windows_host_remediation.html"
