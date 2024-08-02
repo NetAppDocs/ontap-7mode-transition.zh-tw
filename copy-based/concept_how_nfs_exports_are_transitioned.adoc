@@ -34,7 +34,7 @@ summary: 您必須瞭解在轉換後如何在SVM上設定NFS匯出。如果VMwar
 * 如果在唯讀、讀寫及根存取權限清單的組合中指定相同的主機、則您必須在轉換後評估轉換的匯出規則、以決定主機的適當存取權限。
 
 
-http://www.netapp.com/us/media/tr-4067.pdf["NetApp技術報告4067：NFS最佳實務與實作指南"]
+https://www.netapp.com/pdf.html?item=/media/10720-tr-4067.pdf["NetApp技術報告4067：NFS最佳實務與實作指南"^]
 
 
 

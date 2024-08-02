@@ -22,4 +22,4 @@ image::../media/32bit_upgrade_path_updated.gif[32位元升級路徑已更新]
 
 *相關資訊*
 
-http://www.netapp.com/us/media/tr-3978.pdf["NetApp技術報告3978：就地擴充32位元Aggregate至64位元概述與最佳實務做法"]
+https://www.netapp.com/pdf.html?item=/media/19679-tr-3978.pdf["NetApp技術報告3978：就地擴充32位元Aggregate至64位元概述與最佳實務做法"^]

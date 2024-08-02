@@ -838,7 +838,6 @@
   <block id="b94690f1d58e7f298c4e94a655b35110" category="paragraph">若要讓NFS用戶端掛載qtree、qtree必須屬於具有唯讀權限的磁碟區。如果沒有磁碟區層級的唯讀權限、NFS用戶端就無法掛載qtree。</block>
   <block id="1b4bd805f1c43c7d5c9719dce981c2f4" category="list-text">如果在唯讀、讀寫及根存取權限清單的組合中指定相同的主機、則您必須在轉換後評估轉換的匯出規則、以決定主機的適當存取權限。</block>
   <block id="8fad4be94e9aa7ce4db57aef3f0d7941" category="inline-link">NetApp技術報告4067：NFS最佳實務與實作指南</block>
-  <block id="2e5e5fdaff65cd094319505704237d70" category="paragraph"><block ref="2e5e5fdaff65cd094319505704237d70" category="inline-link-rx"></block></block>
   <block id="b014fe06ce5f68b47e31838c02f8644b" category="section-title">範例：修改磁碟區的匯出原則、以允許存取qtree</block>
   <block id="c4d849bb273335cc15c5a5e062d19ca2" category="paragraph">請考量在7-Mode儲存系統（192：192：192：192）中設定的下列匯出規則、以允許NFS用戶端192：192：168：10的Volume volstd10和qtree qtre1的讀取/寫入存取權：</block>
   <block id="1907717ab9a8223ee3ce06ec78e360cc" category="paragraph">轉換後ONTAP 、下列顯示的是位於畫面上的Volume volsdt10的匯出原則：</block>
@@ -1239,7 +1238,6 @@
   <block id="67e55df2230df7a56836309fe173b259" category="paragraph">根據磁碟區和控制器組態以及預先檢查摘要、執行摘要會針對每個評估磁碟區提供最佳轉換方法建議。例如、您無法轉換7-Mode傳統Volume或FlexCache 是不支援ONTAP 這些功能的功能。</block>
   <block id="a4188dde39855b0f8b00898bc8a50fc5" category="paragraph">對於大部分的組態、建議使用7-Mode Transition Tool進行轉換。不過、有些工作負載無法使用7-Mode Transition Tool進行轉換、而您應該使用應用程式型或主機型移轉方法。</block>
   <block id="664f739c9dfce166b4c021cac0d8633e" category="inline-link">NetApp技術報告4052：成功移轉至叢集Data ONTAP 式的更新版本（Data ONTAP NetApp技術報告4052）</block>
-  <block id="755b3c98012d25558d664e3aae2c2528" category="paragraph"><block ref="755b3c98012d25558d664e3aae2c2528" category="inline-link-rx"></block></block>
   <block id="ca2ca47a2d122a4c2b69f770ebdcaf17" category="section-title">儲存設備庫存</block>
   <block id="e666d79eed8ef816936f0c67b7ccc988" category="paragraph">本節提供下列資訊：</block>
   <block id="a378d84c51afa40ad9cc4d4db2fbbb40" category="list-text">儲存物件：提供有關儲存物件數目的資訊、例如磁碟區、qtree、LUN、vFiler單元、 SnapMirror關係、共享和匯出、每個控制器。</block>
@@ -1888,7 +1886,6 @@
   <block id="bf005518ba36a25ae1ccc5560af4adc2" category="list-text">* 32位元磁碟區或Snapshot複本*</block>
   <block id="18016d0d64a9a88284d8a6444275aee3" category="paragraph">即使您只有64位元的集合體和Volume、部分32位元或混合格式FlexVol 的支援區或Snapshot複本仍可能保留。您必須先移除這些磁碟區和Snapshot複本、才能進行轉換。</block>
   <block id="13434f43b15c9640896f4fc73fa54221" category="inline-link">NetApp技術報告3978：就地擴充32位元Aggregate至64位元概述與最佳實務做法</block>
-  <block id="0a2da8e756e37983a5c9c20d332cfa66" category="paragraph"><block ref="0a2da8e756e37983a5c9c20d332cfa66" category="inline-link-rx"></block></block>
   <block id="d73369ebb2f285e1ffeaffb54e330733" category="summary">如果NFS已獲授權、且NFS服務正在以7-Mode運作的系統上執行、則您必須手動準備叢集和目標SVM、以便轉換NFS組態。您也必須瞭解哪些組態已轉換。</block>
   <block id="ff2255792b1414b8f30ff235c823b86a" category="doc">準備進行NFS轉換</block>
   <block id="0ecc105040e30b8f4599521c46a61409" category="paragraph">某些以7-Mode運作的NFS組態在ONTAP VMware不支援。部分組態並非由7-Mode Transition Tool轉換、必須手動套用至SVM。</block>
@@ -7391,4 +7388,7 @@
   <block id="53b500e941f815e0da37832bbbb3f265" category="inline-link">使用System Manager進行叢集管理</block>
   <block id="54875b6362e405aeb3f3e1f1b65a3cc7" category="paragraph"><block ref="54875b6362e405aeb3f3e1f1b65a3cc7" category="inline-link-rx"></block></block>
   <block id="e8fb469abd5e30926d4d1c7fc20519c2" category="sidebar">7-Mode 轉換文件包含的資訊可協助您安裝及設定 7-Mode 轉換工具、使用 SnapMirror 命令轉換資料、執行複製基礎或無複製轉換、收集轉換資訊、以及完成 SAN 主機的移轉前後程序。</block>
+  <block id="6819367dcff0e5919ebb17505dc3e140" category="paragraph"><block ref="6819367dcff0e5919ebb17505dc3e140" category="inline-link-rx"></block></block>
+  <block id="07c5daecfe0dafef7e4667a307affc19" category="paragraph"><block ref="07c5daecfe0dafef7e4667a307affc19" category="inline-link-rx"></block></block>
+  <block id="f7042196519d0be4fd9ec6a8bd4a4b28" category="paragraph"><block ref="f7042196519d0be4fd9ec6a8bd4a4b28" category="inline-link-rx"></block></block>
 </blocks>
