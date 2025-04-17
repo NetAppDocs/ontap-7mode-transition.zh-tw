@@ -2459,7 +2459,6 @@
   <block id="e7a805c113133a8394fe889bdcad474d" category="doc">規劃移轉</block>
   <block id="1e7ed7812dd9d6994ec76aa529f47805" category="paragraph">如果發生任何轉換問題、您應該檢閱移轉目標版本的_Release Notes_。</block>
   <block id="efe451bd1c5b374a05e7d5178bb06987" category="inline-link">發行說明ONTAP</block>
-  <block id="fbd4c65e1bebfbdd4ec4b22c6847a27b" category="paragraph"><block ref="fbd4c65e1bebfbdd4ec4b22c6847a27b" category="inline-link-rx"></block></block>
   <block id="0b5e54d11ce5ce71265d41b79d4a1d52" category="paragraph">下列ONTAP 版本支援7-Mode與叢集式等功能區之間的SnapMirror關係：</block>
   <block id="9785a2e2fe0d151f69937c16fbe4f5a0" category="list-text">更新版本ONTAP</block>
   <block id="f3d068c8ceb84eb88b6803b029564d6b" category="list-text">更新版本：1.7P2與9.7 ONTAP</block>
@@ -7391,4 +7390,5 @@
   <block id="6819367dcff0e5919ebb17505dc3e140" category="paragraph"><block ref="6819367dcff0e5919ebb17505dc3e140" category="inline-link-rx"></block></block>
   <block id="07c5daecfe0dafef7e4667a307affc19" category="paragraph"><block ref="07c5daecfe0dafef7e4667a307affc19" category="inline-link-rx"></block></block>
   <block id="f7042196519d0be4fd9ec6a8bd4a4b28" category="paragraph"><block ref="f7042196519d0be4fd9ec6a8bd4a4b28" category="inline-link-rx"></block></block>
+  <block id="63e43529b7f7b24b1839eea99296dba7" category="paragraph"><block ref="63e43529b7f7b24b1839eea99296dba7" category="inline-link-rx"></block></block>
 </blocks>
